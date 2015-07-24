@@ -13,12 +13,13 @@ namespace LottoSend.com
     {
         static void Main(string[] args)
         {
-            //ChromeDriver _driver = new ChromeDriver();
-            //DriverCover cover = new DriverCover(_driver);
-            //cover.NavigateToUrl("https://stg.lottobaba.com/en/");
-            //BottomMenuObj bottom = new BottomMenuObj(_driver);
-            //bottom.VisitPlayPages();
-            //_driver.Dispose();
+            ChromeDriver _driver = new ChromeDriver();
+            DriverCover cover = new DriverCover(_driver);
+            cover.NavigateToUrl("https://stg.lottobaba.com/en/");
+            BottomMenuObj bottom = new BottomMenuObj(_driver);
+            bottom.VisitPlayPages();
+            _driver.Dispose();
+            int a;
         }
     }
 }
