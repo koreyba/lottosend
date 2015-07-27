@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace LottoSend.com.TestCases
 {
+    [TestFixture]
     public class SignUpTests
     {
         private IWebDriver _driver;
@@ -21,7 +22,7 @@ namespace LottoSend.com.TestCases
         public void Sign_Up_In_Pop_Up()
         {
             DriverCover driver = new DriverCover(_driver);
-            driver.NavigateToUrl("https://stg.lottobaba.com/ru/");
+            driver.NavigateToUrl("https://stg.lottobaba.com/en/");
 
             TopBarObj topBar = new TopBarObj(_driver);
             SignUpPopUpObj popUp = topBar.ClickSignUpButton();

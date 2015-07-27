@@ -103,6 +103,8 @@ namespace LottoSend.com
         /// <param name="secondsToWait">Time to wait (default 660 sec)</param>
         public void WaitAjax(int secondsToWait = 600)
         {
+            int i = 0;
+            int j = 0;
             Stopwatch sw = new Stopwatch();
             sw.Start();
             try
@@ -110,12 +112,11 @@ namespace LottoSend.com
                 while (sw.Elapsed.TotalSeconds < secondsToWait)
                 {
                     var ajaxIsComplete = !(bool)
-                        ((IJavaScriptExecutor)Driver).ExecuteScript("return  $.active > 0");
-                   // var ajaxIsComplete = (bool)
-                       // ((IJavaScriptExecutor)Driver).ExecuteScript("return (typeof($) === 'undefined') ? true : !$.active;");
+                        ((IJavaScriptExecutor)Driver).ExecuteScript("return  $.active > 0"); ++i;
                     if (ajaxIsComplete)
                         break;                    
                     Thread.Sleep(100);
+                    ++j;
                 }
             }
             catch (Exception)

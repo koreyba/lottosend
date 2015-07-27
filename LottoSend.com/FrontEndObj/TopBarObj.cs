@@ -66,6 +66,14 @@ namespace LottoSend.com.FrontEndObj
             return new SignUpPopUpObj(Driver);
         }
 
+        public LogInPopUpObj ClickLogInButton()
+        {
+            LogInButton.Click();
+            WaitAjax();
+
+            return new LogInPopUpObj(Driver);
+        }
+
         #endregion 
     }
 }

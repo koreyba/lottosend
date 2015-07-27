@@ -13,7 +13,10 @@ namespace LottoSend.com.FrontEndObj
     {
         public SignUpPopUpObj(IWebDriver driver) : base(driver)
         {
-
+            if (!Driver.FindElement(By.CssSelector("div.modal-dialog.modal-sm > h4.modal-title.text-center")).Displayed)
+            {
+                throw new Exception("No pop up is displayed");
+            }
             PageFactory.InitElements(Driver, this);
         }
 
@@ -118,12 +121,10 @@ namespace LottoSend.com.FrontEndObj
         /// </summary>
         public void FillInFields()
         {
-            Random r = new Random();
-
             FirstName.SendKeys("my first name");
             LastName.SendKeys("my last name");
             Phone.SendKeys("12345678");
-            Email.SendKeys("newUser" + r.Next() + "@ukr.net");
+            Email.SendKeys(RandomGenerator.GenerateRandomString(12) + "@ukr.net");
             Adress.SendKeys("new orlean))");
             Country.SelectByValue("UA");
             Password.SendKeys("11111111");
