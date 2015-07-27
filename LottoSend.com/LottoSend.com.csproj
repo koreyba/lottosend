@@ -77,6 +77,8 @@
     <Compile Include="FrontEndObj\TopBarObj.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomGenerator.cs" />
+    <Compile Include="StringExtention.cs" />
     <Compile Include="TestCases\SignUpTests.cs" />
   </ItemGroup>
   <ItemGroup>
