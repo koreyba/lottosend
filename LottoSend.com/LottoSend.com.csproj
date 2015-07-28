@@ -71,17 +71,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DriverCover.cs" />
-    <Compile Include="FrontEndObj\BottomMenuObj.cs" />
-    <Compile Include="FrontEndObj\LogInPopUpObj.cs" />
-    <Compile Include="FrontEndObj\SignInPageOneObj.cs" />
-    <Compile Include="FrontEndObj\SignInPageTwoObj.cs" />
-    <Compile Include="FrontEndObj\SignUpPopUpObj.cs" />
-    <Compile Include="FrontEndObj\SignUpSuccessObj.cs" />
-    <Compile Include="FrontEndObj\TopBarObj.cs" />
+    <Compile Include="FrontEndObj\Common\BottomMenuObj.cs" />
+    <Compile Include="FrontEndObj\CartObj.cs" />
+    <Compile Include="FrontEndObj\GamePageObj.cs" />
+    <Compile Include="FrontEndObj\Login\LogInPopUpObj.cs" />
+    <Compile Include="FrontEndObj\Login\SignInPageOneObj.cs" />
+    <Compile Include="FrontEndObj\Login\SignInPageTwoObj.cs" />
+    <Compile Include="FrontEndObj\SignUp\SignUpPopUpObj.cs" />
+    <Compile Include="FrontEndObj\SignUp\SignUpSuccessObj.cs" />
+    <Compile Include="FrontEndObj\Common\TopBarObj.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomGenerator.cs" />
     <Compile Include="StringExtention.cs" />
+    <Compile Include="TestCases\CartTestCases.cs" />
     <Compile Include="TestCases\LogInTests.cs" />
     <Compile Include="TestCases\SignUpTests.cs" />
   </ItemGroup>

@@ -28,7 +28,17 @@ namespace LottoSend.com.TestCases
 
             if (!topBar.IsElementExists(topBar.MyAccount))
             {
-                throw new NoSuchElementException("Log in was unseccessful");
+                throw new NoSuchElementException("Log in was unseccessful ");
+            }
+
+            //TODO needs testing
+            driver.NavigateToUrl("https://stg.lottobaba.com/en/carts/");
+            CartObj cart = new CartObj(_driver);
+            bool ticket = cart.IfTicketIsAdded("Powerball");
+
+            if (!ticket)
+            {
+                throw new Exception("Pushed ticket was not found in the cart ");
             }
         }
 
@@ -44,7 +54,7 @@ namespace LottoSend.com.TestCases
 
             if (!topBar.IsElementExists(topBar.MyAccount))
             {
-                throw new NoSuchElementException("Log in was unseccessful");
+                throw new NoSuchElementException("Log in was unseccessful ");
             }
         }
 
@@ -61,7 +71,7 @@ namespace LottoSend.com.TestCases
 
             if (!topBar.IsElementExists(topBar.MyAccount))
             {
-                throw new NoSuchElementException("Log in was unseccessful");
+                throw new NoSuchElementException("Log in was unseccessful ");
             }
         }
 

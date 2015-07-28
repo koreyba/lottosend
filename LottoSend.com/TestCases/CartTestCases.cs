@@ -11,28 +11,16 @@ using System.Threading.Tasks;
 namespace LottoSend.com.TestCases
 {
     [TestFixture]
-    public class SignUpTests
+    public class CartTestCases
     {
         private IWebDriver _driver;
 
-        /// <summary>
-        /// Sign up in pop up form
-        /// </summary>
-        [Test]
-        public void Sign_Up_In_Pop_Up()
+        public void Delete_Item_From_Cart()
         {
             DriverCover driver = new DriverCover(_driver);
-            driver.NavigateToUrl("https://stg.lottobaba.com/en/");
+            driver.NavigateToUrl("https://stg.lottobaba.com/en/plays/eurojackpot/");
 
-            TopBarObj topBar = new TopBarObj(_driver);
-            SignUpPopUpObj popUp = topBar.ClickSignUpButton();
-            popUp.FillInFields();
-            SignUpSuccessObj success = popUp.ClickSignUp();
 
-            if (!topBar.IsElementExists(topBar.MyAccount))
-            {
-                throw new NoSuchElementException("Sign up was unseccessful ");
-            }
         }
 
         [TearDown]
