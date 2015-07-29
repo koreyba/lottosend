@@ -18,7 +18,7 @@ namespace LottoSend.com.TestCases
         public void Delete_Item_From_Cart()
         {
             DriverCover driver = new DriverCover(_driver);
-            driver.NavigateToUrl("https://stg.lottobaba.com/en/plays/eurojackpot/");
+            driver.NavigateToUrl(driver.BaseUrl + "en/plays/eurojackpot/");
 
 
         }

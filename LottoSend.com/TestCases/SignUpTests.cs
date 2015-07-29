@@ -22,7 +22,7 @@ namespace LottoSend.com.TestCases
         public void Sign_Up_In_Pop_Up()
         {
             DriverCover driver = new DriverCover(_driver);
-            driver.NavigateToUrl("https://stg.lottobaba.com/en/");
+            driver.NavigateToUrl(driver.BaseUrl + "en/");
 
             TopBarObj topBar = new TopBarObj(_driver);
             SignUpPopUpObj popUp = topBar.ClickSignUpButton();

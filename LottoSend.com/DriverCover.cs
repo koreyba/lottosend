@@ -6,6 +6,7 @@ using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using System.Net;
+using System.Configuration;
 
 namespace LottoSend.com
 {
@@ -23,6 +24,21 @@ namespace LottoSend.com
             //_waitDriver = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
         }
 
+        /// <summary>
+        /// Returns the main URL of the site (from app.config)
+        /// </summary>
+        public string BaseUrl
+        {
+            get { return ConfigurationManager.AppSettings["BaseUrl"].ToString(); }
+        }
+
+        /// <summary>
+        /// Returns the main admin URL of the site (from app.config)
+        /// </summary>
+        public string BaseAdminUrl
+        {
+            get { return ConfigurationManager.AppSettings["BaseAdminUrl"].ToString(); }
+        }
 
         private readonly IWebDriver _driver;
 

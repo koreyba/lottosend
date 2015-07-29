@@ -13,14 +13,9 @@ namespace LottoSend.com
     {
         static void Main(string[] args)
         {
-            ChromeDriver _driver = new ChromeDriver();
-            DriverCover driver = new DriverCover(_driver);
             LogInTests logIn = new LogInTests();
             logIn.SetUp();
-            driver.NavigateToUrl("https://stg.lottobaba.com/en/");
-            driver.NavigateToUrl("https://stg.lottobaba.com/en/carts/");
-            CartObj cart = new CartObj(_driver);
-            bool flag = cart.IfTicketIsAdded("EuroJackpot");
+            logIn.Login_On_SignIn_Page_Two();
             logIn.CleanUp();
         }
     }

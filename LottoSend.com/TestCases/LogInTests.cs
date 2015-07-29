@@ -15,38 +15,11 @@ namespace LottoSend.com.TestCases
     {
         private IWebDriver _driver;
 
-
-        [Test]
-        public void Login_On_SignIn_Page_Two()
-        {
-            DriverCover driver = new DriverCover(_driver);
-            driver.NavigateToUrl("https://stg.lottobaba.com/en/web_users/sign_in2");
-            SignInPageTwoObj signInOne = new SignInPageTwoObj(_driver);
-
-            signInOne.FillInFields("fiwork@gmail.com", "11111111");
-            TopBarObj topBar = signInOne.ClickLogInButton();
-
-            if (!topBar.IsElementExists(topBar.MyAccount))
-            {
-                throw new NoSuchElementException("Log in was unseccessful ");
-            }
-
-            //TODO needs testing
-            driver.NavigateToUrl("https://stg.lottobaba.com/en/carts/");
-            CartObj cart = new CartObj(_driver);
-            bool ticket = cart.IfTicketIsAdded("Powerball");
-
-            if (!ticket)
-            {
-                throw new Exception("Pushed ticket was not found in the cart ");
-            }
-        }
-
         [Test]
         public void Login_On_SignIn_Page_One()
         {
             DriverCover driver = new DriverCover(_driver);
-            driver.NavigateToUrl("https://stg.lottobaba.com/en/web_users/sign_in");
+            driver.NavigateToUrl(driver.BaseUrl + "en/web_users/sign_in");
             SignInPageOneObj signInOne = new SignInPageOneObj(_driver);
 
             signInOne.FillInFields("fiwork@gmail.com", "11111111");
@@ -62,7 +35,7 @@ namespace LottoSend.com.TestCases
         public void Login_In_PopUp_Form()
         {
             DriverCover driver = new DriverCover(_driver);
-            driver.NavigateToUrl("https://stg.lottobaba.com/en/");
+            driver.NavigateToUrl(driver.BaseUrl + "en/");
             TopBarObj topBar = new TopBarObj(_driver);
             LogInPopUpObj loginPopUp = topBar.ClickLogInButton();
 
