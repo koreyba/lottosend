@@ -13,9 +13,9 @@ namespace LottoSend.com
     {
         static void Main(string[] args)
         {
-            LogInTests logIn = new LogInTests();
+            CartTestCases logIn = new CartTestCases();
             logIn.SetUp();
-            logIn.Login_On_SignIn_Page_Two();
+            logIn.Delete_Item_From_Cart();
             logIn.CleanUp();
         }
     }

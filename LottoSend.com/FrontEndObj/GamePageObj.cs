@@ -18,7 +18,31 @@ namespace LottoSend.com.FrontEndObj
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = "")]
-        private IWebElement _addToCartButton;
+        /// <summary>
+        /// Clicks on "Add to Cart and Play More Games"
+        /// </summary>
+        public void ClickAddToCartButton()
+        {
+            _detectAddToCartButton().Click();
+            WaitAjax();
+            WaitForPageLoading();
+            WaitAjax();
+        }
+
+        /// <summary>
+        /// Returns displayed button "Add To Cart" or null is the button was not found
+        /// </summary>
+        /// <returns>Button/null</returns>
+        private IWebElement _detectAddToCartButton()
+        {
+            IList<IWebElement> buttons = Driver.FindElements(By.CssSelector("#add-to-cart"));
+            foreach(IWebElement button in buttons)
+            {
+                if (button.Displayed)
+                    return button;
+            }
+
+            return null;
+        }
     }
 }

@@ -19,6 +19,13 @@ namespace LottoSend.com.TestCases
         {
             DriverCover driver = new DriverCover(_driver);
             driver.NavigateToUrl(driver.BaseUrl + "en/plays/eurojackpot/");
+            GamePageObj game = new GamePageObj(_driver);
+
+            game.ClickAddToCartButton();
+
+            driver.NavigateToUrl(driver.BaseUrl + "en/carts/");
+            CartObj cart = new CartObj(_driver);
+            cart.DeleteTicket("EuroJackpot");
 
 
         }

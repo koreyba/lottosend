@@ -32,9 +32,36 @@ namespace LottoSend.com.FrontEndObj
             get { return _counNumberOfTickets(); }
         }
 
+        public void DeleteTicket(string lottery)
+        {
+            IWebElement tr = _findTrOfTicket(lottery);
+            tr.FindElement(By.CssSelector("td.text-center > form > div > input.btn.btn-info.btn-block")).Click();
+            WaitAjax();
+            WaitForPageLoading();
+            WaitAjax();
+        }
+
         private int _counNumberOfTickets()
         {
             return _cartTable.FindElements(By.TagName("tr")).Count; 
+        }
+
+        private IWebElement _findTrOfTicket(string lottery)
+        {
+            IList<IWebElement> tr = _cartTable.FindElements(By.TagName("tr"));
+
+            foreach(IWebElement t in tr)
+            {
+                IList<IWebElement> namesOfLottery = t.FindElements(By.CssSelector("td.text-center > img"));
+
+                foreach (IWebElement name in namesOfLottery)
+                {
+                    if (name.GetAttribute("alt").Equals(lottery))
+                        return t;
+                }
+            }
+
+            return null;
         }
 
         /// <summary>
