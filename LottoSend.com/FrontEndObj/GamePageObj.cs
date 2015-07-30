@@ -18,6 +18,23 @@ namespace LottoSend.com.FrontEndObj
             PageFactory.InitElements(Driver, this);
         }
 
+        public MerchantsObj ClickBuyTicketsButton()
+        {
+            _detectBuyTicketsButton().Click();
+            WaitAjax();
+
+            return new MerchantsObj(Driver);
+        }
+
+        /// <summary>
+        /// Returns displayed button "Buy Tickets" or null if the button was not found
+        /// </summary>
+        /// <returns>Button/null</returns>
+        private IWebElement _detectBuyTicketsButton()
+        {
+            return _visibleElementFromList("button.btn.btn-success.btn-lg.btn-xl.btn-block.play-now");
+        }
+
         /// <summary>
         /// Clicks on "Add to Cart and Play More Games"
         /// </summary>
@@ -30,13 +47,24 @@ namespace LottoSend.com.FrontEndObj
         }
 
         /// <summary>
-        /// Returns displayed button "Add To Cart" or null is the button was not found
+        /// Returns displayed button "Add To Cart" or null if the button was not found
         /// </summary>
         /// <returns>Button/null</returns>
         private IWebElement _detectAddToCartButton()
         {
-            IList<IWebElement> buttons = Driver.FindElements(By.CssSelector("#add-to-cart"));
-            foreach(IWebElement button in buttons)
+            return _visibleElementFromList("#add-to-cart");
+        }
+
+
+        /// <summary>
+        /// Returns the first visible element from list of elements that are found by the same cssSelector.
+        /// </summary>
+        /// <param name="cssSelector">CssSelector of list of elements</param>
+        /// <returns>Element/null</returns>
+        private IWebElement _visibleElementFromList(string cssSelector)
+        {
+            IList<IWebElement> buttons = Driver.FindElements(By.CssSelector(cssSelector));
+            foreach (IWebElement button in buttons)
             {
                 if (button.Displayed)
                     return button;

@@ -4,6 +4,7 @@ using OpenQA.Selenium.Chrome;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,9 +14,10 @@ namespace LottoSend.com
     {
         static void Main(string[] args)
         {
-            CartTestCases logIn = new CartTestCases();
+
+            BuyingTicketsTests logIn = new BuyingTicketsTests();
             logIn.SetUp();
-            logIn.Delete_Item_From_Cart();
+            logIn.BuyTicket();
             logIn.CleanUp();
         }
     }

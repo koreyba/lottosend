@@ -69,7 +69,7 @@ namespace LottoSend.com.FrontEndObj
         /// </summary>
         /// <param name="lottery">Name of a lottery</param>
         /// <returns>true/false</returns>
-        public bool IfTicketIsAdded(string lottery)
+        public bool IsTicketInCart(string lottery)
         {
             IList<IWebElement> namesOfLottery =  _cartTable.FindElements(By.CssSelector("td.text-center > img"));
             bool ticket = false;

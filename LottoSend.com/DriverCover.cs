@@ -40,6 +40,23 @@ namespace LottoSend.com
             get { return ConfigurationManager.AppSettings["BaseAdminUrl"].ToString(); }
         }
 
+        /// <summary>
+        /// User name (login) from app.config
+        /// </summary>
+        public string Login
+        {
+            get { return ConfigurationManager.AppSettings["Login"].ToString();}
+        }
+
+        /// <summary>
+        /// Password of a user from app.config
+        /// </summary>
+        public string Password
+        {
+            get { return ConfigurationManager.AppSettings["Password"].ToString(); }
+        }
+
+
         private readonly IWebDriver _driver;
 
         /// <summary>

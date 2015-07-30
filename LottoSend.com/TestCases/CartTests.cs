@@ -11,10 +11,11 @@ using System.Threading.Tasks;
 namespace LottoSend.com.TestCases
 {
     [TestFixture]
-    public class CartTestCases
+    public class CartTests
     {
         private IWebDriver _driver;
 
+        [Test]
         public void Delete_Item_From_Cart()
         {
             DriverCover driver = new DriverCover(_driver);
@@ -26,7 +27,10 @@ namespace LottoSend.com.TestCases
             driver.NavigateToUrl(driver.BaseUrl + "en/carts/");
             CartObj cart = new CartObj(_driver);
             cart.DeleteTicket("EuroJackpot");
-
+            if(cart.IsTicketInCart("EuroJackpot"))
+            {
+                throw new Exception("The ticket was not removed from the cart ");
+            }
 
         }
 
