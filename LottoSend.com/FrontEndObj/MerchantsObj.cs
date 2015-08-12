@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace LottoSend.com.FrontEndObj
@@ -24,12 +25,21 @@ namespace LottoSend.com.FrontEndObj
         [FindsBy(How = How.CssSelector, Using = "input#credit_card + img")]
         private IWebElement _offline;
 
+        /// <summary>
+        /// Provide payment with offline charge
+        /// </summary>
         public void PayWithOfflineCharge()
         {
-            WaitAjax();
+            waitForElement(_offline, 10);
+            Thread.Sleep(TimeSpan.FromSeconds(1));
             _offline.Click();
-            WaitAjax();
+            WaitjQuery();
 
+            _fillInFields();
+        }
+
+        private void _fillInFields()
+        {
             OfflineChargeFormObj form = new OfflineChargeFormObj(Driver);
             form.FilInForm();
             form.ClickNextButton();

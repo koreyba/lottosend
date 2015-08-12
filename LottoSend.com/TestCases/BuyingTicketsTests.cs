@@ -1,4 +1,5 @@
-﻿using LottoSend.com.FrontEndObj;
+﻿using LottoSend.com.BackEndObj;
+using LottoSend.com.FrontEndObj;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -19,18 +20,34 @@ namespace LottoSend.com.TestCases
         [Test]
         public void BuyTicket()
         {
-
+            //Go to direct page
             DriverCover driver = new DriverCover(_driver);
             driver.NavigateToUrl(driver.BaseUrl + "en/web_users/sign_in");
             SignInPageOneObj signInOne = new SignInPageOneObj(_driver);
 
             signInOne.FillInFields(driver.Login, driver.Password);
             TopBarObj topBar = signInOne.ClickLogInButton();
-
             driver.NavigateToUrl(driver.BaseUrl + "en/plays/eurojackpot/");
+
+            //Pay for ticket
             GamePageObj game = new GamePageObj(_driver);
+            game.ClickSingleGameButton();
             MerchantsObj merchants = game.ClickBuyTicketsButton();
             merchants.PayWithOfflineCharge();
+
+            //Go to admin panel
+            driver.NavigateToUrl(driver.BaseAdminUrl);
+
+            LoginObj login = new LoginObj(_driver);
+            login.LogIn("koreybadenis@gmail.com", "299242909");
+
+            driver.NavigateToUrl(driver.BaseAdminUrl + "admin/orders_processed");
+
+            OrderProcessingObj processing = new OrderProcessingObj(_driver);
+            processing.AuthoriseTheLastPayment();
+
+            driver.NavigateToUrl(driver.BaseAdminUrl + "admin/charge_panel_manager");
+
         }
 
         [TearDown]

@@ -69,6 +69,7 @@ namespace LottoSend.com.FrontEndObj
         public LogInPopUpObj ClickLogInButton()
         {
             LogInButton.Click();
+            WaitjQuery();
             WaitAjax();
 
             return new LogInPopUpObj(Driver);

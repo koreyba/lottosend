@@ -18,10 +18,20 @@ namespace LottoSend.com.FrontEndObj
             PageFactory.InitElements(Driver, this);
         }
 
+        [FindsBy(How = How.CssSelector, Using = "ul.nav.nav-tabs > li:nth-child(2) > a")]
+        private IWebElement _singleGame;
+
+        public void ClickSingleGameButton()
+        {
+            _singleGame.Click();
+            WaitAjax();
+            WaitjQuery();
+        }
+
         public MerchantsObj ClickBuyTicketsButton()
         {
             _detectBuyTicketsButton().Click();
-            WaitAjax();
+            bool w = WaitjQuery();
 
             return new MerchantsObj(Driver);
         }
@@ -32,7 +42,7 @@ namespace LottoSend.com.FrontEndObj
         /// <returns>Button/null</returns>
         private IWebElement _detectBuyTicketsButton()
         {
-            return _visibleElementFromList("button.btn.btn-success.btn-lg.btn-xl.btn-block.play-now");
+            return _visibleElementFromList("button.btn.btn-warning.play-now");
         }
 
         /// <summary>

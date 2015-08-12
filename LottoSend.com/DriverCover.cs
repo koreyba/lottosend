@@ -7,6 +7,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using System.Net;
 using System.Configuration;
+using OpenQA.Selenium.Support.UI;
 
 namespace LottoSend.com
 {
@@ -134,10 +135,11 @@ namespace LottoSend.com
         /// Waits for Ajax executing 
         /// </summary>
         /// <param name="secondsToWait">Time to wait (default 660 sec)</param>
-        public void WaitAjax(int secondsToWait = 600)
+        /// <returns>If Ajax was executing</returns>
+        public bool WaitAjax(int secondsToWait = 600)
         {
-            int i = 0;
-            int j = 0;
+            bool ifExecuted = false;
+
             Stopwatch sw = new Stopwatch();
             sw.Start();
             try
@@ -145,12 +147,16 @@ namespace LottoSend.com
                 while (sw.Elapsed.TotalSeconds < secondsToWait)
                 {
                     var ajaxIsComplete = !(bool)
-                        ((IJavaScriptExecutor)Driver).ExecuteScript("return  $.active > 0"); ++i;
+                        ((IJavaScriptExecutor)Driver).ExecuteScript("return  $.active > 0");
                     if (ajaxIsComplete)
-                        break;                    
+                    { 
+                        break;
+                    }
+                    ifExecuted = true;
                     Thread.Sleep(100);
-                    ++j;
                 }
+
+                return ifExecuted;
             }
             catch (Exception)
             {
@@ -160,6 +166,71 @@ namespace LottoSend.com
             {
                 sw.Stop();
             }
+        }
+
+        /// <summary>
+        /// Waits for jQuery executing 
+        /// </summary>
+        /// <param name="secondsToWait">Time to wait (default 660 sec)</param>
+        /// <returns>If jQuery was executing</returns>
+        public bool WaitjQuery(int secondsToWait = 600)
+        {
+            bool ifExecuted = false;
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            try
+            {
+                while (sw.Elapsed.TotalSeconds < secondsToWait)
+                {
+                    var ajaxIsComplete = (bool)
+                        ((IJavaScriptExecutor)Driver).ExecuteScript("return jQuery.active == 0");
+                    if (ajaxIsComplete)
+                    {
+                        break;
+                    }
+                    ifExecuted = true; 
+                    Thread.Sleep(100);
+                }
+
+                return ifExecuted;
+            }
+            catch (Exception)
+            {
+                throw new TimeoutException("Ajax call time out time has passed " + secondsToWait + " seconds");
+            }
+            finally
+            {
+                sw.Stop();
+            }
+        }
+
+        /// <summary>
+        /// Wait till element is clickable
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="timeOutInSeconds"></param>
+        /// <returns></returns>
+        public IWebElement waitForElement(IWebElement element, int timeOutInSeconds)
+        {
+            try
+            {
+                WaitAjax();
+                WaitjQuery();
+
+                Driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(0)); //nullify implicitlyWait() 
+
+                WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(timeOutInSeconds));
+                wait.Until(ExpectedConditions.ElementToBeClickable(element));
+
+                Driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10)); //reset implicitlyWait
+
+                return element; //return the element	
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Time to wait" + timeOutInSeconds + " seconds is elapsed ");
+            }
+            return element;
         }
 
         /// <summary>
