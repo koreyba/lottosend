@@ -21,13 +21,20 @@ namespace LottoSend.com.FrontEndObj
         [FindsBy(How = How.CssSelector, Using = "ul.nav.nav-tabs > li:nth-child(2) > a")]
         private IWebElement _singleGame;
 
-        public void ClickSingleGameButton()
+        /// <summary>
+        /// Click on "Standart game" button
+        /// </summary>
+        public void ClickStandartGameButton()
         {
             _singleGame.Click();
             WaitAjax();
             WaitjQuery();
         }
 
+        /// <summary>
+        /// Click "Buy Tickets" button
+        /// </summary>
+        /// <returns></returns>
         public MerchantsObj ClickBuyTicketsButton()
         {
             _detectBuyTicketsButton().Click();

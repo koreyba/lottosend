@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace LottoSend.com.BackEndObj
 {
+    /// <summary>
+    /// Charge panel elemets
+    /// </summary>
     public class ChargePanelObj : DriverCover
     {
         public ChargePanelObj(IWebDriver driver) : base(driver)
@@ -22,16 +25,22 @@ namespace LottoSend.com.BackEndObj
         }
 
 
-        [FindsBy(How = How.CssSelector, Using = "table.index_table > tr:nth-last-child")]
+        [FindsBy(How = How.CssSelector, Using = "table.index_table > tbody:nth-child(2) > tr:last-child")]
         private IWebElement _theLastPayment;
 
-        public void ChargeTheLastPayment()
+        /// <summary>
+        /// Clicks on "Charge" button of the last payment on the first page
+        /// </summary>
+        /// <returns></returns>
+        public ChargeFormObj ChargeTheLastPayment()
         {
             IWebElement charge = _theLastPayment.FindElement(By.LinkText("Charge"));
 
             charge.Click();
             WaitjQuery();
             WaitAjax();
+
+            return new ChargeFormObj(Driver);
         }
     }
 }

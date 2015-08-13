@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace LottoSend.com.BackEndObj
 {
+    /// <summary>
+    /// Log in admin page
+    /// </summary>
     public class LoginObj : DriverCover 
     {
         public LoginObj(IWebDriver driver) : base(driver)

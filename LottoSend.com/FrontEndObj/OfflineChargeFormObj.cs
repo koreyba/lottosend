@@ -36,6 +36,9 @@ namespace LottoSend.com.FrontEndObj
         [FindsBy(How = How.CssSelector, Using = "a.btn.btn-success.btn-xl.btn-block")]
         private IWebElement _nextButton;
 
+        /// <summary>
+        /// Enters correct data in the form
+        /// </summary>
         public void FilInForm()
         {
             _name.SendKeys("Selenium");
@@ -47,6 +50,9 @@ namespace LottoSend.com.FrontEndObj
             _cvvCode.SendKeys("860");
         }
 
+        /// <summary>
+        /// Click on "Next" button to submit the forms
+        /// </summary>
         public void ClickNextButton()
         {
             _nextButton.Click();

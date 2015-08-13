@@ -38,6 +38,9 @@ namespace LottoSend.com.FrontEndObj
             _fillInFields();
         }
 
+        /// <summary>
+        /// Fills in all necesarry fields 
+        /// </summary>
         private void _fillInFields()
         {
             OfflineChargeFormObj form = new OfflineChargeFormObj(Driver);

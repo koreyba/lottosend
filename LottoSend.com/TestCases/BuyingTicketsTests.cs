@@ -31,7 +31,7 @@ namespace LottoSend.com.TestCases
 
             //Pay for ticket
             GamePageObj game = new GamePageObj(_driver);
-            game.ClickSingleGameButton();
+            game.ClickStandartGameButton();
             MerchantsObj merchants = game.ClickBuyTicketsButton();
             merchants.PayWithOfflineCharge();
 
@@ -44,9 +44,15 @@ namespace LottoSend.com.TestCases
             driver.NavigateToUrl(driver.BaseAdminUrl + "admin/orders_processed");
 
             OrderProcessingObj processing = new OrderProcessingObj(_driver);
-            processing.AuthoriseTheLastPayment();
+            processing.AuthorizeTheLastPayment();
 
             driver.NavigateToUrl(driver.BaseAdminUrl + "admin/charge_panel_manager");
+
+            ChargePanelObj panel = new ChargePanelObj(_driver);
+            ChargeFormObj form = panel.ChargeTheLastPayment();
+
+            form.MakeSuccessfulTransaction();
+            form.UpdateTransaction();
 
         }
 

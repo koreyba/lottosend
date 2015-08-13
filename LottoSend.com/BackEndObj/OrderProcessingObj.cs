@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace LottoSend.com.BackEndObj
 {
+    /// <summary>
+    /// Client order processing page
+    /// </summary>
     public class OrderProcessingObj : DriverCover
     {
         public OrderProcessingObj(IWebDriver driver) : base (driver)
@@ -19,7 +22,10 @@ namespace LottoSend.com.BackEndObj
         [FindsBy(How = How.LinkText, Using = "Authorize")]
         private IWebElement _authorizeButton;
 
-        public void AuthoriseTheLastPayment()
+        /// <summary>
+        /// Click "Authorize" button for the last payment (the one at the top)
+        /// </summary>
+        public void AuthorizeTheLastPayment()
         {
             _authorizeButton.Click();
             WaitjQuery();
