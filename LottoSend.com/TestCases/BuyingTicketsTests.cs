@@ -17,6 +17,9 @@ namespace LottoSend.com.TestCases
     {
         private IWebDriver _driver;
 
+        /// <summary>
+        /// Buy regular game ticket using offline charge 
+        /// </summary>
         [Test]
         public void BuyTicket()
         {
@@ -41,11 +44,13 @@ namespace LottoSend.com.TestCases
             LoginObj login = new LoginObj(_driver);
             login.LogIn("koreybadenis@gmail.com", "299242909");
 
+            //authorize
             driver.NavigateToUrl(driver.BaseAdminUrl + "admin/orders_processed");
 
             OrderProcessingObj processing = new OrderProcessingObj(_driver);
             processing.AuthorizeTheLastPayment();
 
+            //approve
             driver.NavigateToUrl(driver.BaseAdminUrl + "admin/charge_panel_manager");
 
             ChargePanelObj panel = new ChargePanelObj(_driver);
@@ -53,6 +58,9 @@ namespace LottoSend.com.TestCases
 
             form.MakeSuccessfulTransaction();
             form.UpdateTransaction();
+
+            //TODO check if tickets were added
+
 
         }
 
