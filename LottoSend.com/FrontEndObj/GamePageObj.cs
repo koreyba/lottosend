@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace LottoSend.com.FrontEndObj
@@ -18,7 +19,7 @@ namespace LottoSend.com.FrontEndObj
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = "ul.nav.nav-tabs > li:nth-child(2) > a")]
+        [FindsBy(How = How.CssSelector, Using = "ul.nav.nav-tabs > li:nth-child(3) > a")]
         private IWebElement _singleGame;
 
         /// <summary>
@@ -26,7 +27,10 @@ namespace LottoSend.com.FrontEndObj
         /// </summary>
         public void ClickStandartGameButton()
         {
+         
             _singleGame.Click();
+      
+            
             WaitAjax();
             WaitjQuery();
         }
@@ -37,6 +41,7 @@ namespace LottoSend.com.FrontEndObj
         /// <returns></returns>
         public MerchantsObj ClickBuyTicketsButton()
         {
+            Thread.Sleep(100);
             _detectBuyTicketsButton().Click();
             bool w = WaitjQuery();
 

@@ -1,4 +1,6 @@
-﻿namespace LottoSend.com
+﻿using System;
+using System.Text.RegularExpressions;
+namespace LottoSend.com
 {
     public static class StringExtention
     {
@@ -18,6 +20,29 @@
             }
 
             return stringWithoutSpaces;
+        }
+        
+        /// <summary>
+        /// Parses time and return TimeSpan object
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static TimeSpan ParseTimeSpan(this string str)
+        {
+            string[] substrings = Regex.Split(str, " ");
+
+            TimeSpan timeSpan = new TimeSpan();
+
+            foreach(string time in substrings)
+            {
+                Match m = Regex.Match(time, "^(?:(?:([01]?[0-9]|2[0-3]):)?([0-5]?[0-9]):)?([0-5]?[0-9])$");
+                if(m.Success)
+                {
+                    timeSpan = TimeSpan.Parse(time);
+                }
+            }
+
+            return timeSpan;
         }
     }
 }

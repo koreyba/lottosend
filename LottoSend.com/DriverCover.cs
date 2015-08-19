@@ -314,8 +314,9 @@ namespace LottoSend.com
         public void NavigateToUrl(string url)
         {
             Driver.Navigate().GoToUrl(url);
-            WaitForPageLoading(); WebClient client = new WebClient(); 
+            WaitForPageLoading();
             WaitAjax();
+            WaitjQuery();
         }
     }
 }

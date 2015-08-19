@@ -73,8 +73,12 @@
   <ItemGroup>
     <Compile Include="BackEndObj\ChargeFormObj.cs" />
     <Compile Include="BackEndObj\ChargePanelObj.cs" />
+    <Compile Include="BackEndObj\DrawObj.cs" />
+    <Compile Include="BackEndObj\DrawsObj.cs" />
     <Compile Include="BackEndObj\LoginObj.cs" />
     <Compile Include="BackEndObj\OrderProcessingObj.cs" />
+    <Compile Include="BackEndObj\PaneMenuObj.cs" />
+    <Compile Include="BackEndObj\TransactionsObj.cs" />
     <Compile Include="DriverCover.cs" />
     <Compile Include="FrontEndObj\Common\BottomMenuObj.cs" />
     <Compile Include="FrontEndObj\CartObj.cs" />
