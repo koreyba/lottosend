@@ -16,8 +16,6 @@ namespace LottoSend.com
     {
         static void Main(string[] args)
         {
-            string date = "August 19, 2015 14:29";
-            TimeSpan timeSpan = date.ParseTimeSpan();
 
             BuyingTicketsTests test = new BuyingTicketsTests();
             test.SetUp();

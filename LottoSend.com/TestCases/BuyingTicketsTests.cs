@@ -121,7 +121,7 @@ namespace LottoSend.com.TestCases
 
         private void Pay_for_ticket_offline()
         {
-            GamePageObj game = new GamePageObj(_driver);
+            SingleGamePageObj game = new SingleGamePageObj(_driver);
             game.ClickStandartGameButton();
             MerchantsObj merchants = game.ClickBuyTicketsButton();
             merchants.PayWithOfflineCharge();

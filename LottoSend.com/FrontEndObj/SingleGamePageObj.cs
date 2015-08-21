@@ -10,16 +10,16 @@ using System.Threading.Tasks;
 
 namespace LottoSend.com.FrontEndObj
 {
-    public class GamePageObj : DriverCover
+    public class SingleGamePageObj : DriverCover
     {
-        public GamePageObj(IWebDriver driver) : base(driver)
+        public SingleGamePageObj(IWebDriver driver) : base(driver)
         {
             //TODO make validation
 
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = "ul.nav.nav-tabs > li:nth-child(3) > a")]
+        [FindsBy(How = How.CssSelector, Using = "ul.nav.nav-tabs > li:nth-child(2) > a")]
         private IWebElement _singleGame;
 
         /// <summary>
@@ -27,10 +27,8 @@ namespace LottoSend.com.FrontEndObj
         /// </summary>
         public void ClickStandartGameButton()
         {
-         
             _singleGame.Click();
-      
-            
+
             WaitAjax();
             WaitjQuery();
         }
@@ -62,6 +60,7 @@ namespace LottoSend.com.FrontEndObj
         /// </summary>
         public void ClickAddToCartButton()
         {
+            Thread.Sleep(100);
             _detectAddToCartButton().Click();
             WaitAjax();
             WaitForPageLoading();

@@ -33,6 +33,11 @@ namespace LottoSend.com.BackEndObj
         {
             IWebElement tr = _findTrOfLottery(drawName);
 
+            if(tr == null)
+            {
+                throw new Exception("Lottery's draws is not found, maybe it's not on the first page ");
+            }
+
             _clickViewBetsButton(tr);
 
             WaitForPageLoading();

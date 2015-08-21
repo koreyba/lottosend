@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace LottoSend.com.FrontEndObj
 {
     /// <summary>
@@ -60,8 +59,8 @@ namespace LottoSend.com.FrontEndObj
             _loginButton.Click();
             WaitAjax();
             WaitForPageLoading();
-            WaitAjax(); 
-            
+            WaitAjax();
+
             return new TopBarObj(Driver);
         }
     }

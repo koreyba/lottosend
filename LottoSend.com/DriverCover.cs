@@ -8,6 +8,7 @@ using OpenQA.Selenium.Interactions;
 using System.Net;
 using System.Configuration;
 using OpenQA.Selenium.Support.UI;
+using OpenQA.Selenium.Support.Events;
 
 namespace LottoSend.com
 {
@@ -15,15 +16,16 @@ namespace LottoSend.com
     /// Includes main methods to work with WebDriver
     /// It's a cover for main features
     /// </summary>
-    public class DriverCover
+    public class DriverCover : Debugger
     {
-         public DriverCover(IWebDriver driver)
+        public DriverCover(IWebDriver driver) : base (driver)
         {
-            _driver = driver;
-            _driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
-            _driver.Manage().Window.Maximize();
+            Driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
+            Driver.Manage().Window.Maximize();
             //_waitDriver = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
         }
+
+        // private Debugger debug;
 
         /// <summary>
         /// Returns the main URL of the site (from app.config)
@@ -58,22 +60,22 @@ namespace LottoSend.com
         }
 
 
-        private readonly IWebDriver _driver;
+        //private readonly EventFiringWebDriver _driver;
 
-        /// <summary>
-        /// Driver
-        /// </summary>
-        public IWebDriver Driver
-        {
-            get { return _driver; }
-        }
+        ///// <summary>
+        ///// Driver
+        ///// </summary>
+        //public EventFiringWebDriver Driver
+        //{
+        //    get { return _driver; }
+        //}
         
         /// <summary>
         /// Title of page
         /// </summary>
         public string Title
         {
-            get { return _driver.Title; }
+            get { return Driver.Title; }
         }
 
         /// <summary>
@@ -107,7 +109,7 @@ namespace LottoSend.com
             {
                 while (sw.Elapsed.TotalSeconds < secondsToWait)
                 {
-                    var pageIsReady = (bool)((IJavaScriptExecutor)_driver).ExecuteScript("return document.readyState == 'complete'");
+                    var pageIsReady = (bool)((IJavaScriptExecutor)Driver).ExecuteScript("return document.readyState == 'complete'");
                     if (pageIsReady)
                         break;
                     Thread.Sleep(100);
