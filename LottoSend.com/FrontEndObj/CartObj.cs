@@ -29,9 +29,30 @@ namespace LottoSend.com.FrontEndObj
         /// </summary>
         public int NumberOfTickets
         {
-            get { return _counNumberOfTickets(); }
+            get { return CounNumberOfTickets(); }
         }
 
+        /// <summary>
+        /// Returns number of group tickets in the cart
+        /// </summary>
+        public int NumberOfGroupTickets
+        {
+            get { return CountNumberOfGroupTickets(); }
+        }
+
+        /// <summary>
+        /// Returns number of group tickets in the cart
+        /// </summary>
+        /// <returns></returns>
+        public int CountNumberOfGroupTickets()
+        {
+            return _cartTable.FindElements(By.CssSelector("a.group-lines")).Count;
+        }
+
+        /// <summary>
+        /// Removes ticket from the cart found by name of a lottery
+        /// </summary>
+        /// <param name="lottery"></param>
         public void DeleteTicket(string lottery)
         {
             IWebElement tr = _findTrOfTicket(lottery);
@@ -41,7 +62,11 @@ namespace LottoSend.com.FrontEndObj
             WaitAjax();
         }
 
-        private int _counNumberOfTickets()
+        /// <summary>
+        /// Returns number of all ticket in the cart
+        /// </summary>
+        /// <returns>number of tickets</returns>
+        public int CounNumberOfTickets()
         {
             return _cartTable.FindElements(By.TagName("tr")).Count; 
         }

@@ -19,7 +19,7 @@ namespace LottoSend.com
 
             BuyingTicketsTests test = new BuyingTicketsTests();
             test.SetUp();
-            test.BuyTicket();
+            test.BuyGroupGameTicket();
             test.CleanUp();
          
         }

@@ -9,6 +9,7 @@ using System.Net;
 using System.Configuration;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Support.Events;
+using System.Collections.Generic;
 
 namespace LottoSend.com
 {
@@ -319,6 +320,23 @@ namespace LottoSend.com
             WaitForPageLoading();
             WaitAjax();
             WaitjQuery();
+        }
+
+        /// <summary>
+        /// Returns the first visible element from list of elements that are found by the same cssSelector.
+        /// </summary>
+        /// <param name="cssSelector">CssSelector of list of elements</param>
+        /// <returns>Element/null</returns>
+        public IWebElement GetFirstVisibleElementFromList(By selector)
+        {
+            IList<IWebElement> buttons = Driver.FindElements(selector);
+            foreach (IWebElement button in buttons)
+            {
+                if (button.Displayed)
+                    return button;
+            }
+
+            return null;
         }
     }
 }

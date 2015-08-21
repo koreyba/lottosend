@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace LottoSend.com.FrontEndObj
 {
-    public class SingleGamePageObj : DriverCover
+    public class RegularGamePageObj : DriverCover
     {
-        public SingleGamePageObj(IWebDriver driver) : base(driver)
+        public RegularGamePageObj(IWebDriver driver) : base(driver)
         {
             //TODO make validation
 
@@ -52,7 +52,7 @@ namespace LottoSend.com.FrontEndObj
         /// <returns>Button/null</returns>
         private IWebElement _detectBuyTicketsButton()
         {
-            return _visibleElementFromList("button.btn.btn-warning.play-now");
+            return GetFirstVisibleElementFromList(By.CssSelector("button.btn.btn-warning.play-now"));
         }
 
         /// <summary>
@@ -73,25 +73,7 @@ namespace LottoSend.com.FrontEndObj
         /// <returns>Button/null</returns>
         private IWebElement _detectAddToCartButton()
         {
-            return _visibleElementFromList("#add-to-cart");
-        }
-
-
-        /// <summary>
-        /// Returns the first visible element from list of elements that are found by the same cssSelector.
-        /// </summary>
-        /// <param name="cssSelector">CssSelector of list of elements</param>
-        /// <returns>Element/null</returns>
-        private IWebElement _visibleElementFromList(string cssSelector)
-        {
-            IList<IWebElement> buttons = Driver.FindElements(By.CssSelector(cssSelector));
-            foreach (IWebElement button in buttons)
-            {
-                if (button.Displayed)
-                    return button;
-            }
-
-            return null;
-        }
+            return GetFirstVisibleElementFromList(By.CssSelector("#add-to-cart"));
+        }        
     }
 }

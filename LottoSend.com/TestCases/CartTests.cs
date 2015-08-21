@@ -1,4 +1,5 @@
 ﻿using LottoSend.com.FrontEndObj;
+using LottoSend.com.FrontEndObj.GamePages;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -14,13 +15,62 @@ namespace LottoSend.com.TestCases
     public class CartTests
     {
         private IWebDriver _driver;
+        private DriverCover driver;
 
+        /// <summary>
+        /// Adds two different lottery group ticket to the cart and deletes them. Check if were added and deleted
+        /// </summary>
         [Test]
-        public void Delete_Item_From_Cart()
+        public void Delete_two_group_ticket_from_cart()
         {
-            DriverCover driver = new DriverCover(_driver);
+            //Add two tickets from different lotteries
+            Add_group_ticket_to_cart("en/plays/eurojackpot/");
+            Add_group_ticket_to_cart("en/plays/superenalotto/");
+
+            Check_number_of_tickets_in_cart(2);
+
+            //Remove tickets
+            CartObj cart = new CartObj(_driver);
+            cart.DeleteTicket("EuroJackpot");
+            cart.DeleteTicket("SuperEnalotto");
+
+            //Check if tickets are still present
+            Check_if_ticket_is_not_in_cart("EuroJackpot");
+            Check_if_ticket_is_not_in_cart("SuperEnalotto");
+
+            Check_number_of_tickets_in_cart(0);
+
+        }
+
+        private void Check_number_of_tickets_in_cart(int expected)
+        {
+            //Go to the cart 
+            driver.NavigateToUrl(driver.BaseUrl + "en/carts/");
+
+            //Check number of elemetns in the cart
+            CartObj cart = new CartObj(_driver);
+            if (cart.NumberOfGroupTickets != expected)
+            {
+                throw new Exception("There are " + cart.NumberOfTickets + " group tickets in the cart, but " + expected + " were expected ");
+            }
+        }
+
+        private void Add_group_ticket_to_cart(string adress)
+        {
+            //Add ticket to the cart
+            driver.NavigateToUrl(driver.BaseUrl + adress);
+            GroupGamePageObj groupGame = new GroupGamePageObj(_driver);
+            groupGame.ClickAddToCartButton();
+        }
+
+        /// <summary>
+        /// Adds single ticket to cart and removes it. Checks if there is no tickets of a specific lottery game
+        /// </summary>
+        [Test]
+        public void Delete_Single_Ticket_From_Cart()
+        {
             driver.NavigateToUrl(driver.BaseUrl + "en/plays/eurojackpot/");
-            SingleGamePageObj game = new SingleGamePageObj(_driver);
+            RegularGamePageObj game = new RegularGamePageObj(_driver);
             game.ClickStandartGameButton();
 
             game.ClickAddToCartButton();
@@ -28,11 +78,17 @@ namespace LottoSend.com.TestCases
             driver.NavigateToUrl(driver.BaseUrl + "en/carts/");
             CartObj cart = new CartObj(_driver);
             cart.DeleteTicket("EuroJackpot");
-            if(cart.IsTicketInCart("EuroJackpot"))
-            {
-                throw new Exception("The ticket was not removed from the cart ");
-            }
+            Check_if_ticket_is_not_in_cart("EuroJackpot");
 
+        }
+
+        private void Check_if_ticket_is_not_in_cart(string lotteryName)
+        {
+            CartObj cart = new CartObj(_driver);
+            if (cart.IsTicketInCart(lotteryName))
+            {
+                throw new Exception("The ticket " + lotteryName + " was not removed from the cart ");
+            }
         }
 
         [TearDown]
@@ -45,6 +101,7 @@ namespace LottoSend.com.TestCases
         public void SetUp()
         {
             _driver = new ChromeDriver();
+            driver = new DriverCover(_driver);
         }
     }
 }

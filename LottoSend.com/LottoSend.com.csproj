@@ -83,11 +83,12 @@
     <Compile Include="DriverCover.cs" />
     <Compile Include="FrontEndObj\Common\BottomMenuObj.cs" />
     <Compile Include="FrontEndObj\CartObj.cs" />
-    <Compile Include="FrontEndObj\SingleGamePageObj.cs" />
+    <Compile Include="FrontEndObj\GamePages\GroupGamePageObj.cs" />
+    <Compile Include="FrontEndObj\GamePages\RegularGamePageObj.cs" />
     <Compile Include="FrontEndObj\Login\LogInPopUpObj.cs" />
     <Compile Include="FrontEndObj\Login\SignInPageOneObj.cs" />
-    <Compile Include="FrontEndObj\MerchantsObj.cs" />
-    <Compile Include="FrontEndObj\OfflineChargeFormObj.cs" />
+    <Compile Include="FrontEndObj\GamePages\MerchantsObj.cs" />
+    <Compile Include="FrontEndObj\GamePages\OfflineChargeFormObj.cs" />
     <Compile Include="FrontEndObj\SignUp\SignUpPopUpObj.cs" />
     <Compile Include="FrontEndObj\SignUp\SignUpSuccessObj.cs" />
     <Compile Include="FrontEndObj\Common\TopBarObj.cs" />
