@@ -30,6 +30,7 @@ namespace LottoSend.com.FrontEndObj
         /// </summary>
         public void PayWithOfflineCharge()
         {
+            Thread.Sleep(TimeSpan.FromSeconds(1));
             waitForElement(_offline, 10);
             Thread.Sleep(TimeSpan.FromSeconds(1));
             _offline.Click();

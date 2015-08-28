@@ -89,9 +89,9 @@ namespace LottoSend.com.TestCases
         {
             driver.NavigateToUrl(driver.BaseAdminUrl + "admin/draws ");
             DrawsObj drawsPage = new DrawsObj(_driver);
-            drawsPage.GoToDrawPage(lotteryName);
+            
+            DrawObj draw = drawsPage.GoToDrawPage(lotteryName);
 
-            DrawObj draw = new DrawObj(_driver);
             bool correctEmail = draw.CheckEmail(driver.Login);
             if (!correctEmail)
             {

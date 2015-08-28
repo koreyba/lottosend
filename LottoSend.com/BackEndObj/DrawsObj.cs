@@ -31,7 +31,7 @@ namespace LottoSend.com.BackEndObj
         /// <param name="drawName"></param>
         public DrawObj GoToDrawPage(string drawName)
         {
-            IWebElement tr = _findTrOfLottery(drawName);
+            IWebElement tr = _findLotteryDraw(drawName);
 
             if(tr == null)
             {
@@ -47,10 +47,62 @@ namespace LottoSend.com.BackEndObj
             return new DrawObj(Driver);
         }
 
+        /// <summary>
+        /// Search for lottery draw navigating to first 5 pages in pagination
+        /// </summary>
+        /// <param name="drawName"></param>
+        /// <returns></returns>
+        private IWebElement _findLotteryDraw(string drawName)
+        {
+            int count = 2;
+
+            while(count < 5) //will go through 5 first pages in order to find needed lottery draw
+            {
+                IWebElement tr = _findTrOfLottery(drawName);
+                if(tr != null)
+                {
+                    return tr;
+                }
+                else
+                {
+                    _navigateToNextPage(count);
+                    ++count;
+                }
+            }
+            
+
+            return null;
+        }
+
+        /// <summary>
+        /// Click to the "count" page in pagination (only if the page is visible)
+        /// </summary>
+        /// <param name="count"></param>
+        private void _navigateToNextPage(int count)
+        {
+            IList<IWebElement> pagnation = Driver.FindElements(By.CssSelector("nav.pagination > span.page > a"));
+            foreach (IWebElement page in pagnation)
+            {
+                if (page.Text.Contains(count.ToString()))
+                {
+                    page.Click();
+                    WaitForPageLoading();
+                    WaitjQuery();
+                    break;
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// On the current page search for <tr> of the lottery draw
+        /// </summary>
+        /// <param name="drawName"></param>
+        /// <returns></returns>
         private IWebElement _findTrOfLottery(string drawName)
         {
             IList<IWebElement> trList = _drawsTable.FindElements(By.CssSelector("tr[id^='td-draw-'"));
-            foreach(IWebElement tr in trList)
+            foreach (IWebElement tr in trList)
             {
                 IWebElement name = tr.FindElement(By.CssSelector("td:nth-child(1) > div.draw-center-text"));
                 if (name.Text.Contains(drawName))

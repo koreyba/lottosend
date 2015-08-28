@@ -25,7 +25,7 @@ namespace LottoSend.com.TestCases
         {
             //Add two tickets from different lotteries
             Add_group_ticket_to_cart("en/plays/eurojackpot/");
-            Add_group_ticket_to_cart("en/plays/superenalotto/");
+            Add_group_ticket_to_cart("en/plays/eurojackpot/");
 
             Check_number_of_tickets_in_cart(2);
 
