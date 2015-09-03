@@ -34,6 +34,14 @@ namespace LottoSend.com.FrontEndObj
         }
 
         /// <summary>
+        /// Clicks on "One-Time Entry" radiobutton 
+        /// </summary>
+        public void SelectOneTimeEntryGame()
+        {
+            GetFirstVisibleElementFromList(By.CssSelector("#bet_order_item_attributes_buy_option_single + label")).Click();
+        }
+
+        /// <summary>
         /// Click "Buy Tickets" button
         /// </summary>
         /// <returns></returns>

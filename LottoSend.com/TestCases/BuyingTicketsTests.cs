@@ -1,6 +1,7 @@
 ﻿using LottoSend.com.BackEndObj;
 using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.GamePages;
+using LottoSend.com.FrontEndObj.MyAccount;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -22,8 +23,9 @@ namespace LottoSend.com.TestCases
         /// <summary>
         /// Buy group game ticket using offline charge
         /// </summary>
-        [Test]
-        public void BuyGroupGameTicket()
+        [TestCase("Bulk Buy")]
+        [TestCase("Single")]
+        public void BuyGroupGameTicket(string type)
         {
             //Log in     
             Log_In();
@@ -32,6 +34,13 @@ namespace LottoSend.com.TestCases
 
             //Pay for tickets
             GroupGamePageObj groupGame = new GroupGamePageObj(_driver);
+
+            //Select single draw
+            if (type.Equals("Single"))
+            {
+                groupGame.SelectOneTimeEntryGame();
+            }
+
             MerchantsObj merchants = groupGame.ClickBuyTicketsButton();
             merchants.PayWithOfflineCharge();
 
@@ -48,14 +57,34 @@ namespace LottoSend.com.TestCases
             Check_transaction_page();
 
             //Check draw record
-            Check_draw_record(driver, "EuroJackpot");
+            Check_draw_record(driver, "EuroJackpot", type);
+
+            //Check transaction history page on the front-end
+            Check_transaction_on_front();
+        }
+
+        private void Check_transaction_on_front()
+        {
+            driver.NavigateToUrl(driver.BaseUrl + "en/account/balance/");
+            TransactionObj myTransactions = new TransactionObj(_driver);
+            if (!myTransactions.Lottery.Equals("EuroJackpot"))
+            {
+                throw new Exception("The first record has different lottery name, please check ");
+            }
+
+            string date = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
+            if (!myTransactions.Date.Equals(date))
+            {
+                throw new Exception("The first record has not current date, please check ");
+            }
         }
 
         /// <summary>
         /// Buy regular game ticket using offline charge. Checks transactions page and draw page.
         /// </summary>
-        [Test]
-        public void BuyRegularTicket()
+        [TestCase("Bulk Buy")]
+        [TestCase("Single")]
+        public void BuyRegularTicket(string type)
         {
             //Log in     
             Log_In();
@@ -64,6 +93,12 @@ namespace LottoSend.com.TestCases
 
             //Select regular game tab
             RegularGamePageObj game = Select_regular_game_tab();
+
+            //Select single draw
+            if (type.Equals("Single"))
+            {
+                game.SelectOneTimeEntryGame();
+            }
 
             //Pay for ticket
             MerchantsObj merchants = game.ClickBuyTicketsButton();
@@ -82,10 +117,13 @@ namespace LottoSend.com.TestCases
             Check_transaction_page();
 
             //Check draw record
-            Check_draw_record(driver, "EuroJackpot");
+            Check_draw_record(driver, "EuroJackpot", type);
+
+            //Check transaction history page on the front-end
+            Check_transaction_on_front();
         }
 
-        private void Check_draw_record(DriverCover driver, string lotteryName)
+        private void Check_draw_record(DriverCover driver, string lotteryName, string type)
         {
             driver.NavigateToUrl(driver.BaseAdminUrl + "admin/draws ");
             DrawsObj drawsPage = new DrawsObj(_driver);
@@ -104,6 +142,23 @@ namespace LottoSend.com.TestCases
                 throw new Exception("Sorry, the time of the first record is not in set interval. Check if record was added ");
             }
             
+            if(type.Equals("Bulk Buy"))
+            {
+                if (!draw.Type.Equals("Bulk buy"))
+                {
+                    throw new Exception("Sorry, the type of the bet is expected to be Bulk buy but was " + draw.Type);
+                }
+            }
+
+            if (type.Equals("Single"))
+            {
+                if (!draw.Type.Equals("Single"))
+                {
+                    throw new Exception("Sorry, the type of the bet is expected to be Single but was " + draw.Type);
+                }
+            }
+
+           
         }
 
         private void Check_transaction_page()

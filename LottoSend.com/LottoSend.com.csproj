@@ -89,6 +89,7 @@
     <Compile Include="FrontEndObj\Login\SignInPageOneObj.cs" />
     <Compile Include="FrontEndObj\GamePages\MerchantsObj.cs" />
     <Compile Include="FrontEndObj\GamePages\OfflineChargeFormObj.cs" />
+    <Compile Include="FrontEndObj\MyAccount\TransactionObj.cs" />
     <Compile Include="FrontEndObj\SignUp\SignUpPopUpObj.cs" />
     <Compile Include="FrontEndObj\SignUp\SignUpSuccessObj.cs" />
     <Compile Include="FrontEndObj\Common\TopBarObj.cs" />

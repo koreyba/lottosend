@@ -28,6 +28,14 @@ namespace LottoSend.com.BackEndObj
         private IWebElement _firstRecord;
 
         /// <summary>
+        /// Returns Type of bet from the first record
+        /// </summary>
+        public string Type
+        {
+            get { return _firstRecord.FindElement(By.CssSelector("td:nth-child(10)")).Text; }
+        }
+
+        /// <summary>
         /// Checks if email in the first record corresponds to the one you send
         /// </summary>
         /// <param name="email"></param>
