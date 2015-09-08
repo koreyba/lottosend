@@ -19,6 +19,44 @@ namespace LottoSend.com.FrontEndObj
             PageFactory.InitElements(Driver, this);
         }
 
+        /// <summary>
+        /// Gets selected amount of draws to play
+        /// </summary>
+        public int NumberOfDraws
+        {
+            get
+            {
+                IWebElement span = GetFirstVisibleElementFromList(By.CssSelector(".filter-option.pull-left"));
+                return (int)span.Text.ParceDouble();
+            }
+        }
+
+        [FindsBy(How = How.CssSelector, Using = "")]
+        private IWebElement _discount;
+
+        /// <summary>
+        /// Gets discount for the order
+        /// </summary>
+        public double Discount
+        {
+            get { return _discount.Text.ParceDouble(); }
+        }
+
+        [FindsBy(How = How.CssSelector, Using = "div.col-sm-7.groups-prices > div.bet-resume > table:nth-child(2) > tbody > tr:nth-child(3) > td:nth-child(2)")]
+        private IWebElement _totalPrice;
+
+        /// <summary>
+        /// Gets total price of the order
+        /// </summary>
+        public double TotalPrice
+        {
+            get 
+            {
+                IWebElement price = GetFirstVisibleElementFromList(By.CssSelector("div.col-sm-7.groups-prices > div.bet-resume > table:nth-child(2) > tbody > tr:nth-child(3) > td:nth-child(2)"));
+                return price.Text.ParceDouble(); 
+            }
+        }
+
         [FindsBy(How = How.CssSelector, Using = "ul.nav.nav-tabs > li:nth-child(2) > a")]
         private IWebElement _singleGame;
 

@@ -24,6 +24,17 @@ namespace LottoSend.com.BackEndObj
             PageFactory.InitElements(Driver, this);
         }
 
+        /// <summary>
+        /// Returns value from "Bet Amount" column (price of the ticket) 
+        /// </summary>
+        public double BetAmount
+        {
+            get { return _firstRecord.FindElement(By.CssSelector("td:nth-child(7)")).Text.ParceDouble(); }
+        }
+
+        /// <summary>
+        /// Gets <tr> tag of the first record
+        /// </summary>
         [FindsBy(How = How.CssSelector, Using = "table.index_table > tbody > tr:nth-child(2)")]
         private IWebElement _firstRecord;
 

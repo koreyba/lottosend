@@ -35,6 +35,9 @@ namespace LottoSend.com.TestCases
             //Pay for tickets
             GroupGamePageObj groupGame = new GroupGamePageObj(_driver);
 
+            double totalPrice = groupGame.TotalPrice;
+            int numberOfDraws = groupGame.NumberOfDraws;
+
             //Select single draw
             if (type.Equals("Single"))
             {
@@ -57,26 +60,10 @@ namespace LottoSend.com.TestCases
             Check_transaction_page();
 
             //Check draw record
-            Check_draw_record(driver, "EuroJackpot", type);
+            Check_draw_record(driver, "EuroJackpot", type, totalPrice, numberOfDraws);
 
             //Check transaction history page on the front-end
             Check_transaction_on_front();
-        }
-
-        private void Check_transaction_on_front()
-        {
-            driver.NavigateToUrl(driver.BaseUrl + "en/account/balance/");
-            TransactionObj myTransactions = new TransactionObj(_driver);
-            if (!myTransactions.Lottery.Equals("EuroJackpot"))
-            {
-                throw new Exception("The first record has different lottery name, please check ");
-            }
-
-            string date = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
-            if (!myTransactions.Date.Equals(date))
-            {
-                throw new Exception("The first record has not current date, please check ");
-            }
         }
 
         /// <summary>
@@ -100,7 +87,10 @@ namespace LottoSend.com.TestCases
                 game.SelectOneTimeEntryGame();
             }
 
-            //Pay for ticket
+            double totalPrice = game.TotalPrice;
+            int numberOfDraws = game.NumberOfDraws;
+
+            //Pay for ticket     
             MerchantsObj merchants = game.ClickBuyTicketsButton();
             merchants.PayWithOfflineCharge();
 
@@ -117,13 +107,29 @@ namespace LottoSend.com.TestCases
             Check_transaction_page();
 
             //Check draw record
-            Check_draw_record(driver, "EuroJackpot", type);
+            Check_draw_record(driver, "EuroJackpot", type, totalPrice, numberOfDraws);
 
             //Check transaction history page on the front-end
             Check_transaction_on_front();
         }
 
-        private void Check_draw_record(DriverCover driver, string lotteryName, string type)
+        private void Check_transaction_on_front()
+        {
+            driver.NavigateToUrl(driver.BaseUrl + "en/account/balance/");
+            TransactionObj myTransactions = new TransactionObj(_driver);
+            if (!myTransactions.Lottery.Equals("EuroJackpot"))
+            {
+                throw new Exception("The first record has different lottery name, please check ");
+            }
+
+            string date = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
+            if (!myTransactions.Date.Equals(date))
+            {
+                throw new Exception("The first record has not current date, please check ");
+            }
+        }
+
+        private void Check_draw_record(DriverCover driver, string lotteryName, string type, double price, int numberOfDraws)
         {
             driver.NavigateToUrl(driver.BaseAdminUrl + "admin/draws ");
             DrawsObj drawsPage = new DrawsObj(_driver);
@@ -148,6 +154,12 @@ namespace LottoSend.com.TestCases
                 {
                     throw new Exception("Sorry, the type of the bet is expected to be Bulk buy but was " + draw.Type);
                 }
+
+                //If it was bulk buy of 2 draws then price devided by 2
+                if (price / numberOfDraws != draw.BetAmount)
+                {
+                    throw new Exception("Sorry, the price for the bet is  " + draw.BetAmount + " but " + price / numberOfDraws + " was expected ");
+                }
             }
 
             if (type.Equals("Single"))
@@ -157,8 +169,6 @@ namespace LottoSend.com.TestCases
                     throw new Exception("Sorry, the type of the bet is expected to be Single but was " + draw.Type);
                 }
             }
-
-           
         }
 
         private void Check_transaction_page()

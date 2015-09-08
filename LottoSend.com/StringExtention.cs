@@ -44,5 +44,24 @@ namespace LottoSend.com
 
             return timeSpan;
         }
+
+        /// <summary>
+        /// Parce double from a string or int if there is no dot
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static double ParceDouble(this string str)
+        {
+            string number = "";
+            foreach(char letter in str)
+            {
+                if(Char.IsDigit(letter) || letter.Equals('.'))
+                {
+                    number += letter;
+                }
+            }
+            
+            return Convert.ToDouble(number);
+        }
     }
 }

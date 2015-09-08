@@ -23,6 +23,40 @@ namespace LottoSend.com.FrontEndObj.GamePages
         }
 
         /// <summary>
+        /// Gets selected amount of draws to play
+        /// </summary>
+        public int NumberOfDraws
+        {
+            get
+            {
+                IWebElement span = GetFirstVisibleElementFromList(By.CssSelector(".filter-option.pull-left"));
+                return (int) span.Text.ParceDouble();
+            }
+        }
+
+        [FindsBy(How = How.CssSelector, Using = "")]
+        private IWebElement _discount;
+
+        /// <summary>
+        /// Gets discount for the order
+        /// </summary>
+        public double Discount
+        {
+            get { return _discount.Text.ParceDouble(); }
+        }
+
+        [FindsBy(How = How.CssSelector, Using = "")]
+        private IWebElement _totalPrice;
+
+        /// <summary>
+        /// Gets total price of the order
+        /// </summary>
+        public double TotalPrice
+        {
+            get { return _totalPrice.Text.ParceDouble(); }
+        }
+
+        /// <summary>
         /// Clicks on "One-Time Entry" radiobutton 
         /// </summary>
         public void SelectOneTimeEntryGame()
