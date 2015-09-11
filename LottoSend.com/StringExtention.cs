@@ -46,19 +46,33 @@ namespace LottoSend.com
         }
 
         /// <summary>
-        /// Parce double from a string or int if there is no dot
+        /// Parce double from a string or int if there is no dot. If there is several digits then parce the first one
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
         public static double ParceDouble(this string str)
         {
+            bool isFirstFound = false;
+            bool isLastFound = false;
             string number = "";
+
             foreach(char letter in str)
             {
                 if(Char.IsDigit(letter) || letter.Equals('.'))
                 {
                     number += letter;
+                    isFirstFound = true;
                 }
+                else
+                {
+                    if (isFirstFound == true)
+                    {
+                        isLastFound = true;
+                    }
+                }
+
+                if (isLastFound == true)
+                    break;
             }
             
             return Convert.ToDouble(number);

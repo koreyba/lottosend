@@ -19,6 +19,7 @@ namespace LottoSend.com.TestCases
     {
         private IWebDriver _driver;
         private DriverCover driver;
+        private StringBuilder _errors;
 
         /// <summary>
         /// Buy group game ticket using offline charge
@@ -57,7 +58,7 @@ namespace LottoSend.com.TestCases
             Approve_offline_payment();
 
             //check transaction page
-            Check_transaction_page();
+            //Check_transaction_page();
 
             //Check draw record
             Check_draw_record(driver, "EuroJackpot", type, totalPrice, numberOfDraws);
@@ -117,15 +118,46 @@ namespace LottoSend.com.TestCases
         {
             driver.NavigateToUrl(driver.BaseUrl + "en/account/balance/");
             TransactionObj myTransactions = new TransactionObj(_driver);
-            if (!myTransactions.Lottery.Equals("EuroJackpot"))
+            if (!myTransactions.SecondRecordLottery.Equals("EuroJackpot"))
             {
-                throw new Exception("The first record has different lottery name, please check ");
+                _errors.Append("The second record has different lottery name, please check it, page: " + driver.Driver.Url + " ");
+               // throw new Exception("The second record has different lottery name, please check ");
             }
 
-            string date = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
-            if (!myTransactions.Date.Equals(date))
+            if (!myTransactions.FirstRecordLottery.Equals(""))
             {
-                throw new Exception("The first record has not current date, please check ");
+                _errors.Append("The first record is supossed to have no lottery name, please check it, page: " + driver.Driver.Url + " ");
+                //throw new Exception("The first record is supossed to have no lottery name, please check ");
+            }
+
+
+            //make month to be in right forman
+            string digit = DateTime.Now.Month.ToString();
+            string month = "";
+            if (digit.Length == 1)
+                month = "0" + digit;
+            else
+                month = digit;
+
+            //make day to be in right forman
+            digit = DateTime.Now.Day.ToString();
+            string day = "";
+            if (digit.Length == 1)
+                day = "0" + digit;
+            else
+                day = digit;
+
+            string date = day + "/" + month + "/" + DateTime.Now.Year;
+            if (!myTransactions.FirstRecordDate.Equals(date))
+            {
+                _errors.Append("The first record has not current date, please check it, page: " + driver.Driver.Url + " ");
+                //throw new Exception("The first record has not current date, please check ");
+            }
+
+            if (!myTransactions.SecondRecordDate.Equals(date))
+            {
+                _errors.Append("The second record has not current date, please check it, page: " + driver.Driver.Url + " ");
+                //throw new Exception("The second record has not current date, please check ");
             }
         }
 
@@ -139,26 +171,30 @@ namespace LottoSend.com.TestCases
             bool correctEmail = draw.CheckEmail(driver.Login);
             if (!correctEmail)
             {
-                throw new Exception("Sorry, the email in the first record is wrong, check if a record was added ");
+                _errors.Append("Sorry, the email in the first record is wrong, check if a record was added, page: " + driver.Driver.Url + " ");
+                //throw new Exception("Sorry, the email in the first record is wrong, check if a record was added ");
             }
 
             bool correctTime = draw.CheckTime(3);
             if(!correctTime)
             {
-                throw new Exception("Sorry, the time of the first record is not in set interval. Check if record was added ");
+                _errors.Append("Sorry, the time of the first record is not in set interval. Check if record was added , page: " + driver.Driver.Url + " ");
+               // throw new Exception("Sorry, the time of the first record is not in set interval. Check if record was added ");
             }
             
             if(type.Equals("Bulk Buy"))
             {
                 if (!draw.Type.Equals("Bulk buy"))
                 {
-                    throw new Exception("Sorry, the type of the bet is expected to be Bulk buy but was " + draw.Type);
+                    _errors.Append("Sorry, the type of the bet is expected to be Bulk buy but was " + draw.Type + ", page: " + driver.Driver.Url + " ");
+                    //throw new Exception("Sorry, the type of the bet is expected to be Bulk buy but was " + draw.Type);
                 }
 
                 //If it was bulk buy of 2 draws then price devided by 2
                 if (price / numberOfDraws != draw.BetAmount)
                 {
-                    throw new Exception("Sorry, the price for the bet is  " + draw.BetAmount + " but " + price / numberOfDraws + " was expected ");
+                    _errors.Append("Sorry, the price for the bet is  " + draw.BetAmount + " but " + price / numberOfDraws + " was expected, page: " + driver.Driver.Url + " ");
+                   // throw new Exception("Sorry, the price for the bet is  " + draw.BetAmount + " but " + price / numberOfDraws + " was expected ");
                 }
             }
 
@@ -166,7 +202,8 @@ namespace LottoSend.com.TestCases
             {
                 if (!draw.Type.Equals("Single"))
                 {
-                    throw new Exception("Sorry, the type of the bet is expected to be Single but was " + draw.Type);
+                    _errors.Append("Sorry, the type of the bet is expected to be Single but was " + draw.Type + ", page: " + driver.Driver.Url + " ");
+                    //throw new Exception("Sorry, the type of the bet is expected to be Single but was " + draw.Type);
                 }
             }
         }
@@ -178,19 +215,22 @@ namespace LottoSend.com.TestCases
             bool correctEmail = transaction.CheckEmail(driver.Login);
             if (!correctEmail)
             {
-                throw new Exception("Sorry, the email in the first record is wrong, check if a record was added ");
+                _errors.Append("Sorry, the email in the first record is wrong, check if a record was added, page: " + driver.Driver.Url + " ");
+                //throw new Exception("Sorry, the email in the first record is wrong, check if a record was added ");
             }
 
             bool correctMerchant = transaction.CheckMerchant("Offline");
             if (!correctMerchant)
             {
-                throw new Exception("Sorry, the merchant in the first record is wrong, check if a record was added ");
+                _errors.Append("Sorry, the merchant in the first record is wrong, check if a record was added, page: " + driver.Driver.Url + " ");
+               // throw new Exception("Sorry, the merchant in the first record is wrong, check if a record was added ");
             }
 
             bool correctTime = transaction.CheckTime(3);
             if (!correctTime)
             {
-                throw new Exception("Sorry, the time of the first record is not in set interval. Check if record was added ");
+                _errors.Append("Sorry, the time of the first record is not in set interval. Check if record was added, page: " + driver.Driver.Url + " ");
+                //throw new Exception("Sorry, the time of the first record is not in set interval. Check if record was added ");
             }
         }
 
@@ -241,6 +281,10 @@ namespace LottoSend.com.TestCases
         public void CleanUp()
         {
             _driver.Dispose();
+            if(_errors.Length > 0)
+            {
+                Assert.Fail(_errors.ToString());
+            }
         }
 
         [SetUp]
@@ -248,6 +292,7 @@ namespace LottoSend.com.TestCases
         {
             _driver = new ChromeDriver();
             driver = new DriverCover(_driver);
+            _errors = new StringBuilder();
         }
     }
 }
