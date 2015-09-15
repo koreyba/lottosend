@@ -14,7 +14,6 @@ using System.Threading.Tasks;
 
 namespace LottoSend.com.TestCases
 {
-    [TestFixture]
     public class BuyingTicketsTests
     {
         private IWebDriver _driver;
@@ -24,8 +23,7 @@ namespace LottoSend.com.TestCases
         /// <summary>
         /// Buy group game ticket using offline charge
         /// </summary>
-        [TestCase("Bulk Buy")]
-        [TestCase("Single")]
+
         public void BuyGroupGameTicket(string type)
         {
             //Log in     
@@ -70,8 +68,7 @@ namespace LottoSend.com.TestCases
         /// <summary>
         /// Buy regular game ticket using offline charge. Checks transactions page and draw page.
         /// </summary>
-        [TestCase("Bulk Buy")]
-        [TestCase("Single")]
+
         public void BuyRegularTicket(string type)
         {
             //Log in     

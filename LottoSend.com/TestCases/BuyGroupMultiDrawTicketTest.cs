@@ -14,15 +14,16 @@ using System.Threading.Tasks;
 namespace LottoSend.com.TestCases
 {
     /// <summary>
-    /// Buys a single regular ticket and performs all needed assertations 
+    /// Buys a group multi-draw ticket and performs all needed assertations 
     /// </summary>
-    [TestFixture]
-    public class BuyRegularSingleTicketTest : CommonActions
+    public class BuyGroupMultiDrawTicketTest : CommonActions
     {
         private IWebDriver _driver;
         private DriverCover driver;
+        private StringBuilder _errors = new StringBuilder();
         private double _totalPrice;
-        private OrderVerifications verifications;
+        private int numberOfDraws;
+        public OrderVerifications verifications;
 
         /// <summary>
         /// Checks date of the first and seconds records in users account - transactions (front-end)
@@ -93,7 +94,7 @@ namespace LottoSend.com.TestCases
         [Test]
         public void Check_Record_Type_In_Draw()
         {
-            verifications.CheckRecordBetTypeInDraw("Single");
+            verifications.CheckRecordBetTypeInDraw("Bulk buy");
         }
 
         /// <summary>
@@ -102,14 +103,14 @@ namespace LottoSend.com.TestCases
         [Test]
         public void Check_Record_Price_In_Draw()
         {
-            verifications.CheckRecordPriceInDraw(_totalPrice);
+            verifications.CheckRecordPriceInDraw(_totalPrice, numberOfDraws);
         }
 
         /// <summary>
-        /// Performs once before all other tests. Buys a regular single ticket 
+        /// Performs once before all other tests. Buys a group single ticket 
         /// </summary>
         [TestFixtureSetUp]
-        public void Buy_Regular_Signle_Ticket()
+        public void Buy_Group_Signle_Ticket()
         {
             SetUp();
 
@@ -119,14 +120,11 @@ namespace LottoSend.com.TestCases
             driver.NavigateToUrl(driver.BaseUrl + "en/plays/eurojackpot/");
 
             //Pay for tickets
-            RegularGamePageObj regularGame = new RegularGamePageObj(_driver);
+            GroupGamePageObj groupGame = new GroupGamePageObj(_driver);
 
-            _totalPrice = regularGame.TotalPrice;
+            _totalPrice = groupGame.TotalPrice;
 
-            //Select single draw
-            regularGame.SelectOneTimeEntryGame();
-
-            MerchantsObj merchants = regularGame.ClickBuyTicketsButton();
+            MerchantsObj merchants = groupGame.ClickBuyTicketsButton();
             merchants.PayWithOfflineCharge();
 
             //Go to admin panel
@@ -146,9 +144,9 @@ namespace LottoSend.com.TestCases
         public void CleanUp()
         {
             _driver.Dispose();
-            if (verifications._errors.Length > 0)
+            if (_errors.Length > 0)
             {
-                Assert.Fail(verifications._errors.ToString());
+                Assert.Fail(_errors.ToString());
             }
         }
 
