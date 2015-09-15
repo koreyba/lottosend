@@ -97,9 +97,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomGenerator.cs" />
     <Compile Include="StringExtention.cs" />
+    <Compile Include="TestCases\BuyGroupSingleTicketTest.cs" />
     <Compile Include="TestCases\BuyingTicketsTests.cs" />
+    <Compile Include="TestCases\BuyRegularSingleTicketTest.cs" />
     <Compile Include="TestCases\CartTests.cs" />
+    <Compile Include="TestCases\CommonActions.cs" />
     <Compile Include="TestCases\LogInTests.cs" />
+    <Compile Include="BackEndObj\Verifications\OrderVerifications.cs" />
     <Compile Include="TestCases\SignUpTests.cs" />
   </ItemGroup>
   <ItemGroup>

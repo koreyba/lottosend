@@ -49,7 +49,7 @@ namespace LottoSend.com.TestCases
             merchants.PayWithOfflineCharge();
 
             //Go to admin panel
-            Go_to_admin_panel(driver);
+            Go_to_admin_panel();
 
             //authorize payment in charge panel
             Authorize_the_first_payment();
@@ -96,7 +96,7 @@ namespace LottoSend.com.TestCases
             merchants.PayWithOfflineCharge();
 
             //Go to admin panel
-            Go_to_admin_panel(driver);
+            Go_to_admin_panel();
 
             //authorize payment in charge panel
             Authorize_the_first_payment();
@@ -223,7 +223,7 @@ namespace LottoSend.com.TestCases
             if (!correctMerchant)
             {
                 _errors.Append("Sorry, the merchant in the first record is wrong, check if a record was added, page: " + driver.Driver.Url + " ");
-               // throw new Exception("Sorry, the merchant in the first record is wrong, check if a record was added ");
+                // throw new Exception("Sorry, the merchant in the first record is wrong, check if a record was added ");
             }
 
             bool correctTime = transaction.CheckTime(3);
@@ -253,7 +253,7 @@ namespace LottoSend.com.TestCases
             processing.AuthorizeTheLastPayment();
         }
 
-        private void Go_to_admin_panel(DriverCover driver)
+        private void Go_to_admin_panel()
         {
             driver.NavigateToUrl(driver.BaseAdminUrl);
 
