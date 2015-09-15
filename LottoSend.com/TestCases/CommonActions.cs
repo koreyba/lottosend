@@ -27,6 +27,11 @@ namespace LottoSend.com.TestCases
             driver = new DriverCover(_driver);
         }
 
+        /// <summary>
+        /// Goes to the draw page of a given lottery. Doesn't perform admin panel authorizing. 
+        /// </summary>
+        /// <param name="lotteryName"></param>
+        /// <returns></returns>
         protected DrawObj Find_The_Draw_Page(string lotteryName)
         {
             driver.NavigateToUrl(driver.BaseAdminUrl + "admin/draws ");
@@ -36,6 +41,10 @@ namespace LottoSend.com.TestCases
             return draw;
         }
 
+        /// <summary>
+        /// On front-end play page switch to regular game tab. You have to be on this page to makethis action safely
+        /// </summary>
+        /// <returns></returns>
         protected RegularGamePageObj Select_regular_game_tab()
         {
             RegularGamePageObj game = new RegularGamePageObj(_driver);
@@ -43,6 +52,9 @@ namespace LottoSend.com.TestCases
             return game;
         }
 
+        /// <summary>
+        /// Goes to the front-end and signs in
+        /// </summary>
         public void Log_In_Front()
         {
             driver.NavigateToUrl(driver.BaseUrl + "en/web_users/sign_in");
@@ -52,6 +64,9 @@ namespace LottoSend.com.TestCases
             TopBarObj topBar = signInOne.ClickLogInButton();
         }
 
+        /// <summary>
+        /// Goes to admin panel and authorize
+        /// </summary>
         public void Authorize_in_admin_panel()
         {
             driver.NavigateToUrl(driver.BaseAdminUrl);
@@ -60,6 +75,9 @@ namespace LottoSend.com.TestCases
             login.LogIn("koreybadenis@gmail.com", "299242909");
         }
 
+        /// <summary>
+        /// Goes to client order processing and authorize the first payment. Doesn't perform authorization to admin panel
+        /// </summary>
         protected void Authorize_the_first_payment()
         {
             driver.NavigateToUrl(driver.BaseAdminUrl + "admin/orders_processed");
@@ -68,6 +86,9 @@ namespace LottoSend.com.TestCases
             processing.AuthorizeTheLastPayment();
         }
 
+        /// <summary>
+        /// Goes to charge panel and approves the last payment. Doesn't perform authorization to admin panel
+        /// </summary>
         protected void Approve_offline_payment()
         {
             driver.NavigateToUrl(driver.BaseAdminUrl + "admin/charge_panel_manager");

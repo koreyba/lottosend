@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 
 namespace LottoSend.com.TestCases
 {
+    /// <summary>
+    /// Includes all verifications for an order (group/regular/raffle tickets)
+    /// </summary>
     public class OrderVerifications : CommonActions
     {
         private IWebDriver _driver;
@@ -28,11 +31,11 @@ namespace LottoSend.com.TestCases
         /// Checks is the type of the first bet qeuals to expected one
         /// </summary>
         /// <param name="type"></param>
-        public void CheckRecordBetTypeInDraw(string type)
+        public void CheckRecordBetTypeInDraw(string type, string lotteryName)
         {
             Authorize_in_admin_panel();
             //navigate to the draw's page
-            DrawObj draw = Find_The_Draw_Page("EuroJackpot");
+            DrawObj draw = Find_The_Draw_Page(lotteryName);
 
             Assert.AreEqual(type, draw.Type, "Sorry, the type of the bet is expected to be " + type + " but was " + draw.Type + ", page: " + driver.Driver.Url + " ");
         }
@@ -40,11 +43,11 @@ namespace LottoSend.com.TestCases
         /// <summary>
         /// Checks a time when the last bet (in the first record) was made
         /// </summary>
-        public void CheckRecordTimeInDraw()
+        public void CheckRecordTimeInDraw(string lotteryName)
         {
             Authorize_in_admin_panel();
             //navigate to the draw's page
-            DrawObj draw = Find_The_Draw_Page("EuroJackpot");
+            DrawObj draw = Find_The_Draw_Page(lotteryName);
 
             bool correctTime = draw.CheckTime(3);
             Assert.IsTrue(correctTime, "Sorry, the time of the first record is not in set interval. Check if record was added , page: " + driver.Driver.Url + " ");
@@ -151,11 +154,11 @@ namespace LottoSend.com.TestCases
         /// <summary>
         /// Checks an email in the first record (the last bet) 
         /// </summary>
-        public void CheckRecordEmailInDraw()
+        public void CheckRecordEmailInDraw(string lotteryName)
         {
             Authorize_in_admin_panel();
             //navigate to the draw's page
-            DrawObj draw = Find_The_Draw_Page("EuroJackpot");
+            DrawObj draw = Find_The_Draw_Page(lotteryName);
 
             bool correctEmail = draw.CheckEmail(driver.Login);
             Assert.IsTrue(correctEmail, "Sorry, the email in the first record is wrong, check if a record was added, page: " + driver.Driver.Url + " ");

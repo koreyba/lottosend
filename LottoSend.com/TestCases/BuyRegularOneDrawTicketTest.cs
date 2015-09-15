@@ -75,7 +75,7 @@ namespace LottoSend.com.TestCases
         [Test]
         public void Check_Record_Time_In_Draw()
         {
-            verifications.CheckRecordTimeInDraw();
+            verifications.CheckRecordTimeInDraw("EuroJackpot");
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace LottoSend.com.TestCases
         [Test]
         public void Check_Record_Email_In_Draw()
         {
-            verifications.CheckRecordEmailInDraw();
+            verifications.CheckRecordEmailInDraw("EuroJackpot");
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace LottoSend.com.TestCases
         [Test]
         public void Check_Record_Type_In_Draw()
         {
-            verifications.CheckRecordBetTypeInDraw("Single");
+            verifications.CheckRecordBetTypeInDraw("Single", "EuroJackpot");
         }
 
         /// <summary>
