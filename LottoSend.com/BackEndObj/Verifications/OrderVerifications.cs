@@ -14,17 +14,19 @@ namespace LottoSend.com.TestCases
     /// <summary>
     /// Includes all verifications for an order (group/regular/raffle tickets)
     /// </summary>
-    public class OrderVerifications : CommonActions
+    public class OrderVerifications
     {
         private IWebDriver _driver;
         private DriverCover driver;
         public StringBuilder _errors;
+        private CommonActions commonActions;
 
-        public OrderVerifications()
+        public OrderVerifications(IWebDriver newDriver)
         {
-            _driver = new ChromeDriver();
+            _driver = newDriver;
             driver = new DriverCover(_driver);
             _errors = new StringBuilder();
+            commonActions = new CommonActions(_driver);
         }
 
         /// <summary>
@@ -33,9 +35,9 @@ namespace LottoSend.com.TestCases
         /// <param name="type"></param>
         public void CheckRecordBetTypeInDraw(string type, string lotteryName)
         {
-            Authorize_in_admin_panel();
+            commonActions.Authorize_in_admin_panel();
             //navigate to the draw's page
-            DrawObj draw = Find_The_Draw_Page(lotteryName);
+            DrawObj draw = commonActions.Find_The_Draw_Page(lotteryName);
 
             Assert.AreEqual(type, draw.Type, "Sorry, the type of the bet is expected to be " + type + " but was " + draw.Type + ", page: " + driver.Driver.Url + " ");
         }
@@ -45,9 +47,9 @@ namespace LottoSend.com.TestCases
         /// </summary>
         public void CheckRecordTimeInDraw(string lotteryName)
         {
-            Authorize_in_admin_panel();
+            commonActions.Authorize_in_admin_panel();
             //navigate to the draw's page
-            DrawObj draw = Find_The_Draw_Page(lotteryName);
+            DrawObj draw = commonActions.Find_The_Draw_Page(lotteryName);
 
             bool correctTime = draw.CheckTime(3);
             Assert.IsTrue(correctTime, "Sorry, the time of the first record is not in set interval. Check if record was added , page: " + driver.Driver.Url + " ");
@@ -58,7 +60,7 @@ namespace LottoSend.com.TestCases
         /// </summary>
         public void CheckTransactionDateFront()
         {
-            Log_In_Front();
+            commonActions.Log_In_Front();
             driver.NavigateToUrl(driver.BaseUrl + "en/account/balance/");
             TransactionObj myTransactions = new TransactionObj(_driver);
 
@@ -95,7 +97,7 @@ namespace LottoSend.com.TestCases
         /// </summary>
         public void CheckTransactionLotteryNameFront()
         {
-            Log_In_Front();
+            commonActions.Log_In_Front();
             driver.NavigateToUrl(driver.BaseUrl + "en/account/balance/");
             TransactionObj myTransactions = new TransactionObj(_driver);
 
@@ -117,7 +119,7 @@ namespace LottoSend.com.TestCases
         /// </summary>
         public void CheckTransactionsEmailInTransactions()
         {
-            Authorize_in_admin_panel();
+            commonActions.Authorize_in_admin_panel();
             driver.NavigateToUrl(driver.BaseAdminUrl + "admin/transactions");
             TransactionsObj transaction = new TransactionsObj(_driver);
             bool correctEmail = transaction.CheckEmail(driver.Login);
@@ -130,7 +132,7 @@ namespace LottoSend.com.TestCases
         /// </summary>
         public void CheckTransactionMerchantInTransactions()
         {
-            Authorize_in_admin_panel();
+            commonActions.Authorize_in_admin_panel();
             driver.NavigateToUrl(driver.BaseAdminUrl + "admin/transactions");
             TransactionsObj transaction = new TransactionsObj(_driver);
             bool correctMerchant = transaction.CheckMerchant("Offline");
@@ -143,7 +145,7 @@ namespace LottoSend.com.TestCases
         /// </summary>
         public void CheckTransactionTimeInTransactions()
         {
-            Authorize_in_admin_panel();
+            commonActions.Authorize_in_admin_panel();
             driver.NavigateToUrl(driver.BaseAdminUrl + "admin/transactions");
             TransactionsObj transaction = new TransactionsObj(_driver);
             bool correctTime = transaction.CheckTime(3);
@@ -156,9 +158,9 @@ namespace LottoSend.com.TestCases
         /// </summary>
         public void CheckRecordEmailInDraw(string lotteryName)
         {
-            Authorize_in_admin_panel();
+            commonActions.Authorize_in_admin_panel();
             //navigate to the draw's page
-            DrawObj draw = Find_The_Draw_Page(lotteryName);
+            DrawObj draw = commonActions.Find_The_Draw_Page(lotteryName);
 
             bool correctEmail = draw.CheckEmail(driver.Login);
             Assert.IsTrue(correctEmail, "Sorry, the email in the first record is wrong, check if a record was added, page: " + driver.Driver.Url + " ");
@@ -169,9 +171,9 @@ namespace LottoSend.com.TestCases
         /// </summary>
         public void CheckRecordPriceInDraw(double totalPrice)
         {
-            Authorize_in_admin_panel();
+            commonActions.Authorize_in_admin_panel();
             //navigate to the draw's page
-            DrawObj draw = Find_The_Draw_Page("EuroJackpot");
+            DrawObj draw = commonActions.Find_The_Draw_Page("EuroJackpot");
             Assert.AreEqual(totalPrice, draw.BetAmount, "Sorry, the price for the bet is  " + draw.BetAmount + " but " + totalPrice + " was expected, page: " + driver.Driver.Url + " ");
         }
 
@@ -180,9 +182,9 @@ namespace LottoSend.com.TestCases
         /// </summary>
         public void CheckRecordPriceInDraw(double totalPrice, int numberOfDraws)
         {
-            Authorize_in_admin_panel();
+            commonActions.Authorize_in_admin_panel();
             //navigate to the draw's page
-            DrawObj draw = Find_The_Draw_Page("EuroJackpot");
+            DrawObj draw = commonActions.Find_The_Draw_Page("EuroJackpot");
             Assert.AreEqual(totalPrice / numberOfDraws, draw.BetAmount, "Sorry, the price for the bet is  " + draw.BetAmount + " but " + totalPrice / numberOfDraws + " was expected, page: " + driver.Driver.Url + " ");
         }
     }

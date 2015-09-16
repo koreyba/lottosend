@@ -21,9 +21,9 @@ namespace LottoSend.com.TestCases
         private IWebDriver _driver;
         private DriverCover driver;
 
-        public CommonActions()
+        public CommonActions(IWebDriver newDriver)
         {
-            _driver = new ChromeDriver();
+            _driver = newDriver;
             driver = new DriverCover(_driver);
         }
 
@@ -32,7 +32,7 @@ namespace LottoSend.com.TestCases
         /// </summary>
         /// <param name="lotteryName"></param>
         /// <returns></returns>
-        protected DrawObj Find_The_Draw_Page(string lotteryName)
+        public DrawObj Find_The_Draw_Page(string lotteryName)
         {
             driver.NavigateToUrl(driver.BaseAdminUrl + "admin/draws ");
             DrawsObj drawsPage = new DrawsObj(_driver);
@@ -45,7 +45,7 @@ namespace LottoSend.com.TestCases
         /// On front-end play page switch to regular game tab. You have to be on this page to makethis action safely
         /// </summary>
         /// <returns></returns>
-        protected RegularGamePageObj Select_regular_game_tab()
+        public RegularGamePageObj Select_regular_game_tab()
         {
             RegularGamePageObj game = new RegularGamePageObj(_driver);
             game.ClickStandartGameButton();
@@ -78,7 +78,7 @@ namespace LottoSend.com.TestCases
         /// <summary>
         /// Goes to client order processing and authorize the first payment. Doesn't perform authorization to admin panel
         /// </summary>
-        protected void Authorize_the_first_payment()
+        public void Authorize_the_first_payment()
         {
             driver.NavigateToUrl(driver.BaseAdminUrl + "admin/orders_processed");
 
@@ -89,7 +89,7 @@ namespace LottoSend.com.TestCases
         /// <summary>
         /// Goes to charge panel and approves the last payment. Doesn't perform authorization to admin panel
         /// </summary>
-        protected void Approve_offline_payment()
+        public void Approve_offline_payment()
         {
             driver.NavigateToUrl(driver.BaseAdminUrl + "admin/charge_panel_manager");
 

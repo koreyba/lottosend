@@ -52,16 +52,16 @@ namespace LottoSend.com.FrontEndObj
         {
             get 
             {
-                IWebElement price = GetFirstVisibleElementFromList(By.CssSelector("div.col-sm-7.groups-prices > div.bet-resume > table:nth-child(1) > tbody > tr:nth-child(3) > td:nth-child(2)"));
+                IWebElement price = GetFirstVisibleElementFromList(By.CssSelector("div.col-sm-7.groups-prices > div.bet-resume > table[id^='bulk'] > tbody > tr:nth-child(3) > td:nth-child(2)"));
                 return price.Text.ParceDouble(); 
             }
         }
 
-        [FindsBy(How = How.CssSelector, Using = "ul.nav.nav-tabs > li:nth-child(2) > a")]
+        [FindsBy(How = How.CssSelector, Using = "#single-tab > a")]
         private IWebElement _singleGame;
 
         /// <summary>
-        /// Click on "Standart game" button
+        /// Click on "Single game" tab
         /// </summary>
         public void ClickStandartGameButton()
         {

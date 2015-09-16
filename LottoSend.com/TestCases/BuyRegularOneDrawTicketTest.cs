@@ -17,12 +17,13 @@ namespace LottoSend.com.TestCases
     /// Buys a regular one-draw ticket and performs all needed assertations 
     /// </summary>
     [TestFixture]
-    public class BuyRegularOneDrawTicketTest : CommonActions
+    public class BuyRegularOneDrawTicketTest
     {
         private IWebDriver _driver;
         private DriverCover driver;
         private double _totalPrice;
         private OrderVerifications verifications;
+        private CommonActions commonActions;
 
         /// <summary>
         /// Checks date of the first and seconds records in users account - transactions (front-end)
@@ -74,6 +75,7 @@ namespace LottoSend.com.TestCases
         /// </summary>
         [Test]
         public void Check_Record_Time_In_Draw()
+
         {
             verifications.CheckRecordTimeInDraw("EuroJackpot");
         }
@@ -109,34 +111,37 @@ namespace LottoSend.com.TestCases
         /// Performs once before all other tests. Buys a regular single ticket 
         /// </summary>
         [TestFixtureSetUp]
-        public void Buy_Regular_Signle_Ticket()
+        public void Buy_Regular_One_Draw_Ticket()
         {
             SetUp();
 
             // Log in     
-            Log_In_Front();
+            commonActions.Log_In_Front();
 
             driver.NavigateToUrl(driver.BaseUrl + "en/plays/eurojackpot/");
 
             //Pay for tickets
             RegularGamePageObj regularGame = new RegularGamePageObj(_driver);
-
-            _totalPrice = regularGame.TotalPrice;
+            
+            //go to single tab
+            regularGame.ClickStandartGameButton();
 
             //Select single draw
             regularGame.SelectOneTimeEntryGame();
+
+            _totalPrice = regularGame.TotalPrice;
 
             MerchantsObj merchants = regularGame.ClickBuyTicketsButton();
             merchants.PayWithOfflineCharge();
 
             //Go to admin panel
-            Authorize_in_admin_panel();
+            commonActions.Authorize_in_admin_panel();
 
             //authorize payment in charge panel
-            Authorize_the_first_payment();
+            commonActions.Authorize_the_first_payment();
 
             //approve payment
-            Approve_offline_payment();
+            commonActions.Approve_offline_payment();
 
             CleanUp();
         }
@@ -157,7 +162,8 @@ namespace LottoSend.com.TestCases
         {
             _driver = new ChromeDriver();
             driver = new DriverCover(_driver);
-            verifications = new OrderVerifications();
+            verifications = new OrderVerifications(_driver);
+            commonActions = new CommonActions(_driver);
         }
     }
 }

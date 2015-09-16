@@ -27,7 +27,20 @@ namespace LottoSend.com.BackEndObj
         /// </summary>
         public void AuthorizeTheLastPayment()
         {
-            _authorizeButton.Click();
+            try
+            {
+                _authorizeButton.Click();
+            }
+            catch(NoSuchElementException e)
+            {
+                IList<IWebElement> unAuthorize = Driver.FindElements(By.LinkText("UnAuthorize"));
+                if(unAuthorize.Count < 1)
+                {
+                    throw new NoSuchElementException("There is no \"Authorize\" button in Cliend Order Processing ");
+                }
+            }
+
+            
             WaitjQuery();
         }
     }
