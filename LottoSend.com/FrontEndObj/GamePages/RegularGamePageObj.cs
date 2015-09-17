@@ -52,7 +52,9 @@ namespace LottoSend.com.FrontEndObj
         {
             get 
             {
-                IWebElement price = GetFirstVisibleElementFromList(By.CssSelector("div.col-sm-7.groups-prices > div.bet-resume > table[id^='bulk'] > tbody > tr:nth-child(3) > td:nth-child(2)"));
+                //First find a visible table and then search price in this table
+                IWebElement table = GetFirstVisibleElementFromList(By.CssSelector("div.col-sm-7.groups-prices > div.bet-resume > table.table"));
+                IWebElement price = table.FindElement(By.CssSelector("tbody > tr:nth-child(3) > td:nth-child(2)"));
                 return price.Text.ParceDouble(); 
             }
         }
