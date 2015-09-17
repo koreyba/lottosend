@@ -1,15 +1,12 @@
-﻿using OpenQA.Selenium;
+﻿using System.Threading;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using OpenQA.Selenium.Support.UI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace LottoSend.com.FrontEndObj
+namespace LottoSend.com.FrontEndObj.GamePages
 {
+    /// <summary>
+    /// Page Object of a regular ticket game page
+    /// </summary>
     public class RegularGamePageObj : DriverCover
     {
         public RegularGamePageObj(IWebDriver driver) : base(driver)

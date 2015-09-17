@@ -1,15 +1,11 @@
-﻿using LottoSend.com.BackEndObj;
+﻿using System;
+using System.Text;
 using LottoSend.com.FrontEndObj.MyAccount;
+using LottoSend.com.TestCases;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace LottoSend.com.TestCases
+namespace LottoSend.com.BackEndObj.Verifications
 {
     /// <summary>
     /// Includes all verifications for an order (group/regular/raffle tickets)
@@ -17,29 +13,30 @@ namespace LottoSend.com.TestCases
     public class OrderVerifications
     {
         private IWebDriver _driver;
-        private DriverCover driver;
-        public StringBuilder _errors;
-        private CommonActions commonActions;
+        private DriverCover _driverCover;
+        public StringBuilder Errors;
+        private CommonActions _commonActions;
 
         public OrderVerifications(IWebDriver newDriver)
         {
             _driver = newDriver;
-            driver = new DriverCover(_driver);
-            _errors = new StringBuilder();
-            commonActions = new CommonActions(_driver);
+            _driverCover = new DriverCover(_driver);
+            Errors = new StringBuilder();
+            _commonActions = new CommonActions(_driver);
         }
 
         /// <summary>
         /// Checks is the type of the first bet qeuals to expected one
         /// </summary>
         /// <param name="type"></param>
+        /// <param name="lotteryName"></param>
         public void CheckRecordBetTypeInDraw(string type, string lotteryName)
         {
-            commonActions.Authorize_in_admin_panel();
+            _commonActions.Authorize_in_admin_panel();
             //navigate to the draw's page
-            DrawObj draw = commonActions.Find_The_Draw_Page(lotteryName);
+            DrawObj draw = _commonActions.Find_The_Draw_Page(lotteryName);
 
-            Assert.AreEqual(type, draw.Type, "Sorry, the type of the bet is expected to be " + type + " but was " + draw.Type + ", page: " + driver.Driver.Url + " ");
+            Assert.AreEqual(type, draw.Type, "Sorry, the type of the bet is expected to be " + type + " but was " + draw.Type + ", page: " + _driverCover.Driver.Url + " ");
         }
 
         /// <summary>
@@ -47,12 +44,12 @@ namespace LottoSend.com.TestCases
         /// </summary>
         public void CheckRecordTimeInDraw(string lotteryName)
         {
-            commonActions.Authorize_in_admin_panel();
+            _commonActions.Authorize_in_admin_panel();
             //navigate to the draw's page
-            DrawObj draw = commonActions.Find_The_Draw_Page(lotteryName);
+            DrawObj draw = _commonActions.Find_The_Draw_Page(lotteryName);
 
             bool correctTime = draw.CheckTime(3);
-            Assert.IsTrue(correctTime, "Sorry, the time of the first record is not in set interval. Check if record was added , page: " + driver.Driver.Url + " ");
+            Assert.IsTrue(correctTime, "Sorry, the time of the first record is not in set interval. Check if record was added , page: " + _driverCover.Driver.Url + " ");
         }
 
         /// <summary>
@@ -60,8 +57,8 @@ namespace LottoSend.com.TestCases
         /// </summary>
         public void CheckTransactionDateFront()
         {
-            commonActions.Log_In_Front();
-            driver.NavigateToUrl(driver.BaseUrl + "en/account/balance/");
+            _commonActions.Log_In_Front();
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/balance/");
             TransactionObj myTransactions = new TransactionObj(_driver);
 
             //make month to be in right format
@@ -83,12 +80,12 @@ namespace LottoSend.com.TestCases
             string date = day + "/" + month + "/" + DateTime.Now.Year;
             if (!myTransactions.FirstRecordDate.Equals(date))
             {
-                _errors.Append("The first record has not current date, please check it, page: " + driver.Driver.Url + " ");
+                Errors.Append("The first record has not current date, please check it, page: " + _driverCover.Driver.Url + " ");
             }
 
             if (!myTransactions.SecondRecordDate.Equals(date))
             {
-                _errors.Append("The second record has not current date, please check it, page: " + driver.Driver.Url + " ");
+                Errors.Append("The second record has not current date, please check it, page: " + _driverCover.Driver.Url + " ");
             }
         }
 
@@ -97,20 +94,20 @@ namespace LottoSend.com.TestCases
         /// </summary>
         public void CheckTransactionLotteryNameFront()
         {
-            commonActions.Log_In_Front();
-            driver.NavigateToUrl(driver.BaseUrl + "en/account/balance/");
+            _commonActions.Log_In_Front();
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/balance/");
             TransactionObj myTransactions = new TransactionObj(_driver);
 
             //Second record lottery name must be equal to...
             if (!myTransactions.SecondRecordLottery.Equals("EuroJackpot"))
             {
-                _errors.Append("The second record has different lottery name, please check it, page: " + driver.Driver.Url + " ");
+                Errors.Append("The second record has different lottery name, please check it, page: " + _driverCover.Driver.Url + " ");
             }
 
             //First record lottery name must be empty
             if (!myTransactions.FirstRecordLottery.Equals(""))
             {
-                _errors.Append("The first record is supossed to have no lottery name, please check it, page: " + driver.Driver.Url + " ");
+                Errors.Append("The first record is supossed to have no lottery name, please check it, page: " + _driverCover.Driver.Url + " ");
             }
         }
 
@@ -119,12 +116,12 @@ namespace LottoSend.com.TestCases
         /// </summary>
         public void CheckTransactionsEmailInTransactions()
         {
-            commonActions.Authorize_in_admin_panel();
-            driver.NavigateToUrl(driver.BaseAdminUrl + "admin/transactions");
+            _commonActions.Authorize_in_admin_panel();
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/transactions");
             TransactionsObj transaction = new TransactionsObj(_driver);
-            bool correctEmail = transaction.CheckEmail(driver.Login);
+            bool correctEmail = transaction.CheckEmail(_driverCover.Login);
 
-            Assert.IsTrue(correctEmail, "Sorry, the email in the first record is wrong, check if a record was added, page: " + driver.Driver.Url + " ");
+            Assert.IsTrue(correctEmail, "Sorry, the email in the first record is wrong, check if a record was added, page: " + _driverCover.Driver.Url + " ");
         }
 
         /// <summary>
@@ -132,12 +129,12 @@ namespace LottoSend.com.TestCases
         /// </summary>
         public void CheckTransactionMerchantInTransactions()
         {
-            commonActions.Authorize_in_admin_panel();
-            driver.NavigateToUrl(driver.BaseAdminUrl + "admin/transactions");
+            _commonActions.Authorize_in_admin_panel();
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/transactions");
             TransactionsObj transaction = new TransactionsObj(_driver);
             bool correctMerchant = transaction.CheckMerchant("Offline");
 
-            Assert.IsTrue(correctMerchant, "Sorry, the merchant in the first record is wrong, check if a record was added, page: " + driver.Driver.Url + " ");
+            Assert.IsTrue(correctMerchant, "Sorry, the merchant in the first record is wrong, check if a record was added, page: " + _driverCover.Driver.Url + " ");
         }
 
         /// <summary>
@@ -145,12 +142,12 @@ namespace LottoSend.com.TestCases
         /// </summary>
         public void CheckTransactionTimeInTransactions()
         {
-            commonActions.Authorize_in_admin_panel();
-            driver.NavigateToUrl(driver.BaseAdminUrl + "admin/transactions");
+            _commonActions.Authorize_in_admin_panel();
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/transactions");
             TransactionsObj transaction = new TransactionsObj(_driver);
             bool correctTime = transaction.CheckTime(3);
 
-            Assert.IsTrue(correctTime, "Sorry, the time of the first record is not in set interval. Check if record was added, page: " + driver.Driver.Url + " ");
+            Assert.IsTrue(correctTime, "Sorry, the time of the first record is not in set interval. Check if record was added, page: " + _driverCover.Driver.Url + " ");
         }
 
         /// <summary>
@@ -158,12 +155,12 @@ namespace LottoSend.com.TestCases
         /// </summary>
         public void CheckRecordEmailInDraw(string lotteryName)
         {
-            commonActions.Authorize_in_admin_panel();
+            _commonActions.Authorize_in_admin_panel();
             //navigate to the draw's page
-            DrawObj draw = commonActions.Find_The_Draw_Page(lotteryName);
+            DrawObj draw = _commonActions.Find_The_Draw_Page(lotteryName);
 
-            bool correctEmail = draw.CheckEmail(driver.Login);
-            Assert.IsTrue(correctEmail, "Sorry, the email in the first record is wrong, check if a record was added, page: " + driver.Driver.Url + " ");
+            bool correctEmail = draw.CheckEmail(_driverCover.Login);
+            Assert.IsTrue(correctEmail, "Sorry, the email in the first record is wrong, check if a record was added, page: " + _driverCover.Driver.Url + " ");
         }
 
         /// <summary>
@@ -171,10 +168,10 @@ namespace LottoSend.com.TestCases
         /// </summary>
         public void CheckRecordPriceInDraw(double totalPrice)
         {
-            commonActions.Authorize_in_admin_panel();
+            _commonActions.Authorize_in_admin_panel();
             //navigate to the draw's page
-            DrawObj draw = commonActions.Find_The_Draw_Page("EuroJackpot");
-            Assert.AreEqual(totalPrice, draw.BetAmount, "Sorry, the price for the bet is  " + draw.BetAmount + " but " + totalPrice + " was expected, page: " + driver.Driver.Url + " ");
+            DrawObj draw = _commonActions.Find_The_Draw_Page("EuroJackpot");
+            Assert.AreEqual(totalPrice, draw.BetAmount, "Sorry, the price for the bet is  " + draw.BetAmount + " but " + totalPrice + " was expected, page: " + _driverCover.Driver.Url + " ");
         }
 
         /// <summary>
@@ -182,10 +179,10 @@ namespace LottoSend.com.TestCases
         /// </summary>
         public void CheckRecordPriceInDraw(double totalPrice, int numberOfDraws)
         {
-            commonActions.Authorize_in_admin_panel();
+            _commonActions.Authorize_in_admin_panel();
             //navigate to the draw's page
-            DrawObj draw = commonActions.Find_The_Draw_Page("EuroJackpot");
-            Assert.AreEqual(totalPrice / numberOfDraws, draw.BetAmount, "Sorry, the price for the bet is  " + draw.BetAmount + " but " + totalPrice / numberOfDraws + " was expected, page: " + driver.Driver.Url + " ");
+            DrawObj draw = _commonActions.Find_The_Draw_Page("EuroJackpot");
+            Assert.AreEqual(totalPrice / numberOfDraws, draw.BetAmount, "Sorry, the price for the bet is  " + draw.BetAmount + " but " + totalPrice / numberOfDraws + " was expected, page: " + _driverCover.Driver.Url + " ");
         }
     }
 }

@@ -1,14 +1,14 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using LottoSend.com.FrontEndObj.GamePages;
 
 namespace LottoSend.com.FrontEndObj
 {
+    /// <summary>
+    /// Page Object of the cart page (front)
+    /// </summary>
     public class CartObj : DriverCover
     {
         public CartObj(IWebDriver driver) : base(driver)
@@ -19,6 +19,21 @@ namespace LottoSend.com.FrontEndObj
             }
 
             PageFactory.InitElements(Driver, this);
+        }
+
+        [FindsBy(How = How.CssSelector, Using = "div.control > a.btn.btn-lg.btn-success.btn-xl.btn-block")]
+        private IWebElement _proceedToCheckoutButton;
+
+        /// <summary>
+        /// Clicks on Proceed to Checkout button
+        /// </summary>
+        /// <returns></returns>
+        public MerchantsObj ClickProceedToCheckoutButton()
+        {
+            _proceedToCheckoutButton.Click();
+            WaitjQuery();
+
+            return new MerchantsObj(Driver);
         }
 
         [FindsBy(How = How.CssSelector, Using = "table.table.cart.table-striped > tbody")]

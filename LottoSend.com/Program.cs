@@ -16,15 +16,7 @@ namespace LottoSend.com
     {
         static void Main(string[] args)
         {
-
-          
-            BuyingTicketsTests test = new BuyingTicketsTests();
-            test.SetUp();
-            test.BuyGroupGameTicket("Bulk Buy");
-            test.CleanUp();
-
-           
-         
+  
         }
     }
 }

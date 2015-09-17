@@ -1,30 +1,24 @@
-﻿using LottoSend.com.BackEndObj;
+﻿using LottoSend.com.BackEndObj.Verifications;
 using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.GamePages;
-using LottoSend.com.FrontEndObj.MyAccount;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace LottoSend.com.TestCases
+namespace LottoSend.com.TestCases.Group_ticktes
 {
     /// <summary>
-    /// Buys a group multi-draw ticket and performs all needed assertations 
+    /// Buys a group one-draw ticket and performs all needed assertations 
     /// </summary>
-    public class BuyGroupMultiDrawTicketTest
+    [TestFixture]
+    public class BuyGroupOneDrawTicketTest 
     {
         private IWebDriver _driver;
-        private DriverCover driver;
-        private StringBuilder _errors = new StringBuilder();
+        private DriverCover _driverCover;
         private double _totalPrice;
         private int _numberOfDraws;
-        public OrderVerifications verifications;
-        private CommonActions commonActions;
+        private OrderVerifications _verifications;
+        private CommonActions _commonActions;
 
         /// <summary>
         /// Checks date of the first and seconds records in users account - transactions (front-end)
@@ -32,7 +26,7 @@ namespace LottoSend.com.TestCases
         [Test]
         public void Check_Transaction_Date_Front()
         {
-            verifications.CheckTransactionDateFront();
+            _verifications.CheckTransactionDateFront();
         }
 
         /// <summary>
@@ -41,7 +35,7 @@ namespace LottoSend.com.TestCases
         [Test]
         public void Check_Transaction_Lottery_Name_Front()
         {
-            verifications.CheckTransactionLotteryNameFront();
+            _verifications.CheckTransactionLotteryNameFront();
         }
 
         /// <summary>
@@ -50,7 +44,7 @@ namespace LottoSend.com.TestCases
         [Test]
         public void Check_Transactions_Email_In_Transactions()
         {
-            verifications.CheckTransactionsEmailInTransactions();
+            _verifications.CheckTransactionsEmailInTransactions();
         }
 
         /// <summary>
@@ -59,7 +53,7 @@ namespace LottoSend.com.TestCases
         [Test]
         public void Check_Transaction_Merchant_In_Transactions()
         {
-            verifications.CheckTransactionMerchantInTransactions();
+            _verifications.CheckTransactionMerchantInTransactions();
         }
 
         /// <summary>
@@ -68,7 +62,7 @@ namespace LottoSend.com.TestCases
         [Test]
         public void Check_Transaction_Time_In_Transactions()
         {
-            verifications.CheckTransactionTimeInTransactions();
+            _verifications.CheckTransactionTimeInTransactions();
         }
 
         /// <summary>
@@ -77,7 +71,7 @@ namespace LottoSend.com.TestCases
         [Test]
         public void Check_Record_Time_In_Draw()
         {
-            verifications.CheckRecordTimeInDraw("EuroJackpot");
+            _verifications.CheckRecordTimeInDraw("EuroJackpot");
         }
 
         /// <summary>
@@ -86,7 +80,7 @@ namespace LottoSend.com.TestCases
         [Test]
         public void Check_Record_Email_In_Draw()
         {
-            verifications.CheckRecordEmailInDraw("EuroJackpot");
+            _verifications.CheckRecordEmailInDraw("EuroJackpot");
         }
 
         /// <summary>
@@ -95,7 +89,7 @@ namespace LottoSend.com.TestCases
         [Test]
         public void Check_Record_Type_In_Draw()
         {
-            verifications.CheckRecordBetTypeInDraw("Bulk buy", "EuroJackpot");
+            _verifications.CheckRecordBetTypeInDraw("Single", "EuroJackpot");
         }
 
         /// <summary>
@@ -104,39 +98,41 @@ namespace LottoSend.com.TestCases
         [Test]
         public void Check_Record_Price_In_Draw()
         {
-            verifications.CheckRecordPriceInDraw(_totalPrice, _numberOfDraws);
+            _verifications.CheckRecordPriceInDraw(_totalPrice) ;
         }
 
         /// <summary>
         /// Performs once before all other tests. Buys a group single ticket 
         /// </summary>
         [TestFixtureSetUp]
-        public void Buy_Group_Multi_Draw_Ticket()
+        public void Buy_Group_One_Draw_Ticket()
         {
             SetUp();
 
             // Log in     
-            commonActions.Log_In_Front();
+            _commonActions.Log_In_Front();
 
-            driver.NavigateToUrl(driver.BaseUrl + "en/plays/eurojackpot/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/plays/eurojackpot/");
 
             //Pay for tickets
-            GroupGamePageObj groupGame = new GroupGamePageObj(_driver);
+            GroupGamePageObj groupGame = new GroupGamePageObj(_driver);  
+
+            //Select single draw
+            groupGame.SelectOneTimeEntryGame();
 
             _totalPrice = groupGame.TotalPrice;
-            _numberOfDraws = groupGame.NumberOfDraws;
 
             MerchantsObj merchants = groupGame.ClickBuyTicketsButton();
             merchants.PayWithOfflineCharge();
 
             //Go to admin panel
-            commonActions.Authorize_in_admin_panel();
+            _commonActions.Authorize_in_admin_panel();
 
             //authorize payment in charge panel
-            commonActions.Authorize_the_first_payment();
+            _commonActions.Authorize_the_first_payment();
 
             //approve payment
-            commonActions.Approve_offline_payment();
+            _commonActions.Approve_offline_payment();
 
             CleanUp();
         }
@@ -146,9 +142,9 @@ namespace LottoSend.com.TestCases
         public void CleanUp()
         {
             _driver.Dispose();
-            if (_errors.Length > 0)
+            if (_verifications.Errors.Length > 0)
             {
-                Assert.Fail(_errors.ToString());
+                Assert.Fail(_verifications.Errors.ToString());
             }
         }
 
@@ -156,9 +152,9 @@ namespace LottoSend.com.TestCases
         public void SetUp()
         {
             _driver = new ChromeDriver();
-            driver = new DriverCover(_driver);
-            verifications = new OrderVerifications(_driver);
-            commonActions = new CommonActions(_driver);
+            _driverCover = new DriverCover(_driver);
+            _verifications = new OrderVerifications(_driver);
+            _commonActions = new CommonActions(_driver);
         }
     }
 }

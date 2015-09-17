@@ -1,15 +1,14 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace LottoSend.com.FrontEndObj.GamePages
 {
+    /// <summary>
+    /// Page object of a group ticket page
+    /// </summary>
     public class GroupGamePageObj : DriverCover
     {
         public GroupGamePageObj(IWebDriver driver) : base(driver)

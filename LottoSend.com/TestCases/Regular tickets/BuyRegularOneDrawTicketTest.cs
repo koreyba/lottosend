@@ -1,17 +1,11 @@
-﻿using LottoSend.com.BackEndObj;
+﻿using LottoSend.com.BackEndObj.Verifications;
 using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.GamePages;
-using LottoSend.com.FrontEndObj.MyAccount;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace LottoSend.com.TestCases
+namespace LottoSend.com.TestCases.Regular_tickets
 {
     /// <summary>
     /// Buys a regular one-draw ticket and performs all needed assertations 
@@ -20,10 +14,10 @@ namespace LottoSend.com.TestCases
     public class BuyRegularOneDrawTicketTest
     {
         private IWebDriver _driver;
-        private DriverCover driver;
+        private DriverCover _driverCover;
         private double _totalPrice;
-        private OrderVerifications verifications;
-        private CommonActions commonActions;
+        private OrderVerifications _verifications;
+        private CommonActions _commonActions;
 
         /// <summary>
         /// Checks date of the first and seconds records in users account - transactions (front-end)
@@ -31,7 +25,7 @@ namespace LottoSend.com.TestCases
         [Test]
         public void Check_Transaction_Date_Front()
         {
-            verifications.CheckTransactionDateFront();
+            _verifications.CheckTransactionDateFront();
         }
 
         /// <summary>
@@ -40,7 +34,7 @@ namespace LottoSend.com.TestCases
         [Test]
         public void Check_Transaction_Lottery_Name_Front()
         {
-            verifications.CheckTransactionLotteryNameFront();
+            _verifications.CheckTransactionLotteryNameFront();
         }
 
         /// <summary>
@@ -49,7 +43,7 @@ namespace LottoSend.com.TestCases
         [Test]
         public void Check_Transactions_Email_In_Transactions()
         {
-            verifications.CheckTransactionsEmailInTransactions();
+            _verifications.CheckTransactionsEmailInTransactions();
         }
 
         /// <summary>
@@ -58,7 +52,7 @@ namespace LottoSend.com.TestCases
         [Test]
         public void Check_Transaction_Merchant_In_Transactions()
         {
-            verifications.CheckTransactionMerchantInTransactions();
+            _verifications.CheckTransactionMerchantInTransactions();
         }
 
         /// <summary>
@@ -67,7 +61,7 @@ namespace LottoSend.com.TestCases
         [Test]
         public void Check_Transaction_Time_In_Transactions()
         {
-            verifications.CheckTransactionTimeInTransactions();
+            _verifications.CheckTransactionTimeInTransactions();
         }
 
         /// <summary>
@@ -77,7 +71,7 @@ namespace LottoSend.com.TestCases
         public void Check_Record_Time_In_Draw()
 
         {
-            verifications.CheckRecordTimeInDraw("EuroJackpot");
+            _verifications.CheckRecordTimeInDraw("EuroJackpot");
         }
 
         /// <summary>
@@ -86,7 +80,7 @@ namespace LottoSend.com.TestCases
         [Test]
         public void Check_Record_Email_In_Draw()
         {
-            verifications.CheckRecordEmailInDraw("EuroJackpot");
+            _verifications.CheckRecordEmailInDraw("EuroJackpot");
         }
 
         /// <summary>
@@ -95,7 +89,7 @@ namespace LottoSend.com.TestCases
         [Test]
         public void Check_Record_Type_In_Draw()
         {
-            verifications.CheckRecordBetTypeInDraw("Single", "EuroJackpot");
+            _verifications.CheckRecordBetTypeInDraw("Single", "EuroJackpot");
         }
 
         /// <summary>
@@ -104,7 +98,7 @@ namespace LottoSend.com.TestCases
         [Test]
         public void Check_Record_Price_In_Draw()
         {
-            verifications.CheckRecordPriceInDraw(_totalPrice);
+            _verifications.CheckRecordPriceInDraw(_totalPrice);
         }
 
         /// <summary>
@@ -116,9 +110,9 @@ namespace LottoSend.com.TestCases
             SetUp();
 
             // Log in     
-            commonActions.Log_In_Front();
+            _commonActions.Log_In_Front();
 
-            driver.NavigateToUrl(driver.BaseUrl + "en/plays/eurojackpot/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/plays/eurojackpot/");
 
             //Pay for tickets
             RegularGamePageObj regularGame = new RegularGamePageObj(_driver);
@@ -135,13 +129,13 @@ namespace LottoSend.com.TestCases
             merchants.PayWithOfflineCharge();
 
             //Go to admin panel
-            commonActions.Authorize_in_admin_panel();
+            _commonActions.Authorize_in_admin_panel();
 
             //authorize payment in charge panel
-            commonActions.Authorize_the_first_payment();
+            _commonActions.Authorize_the_first_payment();
 
             //approve payment
-            commonActions.Approve_offline_payment();
+            _commonActions.Approve_offline_payment();
 
             CleanUp();
         }
@@ -151,9 +145,9 @@ namespace LottoSend.com.TestCases
         public void CleanUp()
         {
             _driver.Dispose();
-            if (verifications._errors.Length > 0)
+            if (_verifications.Errors.Length > 0)
             {
-                Assert.Fail(verifications._errors.ToString());
+                Assert.Fail(_verifications.Errors.ToString());
             }
         }
 
@@ -161,9 +155,9 @@ namespace LottoSend.com.TestCases
         public void SetUp()
         {
             _driver = new ChromeDriver();
-            driver = new DriverCover(_driver);
-            verifications = new OrderVerifications(_driver);
-            commonActions = new CommonActions(_driver);
+            _driverCover = new DriverCover(_driver);
+            _verifications = new OrderVerifications(_driver);
+            _commonActions = new CommonActions(_driver);
         }
     }
 }

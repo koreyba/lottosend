@@ -10,20 +10,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LottoSend.com.BackEndObj.Verifications;
 
 namespace LottoSend.com.TestCases
 {
     /// <summary>
-    /// Buys a regular multi-draw ticket and performs all needed assertations 
+    /// Buys a group multi-draw ticket and performs all needed assertations 
     /// </summary>
-    [TestFixture]
-    public class BuyRegularMultiDrawTicketTest 
+    public class BuyGroupMultiDrawTicketTest
     {
         private IWebDriver _driver;
         private DriverCover driver;
         private double _totalPrice;
         private int _numberOfDraws;
-        private OrderVerifications verifications;
+        public OrderVerifications verifications;
         private CommonActions commonActions;
 
         /// <summary>
@@ -108,10 +108,10 @@ namespace LottoSend.com.TestCases
         }
 
         /// <summary>
-        /// Performs once before all other tests. Buys a regular single ticket 
+        /// Performs once before all other tests. Buys a group single ticket 
         /// </summary>
         [TestFixtureSetUp]
-        public void Buy_Regular_Multi_Draw_Ticket()
+        public void Buy_Group_Multi_Draw_Ticket()
         {
             SetUp();
 
@@ -121,16 +121,12 @@ namespace LottoSend.com.TestCases
             driver.NavigateToUrl(driver.BaseUrl + "en/plays/eurojackpot/");
 
             //Pay for tickets
-            RegularGamePageObj regularGame = new RegularGamePageObj(_driver);
+            GroupGamePageObj groupGame = new GroupGamePageObj(_driver);
 
-            //Go to single tab
-            regularGame.ClickStandartGameButton();
+            _totalPrice = groupGame.TotalPrice;
+            _numberOfDraws = groupGame.NumberOfDraws;
 
-            _totalPrice = regularGame.TotalPrice;
-            _numberOfDraws = regularGame.NumberOfDraws;
-
-
-            MerchantsObj merchants = regularGame.ClickBuyTicketsButton();
+            MerchantsObj merchants = groupGame.ClickBuyTicketsButton();
             merchants.PayWithOfflineCharge();
 
             //Go to admin panel
@@ -150,9 +146,9 @@ namespace LottoSend.com.TestCases
         public void CleanUp()
         {
             _driver.Dispose();
-            if (verifications._errors.Length > 0)
+            if (verifications.Errors.Length > 0)
             {
-                Assert.Fail(verifications._errors.ToString());
+                Assert.Fail(verifications.Errors.ToString());
             }
         }
 

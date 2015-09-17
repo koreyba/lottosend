@@ -60,17 +60,6 @@ namespace LottoSend.com
             get { return ConfigurationManager.AppSettings["Password"].ToString(); }
         }
 
-
-        //private readonly EventFiringWebDriver _driver;
-
-        ///// <summary>
-        ///// Driver
-        ///// </summary>
-        //public EventFiringWebDriver Driver
-        //{
-        //    get { return _driver; }
-        //}
-        
         /// <summary>
         /// Title of page
         /// </summary>

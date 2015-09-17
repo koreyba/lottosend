@@ -84,6 +84,7 @@
     <Compile Include="FrontEndObj\Common\BottomMenuObj.cs" />
     <Compile Include="FrontEndObj\CartObj.cs" />
     <Compile Include="FrontEndObj\GamePages\GroupGamePageObj.cs" />
+    <Compile Include="FrontEndObj\GamePages\RafflesPageObj.cs" />
     <Compile Include="FrontEndObj\GamePages\RegularGamePageObj.cs" />
     <Compile Include="FrontEndObj\Login\LogInPopUpObj.cs" />
     <Compile Include="FrontEndObj\Login\SignInPageOneObj.cs" />
@@ -97,11 +98,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomGenerator.cs" />
     <Compile Include="StringExtention.cs" />
-    <Compile Include="TestCases\BuyGroupMultiDrawTicketTest.cs" />
-    <Compile Include="TestCases\BuyGroupOneDrawTicketTest.cs" />
-    <Compile Include="TestCases\BuyingTicketsTests.cs" />
-    <Compile Include="TestCases\BuyRegularMultiDrawTicketTest.cs" />
-    <Compile Include="TestCases\BuyRegularOneDrawTicketTest.cs" />
+    <Compile Include="TestCases\BuyRaffleTicket.cs" />
+    <Compile Include="TestCases\Group ticktes\BuyGroupMultiDrawTicketTest.cs" />
+    <Compile Include="TestCases\Group ticktes\BuyGroupOneDrawTicketTest.cs" />
+    <Compile Include="TestCases\Regular tickets\BuyRegularMultiDrawTicketTest.cs" />
+    <Compile Include="TestCases\Regular tickets\BuyRegularOneDrawTicketTest.cs" />
     <Compile Include="TestCases\CartTests.cs" />
     <Compile Include="TestCases\CommonActions.cs" />
     <Compile Include="TestCases\LogInTests.cs" />
