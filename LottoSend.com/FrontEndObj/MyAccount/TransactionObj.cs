@@ -32,6 +32,33 @@ namespace LottoSend.com.FrontEndObj.MyAccount
         private IWebElement _firstRecord;
 
         /// <summary>
+        /// Returns amount (of money) in the first record
+        /// </summary>
+        public double FirstRecordAmount
+        {
+            get
+            {
+                return Convert.ToDouble(_firstRecord.FindElement(By.CssSelector("td:nth-child(3)")).Text.ParceDouble());
+            }
+        }
+
+        /// <summary>
+        /// Returns type of the first record
+        /// </summary>
+        public string SecondRecordType
+        {
+            get { return _secondRecord.FindElement(By.CssSelector("td:nth-child(2)")).Text; }
+        }
+
+        /// <summary>
+        /// Returns type of the first record
+        /// </summary>
+        public string FirstRecordType
+        {
+            get { return _firstRecord.FindElement((By.CssSelector("td:nth-child(2)"))).Text; }
+        }
+
+        /// <summary>
         /// Returns Data of the second record
         /// </summary>
         public string SecondRecordDate

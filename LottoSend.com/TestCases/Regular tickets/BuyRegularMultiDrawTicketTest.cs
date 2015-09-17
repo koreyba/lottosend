@@ -20,6 +20,24 @@ namespace LottoSend.com.TestCases.Regular_tickets
         private CommonActions _commonActions;
 
         /// <summary>
+        /// Checks an amount in the first record in transactions (front)
+        /// </summary>
+        [Test]
+        public void Check_Amount_In_Transaction_Front()
+        {
+            _verifications.CheckAmountInTransactionFront(_totalPrice);
+        }
+
+        /// <summary>
+        /// Checks a type of the first record in transactions (front)
+        /// </summary>
+        [Test]
+        public void Check_Type_Of_Transaction_Front()
+        {
+            _verifications.CheckTypeOfTransactionFront("Play - Bulk buy");
+        }
+
+        /// <summary>
         /// Checks date of the first and seconds records in users account - transactions (front-end)
         /// </summary>
         [Test]

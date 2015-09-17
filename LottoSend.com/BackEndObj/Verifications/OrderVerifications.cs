@@ -26,6 +26,32 @@ namespace LottoSend.com.BackEndObj.Verifications
         }
 
         /// <summary>
+        /// Checks is amount in the first transaction equals expected (front - transactions)
+        /// </summary>
+        /// <param name="expectedAmount"></param>
+        public void CheckAmountInTransactionFront(double expectedAmount)
+        {
+            _commonActions.Log_In_Front();
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/balance/");
+            TransactionObj transaction = new TransactionObj(_driver);
+
+            Assert.AreEqual(expectedAmount, transaction.FirstRecordAmount, "Sorry, but the amount of the first record is not as expected. Page: " + _driverCover.Driver.Url + " ");
+        }
+
+        /// <summary>
+        /// Checks a type of the first transaction on Front-Transaction history
+        /// </summary>
+        /// <param name="expectedType"></param>
+        public void CheckTypeOfTransactionFront(string expectedType)
+        {
+            _commonActions.Log_In_Front();
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/balance/");
+            TransactionObj transaction = new TransactionObj(_driver);
+
+            Assert.AreEqual(expectedType, transaction.FirstRecordType, "Sorry, but the type of the first record is not as expected. Page: " + _driverCover.Driver.Url + " ");
+        }
+
+        /// <summary>
         /// Checks is the type of the first bet qeuals to expected one
         /// </summary>
         /// <param name="type"></param>

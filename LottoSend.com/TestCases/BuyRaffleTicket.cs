@@ -17,6 +17,51 @@ namespace LottoSend.com.TestCases
         private CommonActions _commonActions;
 
         /// <summary>
+        /// Checks an amount in the first record in transactions (front)
+        /// </summary>
+        [Test]
+        public void Check_Amount_In_Transaction_Front()
+        {
+            _verifications.CheckAmountInTransactionFront(_totalPrice);
+        }
+
+        /// <summary>
+        /// Checks a type of the first record in transactions (front)
+        /// </summary>
+        [Test]
+        public void Check_Type_Of_Transaction_Front()
+        {
+            _verifications.CheckTypeOfTransactionFront("Play - Raffle");
+        }
+
+        /// <summary>
+        /// Cheks the email of the last transaction (the first record) on "Back - Transactions" page
+        /// </summary>
+        [Test]
+        public void Check_Transactions_Email_In_Transactions()
+        {
+            _verifications.CheckTransactionsEmailInTransactions();
+        }
+
+        /// <summary>
+        /// Cheks the merchant of the last transaction (the first record) on "Back - Transactions" page
+        /// </summary>
+        [Test]
+        public void Check_Transaction_Merchant_In_Transactions()
+        {
+            _verifications.CheckTransactionMerchantInTransactions();
+        }
+
+        /// <summary>
+        /// Cheks the time of the last transaction (the first record) on "Back - Transactions" page
+        /// </summary>
+        [Test]
+        public void Check_Transaction_Time_In_Transactions()
+        {
+            _verifications.CheckTransactionTimeInTransactions();
+        }
+
+        /// <summary>
         /// Performs once before all other tests. Buys a raffle ticket
         /// </summary>
         [TestFixtureSetUp]
