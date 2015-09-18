@@ -21,7 +21,7 @@ namespace LottoSend.com
     {
         public DriverCover(IWebDriver driver) : base (driver)
         {
-            Driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
+            Driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(3));
             Driver.Manage().Window.Maximize();
             //_waitDriver = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
         }
@@ -121,6 +121,7 @@ namespace LottoSend.com
         public void RefreshPage()
         {
             Driver.Navigate().Refresh();
+            WaitForPageLoading();
         }
 
         /// <summary>
@@ -132,6 +133,10 @@ namespace LottoSend.com
         {
             bool ifExecuted = false;
 
+            //WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(secondsToWait));
+            //wait.Until((driver) => (bool)((IJavaScriptExecutor) Driver).ExecuteScript("return  $.active > 0"));
+            //return true;
+
             Stopwatch sw = new Stopwatch();
             sw.Start();
             try
@@ -141,7 +146,7 @@ namespace LottoSend.com
                     var ajaxIsComplete = !(bool)
                         ((IJavaScriptExecutor)Driver).ExecuteScript("return  $.active > 0");
                     if (ajaxIsComplete)
-                    { 
+                    {
                         break;
                     }
                     ifExecuted = true;

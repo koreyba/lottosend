@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System;
-
+using System.Collections.Generic;
 using System.Threading;
 
 namespace LottoSend.com.FrontEndObj.GamePages
@@ -53,6 +53,23 @@ namespace LottoSend.com.FrontEndObj.GamePages
         public double TotalPrice
         {
             get { return _totalPrice.Text.ParceDouble(); }
+        }
+
+        /// <summary>
+        /// Adds shares to selected ticket (from 1 to 5)
+        /// </summary>
+        /// <param name="numberOfShares">How many shares to add</param>
+        public void AddShares(int numberOfShares)
+        {
+            IList<IWebElement> tickets = Driver.FindElements(By.CssSelector("div.row > div.col-sm-4.text-center"));
+
+            IWebElement plus = tickets[0].FindElement(By.CssSelector("div.group > div.shadow > a.plus"));
+
+            for (int i = 0; i < numberOfShares; ++i)
+            {
+                plus.Click();
+            }
+            
         }
 
         /// <summary>

@@ -1,9 +1,14 @@
-﻿using LottoSend.com.BackEndObj.Verifications;
+﻿using System;
+using System.Collections.Generic;
+using LottoSend.com.BackEndObj.Verifications;
 using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.GamePages;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Remote;
+
+
 
 namespace LottoSend.com.TestCases
 {
@@ -104,10 +109,30 @@ namespace LottoSend.com.TestCases
         [SetUp]
         public void SetUp()
         {
-            _driver = new ChromeDriver();
+             //= new FirefoxDriver();
+
+           // DesiredCapabilities capabilities = new DesiredCapabilities();
+            //capabilities = DesiredCapabilities.Firefox();
+            //capabilities.SetCapability(CapabilityType.BrowserName, "firefox");
+            //capabilities.SetCapability(CapabilityType.Platform, new Platform(PlatformType.Windows));
+
+            //_driver = new RemoteWebDriver(new Uri("http://localhost:4444/wd/hub"), capability); 
+
+
+            var mobileEmulation = new Dictionary<string, string>
+                {
+                    {"deviceName", "Apple iPhone 6"}
+                };
+
+            var options = new ChromeOptions();
+            options.AddAdditionalCapability("mobileEmulation", mobileEmulation);
+
+            _driver = new ChromeDriver(options);
             _driverCover = new DriverCover(_driver);
             _verifications = new OrderVerifications(_driver);
             _commonActions = new CommonActions(_driver);
+
+           
         }
     }
 }

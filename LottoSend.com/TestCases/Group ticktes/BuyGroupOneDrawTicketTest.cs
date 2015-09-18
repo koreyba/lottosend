@@ -1,5 +1,4 @@
 ﻿using LottoSend.com.BackEndObj.Verifications;
-using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.GamePages;
 using NUnit.Framework;
 using OpenQA.Selenium;

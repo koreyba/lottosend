@@ -1,9 +1,11 @@
-﻿using LottoSend.com.BackEndObj.Verifications;
-using LottoSend.com.FrontEndObj;
+﻿using System;
+using System.Collections.Generic;
+using LottoSend.com.BackEndObj.Verifications;
 using LottoSend.com.FrontEndObj.GamePages;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Remote;
 
 namespace LottoSend.com.TestCases.Regular_tickets
 {
@@ -172,6 +174,14 @@ namespace LottoSend.com.TestCases.Regular_tickets
         [SetUp]
         public void SetUp()
         {
+            //var mobileEmulation = new Dictionary<string, string>
+            //{
+            //    { "deviceName", "Apple iPhone 6" }
+            //};
+
+            //var options = new ChromeOptions();
+            //options.AddAdditionalCapability("mobileEmulation", mobileEmulation);
+
             _driver = new ChromeDriver();
             _driverCover = new DriverCover(_driver);
             _verifications = new OrderVerifications(_driver);

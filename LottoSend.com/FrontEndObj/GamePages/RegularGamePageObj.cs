@@ -50,7 +50,7 @@ namespace LottoSend.com.FrontEndObj.GamePages
             get 
             {
                 //First find a visible table and then search price in this table
-                IWebElement table = GetFirstVisibleElementFromList(By.CssSelector("div.col-sm-7.groups-prices > div.bet-resume > table.table"));
+                IWebElement table = GetFirstVisibleElementFromList(By.CssSelector("div.groups-prices > div.bet-resume > table.table"));
                 IWebElement price = table.FindElement(By.CssSelector("tbody > tr:nth-child(3) > td:nth-child(2)"));
                 return price.Text.ParceDouble(); 
             }

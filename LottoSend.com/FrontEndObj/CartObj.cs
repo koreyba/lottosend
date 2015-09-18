@@ -13,7 +13,7 @@ namespace LottoSend.com.FrontEndObj
     {
         public CartObj(IWebDriver driver) : base(driver)
         {
-            if (Driver.FindElements(By.CssSelector("table.table.cart.table-striped")).Count <= 0)
+            if (Driver.FindElements(By.CssSelector("table.table.table-striped")).Count <= 0)
             {
                 throw new Exception("It's not the cart page");
             }
@@ -65,6 +65,34 @@ namespace LottoSend.com.FrontEndObj
         }
 
         /// <summary>
+        /// Removes all ticket from the cart (clears the cart)
+        /// </summary>
+        public void DeleteAllTickets()
+        {
+            int n = NumberOfTickets;
+            for (int i = 0; i < n; ++i)
+            {
+                _cartTable.FindElement(By.CssSelector("tr > td.text-center > form > div > input.btn.btn-info.btn-block")).Click();
+                WaitAjax();
+                WaitForPageLoading();
+                WaitAjax();
+            }  
+        }
+
+        /// <summary>
+        /// Edits selected ticket (clicks "Edit" button)
+        /// </summary>
+        /// <param name="lottery"></param>
+        public void EditTicket(string lottery)
+        {
+            IWebElement tr = _findTrOfTicket(lottery);
+            tr.FindElement(By.CssSelector("td.text-center > a.btn.btn-info.btn-block.edit")).Click();
+            WaitAjax();
+            WaitForPageLoading();
+            WaitAjax();
+        }
+
+        /// <summary>
         /// Removes ticket from the cart found by name of a lottery
         /// </summary>
         /// <param name="lottery"></param>
@@ -85,6 +113,7 @@ namespace LottoSend.com.FrontEndObj
         {
             return _cartTable.FindElements(By.TagName("tr")).Count; 
         }
+
 
         private IWebElement _findTrOfTicket(string lottery)
         {

@@ -32,6 +32,28 @@ namespace LottoSend.com.FrontEndObj.GamePages
         [FindsBy(How = How.CssSelector, Using = "input#raffle_submit")]
         private IWebElement _buyNowButton;
 
+        [FindsBy(How = How.CssSelector, Using = "table.table.raffle > tbody")]
+        private IWebElement _rafflesTable;
+
+        /// <summary>
+        /// Adds shares to selected ticket (from 1 to 5)
+        /// </summary>
+        /// <param name="numberOfShares">How many shares to add</param>
+        /// <param name="numberOfTicket">Number of ticket (from 1 to 5)</param>
+        public void AddShares(int numberOfShares, int numberOfTicket)
+        {
+            //Check if numberOfTicket is correct
+            if(numberOfShares > 5 || numberOfShares < 1) throw new Exception("numberOfTickets parameter must be within 1-5 but is was: " + numberOfShares + " ");
+
+            IWebElement plus = _rafflesTable.FindElement(By.CssSelector("tr.text-center:nth-child(" + numberOfTicket + ") > td.group > a.plus"));
+
+            for (int i = 0; i < numberOfShares; ++i)
+            {
+                plus.Click();
+            }
+            
+        }
+
         /// <summary>
         /// Clicks on "Buy Now" button
         /// </summary>
