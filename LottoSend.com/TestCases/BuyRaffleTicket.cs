@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using LottoSend.com.FrontEndObj;
+﻿using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.Verifications;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Remote;
-
-
 
 namespace LottoSend.com.TestCases
 {

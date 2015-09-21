@@ -16,7 +16,6 @@ namespace LottoSend.com.TestCases.Group_ticktes
         private IWebDriver _driver;
         private DriverCover _driverCover;
         private double _totalPrice;
-        private int _numberOfDraws;
         private OrderVerifications _verifications;
         private CommonActions _commonActions;
 

@@ -26,7 +26,7 @@ namespace LottoSend.com.TestCases
         public void One_Plus_One_After_Pending_Deposit(WaysToPay merchant)
         {
             //Sign up
-            string email = _commonActions.Sign_Up();
+            _commonActions.Sign_Up();
             _commonActions.DepositMoney(13, WaysToPay.Offline, false);
             
             _commonActions.DepositMoney(11, merchant);
@@ -42,7 +42,7 @@ namespace LottoSend.com.TestCases
         public void One_Plus_One_After_Failed_Deposit(WaysToPay merchant)
         {
             //Sign up
-            string email = _commonActions.Sign_Up();
+            _commonActions.Sign_Up();
             _commonActions.DepositMoney(13, WaysToPay.Offline, true, true);
 
             _commonActions.DepositMoney(11, merchant);
@@ -72,7 +72,7 @@ namespace LottoSend.com.TestCases
         public void One_Plus_One_Second_Deposit(WaysToPay merchant)
         {
             //Sign up
-            string email = _commonActions.Sign_Up();
+            _commonActions.Sign_Up();
             _commonActions.DepositMoney(13, merchant); //is expected to get 1+1 promotion
             _commonActions.DepositMoney(15, merchant);
 
@@ -87,7 +87,7 @@ namespace LottoSend.com.TestCases
         public void One_Plus_One_Promotion_Buying(WaysToPay merchant)
         {
             //Sign up
-            string email = _commonActions.Sign_Up();
+           _commonActions.Sign_Up();
             _totalPrice = _commonActions.BuyRaffleTicket(merchant);
 
             if (_totalPrice <= 30)
@@ -108,7 +108,7 @@ namespace LottoSend.com.TestCases
         public void One_Plus_One_Promotion_Deposit(WaysToPay merchant)
         {
             //Sign up
-            string email =_commonActions.Sign_Up();
+            _commonActions.Sign_Up();
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/deposits/new/");
             
             DepositObj deposit = new DepositObj(_driver);

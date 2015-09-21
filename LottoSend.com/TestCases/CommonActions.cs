@@ -32,7 +32,7 @@ namespace LottoSend.com.TestCases
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/");
 
             RafflesPageObj rafflePage = new RafflesPageObj(_driver);
-            double _totalPrice = rafflePage.TotalPrice;
+            double totalPrice = rafflePage.TotalPrice;
 
             CartObj cart = rafflePage.ClickBuyNowButton();
             MerchantsObj merchants = cart.ClickProceedToCheckoutButton();
@@ -53,7 +53,7 @@ namespace LottoSend.com.TestCases
                 Approve_offline_payment();
             }
 
-            return _totalPrice;
+            return totalPrice;
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace LottoSend.com.TestCases
             //Select single draw
             regularGame.SelectOneTimeEntryGame();
 
-            double _totalPrice = regularGame.TotalPrice;
+            double totalPrice = regularGame.TotalPrice;
 
             MerchantsObj merchants = regularGame.ClickBuyTicketsButton();
 
@@ -93,7 +93,7 @@ namespace LottoSend.com.TestCases
                 Approve_offline_payment();
             }
 
-            return _totalPrice;
+            return totalPrice;
         }
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace LottoSend.com.TestCases
             SignInPageOneObj signInOne = new SignInPageOneObj(_driver);
 
             signInOne.FillInFields(_driverCover.Login, _driverCover.Password);
-            TopBarObj topBar = signInOne.ClickLogInButton();
+            signInOne.ClickLogInButton();
         }
 
         /// <summary>

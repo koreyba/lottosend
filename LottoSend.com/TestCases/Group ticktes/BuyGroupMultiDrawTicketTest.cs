@@ -14,7 +14,7 @@ namespace LottoSend.com.TestCases.Group_ticktes
     public class BuyGroupMultiDrawTicketTest
     {
         private IWebDriver _driver;
-        private DriverCover driver;
+        private DriverCover _driverCover;
         private double _totalPrice;
         private int _numberOfDraws;
         private OrderVerifications _verifications;
@@ -130,7 +130,7 @@ namespace LottoSend.com.TestCases.Group_ticktes
             // Log in     
             _commonActions.Log_In_Front();
 
-            driver.NavigateToUrl(driver.BaseUrl + "en/plays/eurojackpot/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/plays/eurojackpot/");
 
             //Pay for tickets
             GroupGamePageObj groupGame = new GroupGamePageObj(_driver);
@@ -168,7 +168,7 @@ namespace LottoSend.com.TestCases.Group_ticktes
         public void SetUp()
         {
             _driver = new ChromeDriver();
-            driver = new DriverCover(_driver);
+            _driverCover = new DriverCover(_driver);
             _verifications = new OrderVerifications(_driver);
             _commonActions = new CommonActions(_driver);
         }
