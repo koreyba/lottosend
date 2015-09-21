@@ -1,4 +1,5 @@
 ﻿using LottoSend.com.FrontEndObj;
+using LottoSend.com.FrontEndObj.SignUp;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;

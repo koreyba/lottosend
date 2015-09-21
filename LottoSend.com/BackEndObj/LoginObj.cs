@@ -18,7 +18,7 @@ namespace LottoSend.com.BackEndObj
         {
             if(!Driver.Url.Contains("admin/login"))
             {
-                throw new Exception("Sorry, it must be not login page ");
+                throw new Exception("Sorry, it must be not admin/login page ");
             }
 
             PageFactory.InitElements(Driver, this);

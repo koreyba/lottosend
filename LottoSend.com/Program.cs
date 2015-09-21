@@ -9,6 +9,8 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using LottoSend.com.FrontEndObj.Common;
+using LottoSend.com.FrontEndObj.GamePages;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Remote;
 using Selenium;
@@ -19,15 +21,24 @@ namespace LottoSend.com
     {
         static void Main(string[] args)
         {
-            IWebDriver chrome = new FirefoxDriver();
+            ChromeDriver _driver = new ChromeDriver();
 
-            DesiredCapabilities capabilities = new DesiredCapabilities();
-            capabilities = DesiredCapabilities.Firefox();
-            capabilities.SetCapability(CapabilityType.BrowserName, "firefox");
-            capabilities.SetCapability(CapabilityType.Platform, new Platform(PlatformType.Windows));
 
-            chrome = new RemoteWebDriver(new Uri("http://localhost:4444/wd/hub"), capabilities);
+            DriverCover driver = new DriverCover(_driver);
+            driver.NavigateToUrl(driver.BaseUrl + "en/web_users/sign_in");
+            SignInPageOneObj signInOne = new SignInPageOneObj(_driver);
 
+            signInOne.FillInFields(driver.Login, driver.Password);
+            signInOne.ClickLogInButton();
+
+
+            driver.NavigateToUrl("https://stg.lottobaba.com/en/plays/eurojackpot/");
+            GroupGamePageObj groupGame = new GroupGamePageObj(_driver);
+
+
+
+            MerchantsObj merchants = groupGame.ClickBuyTicketsButton();
+            merchants.PayWithNeteller();
             
         }
     }

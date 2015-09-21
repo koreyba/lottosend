@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using LottoSend.com.BackEndObj.Verifications;
+using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.FrontEndObj.GamePages;
+using LottoSend.com.Verifications;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;

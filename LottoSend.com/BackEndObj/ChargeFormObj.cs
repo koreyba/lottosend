@@ -21,9 +21,18 @@ namespace LottoSend.com.BackEndObj
         private IWebElement _updateTransactionButton;
 
         /// <summary>
+        /// Select "Fail" in payment status
+        /// </summary>
+        public void MakeTransactionFailed()
+        {
+            SelectElement select = new SelectElement(_transactionStatus);
+            select.SelectByValue("failed");
+        }
+
+        /// <summary>
         /// Select "Succeed" in payment status
         /// </summary>
-        public void MakeSuccessfulTransaction()
+        public void MakeTransactionSucceed()
         {
             SelectElement select = new SelectElement(_transactionStatus);
             select.SelectByValue("succeed");

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Text;
+using LottoSend.com.BackEndObj;
 using LottoSend.com.FrontEndObj.MyAccount;
 using LottoSend.com.TestCases;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
-namespace LottoSend.com.BackEndObj.Verifications
+namespace LottoSend.com.Verifications
 {
     /// <summary>
     /// Includes all verifications for an order (group/regular/raffle tickets)

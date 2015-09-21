@@ -1,13 +1,9 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace LottoSend.com.FrontEndObj
+namespace LottoSend.com.FrontEndObj.SignUp
 {
     public class SignUpPopUpObj : DriverCover 
     {
@@ -119,17 +115,20 @@ namespace LottoSend.com.FrontEndObj
         /// <summary>
         /// Fills in all fields and accepts privacy policy
         /// </summary>
-        public void FillInFields()
+        public string FillInFields()
         {
             FirstName.SendKeys("my first name");
             LastName.SendKeys("my last name");
             Phone.SendKeys("12345678");
-            Email.SendKeys(RandomGenerator.GenerateRandomString(12) + "@ukr.net");
+            string email = RandomGenerator.GenerateRandomString(12) + "@ukr.net";
+            Email.SendKeys(email);
             Adress.SendKeys("new orlean))");
             Country.SelectByValue("UA");
             Password.SendKeys("11111111");
             PasswordConfirmation.SendKeys("11111111");
             AccetpCheckBox.Click();
+
+            return email;
         }
 
         /// <summary>

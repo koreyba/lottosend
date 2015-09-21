@@ -1,4 +1,5 @@
 ﻿using System.Threading;
+using LottoSend.com.FrontEndObj.Common;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 

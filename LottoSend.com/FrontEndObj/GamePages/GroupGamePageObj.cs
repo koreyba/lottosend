@@ -3,6 +3,7 @@ using OpenQA.Selenium.Support.PageObjects;
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using LottoSend.com.FrontEndObj.Common;
 
 namespace LottoSend.com.FrontEndObj.GamePages
 {

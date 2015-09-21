@@ -207,7 +207,7 @@ namespace LottoSend.com
         /// <param name="element"></param>
         /// <param name="timeOutInSeconds"></param>
         /// <returns></returns>
-        public IWebElement waitForElement(IWebElement element, int timeOutInSeconds)
+        public IWebElement WaitForElement(IWebElement element, int timeOutInSeconds)
         {
             try
             {
@@ -225,9 +225,36 @@ namespace LottoSend.com
             }
             catch (Exception e)
             {
-                throw new Exception("Time to wait" + timeOutInSeconds + " seconds is elapsed ");
+                throw new Exception("Time to wait " + timeOutInSeconds + " seconds is elapsed ");
             }
-            return element;
+        }
+
+        /// <summary>
+        /// Wait till element is clickable
+        /// </summary>
+        /// <param name="how">How to find element (locator)</param>
+        /// <param name="timeOutInSeconds"></param>
+        /// <returns></returns>
+        public IWebElement WaitForElement(By how, int timeOutInSeconds)
+        {
+            try
+            {
+                bool a = WaitAjax();
+                bool j = WaitjQuery();
+
+                Driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(0)); //nullify implicitlyWait() 
+
+                WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(timeOutInSeconds));
+                IWebElement element = wait.Until(ExpectedConditions.ElementToBeClickable(how));
+
+                Driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10)); //reset implicitlyWait
+
+                return element; //return the element	
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Time to wait " + timeOutInSeconds + " seconds is elapsed ");
+            }
         }
 
         /// <summary>
