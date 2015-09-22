@@ -30,9 +30,11 @@ namespace LottoSend.com.Verifications
         /// Checks is amount in the first transaction equals expected (front - transactions)
         /// </summary>
         /// <param name="expectedAmount"></param>
-        public void CheckAmountInTransactionFront(double expectedAmount)
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        public void CheckAmountInTransactionFront(double expectedAmount, string email, string password)
         {
-            _commonActions.Log_In_Front();
+            _commonActions.Log_In_Front(email, password);
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/balance/");
             TransactionObj transaction = new TransactionObj(_driver);
 
@@ -43,9 +45,11 @@ namespace LottoSend.com.Verifications
         /// Checks a type of the first transaction on Front-Transaction history
         /// </summary>
         /// <param name="expectedType"></param>
-        public void CheckTypeOfTransactionFront(string expectedType)
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        public void CheckTypeOfTransactionFront(string expectedType, string email, string password)
         {
-            _commonActions.Log_In_Front();
+            _commonActions.Log_In_Front(email, password);
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/balance/");
             TransactionObj transaction = new TransactionObj(_driver);
 
@@ -75,22 +79,28 @@ namespace LottoSend.com.Verifications
             //navigate to the draw's page
             DrawObj draw = _commonActions.Find_The_Draw_Page(lotteryName);
 
-            bool correctTime = draw.CheckTime(3);
-            Assert.IsTrue(correctTime, "Sorry, the time of the first record is not in set interval. Check if record was added , page: " + _driverCover.Driver.Url + " ");
+            TimeSpan transactionDate = draw.GetTransactionDate();
+            TimeSpan currentUtcDate = draw.GetUtcDate();
+
+            //Cheks if the transaction date placed in correct interval (no longer then 5 min from now)
+            Assert.IsTrue(transactionDate > currentUtcDate - TimeSpan.FromMinutes(5), "Sorry, the time of the first record is not in set interval. Check if record was added, page: " + _driverCover.Driver.Url + " ");
         }
 
         /// <summary>
         /// Checks date of the first and seconds records in users account - transactions (front-end)
         /// </summary>
-        public void CheckTransactionDateFront()
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <param name="toCheckSecondTransaction">Tells if to check the second dransaction or not</param>
+        public void CheckTransactionDateFront(string email, string password, bool toCheckSecondTransaction = false)
         {
-            _commonActions.Log_In_Front();
+            _commonActions.Log_In_Front(email, password);
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/balance/");
             TransactionObj myTransactions = new TransactionObj(_driver);
 
             //make month to be in right format
             string digit = DateTime.Now.Month.ToString();
-            string month = "";
+            string month;
             if (digit.Length == 1)
                 month = "0" + digit;
             else
@@ -98,7 +108,7 @@ namespace LottoSend.com.Verifications
 
             //make day to be in right format
             digit = DateTime.Now.Day.ToString();
-            string day = "";
+            string day;
             if (digit.Length == 1)
                 day = "0" + digit;
             else
@@ -110,25 +120,32 @@ namespace LottoSend.com.Verifications
                 Errors.Append("The first record has not current date, please check it, page: " + _driverCover.Driver.Url + " ");
             }
 
-            if (!myTransactions.SecondRecordDate.Equals(date))
+            if (toCheckSecondTransaction)
             {
-                Errors.Append("The second record has not current date, please check it, page: " + _driverCover.Driver.Url + " ");
+                if (!myTransactions.SecondRecordDate.Equals(date))
+                {
+                    Errors.Append("The second record has not current date, please check it, page: " +  _driverCover.Driver.Url + " ");
+                }
             }
         }
 
         /// <summary>
         /// Checks lottery name of the first and the second records in user's account - transactions in the front-end
         /// </summary>
-        public void CheckTransactionLotteryNameFront()
+        public void CheckTransactionLotteryNameFront(string name, string email, string password, bool toCheckSecondTransaction = false)
         {
-            _commonActions.Log_In_Front();
+            _commonActions.Log_In_Front(email, password);
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/balance/");
             TransactionObj myTransactions = new TransactionObj(_driver);
 
-            //Second record lottery name must be equal to...
-            if (!myTransactions.SecondRecordLottery.Equals("EuroJackpot"))
+            if (toCheckSecondTransaction)
             {
-                Errors.Append("The second record has different lottery name, please check it, page: " + _driverCover.Driver.Url + " ");
+                //Second record lottery name must be equal to...
+                if (!myTransactions.SecondRecordLottery.Equals(name))
+                {
+                    Errors.Append("The second record has different lottery name, please check it, page: " +
+                                  _driverCover.Driver.Url + " ");
+                }
             }
 
             //First record lottery name must be empty
@@ -141,27 +158,29 @@ namespace LottoSend.com.Verifications
         /// <summary>
         /// Cheks the email of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
-        public void CheckTransactionsEmailInTransactions()
+        public void CheckTransactionsEmailInTransactions(string email)
         {
             _commonActions.Authorize_in_admin_panel();
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/transactions");
             TransactionsObj transaction = new TransactionsObj(_driver);
-            bool correctEmail = transaction.CheckEmail(_driverCover.Login);
+            string realEmail = transaction.GetTransactionEmail();
 
-            Assert.IsTrue(correctEmail, "Sorry, the email in the first record is wrong, check if a record was added, page: " + _driverCover.Driver.Url + " ");
+            Assert.AreEqual(email, realEmail, "Sorry, the email in the first record is wrong, check if a record was added, page: " + _driverCover.Driver.Url + " ");
         }
 
         /// <summary>
         /// Cheks the merchant of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
-        public void CheckTransactionMerchantInTransactions()
+        /// <param name="merchant">Payment method</param>
+        public void CheckTransactionMerchantInTransactions(WaysToPay merchant)
         {
             _commonActions.Authorize_in_admin_panel();
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/transactions");
             TransactionsObj transaction = new TransactionsObj(_driver);
-            bool correctMerchant = transaction.CheckMerchant("Offline");
 
-            Assert.IsTrue(correctMerchant, "Sorry, the merchant in the first record is wrong, check if a record was added, page: " + _driverCover.Driver.Url + " ");
+            string transactionMerchant = transaction.GetTransactionMerchant();
+
+            Assert.AreEqual(merchant.ToString(), transactionMerchant, "Sorry, the merchant in the first record is wrong, check if a record was added, page: " + _driverCover.Driver.Url + " ");
         }
 
         /// <summary>
@@ -172,22 +191,25 @@ namespace LottoSend.com.Verifications
             _commonActions.Authorize_in_admin_panel();
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/transactions");
             TransactionsObj transaction = new TransactionsObj(_driver);
-            bool correctTime = transaction.CheckTime(3);
 
-            Assert.IsTrue(correctTime, "Sorry, the time of the first record is not in set interval. Check if record was added, page: " + _driverCover.Driver.Url + " ");
+            TimeSpan transactionDate = transaction.GetTransactionDate();
+            TimeSpan currentUtcDate = transaction.GetUtcDate();
+
+            //Cheks if the transaction date placed in correct interval (no longer then 5 min from now)
+            Assert.IsTrue(transactionDate > currentUtcDate - TimeSpan.FromMinutes(5), "Sorry, the time of the first record is not in set interval. Check if record was added, page: " + _driverCover.Driver.Url + " ");
         }
 
         /// <summary>
         /// Checks an email in the first record (the last bet) 
         /// </summary>
-        public void CheckRecordEmailInDraw(string lotteryName)
+        public void CheckRecordEmailInDraw(string lotteryName, string expectedEmail)
         {
             _commonActions.Authorize_in_admin_panel();
             //navigate to the draw's page
             DrawObj draw = _commonActions.Find_The_Draw_Page(lotteryName);
 
-            bool correctEmail = draw.CheckEmail(_driverCover.Login);
-            Assert.IsTrue(correctEmail, "Sorry, the email in the first record is wrong, check if a record was added, page: " + _driverCover.Driver.Url + " ");
+            string currentEmail = draw.GetEmail();
+            Assert.AreEqual(expectedEmail, currentEmail, "Sorry, the email in the first record is wrong, check if a record was added, page: " + _driverCover.Driver.Url + " ");
         }
 
         /// <summary>

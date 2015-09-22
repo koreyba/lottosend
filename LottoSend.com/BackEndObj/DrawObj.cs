@@ -47,44 +47,42 @@ namespace LottoSend.com.BackEndObj
         }
 
         /// <summary>
-        /// Checks if email in the first record corresponds to the one you send
+        /// Returns email of the first record
         /// </summary>
-        /// <param name="email"></param>
         /// <returns></returns>
-        public bool CheckEmail(string email)
+        public string GetEmail()
         {
             IWebElement a = _firstRecord.FindElement(By.CssSelector("td:nth-child(6) > a"));
 
-            if (!a.Text.Contains(email))
-                return false;
-
-            return true; 
+            return a.Text;
         }
 
         /// <summary>
-        /// Check if the time of the first record is more then current time - N minutes
+        /// Returns the date of the last (the first at the top) transaction
         /// </summary>
-        /// <param name="hours"></param>
-        /// <param name="minuts"></param>
         /// <returns></returns>
-        public bool CheckTime(int minBefore)
+        public TimeSpan GetTransactionDate()
         {
             IWebElement dateTD = _firstRecord.FindElement(By.CssSelector("td:nth-child(3)"));
+
             string date = dateTD.Text;
             TimeSpan timeSpan = date.ParseTimeSpan();
-            
+
+            return timeSpan;
+        }
+
+        /// <summary>
+        /// Returns UTC date that is displayed in admin panel
+        /// </summary>
+        /// <returns></returns>
+        public TimeSpan GetUtcDate()
+        {
             PaneMenuObj panel = new PaneMenuObj(Driver);
             string utcData = panel.GetUTCDate();
 
-            TimeSpan extectedTime = utcData.ParseTimeSpan();
+            TimeSpan timeSpan = utcData.ParseTimeSpan();
 
-            //Check if record time more then current time - "minBefore"
-            if (timeSpan > extectedTime - TimeSpan.FromMinutes(minBefore)) 
-            {
-                return true;
-            }
-
-            return false;
+            return timeSpan;
         }
     }
 }

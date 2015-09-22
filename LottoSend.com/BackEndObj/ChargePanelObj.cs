@@ -34,6 +34,13 @@ namespace LottoSend.com.BackEndObj
         /// <returns></returns>
         public ChargeFormObj ChargeTheLastPayment()
         {
+            IList<IWebElement> lastButton = Driver.FindElements(By.CssSelector("span.last > a"));
+            if (lastButton.Count > 0)
+            {
+                lastButton[0].Click(); // Go to the last page
+                WaitForPageLoading();
+            }
+
             IWebElement charge = _theLastPayment.FindElement(By.LinkText("Charge"));
 
             charge.Click();

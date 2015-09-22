@@ -27,66 +27,51 @@ namespace LottoSend.com.BackEndObj
         private IWebElement _firstRecord;
 
         /// <summary>
-        /// Checks if email in the first record is equal with the one you send
+        /// Returns email of the first transaction
         /// </summary>
         /// <returns></returns>
-        public bool CheckEmail(string email)
+        public string GetTransactionEmail()
         {
             IWebElement emailTD = _firstRecord.FindElement(By.CssSelector("td:nth-child(3)"));
-            if(emailTD.Text.Contains(email))
-            {
-                return true;
-            }
-
-            return false;
+            return emailTD.Text;
         }
 
         /// <summary>
-        /// Check if marchant in the fist record is equal with the one you send
+        /// Returns name of the merchant in transaction
         /// </summary>
-        /// <param name="merchant"></param>
         /// <returns></returns>
-        public bool CheckMerchant(string merchant)
+        public string GetTransactionMerchant()
         {
             IWebElement merchantTD = _firstRecord.FindElement(By.CssSelector("td:nth-child(4)"));
-            IList<IWebElement> link = merchantTD.FindElements(By.CssSelector("a"));
-           
-            if (link.Count == 0 || link.Count < 0)
-                return false;
-            
-            if(link[0].Text.Contains(merchant))
-            {
-                return true;
-            }
-
-            return false;
+            return merchantTD.Text;
         }
 
         /// <summary>
-        /// Check if the time of the first record is more then current time - N minutes
+        /// Returns the date of the last (the first at the top) transaction
         /// </summary>
-        /// <param name="hours"></param>
-        /// <param name="minuts"></param>
         /// <returns></returns>
-        public bool CheckTime(int minBefore)
+        public TimeSpan GetTransactionDate()
         {
             IWebElement dateTD = _firstRecord.FindElement(By.CssSelector("td:nth-child(12)"));
 
             string date = dateTD.Text;
             TimeSpan timeSpan = date.ParseTimeSpan();
 
+            return timeSpan;
+        }
+
+        /// <summary>
+        /// Returns UTC date that is displayed in admin panel
+        /// </summary>
+        /// <returns></returns>
+        public TimeSpan GetUtcDate()
+        {
             PaneMenuObj panel = new PaneMenuObj(Driver);
             string utcData = panel.GetUTCDate();
 
-            TimeSpan extectedTime = utcData.ParseTimeSpan();
+            TimeSpan timeSpan = utcData.ParseTimeSpan();
 
-            //Check if record time more then current time - "minBefore"
-            if (timeSpan > extectedTime - TimeSpan.FromMinutes(minBefore))
-            {
-                return true;
-            }
-
-            return false;
+            return timeSpan;
         }
     }
 }

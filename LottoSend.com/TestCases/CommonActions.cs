@@ -101,7 +101,7 @@ namespace LottoSend.com.TestCases
         /// </summary>
         /// <param name="amount"></param>
         /// <param name="merchant">Merchant to pay</param>
-        /// <param name="ifProcess">Tells if process the payment or leave it pended</param>
+        /// <param name="ifProcess">Tells if process the payment or leave it pendant</param>
         /// <param name="isFailed">To fail payment of not</param>
         public void DepositMoney(double amount, WaysToPay merchant, bool ifProcess = true, bool isFailed = false)
         {
@@ -139,13 +139,17 @@ namespace LottoSend.com.TestCases
         /// <summary>
         /// Goes to the front-end and signs in
         /// </summary>
-        public void Log_In_Front()
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        public string Log_In_Front(string email, string password)
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/web_users/sign_in");
             SignInPageOneObj signInOne = new SignInPageOneObj(_driver);
 
-            signInOne.FillInFields(_driverCover.Login, _driverCover.Password);
+            signInOne.FillInFields(email, password);
             signInOne.ClickLogInButton();
+
+            return email;
         }
 
         /// <summary>

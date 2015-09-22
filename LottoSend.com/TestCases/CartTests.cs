@@ -19,7 +19,7 @@ namespace LottoSend.com.TestCases
         [Test]
         public void Edit_Group_Ticket_And_Add_More()
         {
-            _commonActions.Log_In_Front();
+            _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
             Add_group_ticket_to_cart("en/plays/powerball/");
 
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/carts");
@@ -41,7 +41,7 @@ namespace LottoSend.com.TestCases
         [Test]
         public void Edit_Raffle_Ticket_And_Add_More()
         {
-            _commonActions.Log_In_Front();
+            _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
             Add_Raffle_Ticket_to_cart();
 
             CartObj cart = new CartObj(_driver);
@@ -62,7 +62,7 @@ namespace LottoSend.com.TestCases
         [Test]
         public void Delete_Raffle_ticket_from_cart()
         {
-            _commonActions.Log_In_Front();
+            _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
 
             Add_Raffle_Ticket_to_cart();
             Check_number_of_tickets_in_cart(1);
@@ -81,7 +81,7 @@ namespace LottoSend.com.TestCases
         [Test]
         public void Delete_two_group_ticket_from_cart()
         {
-            _commonActions.Log_In_Front();
+            _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
 
             //Add two tickets from different lotteries
             Add_group_ticket_to_cart("en/plays/euromillions/");
@@ -133,7 +133,7 @@ namespace LottoSend.com.TestCases
         [Test]
         public void Delete_Single_Ticket_From_Cart()
         {
-            _commonActions.Log_In_Front();
+            _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
 
             Add_Regular_Ticket_To_Cart("en/plays/eurojackpot/");
 

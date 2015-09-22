@@ -19,7 +19,7 @@ namespace LottoSend.com.TestCases
         private double _totalPrice;
 
         /// <summary>
-        /// Cheks if a new user gets 1+1 promotion for the second payment if the first one was pended
+        /// Cheks if a new user gets 1+1 promotion for the second payment if the first one was pendant
         /// </summary>
         [TestCase(WaysToPay.Offline)]
         [TestCase(WaysToPay.Neteller)]

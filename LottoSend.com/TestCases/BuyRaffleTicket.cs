@@ -23,7 +23,7 @@ namespace LottoSend.com.TestCases
         [Test]
         public void Check_Amount_In_Transaction_Front()
         {
-            _verifications.CheckAmountInTransactionFront(_totalPrice);
+            _verifications.CheckAmountInTransactionFront(_totalPrice, _driverCover.Login, _driverCover.Password);
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace LottoSend.com.TestCases
         [Test]
         public void Check_Type_Of_Transaction_Front()
         {
-            _verifications.CheckTypeOfTransactionFront("Play - Raffle");
+            _verifications.CheckTypeOfTransactionFront("Play - Raffle", _driverCover.Login, _driverCover.Password);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace LottoSend.com.TestCases
         [Test]
         public void Check_Transactions_Email_In_Transactions()
         {
-            _verifications.CheckTransactionsEmailInTransactions();
+            _verifications.CheckTransactionsEmailInTransactions(_driverCover.Login);
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace LottoSend.com.TestCases
         [Test]
         public void Check_Transaction_Merchant_In_Transactions()
         {
-            _verifications.CheckTransactionMerchantInTransactions();
+            _verifications.CheckTransactionMerchantInTransactions(WaysToPay.Offline);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace LottoSend.com.TestCases
             SetUp();
 
             // Log in     
-            _commonActions.Log_In_Front();
+            _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
 
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/");
 
