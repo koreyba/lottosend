@@ -49,7 +49,7 @@ namespace LottoSend.com
         /// </summary>
         public string Login
         {
-            get { return ConfigurationManager.AppSettings["Login"].ToString();}
+            get { return ConfigurationManager.AppSettings["Login"].ToString(); }
         }
 
         /// <summary>

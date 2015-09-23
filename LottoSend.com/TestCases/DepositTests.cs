@@ -40,7 +40,7 @@ namespace LottoSend.com.TestCases
         [Test]
         public void Check_Amount_In_Transaction_Front()
         {
-            _verifications.CheckAmountInTransactionFront(30, _email, _driverCover.Password);
+            _verifications.CheckAmountInTransactionFront(30, _email, _driverCover.Password, 1);
         }
 
         /// <summary>

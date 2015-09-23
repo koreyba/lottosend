@@ -25,25 +25,35 @@ namespace LottoSend.com.TestCases.Regular_tickets
         [Test]
         public void Check_Amount_In_Transaction_Front()
         {
-            _verifications.CheckAmountInTransactionFront(_totalPrice, _driverCover.Login, _driverCover.Password);
+            _verifications.CheckAmountInTransactionFront(_totalPrice, _driverCover.Login, _driverCover.Password, 1);
         }
 
         /// <summary>
         /// Checks a type of the first record in transactions (front)
         /// </summary>
-        [Test]
-        public void Check_Type_Of_Transaction_Front()
+        [TestCase(1)]
+        [TestCase(2)]
+        public void Check_Type_Of_Transaction_Front(int numberOfRecordToCheck)
         {
-            _verifications.CheckTypeOfTransactionFront("Play - Single", _driverCover.Login, _driverCover.Password);
+            if (numberOfRecordToCheck == 1)
+            {
+                _verifications.CheckTypeOfTransactionFront("Play - Single", _driverCover.Login, _driverCover.Password);
+            }
+
+            if (numberOfRecordToCheck == 2)
+            {
+                _verifications.CheckTypeOfTransactionFront("Deposit and play", _driverCover.Login, _driverCover.Password, 2);
+            }
         }
 
         /// <summary>
         /// Checks date of the first and seconds records in users account - transactions (front-end)
         /// </summary>
-        [Test]
-        public void Check_Transaction_Date_Front()
+        [TestCase(1)]
+        [TestCase(2)]
+        public void Check_Transaction_Date_Front(int numberOfRecordToCheck)
         {
-            _verifications.CheckTransactionDateFront(_driverCover.Login, _driverCover.Password, true);
+            _verifications.CheckTransactionDateFront(_driverCover.Login, _driverCover.Password, numberOfRecordToCheck);
         }
 
         /// <summary>
@@ -52,7 +62,7 @@ namespace LottoSend.com.TestCases.Regular_tickets
         [Test]
         public void Check_Transaction_Lottery_Name_Front()
         {
-            _verifications.CheckTransactionLotteryNameFront("EuroJackpot", _driverCover.Login, _driverCover.Password, true);
+            _verifications.CheckTransactionLotteryNameFront("EuroJackpot", _driverCover.Login, _driverCover.Password, 2);
         }
 
         /// <summary>

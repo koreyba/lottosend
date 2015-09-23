@@ -37,6 +37,17 @@ namespace LottoSend.com.FrontEndObj.MyAccount
         }
 
         /// <summary>
+        /// Returns amount (of money) in the second record
+        /// </summary>
+        public double SecondRecordAmount
+        {
+            get
+            {
+                return Convert.ToDouble(_secondRecord.FindElement(By.CssSelector("td:nth-child(3)")).Text.ParceDouble());
+            }
+        }
+
+        /// <summary>
         /// Returns type of the first record
         /// </summary>
         public string SecondRecordType
@@ -61,19 +72,19 @@ namespace LottoSend.com.FrontEndObj.MyAccount
         }
 
         /// <summary>
-        /// Returns Lottery of the second record
-        /// </summary>
-        public string SecondRecordLottery
-        {
-            get { return _secondRecord.FindElement(By.CssSelector("td:nth-child(4)")).Text; }
-        }
-
-        /// <summary>
         /// Returns Data of the first record
         /// </summary>
         public string FirstRecordDate
         {
             get { return _firstRecord.FindElement(By.CssSelector("td:nth-child(1)")).Text; }
+        }
+
+        /// <summary>
+        /// Returns Lottery of the second record
+        /// </summary>
+        public string SecondRecordLottery
+        {
+            get { return _secondRecord.FindElement(By.CssSelector("td:nth-child(4)")).Text; }
         }
 
         /// <summary>
@@ -83,6 +94,5 @@ namespace LottoSend.com.FrontEndObj.MyAccount
         {
             get { return _firstRecord.FindElement(By.CssSelector("td:nth-child(4)")).Text; }
         }
-
     }
 }

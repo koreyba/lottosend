@@ -1,11 +1,5 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
-using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using OpenQA.Selenium.Support.Events;
 
 namespace LottoSend.com
@@ -88,7 +82,7 @@ namespace LottoSend.com
 
         public static void ElementClicked(object sender, WebElementEventArgs e)
         {
-            Console.WriteLine(e.Element + " was clicked ");
+            Console.WriteLine(e.Element + " was clicked "); 
         }
 
         public static void ExceptionThrown(object sender, WebDriverExceptionEventArgs e)
