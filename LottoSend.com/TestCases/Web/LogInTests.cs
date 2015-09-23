@@ -2,13 +2,8 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace LottoSend.com.TestCases
+namespace LottoSend.com.TestCases.Web
 {
     [TestFixture]
     public class LogInTests

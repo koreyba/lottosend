@@ -5,17 +5,18 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace LottoSend.com.TestCases.Group_ticktes
+namespace LottoSend.com.TestCases.Web.Group_ticktes
 {
     /// <summary>
-    /// Buys a group one-draw ticket and performs all needed assertations 
+    /// Buys a group multi-draw ticket and performs all needed assertations 
     /// </summary>
     [TestFixture]
-    public class BuyGroupOneDrawTicketTests 
+    public class BuyGroupMultiDrawTicketTests
     {
         private IWebDriver _driver;
         private DriverCover _driverCover;
         private double _totalPrice;
+        private int _numberOfDraws;
         private OrderVerifications _verifications;
         private CommonActions _commonActions;
 
@@ -37,7 +38,7 @@ namespace LottoSend.com.TestCases.Group_ticktes
         {
             if (numberOfRecordToCheck == 1)
             {
-                _verifications.CheckTypeOfTransactionFront("Play - Single", _driverCover.Login, _driverCover.Password);
+                _verifications.CheckTypeOfTransactionFront("Play - Bulk buy", _driverCover.Login, _driverCover.Password);
             }
 
             if (numberOfRecordToCheck == 2)
@@ -98,7 +99,7 @@ namespace LottoSend.com.TestCases.Group_ticktes
         [Test]
         public void Check_Record_Time_In_Draw()
         {
-            _verifications.CheckRecordTimeInDraw("EuroJackpot");
+            _verifications.CheckRecordTimeInDraw("EuroJackpot") //TODO: this class must be adopted to mobile
         }
 
         /// <summary>
@@ -116,7 +117,7 @@ namespace LottoSend.com.TestCases.Group_ticktes
         [Test]
         public void Check_Record_Type_In_Draw()
         {
-            _verifications.CheckRecordBetTypeInDraw("Single", "EuroJackpot");
+            _verifications.CheckRecordBetTypeInDraw("Bulk buy", "EuroJackpot");
         }
 
         /// <summary>
@@ -125,14 +126,14 @@ namespace LottoSend.com.TestCases.Group_ticktes
         [Test]
         public void Check_Record_Price_In_Draw()
         {
-            _verifications.CheckRecordPriceInDraw(_totalPrice) ;
+            _verifications.CheckRecordPriceInDraw(_totalPrice, _numberOfDraws);
         }
 
         /// <summary>
         /// Performs once before all other tests. Buys a group single ticket 
         /// </summary>
         [TestFixtureSetUp]
-        public void Buy_Group_One_Draw_Ticket()
+        public void Buy_Group_Multi_Draw_Ticket()
         {
             SetUp();
 
@@ -142,12 +143,10 @@ namespace LottoSend.com.TestCases.Group_ticktes
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/plays/eurojackpot/");
 
             //Pay for tickets
-            GroupGamePageObj groupGame = new GroupGamePageObj(_driver);  
-
-            //Select single draw
-            groupGame.SelectOneTimeEntryGame();
+            GroupGamePageObj groupGame = new GroupGamePageObj(_driver);
 
             _totalPrice = groupGame.TotalPrice;
+            _numberOfDraws = groupGame.NumberOfDraws;
 
             MerchantsObj merchants = groupGame.ClickBuyTicketsButton();
             merchants.PayWithOfflineCharge();

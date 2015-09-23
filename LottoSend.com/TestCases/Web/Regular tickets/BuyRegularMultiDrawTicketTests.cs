@@ -5,7 +5,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace LottoSend.com.TestCases.Regular_tickets
+namespace LottoSend.com.TestCases.Web.Regular_tickets
 {
     /// <summary>
     /// Buys a regular multi-draw ticket and performs all needed assertations 

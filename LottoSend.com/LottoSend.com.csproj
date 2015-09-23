@@ -98,7 +98,12 @@
     <Compile Include="BackEndObj\OrderProcessingObj.cs" />
     <Compile Include="BackEndObj\PaneMenuObj.cs" />
     <Compile Include="BackEndObj\TransactionsObj.cs" />
-    <Compile Include="TestCases\DepositTests.cs" />
+    <Compile Include="TestCases\Mobile\Group ticktes\BuyGroupMultiDrawTicketTests.cs" />
+    <Compile Include="TestCases\Mobile\Group ticktes\BuyGroupOneDrawTicketTests.cs" />
+    <Compile Include="TestCases\Web\DepositTests.cs" />
+    <Compile Include="TestCases\Mobile\BuyRaffleTicketTests.cs" />
+    <Compile Include="TestCases\Mobile\Regular tickets\BuyRegularMultiDrawTicketTests.cs" />
+    <Compile Include="TestCases\Mobile\Regular tickets\BuyRegularOneDrawTicketTests.cs" />
     <Compile Include="Verifications\BalanceVerifications.cs" />
     <Compile Include="Debugger.cs" />
     <Compile Include="DriverCover.cs" />
@@ -121,18 +126,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomGenerator.cs" />
     <Compile Include="StringExtention.cs" />
-    <Compile Include="TestCases\BuyRaffleTicket.cs" />
-    <Compile Include="TestCases\Group ticktes\BuyGroupMultiDrawTicketTests.cs" />
-    <Compile Include="TestCases\Group ticktes\BuyGroupOneDrawTicketTests.cs" />
-    <Compile Include="TestCases\PromotionTests.cs" />
-    <Compile Include="TestCases\Regular tickets\BuyRegularMultiDrawTicketTests.cs" />
-    <Compile Include="TestCases\Regular tickets\BuyRegularOneDrawTicketTests.cs" />
-    <Compile Include="TestCases\CartTests.cs" />
+    <Compile Include="TestCases\Web\BuyRaffleTicketTests.cs" />
+    <Compile Include="TestCases\Web\Group ticktes\BuyGroupMultiDrawTicketTests.cs" />
+    <Compile Include="TestCases\Web\Group ticktes\BuyGroupOneDrawTicketTests.cs" />
+    <Compile Include="TestCases\Web\PromotionTests.cs" />
+    <Compile Include="TestCases\Web\Regular tickets\BuyRegularMultiDrawTicketTests.cs" />
+    <Compile Include="TestCases\Web\Regular tickets\BuyRegularOneDrawTicketTests.cs" />
+    <Compile Include="TestCases\Web\CartTests.cs" />
     <Compile Include="TestCases\CommonActions.cs" />
-    <Compile Include="TestCases\LogInTests.cs" />
+    <Compile Include="TestCases\Web\LogInTests.cs" />
     <Compile Include="Verifications\OrderVerifications.cs" />
-    <Compile Include="TestCases\SignUpTests.cs" />
-    <Compile Include="WaysToPay.cs" />
+    <Compile Include="TestCases\Web\SignUpTests.cs" />
+    <Compile Include="Emuns.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

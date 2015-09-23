@@ -1,17 +1,18 @@
-﻿using LottoSend.com.FrontEndObj.Common;
+﻿using System.Collections.Generic;
+using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.Verifications;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace LottoSend.com.TestCases.Group_ticktes
+namespace LottoSend.com.TestCases.Mobile.Regular_tickets
 {
     /// <summary>
-    /// Buys a group multi-draw ticket and performs all needed assertations 
+    /// Buys a regular multi-draw ticket and performs all needed assertations 
     /// </summary>
     [TestFixture]
-    public class BuyGroupMultiDrawTicketTests
+    public class BuyRegularMultiDrawTicketTests 
     {
         private IWebDriver _driver;
         private DriverCover _driverCover;
@@ -20,50 +21,10 @@ namespace LottoSend.com.TestCases.Group_ticktes
         private OrderVerifications _verifications;
         private CommonActions _commonActions;
 
-        /// <summary>
-        /// Checks an amount in the first record in transactions (front)
-        /// </summary>
-        [Test]
-        public void Check_Amount_In_Transaction_Front()
+        public BuyRegularMultiDrawTicketTests()
         {
-            _verifications.CheckAmountInTransactionFront(_totalPrice, _driverCover.Login, _driverCover.Password, 1);
-        }
-
-        /// <summary>
-        /// Checks a type of the first record in transactions (front)
-        /// </summary>
-        [TestCase(1)]
-        [TestCase(2)]
-        public void Check_Type_Of_Transaction_Front(int numberOfRecordToCheck)
-        {
-            if (numberOfRecordToCheck == 1)
-            {
-                _verifications.CheckTypeOfTransactionFront("Play - Bulk buy", _driverCover.Login, _driverCover.Password);
-            }
-
-            if (numberOfRecordToCheck == 2)
-            {
-                _verifications.CheckTypeOfTransactionFront("Deposit and play", _driverCover.Login, _driverCover.Password, 2);
-            }
-        }
-
-        /// <summary>
-        /// Checks date of the first and seconds records in users account - transactions (front-end)
-        /// </summary>
-        [TestCase(1)]
-        [TestCase(2)]
-        public void Check_Transaction_Date_Front(int numberOfRecordToCheck)
-        {
-            _verifications.CheckTransactionDateFront(_driverCover.Login, _driverCover.Password, numberOfRecordToCheck);
-        }
-
-        /// <summary>
-        /// Checks lottery name of the first and the second records in user's account - transactions in the front-end
-        /// </summary>
-        [Test]
-        public void Check_Transaction_Lottery_Name_Front()
-        {
-            _verifications.CheckTransactionLotteryNameFront("EuroJackpot", _driverCover.Login, _driverCover.Password, 2);
+            Buy_Regular_Multi_Draw_Ticket();
+            Confirn_Payment();
         }
 
         /// <summary>
@@ -72,6 +33,7 @@ namespace LottoSend.com.TestCases.Group_ticktes
         [Test]
         public void Check_Transactions_Email_In_Transactions()
         {
+            SetUp();
             _verifications.CheckTransactionsEmailInTransactions(_driverCover.Login);
         }
 
@@ -81,6 +43,7 @@ namespace LottoSend.com.TestCases.Group_ticktes
         [Test]
         public void Check_Transaction_Merchant_In_Transactions()
         {
+            SetUp();
             _verifications.CheckTransactionMerchantInTransactions(WaysToPay.Offline);
         }
 
@@ -90,6 +53,7 @@ namespace LottoSend.com.TestCases.Group_ticktes
         [Test]
         public void Check_Transaction_Time_In_Transactions()
         {
+            SetUp();
             _verifications.CheckTransactionTimeInTransactions();
         }
 
@@ -99,6 +63,7 @@ namespace LottoSend.com.TestCases.Group_ticktes
         [Test]
         public void Check_Record_Time_In_Draw()
         {
+            SetUp();
             _verifications.CheckRecordTimeInDraw("EuroJackpot");
         }
 
@@ -108,6 +73,7 @@ namespace LottoSend.com.TestCases.Group_ticktes
         [Test]
         public void Check_Record_Email_In_Draw()
         {
+            SetUp();
             _verifications.CheckRecordEmailInDraw("EuroJackpot", _driverCover.Login);
         }
 
@@ -117,6 +83,7 @@ namespace LottoSend.com.TestCases.Group_ticktes
         [Test]
         public void Check_Record_Type_In_Draw()
         {
+            SetUp();
             _verifications.CheckRecordBetTypeInDraw("Bulk buy", "EuroJackpot");
         }
 
@@ -126,16 +93,17 @@ namespace LottoSend.com.TestCases.Group_ticktes
         [Test]
         public void Check_Record_Price_In_Draw()
         {
+            SetUp();
             _verifications.CheckRecordPriceInDraw(_totalPrice, _numberOfDraws);
         }
 
         /// <summary>
-        /// Performs once before all other tests. Buys a group single ticket 
+        /// Performs once before all other tests. Buys a regular single ticket 
         /// </summary>
-        [TestFixtureSetUp]
-        public void Buy_Group_Multi_Draw_Ticket()
+      //  [TestFixtureSetUp]
+        public void Buy_Regular_Multi_Draw_Ticket()
         {
-            SetUp();
+            SetUp(CreateOptions());
 
             // Log in     
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
@@ -143,21 +111,41 @@ namespace LottoSend.com.TestCases.Group_ticktes
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/plays/eurojackpot/");
 
             //Pay for tickets
-            GroupGamePageObj groupGame = new GroupGamePageObj(_driver);
+            RegularGamePageObj regularGame = new RegularGamePageObj(_driver);
 
-            _totalPrice = groupGame.TotalPrice;
-            _numberOfDraws = groupGame.NumberOfDraws;
+            //Go to single tab
+            regularGame.ClickStandartGameButton();
 
-            MerchantsObj merchants = groupGame.ClickBuyTicketsButton();
+            _totalPrice = regularGame.TotalPrice;
+            _numberOfDraws = regularGame.NumberOfDraws;
+
+
+            MerchantsObj merchants = regularGame.ClickBuyTicketsButton();
             merchants.PayWithOfflineCharge();
 
-            //Go to admin panel
+            CleanUp();
+        }
+
+        private ChromeOptions CreateOptions()
+        {
+            var mobileEmulation = new Dictionary<string, string>
+            {
+                {"deviceName", "Apple iPhone 6"}
+            };
+
+            ChromeOptions options = new ChromeOptions();
+            options.AddAdditionalCapability("mobileEmulation", mobileEmulation);
+            return options;
+        }
+
+        private void Confirn_Payment()
+        {
+            SetUp();
+
             _commonActions.Authorize_in_admin_panel();
 
-            //authorize payment in charge panel
             _commonActions.Authorize_the_first_payment();
 
-            //approve payment
             _commonActions.Approve_offline_payment();
 
             CleanUp();
@@ -174,10 +162,18 @@ namespace LottoSend.com.TestCases.Group_ticktes
             }
         }
 
-        [SetUp]
+        //[SetUp]
         public void SetUp()
         {
             _driver = new ChromeDriver();
+            _driverCover = new DriverCover(_driver);
+            _verifications = new OrderVerifications(_driver);
+            _commonActions = new CommonActions(_driver);
+        }
+
+        public void SetUp(ChromeOptions option)
+        {
+            _driver = new ChromeDriver(option);
             _driverCover = new DriverCover(_driver);
             _verifications = new OrderVerifications(_driver);
             _commonActions = new CommonActions(_driver);

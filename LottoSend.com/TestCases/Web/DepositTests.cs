@@ -4,7 +4,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace LottoSend.com.TestCases
+namespace LottoSend.com.TestCases.Web
 {
     /// <summary>
     /// Includes tests to check depositing process 
@@ -23,6 +23,15 @@ namespace LottoSend.com.TestCases
         public DepositTests(WaysToPay merchant)
         {
             _merchant = merchant;
+            Deposit_Money(merchant);
+        }
+
+        /// <summary>
+        /// Deposits money to the user's balance
+        /// </summary>
+        /// <param name="merchant"></param>
+        private void Deposit_Money(WaysToPay merchant)
+        {
             SetUp();
 
             _email = _commonActions.Log_In_Front("selenium2@gmail.com", _driverCover.Password);

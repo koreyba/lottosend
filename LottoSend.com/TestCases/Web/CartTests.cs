@@ -4,7 +4,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace LottoSend.com.TestCases
+namespace LottoSend.com.TestCases.Web
 {
     [TestFixture]
     public class CartTests

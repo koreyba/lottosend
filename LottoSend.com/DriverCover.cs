@@ -179,8 +179,9 @@ namespace LottoSend.com
             {
                 while (sw.Elapsed.TotalSeconds < secondsToWait)
                 {
-                    var ajaxIsComplete = (bool)
-                        ((IJavaScriptExecutor)Driver).ExecuteScript("return jQuery.active == 0");
+                    var ajaxIsComplete =
+                        ((bool) ((IJavaScriptExecutor) Driver).ExecuteScript("return jQuery.active == 0"));
+                
                     if (ajaxIsComplete)
                     {
                         break;
@@ -211,8 +212,8 @@ namespace LottoSend.com
         {
             try
             {
-                WaitAjax();
-                WaitjQuery();
+                bool a = WaitAjax();
+                bool j = WaitjQuery();
 
                 Driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(0)); //nullify implicitlyWait() 
 

@@ -8,4 +8,13 @@
         Offline,
         Neteller
     }
+
+    /// <summary>
+    /// Include ways to run tests (web or mobile)
+    /// </summary>
+    public enum Environment
+    {
+        Web,
+        Mobile
+    }
 }

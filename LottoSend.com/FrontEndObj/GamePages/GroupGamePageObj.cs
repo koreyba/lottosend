@@ -14,7 +14,7 @@ namespace LottoSend.com.FrontEndObj.GamePages
     {
         public GroupGamePageObj(IWebDriver driver) : base(driver)
         {
-            if(Driver.FindElements(By.CssSelector("#group > div.row.bet-pane > div.row.group-header > img")).Count == 0)
+            if(Driver.FindElements(By.CssSelector("#group > div.bet-pane > div.group-header > img")).Count == 0)
             {
                 throw new Exception("Sorry, it must be not group game page ");
             }
@@ -45,7 +45,7 @@ namespace LottoSend.com.FrontEndObj.GamePages
             get { return _discount.Text.ParceDouble(); }
         }
 
-        [FindsBy(How = How.CssSelector, Using = "div.col-sm-7.groups-prices > div.bet-resume > table > tbody > tr:nth-child(4) > td:nth-child(2)")]
+        [FindsBy(How = How.CssSelector, Using = "div.groups-prices > div.bet-resume > table > tbody > tr:nth-child(4) > td:nth-child(2)")]
         private IWebElement _totalPrice;
 
         /// <summary>
