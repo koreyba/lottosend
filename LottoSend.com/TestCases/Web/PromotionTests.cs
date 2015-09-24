@@ -21,13 +21,13 @@ namespace LottoSend.com.TestCases.Web
         /// <summary>
         /// Cheks if a new user gets 1+1 promotion for the second payment if the first one was pendant
         /// </summary>
-        [TestCase(WaysToPay.Offline)]
-        [TestCase(WaysToPay.Neteller)]
-        public void One_Plus_One_After_Pending_Deposit(WaysToPay merchant)
+        [TestCase(WayToPay.Offline)]
+        [TestCase(WayToPay.Neteller)]
+        public void One_Plus_One_After_Pending_Deposit(WayToPay merchant)
         {
             //Sign up
             _commonActions.Sign_Up();
-            _commonActions.DepositMoney(13, WaysToPay.Offline, false);
+            _commonActions.DepositMoney(13, WayToPay.Offline, false);
             
             _commonActions.DepositMoney(11, merchant);
 
@@ -37,13 +37,13 @@ namespace LottoSend.com.TestCases.Web
         /// <summary>
         /// Cheks if a new user gets 1+1 promotion for the second payment if the first one was failed
         /// </summary>
-        [TestCase(WaysToPay.Offline)]
-        [TestCase(WaysToPay.Neteller)]
-        public void One_Plus_One_After_Failed_Deposit(WaysToPay merchant)
+        [TestCase(WayToPay.Offline)]
+        [TestCase(WayToPay.Neteller)]
+        public void One_Plus_One_After_Failed_Deposit(WayToPay merchant)
         {
             //Sign up
             _commonActions.Sign_Up();
-            _commonActions.DepositMoney(13, WaysToPay.Offline, true, true);
+            _commonActions.DepositMoney(13, WayToPay.Offline, true, true);
 
             _commonActions.DepositMoney(11, merchant);
 
@@ -53,9 +53,9 @@ namespace LottoSend.com.TestCases.Web
         /// <summary>
         /// Cheks if a new user doesn't get 1+1 promotion for the second payment
         /// </summary>
-        [TestCase(WaysToPay.Offline)]
-        [TestCase(WaysToPay.Neteller)]
-        public void One_Plus_One_Second_Payment(WaysToPay merchant)
+        [TestCase(WayToPay.Offline)]
+        [TestCase(WayToPay.Neteller)]
+        public void One_Plus_One_Second_Payment(WayToPay merchant)
         {
             _commonActions.Sign_Up();
             _commonActions.BuyRegularOneDrawTicket(merchant); //will get 1+1 promotion
@@ -67,9 +67,9 @@ namespace LottoSend.com.TestCases.Web
         /// <summary>
         /// Checks if a user doesn't get 1+1 promotion for the second deposit
         /// </summary>
-        [TestCase(WaysToPay.Offline)]
-        [TestCase(WaysToPay.Neteller)]
-        public void One_Plus_One_Second_Deposit(WaysToPay merchant)
+        [TestCase(WayToPay.Offline)]
+        [TestCase(WayToPay.Neteller)]
+        public void One_Plus_One_Second_Deposit(WayToPay merchant)
         {
             //Sign up
             _commonActions.Sign_Up();
@@ -82,9 +82,9 @@ namespace LottoSend.com.TestCases.Web
         /// <summary>
         /// Checks if a new user gets 1+1 promotion after buying a ticket
         /// </summary>
-        [TestCase(WaysToPay.Offline)]
-        [TestCase(WaysToPay.Neteller)]
-        public void One_Plus_One_Promotion_Buying(WaysToPay merchant)
+        [TestCase(WayToPay.Offline)]
+        [TestCase(WayToPay.Neteller)]
+        public void One_Plus_One_Promotion_Buying(WayToPay merchant)
         {
             //Sign up
            _commonActions.Sign_Up();
@@ -103,9 +103,9 @@ namespace LottoSend.com.TestCases.Web
         /// <summary>
         /// Checks if a new user gets 1+1 promotion depositing money
         /// </summary>
-        [TestCase(WaysToPay.Offline)]
-        [TestCase(WaysToPay.Neteller)]
-        public void One_Plus_One_Promotion_Deposit(WaysToPay merchant)
+        [TestCase(WayToPay.Offline)]
+        [TestCase(WayToPay.Neteller)]
+        public void One_Plus_One_Promotion_Deposit(WayToPay merchant)
         {
             //Sign up
             _commonActions.Sign_Up();

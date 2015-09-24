@@ -36,7 +36,7 @@ namespace LottoSend.com.FrontEndObj
             return new MerchantsObj(Driver);
         }
 
-        [FindsBy(How = How.CssSelector, Using = "table.table.cart.table-striped > tbody")]
+        [FindsBy(How = How.CssSelector, Using = "table.table-striped > tbody")]
         private IWebElement _cartTable;
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace LottoSend.com.FrontEndObj
             int n = NumberOfTickets;
             for (int i = 0; i < n; ++i)
             {
-                _cartTable.FindElement(By.CssSelector("tr > td.text-center > form > div > input.btn.btn-info.btn-block")).Click();
+                _cartTable.FindElement(By.CssSelector("tr > td > form > div > input.btn.btn-info.btn-block")).Click();
                 WaitAjax();
                 WaitForPageLoading();
                 WaitAjax();
@@ -83,10 +83,36 @@ namespace LottoSend.com.FrontEndObj
         /// Edits selected ticket (clicks "Edit" button)
         /// </summary>
         /// <param name="lottery"></param>
-        public void EditTicket(string lottery)
+        public void EditTicketWeb(string lottery)
         {
-            IWebElement tr = _findTrOfTicket(lottery);
+            IWebElement tr = _findTrOfTicketWeb(lottery);
             tr.FindElement(By.CssSelector("td.text-center > a.btn.btn-info.btn-block.edit")).Click();
+            WaitAjax();
+            WaitForPageLoading();
+            WaitAjax();
+        }
+
+        /// <summary>
+        /// Edits selected ticket (clicks "Edit" button)
+        /// </summary>
+        /// <param name="lottery"></param>
+        public void EditTicketMobile(string lottery)
+        {
+            IWebElement tr = _findTrOfTicketMobile(lottery);
+            tr.FindElement(By.CssSelector("td > p > a.btn.btn-info.btn-block")).Click();
+            WaitAjax();
+            WaitForPageLoading();
+            WaitAjax();
+        }
+
+        /// <summary>
+        /// Edits selected ticket (clicks "Edit" button)
+        /// </summary>
+        /// <param name="lottery"></param>
+        public void EditRaffleTicketMobile(string lottery)
+        {
+            IWebElement tr = _findTrOfRaffleTicketMobile(lottery);
+            tr.FindElement(By.CssSelector("td > p > a.btn.btn-info.btn-block")).Click();
             WaitAjax();
             WaitForPageLoading();
             WaitAjax();
@@ -96,10 +122,28 @@ namespace LottoSend.com.FrontEndObj
         /// Removes ticket from the cart found by name of a lottery
         /// </summary>
         /// <param name="lottery"></param>
-        public void DeleteTicket(string lottery)
+        public void DeleteTicketWeb(string lottery)
         {
-            IWebElement tr = _findTrOfTicket(lottery);
+            IWebElement tr = _findTrOfTicketWeb(lottery);
             tr.FindElement(By.CssSelector("td.text-center > form > div > input.btn.btn-info.btn-block")).Click();
+            WaitAjax();
+            WaitForPageLoading(); 
+            WaitAjax();
+        }
+
+        public void DeleteTicketMobile(string lottery)
+        {
+            IWebElement tr = _findTrOfTicketMobile(lottery);
+            tr.FindElement(By.CssSelector("td > form > div > input.btn.btn-info.btn-block")).Click();
+            WaitAjax();
+            WaitForPageLoading();
+            WaitAjax();
+        }
+
+        public void DeleteRaffleTicketMobile(string lottery)
+        {
+            IWebElement tr = _findTrOfRaffleTicketMobile(lottery);
+            tr.FindElement(By.CssSelector("td > form > div > input.btn.btn-info.btn-block")).Click();
             WaitAjax();
             WaitForPageLoading();
             WaitAjax();
@@ -115,7 +159,7 @@ namespace LottoSend.com.FrontEndObj
         }
 
 
-        private IWebElement _findTrOfTicket(string lottery)
+        private IWebElement _findTrOfTicketWeb(string lottery)
         {
             IList<IWebElement> tr = _cartTable.FindElements(By.TagName("tr"));
 
@@ -126,6 +170,42 @@ namespace LottoSend.com.FrontEndObj
                 foreach (IWebElement name in namesOfLottery)
                 {
                     if (name.GetAttribute("alt").Equals(lottery))
+                        return t;
+                }
+            }
+
+            return null;
+        }
+
+        private IWebElement _findTrOfTicketMobile(string lottery)
+        {
+            IList<IWebElement> tr = _cartTable.FindElements(By.TagName("tr"));
+
+            foreach (IWebElement t in tr)
+            {
+                IList<IWebElement> namesOfLottery = t.FindElements(By.CssSelector("td > strong"));
+
+                foreach (IWebElement name in namesOfLottery)
+                {
+                    if (name.Text.Contains(lottery))
+                        return t;
+                }
+            }
+
+            return null;
+        }
+
+        private IWebElement _findTrOfRaffleTicketMobile(string lottery)
+        {
+            IList<IWebElement> tr = _cartTable.FindElements(By.TagName("tr"));
+
+            foreach (IWebElement t in tr)
+            {
+                IList<IWebElement> namesOfLottery = t.FindElements(By.CssSelector("td > strong > img"));
+
+                foreach (IWebElement name in namesOfLottery)
+                {
+                    if (name.GetAttribute("alt").Contains(lottery))
                         return t;
                 }
             }

@@ -27,7 +27,7 @@ namespace LottoSend.com.TestCases
         /// Buys a raffle ticket 
         /// </summary>
         /// <returns>Total price to pay</returns>
-        public double BuyRaffleTicket(WaysToPay merchant)
+        public double BuyRaffleTicket(WayToPay merchant)
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/");
 
@@ -37,12 +37,12 @@ namespace LottoSend.com.TestCases
             CartObj cart = rafflePage.ClickBuyNowButton();
             MerchantsObj merchants = cart.ClickProceedToCheckoutButton();
 
-            if (merchant == WaysToPay.Neteller)
+            if (merchant == WayToPay.Neteller)
             {
                 merchants.PayWithNeteller();
             }
 
-            if (merchant == WaysToPay.Offline)
+            if (merchant == WayToPay.Offline)
             {
                 merchants.PayWithOfflineCharge();
 
@@ -60,7 +60,7 @@ namespace LottoSend.com.TestCases
         /// Buys a regular one-draw ticket
         /// </summary>
         /// <returns>Total price to pay</returns>
-        public double BuyRegularOneDrawTicket(WaysToPay merchant)
+        public double BuyRegularOneDrawTicket(WayToPay merchant)
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/plays/eurojackpot/");
 
@@ -77,12 +77,12 @@ namespace LottoSend.com.TestCases
 
             MerchantsObj merchants = regularGame.ClickBuyTicketsButton();
 
-            if (merchant == WaysToPay.Neteller)
+            if (merchant == WayToPay.Neteller)
             {
                 merchants.PayWithNeteller();
             }
 
-            if (merchant == WaysToPay.Offline)
+            if (merchant == WayToPay.Offline)
             {
                 merchants.PayWithOfflineCharge();
 
@@ -103,7 +103,7 @@ namespace LottoSend.com.TestCases
         /// <param name="merchant">Merchant to pay</param>
         /// <param name="ifProcess">Tells if process the payment or leave it pendant</param>
         /// <param name="isFailed">To fail payment of not</param>
-        public void DepositMoney(double amount, WaysToPay merchant, bool ifProcess = true, bool isFailed = false)
+        public void DepositMoney(double amount, WayToPay merchant, bool ifProcess = true, bool isFailed = false)
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/deposits/new/");
 

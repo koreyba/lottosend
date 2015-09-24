@@ -4,14 +4,18 @@ using LottoSend.com.Verifications;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.IE;
 
 namespace LottoSend.com.TestCases.Web.Group_ticktes
 {
     /// <summary>
     /// Buys a group multi-draw ticket and performs all needed assertations 
     /// </summary>
-    [TestFixture]
-    public class BuyGroupMultiDrawTicketTests
+    [TestFixture(typeof(ChromeDriver))]
+    [TestFixture(typeof(FirefoxDriver))]
+    [TestFixture(typeof(InternetExplorerDriver))]
+    public class BuyGroupMultiDrawTicketTests<TWebDriver> where TWebDriver : IWebDriver, new()
     {
         private IWebDriver _driver;
         private DriverCover _driverCover;
@@ -19,6 +23,13 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         private int _numberOfDraws;
         private OrderVerifications _verifications;
         private CommonActions _commonActions;
+
+        public BuyGroupMultiDrawTicketTests()
+        {
+            SetUp();
+            Buy_Group_Multi_Draw_Ticket();
+            CleanUp();
+        }
 
         /// <summary>
         /// Checks an amount in the first record in transactions (front)
@@ -81,7 +92,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         [Test]
         public void Check_Transaction_Merchant_In_Transactions()
         {
-            _verifications.CheckTransactionMerchantInTransactions(WaysToPay.Offline);
+            _verifications.CheckTransactionMerchantInTransactions(WayToPay.Offline);
         }
 
         /// <summary>
@@ -99,7 +110,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         [Test]
         public void Check_Record_Time_In_Draw()
         {
-            _verifications.CheckRecordTimeInDraw("EuroJackpot") //TODO: this class must be adopted to mobile
+            _verifications.CheckRecordTimeInDraw("EuroJackpot");
         }
 
         /// <summary>
@@ -132,11 +143,8 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         /// <summary>
         /// Performs once before all other tests. Buys a group single ticket 
         /// </summary>
-        [TestFixtureSetUp]
         public void Buy_Group_Multi_Draw_Ticket()
         {
-            SetUp();
-
             // Log in     
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
 
@@ -159,8 +167,6 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
 
             //approve payment
             _commonActions.Approve_offline_payment();
-
-            CleanUp();
         }
 
 
@@ -177,7 +183,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         [SetUp]
         public void SetUp()
         {
-            _driver = new ChromeDriver();
+            _driver = new TWebDriver();
             _driverCover = new DriverCover(_driver);
             _verifications = new OrderVerifications(_driver);
             _commonActions = new CommonActions(_driver);

@@ -5,17 +5,28 @@ using LottoSend.com.Verifications;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.IE;
 
 namespace LottoSend.com.TestCases.Web
 {
-    [TestFixture]
-    public class BuyRaffleTicketTests
+    [TestFixture(typeof(ChromeDriver))]
+    [TestFixture(typeof(FirefoxDriver))]
+    [TestFixture(typeof(InternetExplorerDriver))]
+    public class BuyRaffleTicketTests<TWebDriver> where TWebDriver : IWebDriver, new()
     {
         private IWebDriver _driver;
         private DriverCover _driverCover;
         private double _totalPrice;
         private OrderVerifications _verifications;
         private CommonActions _commonActions;
+
+        public BuyRaffleTicketTests()
+        {
+            SetUp();
+            Buy_Raffle_Ticket();
+            CleanUp();
+        }
 
         /// <summary>
         /// Checks an amount in the first record in transactions (front)
@@ -50,7 +61,7 @@ namespace LottoSend.com.TestCases.Web
         [Test]
         public void Check_Transaction_Merchant_In_Transactions()
         {
-            _verifications.CheckTransactionMerchantInTransactions(WaysToPay.Offline);
+            _verifications.CheckTransactionMerchantInTransactions(WayToPay.Offline);
         }
 
         /// <summary>
@@ -65,11 +76,8 @@ namespace LottoSend.com.TestCases.Web
         /// <summary>
         /// Performs once before all other tests. Buys a raffle ticket
         /// </summary>
-        [TestFixtureSetUp]
-        public void Buy_Regular_One_Draw_Ticket()
+        public void Buy_Raffle_Ticket()
         {
-            SetUp();
-
             // Log in     
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
 
@@ -88,8 +96,6 @@ namespace LottoSend.com.TestCases.Web
             _commonActions.Authorize_the_first_payment();
 
             _commonActions.Approve_offline_payment();
-
-            CleanUp();
         }
 
         [TearDown]
@@ -123,7 +129,9 @@ namespace LottoSend.com.TestCases.Web
             //var options = new ChromeOptions();
             //options.AddAdditionalCapability("mobileEmulation", mobileEmulation);
 
-            _driver = new ChromeDriver();
+
+            
+            _driver = new TWebDriver();
             _driverCover = new DriverCover(_driver);
             _verifications = new OrderVerifications(_driver);
             _commonActions = new CommonActions(_driver);

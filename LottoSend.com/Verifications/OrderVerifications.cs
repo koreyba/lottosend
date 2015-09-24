@@ -196,7 +196,7 @@ namespace LottoSend.com.Verifications
         /// Cheks the merchant of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
         /// <param name="merchant">Payment method</param>
-        public void CheckTransactionMerchantInTransactions(WaysToPay merchant)
+        public void CheckTransactionMerchantInTransactions(WayToPay merchant)
         {
             _commonActions.Authorize_in_admin_panel();
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/transactions");

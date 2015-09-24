@@ -1,19 +1,8 @@
 ﻿using LottoSend.com.FrontEndObj;
-using LottoSend.com.TestCases;
-using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.FrontEndObj.GamePages;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Remote;
-using Selenium;
+
 
 namespace LottoSend.com
 {
@@ -21,6 +10,7 @@ namespace LottoSend.com
     {
         static void Main(string[] args)
         {
+
             ChromeDriver _driver = new ChromeDriver();
 
 

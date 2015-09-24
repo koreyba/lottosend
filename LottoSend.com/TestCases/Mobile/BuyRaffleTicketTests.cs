@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.FrontEndObj.GamePages;
@@ -9,7 +10,14 @@ using OpenQA.Selenium.Chrome;
 
 namespace LottoSend.com.TestCases.Mobile
 {
-    [TestFixture]
+    /// <summary>
+    /// Includes raffle tests on mobile site
+    /// </summary>
+    [TestFixture("Apple iPhone 4")]
+    [TestFixture("Apple iPhone 6")]
+    [TestFixture("Apple iPhone 5")]
+    [TestFixture("Samsung Galaxy S4")]
+    [TestFixture("Samsung Galaxy Note II")]
     public class BuyRaffleTicketTests
     {
         private IWebDriver _driver;
@@ -18,10 +26,15 @@ namespace LottoSend.com.TestCases.Mobile
         private OrderVerifications _verifications;
         private CommonActions _commonActions;
 
-        public BuyRaffleTicketTests()
+        public BuyRaffleTicketTests(string device)
         {
-            Buy_Regular_One_Draw_Ticket();
+            SetUp(CreateOptions(device));
+            Buy_Raffle_Ticket();
+            CleanUp();
+            
+            SetUp();
             Confirn_Payment();
+            CleanUp();
         }
 
         /// <summary>
@@ -41,7 +54,7 @@ namespace LottoSend.com.TestCases.Mobile
         public void Check_Transaction_Merchant_In_Transactions()
         {
             SetUp();
-            _verifications.CheckTransactionMerchantInTransactions(WaysToPay.Offline);
+            _verifications.CheckTransactionMerchantInTransactions(WayToPay.Offline);
         }
 
         /// <summary>
@@ -57,10 +70,8 @@ namespace LottoSend.com.TestCases.Mobile
         /// <summary>
         /// Performs once before all other tests. Buys a raffle ticket
         /// </summary>
-        private void Buy_Regular_One_Draw_Ticket()
+        private void Buy_Raffle_Ticket()
         {
-            SetUp(CreateOptions());
-
             // Log in     
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
 
@@ -72,15 +83,13 @@ namespace LottoSend.com.TestCases.Mobile
             CartObj cart = rafflePage.ClickBuyNowButton();
             MerchantsObj merchants = cart.ClickProceedToCheckoutButton();
             merchants.PayWithOfflineCharge();
-
-            CleanUp();
         }
 
-        private ChromeOptions CreateOptions()
+        private ChromeOptions CreateOptions(string device)
         {
             var mobileEmulation = new Dictionary<string, string>
             {
-                {"deviceName", "Apple iPhone 6"}
+                {"deviceName", device}
             };
 
             ChromeOptions options = new ChromeOptions();
@@ -90,15 +99,11 @@ namespace LottoSend.com.TestCases.Mobile
 
         private void Confirn_Payment()
         {
-            SetUp();
-
             _commonActions.Authorize_in_admin_panel();
 
             _commonActions.Authorize_the_first_payment();
 
             _commonActions.Approve_offline_payment();
-
-            CleanUp();
         }
 
         [TearDown]
@@ -111,7 +116,6 @@ namespace LottoSend.com.TestCases.Mobile
             }
         }
 
-        //[SetUp]
         public void SetUp()
         {
             _driver = new ChromeDriver();

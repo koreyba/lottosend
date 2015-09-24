@@ -50,7 +50,7 @@ namespace LottoSend.com.FrontEndObj.MyAccount
         /// <param name="merchant">How to pay</param>
         /// <param name="ifProcess">To process payment or not (for offline payment)</param>
         /// <param name="isFailed">To faild payment or not</param>
-        public void DepositStandardAmount(int amount, WaysToPay merchant, bool ifProcess = true, bool isFailed = false)
+        public void DepositStandardAmount(int amount, WayToPay merchant, bool ifProcess = true, bool isFailed = false)
         {
             SelectStandardAmount(amount);
 
@@ -88,7 +88,7 @@ namespace LottoSend.com.FrontEndObj.MyAccount
         /// <param name="merchant">Merchant to pay</param>
         /// <param name="ifProcess">Tells if to process the payment of leave it pendant</param>
         /// <param name="isFailed">To fail payment of not</param>
-        public void DepositOtherAmount(double amount, WaysToPay merchant, bool ifProcess = true, bool isFailed = false)
+        public void DepositOtherAmount(double amount, WayToPay merchant, bool ifProcess = true, bool isFailed = false)
         {
             _otherRadioButton.Click();
             _amountInput.SendKeys(amount.ToString());
@@ -102,16 +102,16 @@ namespace LottoSend.com.FrontEndObj.MyAccount
         /// <param name="merchant">How to pay</param>
         /// <param name="ifProcess">To process payment (if it was offline)</param>
         /// <param name="isFailed">To fail or not</param>
-        private void PayForDeposit(WaysToPay merchant, bool ifProcess = true, bool isFailed = false)
+        private void PayForDeposit(WayToPay merchant, bool ifProcess = true, bool isFailed = false)
         {
             MerchantsObj merchantsObj = new MerchantsObj(Driver);
 
-            if (merchant == WaysToPay.Neteller)
+            if (merchant == WayToPay.Neteller)
             {
                 merchantsObj.PayWithNeteller();
             }
 
-            if (merchant == WaysToPay.Offline)
+            if (merchant == WayToPay.Offline)
             {
                 merchantsObj.PayWithOfflineCharge();
 

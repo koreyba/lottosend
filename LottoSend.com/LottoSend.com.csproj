@@ -98,6 +98,7 @@
     <Compile Include="BackEndObj\OrderProcessingObj.cs" />
     <Compile Include="BackEndObj\PaneMenuObj.cs" />
     <Compile Include="BackEndObj\TransactionsObj.cs" />
+    <Compile Include="TestCases\Mobile\CartTests.cs" />
     <Compile Include="TestCases\Mobile\Group ticktes\BuyGroupMultiDrawTicketTests.cs" />
     <Compile Include="TestCases\Mobile\Group ticktes\BuyGroupOneDrawTicketTests.cs" />
     <Compile Include="TestCases\Web\DepositTests.cs" />

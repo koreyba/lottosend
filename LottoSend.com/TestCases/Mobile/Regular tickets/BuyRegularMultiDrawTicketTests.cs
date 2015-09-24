@@ -9,9 +9,13 @@ using OpenQA.Selenium.Chrome;
 namespace LottoSend.com.TestCases.Mobile.Regular_tickets
 {
     /// <summary>
-    /// Buys a regular multi-draw ticket and performs all needed assertations 
+    /// Includes tests for buying a regular multi draw ticket on mobile site 
     /// </summary>
-    [TestFixture]
+    [TestFixture("Apple iPhone 4")]
+    [TestFixture("Apple iPhone 6")]
+    [TestFixture("Apple iPhone 5")]
+    [TestFixture("Samsung Galaxy S4")]
+    [TestFixture("Samsung Galaxy Note II")]
     public class BuyRegularMultiDrawTicketTests 
     {
         private IWebDriver _driver;
@@ -21,10 +25,15 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
         private OrderVerifications _verifications;
         private CommonActions _commonActions;
 
-        public BuyRegularMultiDrawTicketTests()
+        public BuyRegularMultiDrawTicketTests(string device)
         {
+            SetUp(CreateOptions(device));
             Buy_Regular_Multi_Draw_Ticket();
+            CleanUp();
+
+            SetUp();
             Confirn_Payment();
+            CleanUp();
         }
 
         /// <summary>
@@ -44,7 +53,7 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
         public void Check_Transaction_Merchant_In_Transactions()
         {
             SetUp();
-            _verifications.CheckTransactionMerchantInTransactions(WaysToPay.Offline);
+            _verifications.CheckTransactionMerchantInTransactions(WayToPay.Offline);
         }
 
         /// <summary>
@@ -103,8 +112,6 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
       //  [TestFixtureSetUp]
         public void Buy_Regular_Multi_Draw_Ticket()
         {
-            SetUp(CreateOptions());
-
             // Log in     
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
 
@@ -122,15 +129,13 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
 
             MerchantsObj merchants = regularGame.ClickBuyTicketsButton();
             merchants.PayWithOfflineCharge();
-
-            CleanUp();
         }
 
-        private ChromeOptions CreateOptions()
+        private ChromeOptions CreateOptions(string device)
         {
             var mobileEmulation = new Dictionary<string, string>
             {
-                {"deviceName", "Apple iPhone 6"}
+                {"deviceName", device}
             };
 
             ChromeOptions options = new ChromeOptions();
@@ -140,15 +145,11 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
 
         private void Confirn_Payment()
         {
-            SetUp();
-
             _commonActions.Authorize_in_admin_panel();
 
             _commonActions.Authorize_the_first_payment();
 
             _commonActions.Approve_offline_payment();
-
-            CleanUp();
         }
 
 

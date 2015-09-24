@@ -120,6 +120,6 @@ namespace LottoSend.com.FrontEndObj.GamePages
         private IWebElement _detectAddToCartButton()
         {
             return GetFirstVisibleElementFromList(By.CssSelector("#add-to-cart"));
-        }        
+        }
     }
 }

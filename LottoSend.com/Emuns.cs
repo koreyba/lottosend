@@ -3,14 +3,14 @@
     /// <summary>
     /// Consists of ways to pay (merchants names)
     /// </summary>
-    public enum WaysToPay
+    public enum WayToPay
     {
         Offline,
         Neteller
     }
 
     /// <summary>
-    /// Include ways to run tests (web or mobile)
+    /// Includes ways to run tests (web or mobile)
     /// </summary>
     public enum Environment
     {

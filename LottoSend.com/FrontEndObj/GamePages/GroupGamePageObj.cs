@@ -62,7 +62,7 @@ namespace LottoSend.com.FrontEndObj.GamePages
         /// <param name="numberOfShares">How many shares to add</param>
         public void AddShares(int numberOfShares)
         {
-            IList<IWebElement> tickets = Driver.FindElements(By.CssSelector("div.row > div.col-sm-4.text-center"));
+            IList<IWebElement> tickets = Driver.FindElements(By.CssSelector("div.row > div.col-sm-offset-4.text-center"));
 
             IWebElement plus = tickets[0].FindElement(By.CssSelector("div.group > div.shadow > a.plus"));
 

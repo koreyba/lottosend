@@ -3,44 +3,49 @@ using LottoSend.com.Verifications;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.IE;
 
 namespace LottoSend.com.TestCases.Web
 {
     /// <summary>
     /// Includes tests to check depositing process 
     /// </summary>
-    [TestFixture(WaysToPay.Neteller)]
-    [TestFixture(WaysToPay.Offline)]
-    public class DepositTests
+    [TestFixture(typeof(ChromeDriver), WayToPay.Neteller)]
+    [TestFixture(typeof(FirefoxDriver), WayToPay.Neteller)]
+    [TestFixture(typeof(InternetExplorerDriver), (WayToPay.Neteller))]
+    [TestFixture(typeof(ChromeDriver), WayToPay.Offline)]
+    [TestFixture(typeof(FirefoxDriver), WayToPay.Offline)]
+    [TestFixture(typeof(InternetExplorerDriver), WayToPay.Offline)]
+    public class DepositTests<TWebDriver> where TWebDriver : IWebDriver, new()
     {
         private IWebDriver _driver;
         private DriverCover _driverCover;
         private OrderVerifications _verifications;
         private CommonActions _commonActions;
         private string _email;
-        private WaysToPay _merchant;
+        private WayToPay _merchant;
 
-        public DepositTests(WaysToPay merchant)
+        public DepositTests(WayToPay merchant)
         {
             _merchant = merchant;
+
+            SetUp();
             Deposit_Money(merchant);
+            CleanUp();
         }
 
         /// <summary>
         /// Deposits money to the user's balance
         /// </summary>
         /// <param name="merchant"></param>
-        private void Deposit_Money(WaysToPay merchant)
+        private void Deposit_Money(WayToPay merchant)
         {
-            SetUp();
-
             _email = _commonActions.Log_In_Front("selenium2@gmail.com", _driverCover.Password);
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/deposits/new/");
 
             DepositObj deposit = new DepositObj(_driver);
             deposit.DepositStandardAmount(30, merchant);
-
-            CleanUp();
         }
 
         /// <summary>Te
@@ -106,7 +111,7 @@ namespace LottoSend.com.TestCases.Web
         [SetUp]
         public void SetUp()
         {
-            _driver = new ChromeDriver();
+            _driver = new TWebDriver();
             _driverCover = new DriverCover(_driver);
             _verifications = new OrderVerifications(_driver);
             _commonActions = new CommonActions(_driver);
