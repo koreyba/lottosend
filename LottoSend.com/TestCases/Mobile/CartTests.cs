@@ -9,7 +9,7 @@ using OpenQA.Selenium.Chrome;
 namespace LottoSend.com.TestCases.Mobile
 {
     /// <summary>
-    /// Includes tests of the cart (front)
+    /// Includes tests of the cart (front-mobile)
     /// </summary>
     [TestFixture("Apple iPhone 4")]
     [TestFixture("Apple iPhone 6")]

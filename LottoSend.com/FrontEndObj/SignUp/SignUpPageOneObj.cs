@@ -61,7 +61,7 @@ namespace LottoSend.com.FrontEndObj.SignUp
             SelectElement select = new SelectElement(_country);
             select.SelectByValue("UA");
             _password.SendKeys("11111111");
-            _passwordConfirm.SendKeys("11111111");
+            ScrollToElement(_passwordConfirm).SendKeys("11111111");
             _checkBoxAcceptance.Click();
 
             return email;
