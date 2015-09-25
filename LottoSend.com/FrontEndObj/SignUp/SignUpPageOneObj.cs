@@ -41,7 +41,10 @@ namespace LottoSend.com.FrontEndObj.SignUp
         [FindsBy(How = How.Id, Using = "web_user_password_confirmation")]
         private IWebElement _passwordConfirm;
 
-        [FindsBy(How = How.Id, Using = "web_user_has_accepted_tos")]
+        [FindsBy(How = How.CssSelector, Using = "#web_user_has_accepted_tos + label > small")] 
+        private IWebElement _checkBoxAcceptanceMobile;
+
+        [FindsBy(How = How.CssSelector, Using = "#web_user_has_accepted_tos")]
         private IWebElement _checkBoxAcceptance;
 
         [FindsBy(How = How.CssSelector, Using = ".btn.btn-lg.btn-success.btn-xl.btn-block")]
@@ -52,6 +55,25 @@ namespace LottoSend.com.FrontEndObj.SignUp
         /// </summary>
         public string FillInFields()
         {
+            var email = SendKeys();
+            _checkBoxAcceptance.Click();
+
+            return email;
+        }
+
+        /// <summary>
+        /// Fills in all fields and accepts privacy policy
+        /// </summary>
+        public string FillInFieldsMobile()
+        {
+            var email = SendKeys();
+            _checkBoxAcceptanceMobile.Click();
+
+            return email;
+        }
+
+        private string SendKeys()
+        {
             _firstName.SendKeys("my first name");
             _lastName.SendKeys("my last name");
             _phone.SendKeys("12345678");
@@ -59,11 +81,9 @@ namespace LottoSend.com.FrontEndObj.SignUp
             _email.SendKeys(email);
             _adress.SendKeys("new orlean))");
             SelectElement select = new SelectElement(_country);
-            select.SelectByValue("UA");
+            @select.SelectByValue("UA");
             _password.SendKeys("11111111");
-            ScrollToElement(_passwordConfirm).SendKeys("11111111");
-            _checkBoxAcceptance.Click();
-
+            _passwordConfirm.SendKeys("11111111");
             return email;
         }
 

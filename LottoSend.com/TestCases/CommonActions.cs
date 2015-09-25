@@ -112,6 +112,21 @@ namespace LottoSend.com.TestCases
         }
 
         /// <summary>
+        /// Deposits exact amount of money to the previously signed in user's account on mobile
+        /// </summary>
+        /// <param name="amount"></param>
+        /// <param name="merchant">Merchant to pay</param>
+        /// <param name="ifProcess">Tells if process the payment or leave it pendant</param>
+        /// <param name="isFailed">To fail payment of not</param>
+        public void DepositMoneyMobile(double amount, WayToPay merchant, bool ifProcess = true, bool isFailed = false)
+        {
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/deposits/new/");
+
+            DepositMobileObj deposit = new DepositMobileObj(_driver);
+            deposit.DepositOtherAmount(amount, merchant, ifProcess, isFailed);
+        }
+
+        /// <summary>
         /// Goes to the draw page of a given lottery. Doesn't perform admin panel authorizing. 
         /// </summary>
         /// <param name="lotteryName"></param>
@@ -219,5 +234,20 @@ namespace LottoSend.com.TestCases
 
             return email;
         }
+
+        /// <summary>
+        /// Registrate a new user on mobile site
+        /// <returns>User's email</returns>
+        /// </summary>
+        public string Sign_Up_Mobile()
+        {
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/web_users/sign_up");
+            SignUpPageOneObj signUp = new SignUpPageOneObj(_driver);
+            string email = signUp.FillInFieldsMobile();
+            signUp.ClickSignUp();
+
+            return email;
+        }
+
     }
 }

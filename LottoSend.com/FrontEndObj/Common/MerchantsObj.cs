@@ -40,19 +40,19 @@ namespace LottoSend.com.FrontEndObj.Common
             bool w = WaitjQuery();
             
             //TODO: change to something
-            //Thread.Sleep(TimeSpan.FromSeconds(3));
+            Thread.Sleep(TimeSpan.FromSeconds(3));
             bool a = WaitAjax();
 
             IWebElement login = WaitForElement(By.CssSelector("#login_identity"), 10);
             login.SendKeys("451823760529");
 
             //TODO: change to something
-           // Thread.Sleep(TimeSpan.FromSeconds(1));
+            Thread.Sleep(TimeSpan.FromSeconds(1));
             IWebElement password = WaitForElement(By.CssSelector("#password"), 10);
             password.SendKeys("NTt3st1!");
 
             //TODO: change to something
-            //Thread.Sleep(TimeSpan.FromSeconds(1));
+            Thread.Sleep(TimeSpan.FromSeconds(1));
             IWebElement continueBtn = WaitForElement(By.CssSelector("#checkout_continue_btn"), 10);
             continueBtn.Click();
             WaitForPageLoading();

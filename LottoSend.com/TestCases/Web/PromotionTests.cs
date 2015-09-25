@@ -3,14 +3,18 @@ using LottoSend.com.Verifications;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.IE;
 
 namespace LottoSend.com.TestCases.Web
 {
     /// <summary>
     /// Includes tests connected to promotions
     /// </summary>
-    [TestFixture]
-    public class PromotionTests
+    [TestFixture(typeof(ChromeDriver))]
+    [TestFixture(typeof(FirefoxDriver))]
+    [TestFixture(typeof(InternetExplorerDriver))]
+    public class PromotionTests<TWebDriver> where TWebDriver : IWebDriver, new()
     {
         private IWebDriver _driver;
         private DriverCover _driverCover;
@@ -126,7 +130,7 @@ namespace LottoSend.com.TestCases.Web
         [SetUp]
         public void SetUp()
         {
-            _driver = new ChromeDriver();
+            _driver = new TWebDriver();
             _driverCover = new DriverCover(_driver);
             _commonActions = new CommonActions(_driver);
             _verifications = new BalanceVerifications(_driver);

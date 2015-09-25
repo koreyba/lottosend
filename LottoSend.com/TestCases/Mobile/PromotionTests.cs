@@ -36,12 +36,12 @@ namespace LottoSend.com.TestCases.Mobile
         public void One_Plus_One_After_Pending_Deposit(WayToPay merchant)
         {
             //Sign up
-            _commonActions.Sign_Up();
-            _commonActions.DepositMoney(13, WayToPay.Offline, false);
-            
-            _commonActions.DepositMoney(11, merchant);
+            _commonActions.Sign_Up_Mobile();
+            _commonActions.DepositMoneyMobile(13, WayToPay.Offline, false);
 
-            _verifications.CheckBalanceOnDepositPage(22);
+            _commonActions.DepositMoneyMobile(11, merchant);
+
+            _verifications.CheckBalanceOnDepositPageMobile(22);
         }
 
         /// <summary>
@@ -52,12 +52,12 @@ namespace LottoSend.com.TestCases.Mobile
         public void One_Plus_One_After_Failed_Deposit(WayToPay merchant)
         {
             //Sign up
-            _commonActions.Sign_Up();
-            _commonActions.DepositMoney(13, WayToPay.Offline, true, true);
+            _commonActions.Sign_Up_Mobile();
+            _commonActions.DepositMoneyMobile(13, WayToPay.Offline, true, true);
 
-            _commonActions.DepositMoney(11, merchant);
+            _commonActions.DepositMoneyMobile(11, merchant);
 
-            _verifications.CheckBalanceOnDepositPage(22);
+            _verifications.CheckBalanceOnDepositPageMobile(22);
         }
 
         /// <summary>
@@ -67,11 +67,11 @@ namespace LottoSend.com.TestCases.Mobile
         [TestCase(WayToPay.Neteller)]
         public void One_Plus_One_Second_Payment(WayToPay merchant)
         {
-            _commonActions.Sign_Up();
+            _commonActions.Sign_Up_Mobile();
             _commonActions.BuyRegularOneDrawTicket(merchant); //will get 1+1 promotion
             _commonActions.BuyRaffleTicket(merchant); //this ticket must cost more then the previously bought one
-            
-            _verifications.CheckBalanceOnDepositPage(0);
+
+            _verifications.CheckBalanceOnDepositPageMobile(0);
         }
 
         /// <summary>
@@ -82,11 +82,11 @@ namespace LottoSend.com.TestCases.Mobile
         public void One_Plus_One_Second_Deposit(WayToPay merchant)
         {
             //Sign up
-            _commonActions.Sign_Up();
-            _commonActions.DepositMoney(13, merchant); //is expected to get 1+1 promotion
-            _commonActions.DepositMoney(15, merchant);
+            _commonActions.Sign_Up_Mobile();
+            _commonActions.DepositMoneyMobile(13, merchant); //is expected to get 1+1 promotion
+            _commonActions.DepositMoneyMobile(15, merchant);
 
-            _verifications.CheckBalanceOnDepositPage(41); //13*2+15 
+            _verifications.CheckBalanceOnDepositPageMobile(41); //13*2+15 
         }
 
         /// <summary>
@@ -97,16 +97,16 @@ namespace LottoSend.com.TestCases.Mobile
         public void One_Plus_One_Promotion_Buying(WayToPay merchant)
         {
             //Sign up
-           _commonActions.Sign_Up();
+            _commonActions.Sign_Up_Mobile();
             _totalPrice = _commonActions.BuyRaffleTicket(merchant);
 
             if (_totalPrice <= 30)
             {
-                _verifications.CheckBalanceOnDepositPage(_totalPrice);
+                _verifications.CheckBalanceOnDepositPageMobile(_totalPrice);
             }
             else
             {
-                _verifications.CheckBalanceOnDepositPage(30);
+                _verifications.CheckBalanceOnDepositPageMobile(30);
             }
         }
 
@@ -118,13 +118,13 @@ namespace LottoSend.com.TestCases.Mobile
         public void One_Plus_One_Promotion_Deposit(WayToPay merchant)
         {
             //Sign up
-            _commonActions.Sign_Up();
+            _commonActions.Sign_Up_Mobile();
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/deposits/new/");
-            
-            DepositObj deposit = new DepositObj(_driver);
+
+            DepositMobileObj deposit = new DepositMobileObj(_driver);
             deposit.DepositOtherAmount(17, merchant);
 
-            _verifications.CheckBalanceOnDepositPage(34);
+            _verifications.CheckBalanceOnDepositPageMobile(34);
         }
 
         private ChromeOptions CreateOptions(string device)

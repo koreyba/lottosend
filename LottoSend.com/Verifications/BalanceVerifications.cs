@@ -34,5 +34,16 @@ namespace LottoSend.com.Verifications
 
             Assert.AreEqual(expected, deposit.Balance, "Sorry but the balance is not as expected on page: " + _driverCover.Driver.Url + " ");
         }
+
+        /// <summary>
+        /// Checks balance on front - account - deposit page. Must be logged in
+        /// </summary>
+        public void CheckBalanceOnDepositPageMobile(double expected)
+        {
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "/en/account/deposits/new/");
+            DepositMobileObj deposit = new DepositMobileObj(_driver);
+
+            Assert.AreEqual(expected, deposit.Balance, "Sorry but the balance is not as expected on page: " + _driverCover.Driver.Url + " ");
+        }
     }
 }
