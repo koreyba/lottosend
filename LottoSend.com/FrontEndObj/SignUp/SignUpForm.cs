@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using System.Threading;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 
@@ -35,7 +37,7 @@ namespace LottoSend.com.FrontEndObj.SignUp
         [FindsBy(How = How.Id, Using = "web_user_password_confirmation")]
         protected IWebElement PasswordConfirm;
 
-        [FindsBy(How = How.CssSelector, Using = "#web_user_has_accepted_tos + label > small")]
+        [FindsBy(How = How.CssSelector, Using = "#web_user_has_accepted_tos + label")] //> small")]
         protected IWebElement CheckBoxAcceptanceMobile;
 
         [FindsBy(How = How.CssSelector, Using = "#web_user_has_accepted_tos")]
@@ -47,9 +49,10 @@ namespace LottoSend.com.FrontEndObj.SignUp
         /// <summary>
         /// Fills in all fields and accepts privacy policy
         /// </summary>
-        public string FillInFields()
+        public string FillInFieldsWeb()
         {
             var email = SendKeys();
+            Thread.Sleep(TimeSpan.FromSeconds(0.5));
             CheckBoxAcceptance.Click();
 
             return email;
@@ -61,6 +64,7 @@ namespace LottoSend.com.FrontEndObj.SignUp
         public string FillInFieldsMobile()
         {
             var email = SendKeys();
+            Thread.Sleep(TimeSpan.FromSeconds(0.5));
             CheckBoxAcceptanceMobile.Click();
 
             return email;
@@ -86,7 +90,7 @@ namespace LottoSend.com.FrontEndObj.SignUp
         /// </summary>
         public SignUpSuccessObj ClickSignUp()
         {
-            SignUpButton.Click();
+            WaitForElement(SignUpButton, 2).Click();
             WaitAjax();
             WaitForPageLoading();
             WaitAjax();

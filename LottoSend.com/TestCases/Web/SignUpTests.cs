@@ -1,4 +1,8 @@
-﻿using LottoSend.com.FrontEndObj;
+﻿using System;
+using System.Threading;
+using LottoSend.com.FrontEndObj;
+using LottoSend.com.FrontEndObj.Common;
+using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.FrontEndObj.SignUp;
 using LottoSend.com.Verifications;
 using NUnit.Framework;
@@ -21,11 +25,56 @@ namespace LottoSend.com.TestCases.Web
         private WebUserVerifications _usersVerifications;
 
         /// <summary>
+        /// Signs up in express checkout in the cart
+        /// </summary>
+        [Test]
+        public void SignUp_Express_Checkout_In_Cart()
+        {
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/");
+
+            RafflesPageObj rafflePage = new RafflesPageObj(_driver);
+
+            CartObj cart = rafflePage.ClickBuyNowButton();
+            cart.ClickProceedToCheckoutButton();
+
+            ExpressCheckoutObj checkout = new ExpressCheckoutObj(_driver);
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+            checkout.SignUp_Web();
+
+            _usersVerifications.CheckIfSignedIn_Web();
+        }
+
+        /// <summary>
+        /// Signs up in express checkout on a game page
+        /// </summary>
+        [Test]
+        public void SignUp_Express_Checkout_Game_Page()
+        {
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/plays/eurojackpot/");
+
+            //Pay for tickets
+            RegularGamePageObj regularGame = new RegularGamePageObj(_driver);
+
+            //Go to single tab
+            regularGame.ClickStandartGameButton();
+            regularGame.ClickBuyTicketsButton();
+
+            ExpressCheckoutObj checkout = new ExpressCheckoutObj(_driver);
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+            checkout.SignUp_Web();
+
+            _usersVerifications.CheckIfSignedIn_Web();
+        }
+
+        /// <summary>
         /// Checks if user exists in the backoffice - web_users page
         /// </summary>
         [Test]
         public void Check_Back_Office_User()
         {
+            _email = _commonActions.Sign_Up();
             _usersVerifications.CheckBackOfficeUser(_email);
         }
 
@@ -40,20 +89,9 @@ namespace LottoSend.com.TestCases.Web
 
             TopBarObj topBar = new TopBarObj(_driver);
             SignUpPopUpObj popUp = topBar.ClickSignUpButton();
-            _email = popUp.FillInFields();
+            _email = popUp.FillInFieldsWeb();
             SignUpSuccessObj success = popUp.ClickSignUp();
             _usersVerifications.CheckIfSignedIn_Web();
-        }
-
-        /// <summary>
-        /// Signs up
-        /// </summary>
-        [TestFixtureSetUp]
-        public void Sign_Up()
-        {
-            SetUp();
-            _email = _commonActions.Sign_Up();
-            CleanUp();
         }
 
         [TearDown]

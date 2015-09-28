@@ -245,7 +245,7 @@ namespace LottoSend.com.TestCases
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/web_users/sign_up");
             SignUpPageOneObj signUp = new SignUpPageOneObj(_driver);
-            string email = signUp.FillInFields();
+            string email = signUp.FillInFieldsWeb();
             signUp.ClickSignUp();
 
             return email;

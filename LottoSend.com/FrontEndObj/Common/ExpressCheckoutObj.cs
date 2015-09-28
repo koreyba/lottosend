@@ -23,16 +23,27 @@ namespace LottoSend.com.FrontEndObj.Common
         [FindsBy(How = How.CssSelector, Using = "a.express.existing-user.pull-right")]
         private IWebElement _existingUser;
 
-        /// <summary>
-        /// Signs UP in express checkout
-        /// </summary>
-        /// <returns></returns>
-        public string SignUp()
+        public string SignUp_Mobile()
         {
             _newUser.Click();
             WaitjQuery();
             SignUpForm form = new SignUpForm(Driver);
-            string email = form.FillInFields();
+            string email = form.FillInFieldsMobile();
+            form.ClickSignUp();
+
+            return email;
+        }
+
+        /// <summary>
+        /// Signs UP in express checkout
+        /// </summary>
+        /// <returns></returns>
+        public string SignUp_Web()
+        {
+            _newUser.Click();
+            WaitjQuery();
+            SignUpForm form = new SignUpForm(Driver);
+            string email = form.FillInFieldsWeb();
             form.ClickSignUp();
 
             return email;

@@ -1,4 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
+using LottoSend.com.FrontEndObj;
+using LottoSend.com.FrontEndObj.Common;
+using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.Verifications;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -26,24 +31,56 @@ namespace LottoSend.com.TestCases.Mobile
         }
 
         /// <summary>
+        /// Signs up in express checkout in the cart
+        /// </summary>
+        [Test]
+        public void SignUp_Express_Checkout_In_Cart()
+        {
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/");
+
+            RafflesPageObj rafflePage = new RafflesPageObj(_driver);
+
+            CartObj cart = rafflePage.ClickBuyNowButton();
+            cart.ClickProceedToCheckoutButton();
+
+            ExpressCheckoutObj checkout = new ExpressCheckoutObj(_driver);
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+            checkout.SignUp_Mobile();
+
+            _usersVerifications.CheckIfSignedIn_Mobile();
+        }
+
+        /// <summary>
+        /// Signs up in express checkout on a game page
+        /// </summary>
+        [Test]
+        public void SignUp_Express_Checkout_Game_Page()
+        {
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/plays/eurojackpot/");
+
+            //Pay for tickets
+            RegularGamePageObj regularGame = new RegularGamePageObj(_driver);
+
+            //Go to single tab
+            regularGame.ClickStandartGameButton();
+            regularGame.ClickBuyTicketsButton();
+
+            ExpressCheckoutObj checkout = new ExpressCheckoutObj(_driver);
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+            checkout.SignUp_Mobile();
+
+            _usersVerifications.CheckIfSignedIn_Mobile();
+        }
+
+        /// <summary>
         /// Checks if user exists in the backoffice - web_users page
         /// </summary>
         [Test]
         public void Check_Back_Office_User()
         {
-            _usersVerifications.CheckBackOfficeUser(_email);
-        }
-
-        /// <summary>
-        /// Signs up
-        /// </summary>
-        [TestFixtureSetUp]
-        public void Sign_Up()
-        {
-            SetUp(CreateOptions(_device));
             _email = _commonActions.Sign_Up_Mobile();
-            _usersVerifications.CheckIfSignedIn_Web();
-            CleanUp();
+            _usersVerifications.CheckIfSignedIn_Mobile();
+            _usersVerifications.CheckBackOfficeUser(_email);
         }
 
         private ChromeOptions CreateOptions(string device)
@@ -64,19 +101,11 @@ namespace LottoSend.com.TestCases.Mobile
             _driver.Dispose();
         }
 
-        public void SetUp(ChromeOptions option)
-        {
-            _driver = new ChromeDriver(option);
-            _driverCover = new DriverCover(_driver);
-            _driverCover = new DriverCover(_driver);
-            _commonActions = new CommonActions(_driver);
-            _usersVerifications = new WebUserVerifications(_driver);
-        }
-
         [SetUp]
         public void SetUp()
         {
-            _driver = new ChromeDriver();
+            _driver = new ChromeDriver(CreateOptions(_device));
+            _driverCover = new DriverCover(_driver);
             _driverCover = new DriverCover(_driver);
             _commonActions = new CommonActions(_driver);
             _usersVerifications = new WebUserVerifications(_driver);
