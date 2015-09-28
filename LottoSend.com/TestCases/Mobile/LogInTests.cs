@@ -1,4 +1,7 @@
-﻿using LottoSend.com.FrontEndObj;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
+using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.FrontEndObj.Login;
@@ -9,16 +12,24 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 
-namespace LottoSend.com.TestCases.Web
+namespace LottoSend.com.TestCases.Mobile
 {
-    [TestFixture(typeof(ChromeDriver))]
-    [TestFixture(typeof(FirefoxDriver))]
-    [TestFixture(typeof(InternetExplorerDriver))]
-    public class LogInTests<TWebDriver> where TWebDriver : IWebDriver, new()
+    [TestFixture("Apple iPhone 4")]
+    [TestFixture("Apple iPhone 6")]
+    [TestFixture("Apple iPhone 5")]
+    [TestFixture("Samsung Galaxy S4")]
+    [TestFixture("Samsung Galaxy Note II")]
+    public class LogInTests
     {
         private IWebDriver _driver;
         private DriverCover _driverCover;
         private WebUserVerifications _usersVerifications;
+        private string _device;
+
+        public LogInTests(string device)
+        {
+            _device = device;
+        }
 
         /// <summary>
         /// Logs in express checkout on a game page
@@ -26,7 +37,6 @@ namespace LottoSend.com.TestCases.Web
         [Test]
         public void Login_Express_Checkout_Game_Page()
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/");
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/plays/eurojackpot/");
 
             //Pay for tickets
@@ -37,9 +47,10 @@ namespace LottoSend.com.TestCases.Web
             regularGame.ClickBuyTicketsButton();
 
             ExpressCheckoutObj checkout = new ExpressCheckoutObj(_driver);
+            Thread.Sleep(TimeSpan.FromSeconds(1));
             checkout.SignIn(_driverCover.Login, _driverCover.Password);
 
-            _usersVerifications.CheckIfSignedIn_Web();
+            _usersVerifications.CheckIfSignedIn_Mobile();
         }
 
         /// <summary>
@@ -48,7 +59,6 @@ namespace LottoSend.com.TestCases.Web
         [Test]
         public void Login_Express_Checkout_In_Cart()
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/plays/eurojackpot/");
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/");
 
             RafflesPageObj rafflePage = new RafflesPageObj(_driver);
@@ -57,9 +67,10 @@ namespace LottoSend.com.TestCases.Web
             cart.ClickProceedToCheckoutButton();
 
             ExpressCheckoutObj checkout = new ExpressCheckoutObj(_driver);
+            Thread.Sleep(TimeSpan.FromSeconds(1));
             checkout.SignIn(_driverCover.Login, _driverCover.Password);
 
-            _usersVerifications.CheckIfSignedIn_Web();
+            _usersVerifications.CheckIfSignedIn_Mobile();
         }
 
         /// <summary>
@@ -75,24 +86,19 @@ namespace LottoSend.com.TestCases.Web
             signInOne.FillInFields(_driverCover.Login, _driverCover.Password);
             TopBarObj topBar = signInOne.ClickLogInButton();
 
-            _usersVerifications.CheckIfSignedIn_Web();
+            _usersVerifications.CheckIfSignedIn_Mobile();
         }
 
-        /// <summary>
-        /// Logs in pup up form and checks in user logged in
-        /// </summary>
-        [Test]
-        public void Login_In_PopUp_Form()
+        private ChromeOptions CreateOptions(string device)
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/");
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/lotteries/results/");
-            TopBarObj topBar = new TopBarObj(_driver);
-            LogInPopUpObj loginPopUp = topBar.ClickLogInButton();
+            var mobileEmulation = new Dictionary<string, string>
+            {
+                {"deviceName", device}
+            };
 
-            loginPopUp.FillInFields(_driverCover.Login, _driverCover.Password);
-            topBar = loginPopUp.ClickLogInButton();
-
-            _usersVerifications.CheckIfSignedIn_Web();
+            ChromeOptions options = new ChromeOptions();
+            options.AddAdditionalCapability("mobileEmulation", mobileEmulation);
+            return options;
         }
 
         [TearDown]
@@ -104,7 +110,7 @@ namespace LottoSend.com.TestCases.Web
         [SetUp]
         public void SetUp()
         {
-            _driver = new TWebDriver();
+            _driver = new ChromeDriver(CreateOptions(_device));
             _driverCover = new DriverCover(_driver);
             _usersVerifications = new WebUserVerifications(_driver);
         }

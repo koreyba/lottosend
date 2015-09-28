@@ -32,24 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Gallio, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL">
-      <HintPath>..\packages\mbunit.3.4.14.0\lib\net40\Gallio.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Gallio40, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL">
-      <HintPath>..\packages\mbunit.3.4.14.0\lib\net40\Gallio40.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="MbUnit, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL">
-      <HintPath>..\packages\mbunit.3.4.14.0\lib\net40\MbUnit.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="MbUnit.Compatibility, Version=3.0.5.546, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" />
-    <Reference Include="MbUnit35, Version=3.0.5.546, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" />
-    <Reference Include="MbUnit40, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL">
-      <HintPath>..\packages\mbunit.3.4.14.0\lib\net40\MbUnit40.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="nunit.core, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnitTestAdapter.2.0.0\lib\nunit.core.dll</HintPath>
       <Private>False</Private>
@@ -62,10 +44,6 @@
     <Reference Include="NUnit.VisualStudio.TestAdapter, Version=2.0.0.0, Culture=neutral, PublicKeyToken=4cb40d35494691ac, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnitTestAdapter.2.0.0\lib\NUnit.VisualStudio.TestAdapter.dll</HintPath>
       <Private>False</Private>
-    </Reference>
-    <Reference Include="pnunit.framework, Version=1.0.5463.34981, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\pNUnit.2.6.4\lib\pnunit.framework.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -98,11 +76,16 @@
     <Compile Include="BackEndObj\OrderProcessingObj.cs" />
     <Compile Include="BackEndObj\PaneMenuObj.cs" />
     <Compile Include="BackEndObj\TransactionsObj.cs" />
+    <Compile Include="BackEndObj\WebUsersPageObj.cs" />
+    <Compile Include="FrontEndObj\Common\ExpressCheckoutObj.cs" />
     <Compile Include="FrontEndObj\MyAccount\DepositMobileObj.cs" />
+    <Compile Include="FrontEndObj\SignUp\SignUpForm.cs" />
     <Compile Include="TestCases\Mobile\CartTests.cs" />
     <Compile Include="TestCases\Mobile\Group ticktes\BuyGroupMultiDrawTicketTests.cs" />
     <Compile Include="TestCases\Mobile\Group ticktes\BuyGroupOneDrawTicketTests.cs" />
+    <Compile Include="TestCases\Mobile\LogInTests.cs" />
     <Compile Include="TestCases\Mobile\PromotionTests.cs" />
+    <Compile Include="TestCases\Mobile\SignUpTests.cs" />
     <Compile Include="TestCases\Web\DepositTests.cs" />
     <Compile Include="TestCases\Mobile\BuyRaffleTicketTests.cs" />
     <Compile Include="TestCases\Mobile\Regular tickets\BuyRegularMultiDrawTicketTests.cs" />
@@ -141,6 +124,7 @@
     <Compile Include="Verifications\OrderVerifications.cs" />
     <Compile Include="TestCases\Web\SignUpTests.cs" />
     <Compile Include="Emuns.cs" />
+    <Compile Include="Verifications\WebUserVerifications.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

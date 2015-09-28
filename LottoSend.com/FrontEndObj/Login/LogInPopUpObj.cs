@@ -23,10 +23,10 @@ namespace LottoSend.com.FrontEndObj
 
         protected virtual void ValidateObject()
         {
-            if (!Driver.FindElement(By.CssSelector("div.modal-header > h4.modal-title.text-center")).Displayed)
-            {
-                throw new Exception("No pop up is displayed");
-            }
+            //if (Driver.FindElement(By.CssSelector("h4.modal-title.text-center")).Text.Length < 5)
+            //{
+            //    throw new Exception("No pop up is displayed ");
+            //}
         }
 
         [FindsBy(How = How.CssSelector, Using = "div.control > input#web_user_email")]

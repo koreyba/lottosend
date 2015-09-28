@@ -2,6 +2,8 @@
 using OpenQA.Selenium.Chrome;
 using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.FrontEndObj.GamePages;
+using LottoSend.com.FrontEndObj.Login;
+using OpenQA.Selenium;
 
 
 namespace LottoSend.com
@@ -13,7 +15,9 @@ namespace LottoSend.com
 
             ChromeDriver _driver = new ChromeDriver();
 
-
+            IWebElement el = _driver.FindElement(By.ClassName("f"));
+            el.Click();
+            
             DriverCover driver = new DriverCover(_driver);
             driver.NavigateToUrl(driver.BaseUrl + "en/web_users/sign_in");
             SignInPageOneObj signInOne = new SignInPageOneObj(_driver);

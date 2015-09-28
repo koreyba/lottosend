@@ -2,6 +2,7 @@
 using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.FrontEndObj.GamePages;
+using LottoSend.com.FrontEndObj.Login;
 using LottoSend.com.FrontEndObj.MyAccount;
 using LottoSend.com.FrontEndObj.SignUp;
 using OpenQA.Selenium;
@@ -21,6 +22,21 @@ namespace LottoSend.com.TestCases
         {
             _driver = newDriver;
             _driverCover = new DriverCover(_driver);
+        }
+
+        /// <summary>
+        /// Search for web user in back office - WebUsers
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public bool FindWebUser(string email)
+        {
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/web_users");
+            WebUsersPageObj webUsers = new WebUsersPageObj(_driver);
+            webUsers.FilterByEmail(email);
+            bool isFound = webUsers.FindUserOnCurrentPage(email);
+
+            return isFound;
         }
 
         /// <summary>

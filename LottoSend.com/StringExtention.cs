@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using OpenQA.Selenium;
+
 namespace LottoSend.com
 {
     public static class StringExtention
@@ -21,6 +23,12 @@ namespace LottoSend.com
 
             return stringWithoutSpaces;
         }
+
+        public static IWebElement Click(this IWebElement element)
+        {
+            return element;
+        }
+
         
         /// <summary>
         /// Parses time and return TimeSpan object

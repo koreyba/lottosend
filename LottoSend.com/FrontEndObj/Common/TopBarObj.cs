@@ -24,7 +24,7 @@ namespace LottoSend.com.FrontEndObj
         [FindsBy(How = How.Id, Using = "signin")]
         private IWebElement _logIn;
 
-        [FindsBy(How = How.CssSelector, Using = ".btn.btn-primary")]
+        [FindsBy(How = How.CssSelector, Using = "div.navbar-right.navbar-form.text-right > span.text-primary")]
         private IWebElement _myAccount;
 
         #endregion 

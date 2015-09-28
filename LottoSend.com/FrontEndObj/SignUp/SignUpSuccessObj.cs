@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
-using System.Text.RegularExpressions;
-using System.Threading;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
 
-namespace LottoSend.com.FrontEndObj
+namespace LottoSend.com.FrontEndObj.SignUp
 {
     public class SignUpSuccessObj : DriverCover
     {
@@ -15,7 +9,7 @@ namespace LottoSend.com.FrontEndObj
         {
             if(!Driver.Url.Contains("signup/success"))
             {
-                throw new Exception("It might be not signup/success page or sign up was unseccessful");
+                throw new Exception("It might be not signup/success page or sign up was unseccessful ");
             }
         }
     }
