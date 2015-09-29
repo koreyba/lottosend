@@ -83,9 +83,9 @@ namespace LottoSend.com.FrontEndObj
         /// Edits selected ticket (clicks "Edit" button)
         /// </summary>
         /// <param name="lottery"></param>
-        public void EditTicketWeb(string lottery)
+        public void EditTicket_Web(string lottery)
         {
-            IWebElement tr = _findTrOfTicketWeb(lottery);
+            IWebElement tr = _findTrOfTicket_Web(lottery);
             tr.FindElement(By.CssSelector("td.text-center > a.btn.btn-info.btn-block.edit")).Click();
             WaitAjax();
             WaitForPageLoading();
@@ -96,9 +96,9 @@ namespace LottoSend.com.FrontEndObj
         /// Edits selected ticket (clicks "Edit" button)
         /// </summary>
         /// <param name="lottery"></param>
-        public void EditTicketMobile(string lottery)
+        public void EditTicket_Mobile(string lottery)
         {
-            IWebElement tr = _findTrOfTicketMobile(lottery);
+            IWebElement tr = _findTrOfTicket_Mobile(lottery);
             tr.FindElement(By.CssSelector("td > p > a.btn.btn-info.btn-block")).Click();
             WaitAjax();
             WaitForPageLoading();
@@ -111,7 +111,7 @@ namespace LottoSend.com.FrontEndObj
         /// <param name="lottery"></param>
         public void EditRaffleTicketMobile(string lottery)
         {
-            IWebElement tr = _findTrOfRaffleTicketMobile(lottery);
+            IWebElement tr = _findTrOfRaffleTicket_Mobile(lottery);
             tr.FindElement(By.CssSelector("td > p > a.btn.btn-info.btn-block")).Click();
             WaitAjax();
             WaitForPageLoading();
@@ -122,27 +122,27 @@ namespace LottoSend.com.FrontEndObj
         /// Removes ticket from the cart found by name of a lottery
         /// </summary>
         /// <param name="lottery"></param>
-        public void DeleteTicketWeb(string lottery)
+        public void DeleteTicket_Web(string lottery)
         {
-            IWebElement tr = _findTrOfTicketWeb(lottery);
+            IWebElement tr = _findTrOfTicket_Web(lottery);
             tr.FindElement(By.CssSelector("td.text-center > form > div > input.btn.btn-info.btn-block")).Click();
             WaitAjax();
             WaitForPageLoading(); 
             WaitAjax();
         }
 
-        public void DeleteTicketMobile(string lottery)
+        public void DeleteTicket_Mobile(string lottery)
         {
-            IWebElement tr = _findTrOfTicketMobile(lottery);
+            IWebElement tr = _findTrOfTicket_Mobile(lottery);
             tr.FindElement(By.CssSelector("td > form > div > input.btn.btn-info.btn-block")).Click();
             WaitAjax();
             WaitForPageLoading();
             WaitAjax();
         }
 
-        public void DeleteRaffleTicketMobile(string lottery)
+        public void DeleteRaffleTicket_Mobile(string lottery)
         {
-            IWebElement tr = _findTrOfRaffleTicketMobile(lottery);
+            IWebElement tr = _findTrOfRaffleTicket_Mobile(lottery);
             tr.FindElement(By.CssSelector("td > form > div > input.btn.btn-info.btn-block")).Click();
             WaitAjax();
             WaitForPageLoading();
@@ -159,7 +159,7 @@ namespace LottoSend.com.FrontEndObj
         }
 
 
-        private IWebElement _findTrOfTicketWeb(string lottery)
+        private IWebElement _findTrOfTicket_Web(string lottery)
         {
             IList<IWebElement> tr = _cartTable.FindElements(By.TagName("tr"));
 
@@ -177,7 +177,7 @@ namespace LottoSend.com.FrontEndObj
             return null;
         }
 
-        private IWebElement _findTrOfTicketMobile(string lottery)
+        private IWebElement _findTrOfTicket_Mobile(string lottery)
         {
             IList<IWebElement> tr = _cartTable.FindElements(By.TagName("tr"));
 
@@ -195,7 +195,7 @@ namespace LottoSend.com.FrontEndObj
             return null;
         }
 
-        private IWebElement _findTrOfRaffleTicketMobile(string lottery)
+        private IWebElement _findTrOfRaffleTicket_Mobile(string lottery)
         {
             IList<IWebElement> tr = _cartTable.FindElements(By.TagName("tr"));
 
@@ -220,13 +220,16 @@ namespace LottoSend.com.FrontEndObj
         /// <returns>true/false</returns>
         public bool IsTicketInCart(string lottery)
         {
-            IList<IWebElement> namesOfLottery =  _cartTable.FindElements(By.CssSelector("td.text-center > img"));
+            IList<IWebElement> namesOfLottery =  _cartTable.FindElements(By.CssSelector("tr > td.text-center > img"));
             bool ticket = false;
 
             foreach(IWebElement name in namesOfLottery)
             {
                 if (name.GetAttribute("alt").Equals(lottery))
-                    ticket = true; break;
+                {
+                    ticket = true;
+                    break;
+                }
             }
 
             return ticket; 

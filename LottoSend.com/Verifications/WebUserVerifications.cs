@@ -48,7 +48,7 @@ namespace LottoSend.com.Verifications
         public void CheckBackOfficeUser(string email)
         {
             _commonActions.Authorize_in_admin_panel();
-            bool isFound = _commonActions.FindWebUser(email);
+            bool isFound = _commonActions.FindWebUser_BackOffice(email);
             
             Assert.IsTrue(isFound, "Sorry but web user was not found on " + _driverCover.Driver.Url + " page. Please check if it were registered ");
         }

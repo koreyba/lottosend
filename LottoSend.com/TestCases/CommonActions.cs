@@ -1,4 +1,5 @@
 ﻿using LottoSend.com.BackEndObj;
+using LottoSend.com.BackEndObj.GroupGapePages;
 using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.FrontEndObj.GamePages;
@@ -11,7 +12,7 @@ using OpenQA.Selenium;
 namespace LottoSend.com.TestCases
 {
     /// <summary>
-    /// Performs a set of common actions. Actions is not safe so you might need to do previous steps to perform an action
+    /// Performs a set of common actions. Actions are not safe so you might need to do previous steps to perform an action
     /// </summary>
     public class CommonActions
     {
@@ -25,11 +26,69 @@ namespace LottoSend.com.TestCases
         }
 
         /// <summary>
+        /// Adds a raffle ticket to the cart
+        /// </summary>
+        public void AddRaffleTicketToCart()
+        {
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/");
+            RafflesPageObj raffle = new RafflesPageObj(_driver);
+
+            raffle.ClickBuyNowButton();
+        }
+
+        /// <summary>
+        /// Adds a group ticket to the cart
+        /// </summary>
+        /// <param name="adress"></param>
+        public void AddGroupTicketToCart(string adress)
+        {
+            //Add ticket to the cart
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + adress);
+            GroupGamePageObj groupGame = new GroupGamePageObj(_driver);
+            groupGame.ClickAddToCartButton();
+        }
+
+        /// <summary>
+        /// Removes all ticket from the cart
+        /// </summary>
+        public void DeleteAllTicketFromCart()
+        {
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/carts/");
+            CartObj cart = new CartObj(_driver);
+            cart.DeleteAllTickets();
+        }
+
+        /// <summary>
+        /// Adds a regular ticket to the cart
+        /// </summary>
+        /// <param name="address"></param>
+        public void AddRegularTicketToCart(string address)
+        {
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + address);
+            RegularGamePageObj game = new RegularGamePageObj(_driver);
+            game.ClickStandartGameButton();
+
+            game.ClickAddToCartButton();
+        }
+
+        /// <summary>
+        /// Removes a group (of group tickets)
+        /// </summary>
+        /// <param name="name"></param>
+        public void RemoveGroup(string name)
+        {
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/groups");
+            GroupsPageObj groupsPage = new GroupsPageObj(_driver);
+
+            groupsPage.DeleteGroup(name);
+        }
+
+        /// <summary>
         /// Search for web user in back office - WebUsers
         /// </summary>
         /// <param name="email"></param>
         /// <returns></returns>
-        public bool FindWebUser(string email)
+        public bool FindWebUser_BackOffice(string email)
         {
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/web_users");
             WebUsersPageObj webUsers = new WebUsersPageObj(_driver);
