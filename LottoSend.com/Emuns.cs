@@ -17,4 +17,14 @@
         Web,
         Mobile
     }
+
+    /// <summary>
+    /// Ways to choose an element in "select" 
+    /// </summary>
+    public enum SelectBy
+    {
+        Value,
+        Text,
+        Index
+    }
 }

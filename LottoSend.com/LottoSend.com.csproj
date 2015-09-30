@@ -74,6 +74,7 @@
     <Compile Include="BackEndObj\DrawsObj.cs" />
     <Compile Include="BackEndObj\GroupGapePages\GroupsPageObj.cs" />
     <Compile Include="BackEndObj\GroupGapePages\NewGroupCreationObj.cs" />
+    <Compile Include="BackEndObj\GroupGapePages\NewGroupTicketCreationObj.cs" />
     <Compile Include="BackEndObj\LoginObj.cs" />
     <Compile Include="BackEndObj\OrderProcessingObj.cs" />
     <Compile Include="BackEndObj\PaneMenuObj.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="TestCases\Mobile\Regular tickets\BuyRegularMultiDrawTicketTests.cs" />
     <Compile Include="TestCases\Mobile\Regular tickets\BuyRegularOneDrawTicketTests.cs" />
     <Compile Include="TestCases\Web\FailedPaymentTests.cs" />
+    <Compile Include="Verifications\BackOfficeVerifications.cs" />
     <Compile Include="Verifications\BalanceVerifications.cs" />
     <Compile Include="Debugger.cs" />
     <Compile Include="DriverCover.cs" />

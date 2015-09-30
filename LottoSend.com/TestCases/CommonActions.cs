@@ -1,4 +1,5 @@
-﻿using LottoSend.com.BackEndObj;
+﻿using System.Security.Permissions;
+using LottoSend.com.BackEndObj;
 using LottoSend.com.BackEndObj.GroupGapePages;
 using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.Common;
@@ -23,6 +24,24 @@ namespace LottoSend.com.TestCases
         {
             _driver = newDriver;
             _driverCover = new DriverCover(_driver);
+        }
+
+        public void CreateGroup(string name)
+        {
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/groups/new");
+            NewGroupCreationObj newGroup = new NewGroupCreationObj(_driver);
+            newGroup.CreateNewGroup(name);
+        }
+
+        /// <summary>
+        /// Removes a group in backoffice/groups
+        /// </summary>
+        /// <param name="group"></param>
+        public void DeleteGroup(string group)
+        {
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/groups");
+            GroupsPageObj groupsPage = new GroupsPageObj(_driver);
+            groupsPage.DeleteGroup(group);
         }
 
         /// <summary>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using NUnit.Core;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
@@ -7,6 +8,10 @@ namespace LottoSend.com.BackEndObj.GroupGapePages
 {
     public class GroupsPageObj : DriverCover
     {
+        /// <summary>
+        /// Page object of backoffice/groups page
+        /// </summary>
+        /// <param name="driver"></param>
         public GroupsPageObj(IWebDriver driver) : base(driver)
         {
             if (!Driver.Url.Contains("groups"))
@@ -19,6 +24,22 @@ namespace LottoSend.com.BackEndObj.GroupGapePages
 
         [FindsBy(How = How.CssSelector, Using = "table#groups.index_table + table.index_table > tbody")]
         private IWebElement _table;
+
+        /// <summary>
+        /// Checks if a group ticket with lottery name and exact numbers exists
+        /// </summary>
+        /// <param name="group"></param>
+        /// <param name="lottery"></param>
+        /// <param name="numbers"></param>
+        /// <returns></returns>
+        public bool IsTicketExists(string group, string lottery, string numbers)
+        {
+            IWebElement tr = _findTrOfGroup(group);
+            string realLottery = tr.FindElement(By.CssSelector("td:nth-child(2)")).Text;
+            string realNumbers = tr.FindElement(By.CssSelector("td:nth-child(5)")).Text;
+
+            return (realLottery.Contains(lottery) && realNumbers.Contains(numbers));
+        }
 
         /// <summary>
         /// Checks if a group exists
@@ -45,6 +66,21 @@ namespace LottoSend.com.BackEndObj.GroupGapePages
             IWebElement tr = _findTrOfGroup(name);
 
             IWebElement delete = tr.FindElement(By.CssSelector("td:nth-last-child(1) > div > a.view_link.member_link"));
+
+            delete.Click();
+
+            WaitForPageLoading();
+        }
+
+        /// <summary>
+        /// Removes the first ticket in the group
+        /// </summary>
+        /// <param name="groupName"></param>
+        public void DeleteTicket(string groupName)
+        {
+            IWebElement tr = _findTrOfGroup(groupName);
+
+            IWebElement delete = tr.FindElement(By.CssSelector("td:nth-last-child(2) > div > a.view_link.member_link"));
 
             delete.Click();
 

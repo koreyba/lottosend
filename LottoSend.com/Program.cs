@@ -1,4 +1,5 @@
-﻿using LottoSend.com.FrontEndObj;
+﻿using System;
+using LottoSend.com.FrontEndObj;
 using OpenQA.Selenium.Chrome;
 using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.FrontEndObj.GamePages;
@@ -13,6 +14,8 @@ namespace LottoSend.com
     {
         static void Main(string[] args)
         {
+            string[] commons = new[] {"1"};
+            Convert.ToString(commons);
 
             InternetExplorerDriver _driver = new InternetExplorerDriver();
             

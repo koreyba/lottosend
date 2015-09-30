@@ -69,6 +69,32 @@ namespace LottoSend.com
         }
 
         /// <summary>
+        /// Choose an element in IWebElement 'select'. Has 3 ways to select element (value, index, text)
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="select"></param>
+        /// <param name="by"></param>
+        public void ChooseElementInSelect(string value, IWebElement select, SelectBy by)
+        {
+            SelectElement selector = new SelectElement(select);
+
+            if (by == SelectBy.Text)
+            {
+                selector.SelectByText(value);
+            }
+
+            if (by == SelectBy.Index)
+            {
+                selector.SelectByIndex(Convert.ToInt32(value));
+            }
+
+            if (by == SelectBy.Value)
+            {
+                selector.SelectByValue(value);
+            }
+        }
+
+        /// <summary>
         /// Check if a IWebElement exists
         /// </summary>
         /// <param name="element">element</param>
