@@ -106,6 +106,11 @@ namespace LottoSend.com.FrontEndObj.MyAccount
         {
             MerchantsObj merchantsObj = new MerchantsObj(Driver);
 
+            if (merchant == WayToPay.TrustPay)
+            {
+                merchantsObj.PayWithTrustPay(!isFailed);
+            }
+
             if (merchant == WayToPay.Neteller)
             {
                 merchantsObj.PayWithNeteller();

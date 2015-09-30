@@ -17,7 +17,11 @@ namespace LottoSend.com.TestCases.Web
     [TestFixture(typeof(ChromeDriver), WayToPay.Offline)]
     [TestFixture(typeof(FirefoxDriver), WayToPay.Offline)]
     [TestFixture(typeof(InternetExplorerDriver), WayToPay.Offline)]
-    public class DepositTests<TWebDriver> where TWebDriver : IWebDriver, new()
+    [TestFixture(typeof(ChromeDriver), WayToPay.TrustPay)]
+    [TestFixture(typeof(FirefoxDriver), WayToPay.TrustPay)]
+    [TestFixture(typeof(InternetExplorerDriver), WayToPay.TrustPay)]
+
+    public class DepositSuccessTests<TWebDriver> where TWebDriver : IWebDriver, new()
     {
         private IWebDriver _driver;
         private DriverCover _driverCover;
@@ -26,7 +30,7 @@ namespace LottoSend.com.TestCases.Web
         private string _email;
         private WayToPay _merchant;
 
-        public DepositTests(WayToPay merchant)
+        public DepositSuccessTests(WayToPay merchant)
         {
             _merchant = merchant;
 

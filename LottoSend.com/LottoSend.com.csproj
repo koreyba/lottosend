@@ -90,7 +90,7 @@
     <Compile Include="TestCases\Mobile\LogInTests.cs" />
     <Compile Include="TestCases\Mobile\PromotionTests.cs" />
     <Compile Include="TestCases\Mobile\SignUpTests.cs" />
-    <Compile Include="TestCases\Web\DepositTests.cs" />
+    <Compile Include="TestCases\Web\DepositSuccessTests.cs" />
     <Compile Include="TestCases\Mobile\BuyRaffleTicketTests.cs" />
     <Compile Include="TestCases\Mobile\Regular tickets\BuyRegularMultiDrawTicketTests.cs" />
     <Compile Include="TestCases\Mobile\Regular tickets\BuyRegularOneDrawTicketTests.cs" />

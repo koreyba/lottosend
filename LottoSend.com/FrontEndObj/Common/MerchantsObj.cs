@@ -27,6 +27,61 @@ namespace LottoSend.com.FrontEndObj.Common
         [FindsBy(How = How.CssSelector, Using = "input#credit_card + img.merchant")]
         private IWebElement _offline;
 
+        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_18'] + img.merchant")]
+        private IWebElement _trustPay;
+
+        /// <summary>
+        /// Pays with trustpay (can success or fail the payment)
+        /// </summary>
+        /// <param name="isSuccessful"></param>
+        public void PayWithTrustPay(bool isSuccessful)
+        {
+            //TODO
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+            WaitForElement(_trustPay, 15);
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+            _trustPay.Click();
+            WaitForPageLoading();
+            bool w = WaitjQuery();
+
+            Driver.FindElement(By.CssSelector("#ctl00_cphContent_pStep4Header > div > div > div.jquery-selectbox-moreButton")).Click();
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+
+            IWebElement countrySelect = Driver.FindElement(By.CssSelector("span.jquery-selectbox-item.value-SK.item-12"));
+            countrySelect.Click();
+           // ChooseElementInSelect("SK", countrySelect, SelectBy.Value);
+            Thread.Sleep(TimeSpan.FromSeconds(2));
+
+            IWebElement trustPayAuthorization = Driver.FindElement(By.CssSelector("div.step2Banks > a > img[id^='ct']"));
+            trustPayAuthorization.Click();
+            Thread.Sleep(TimeSpan.FromSeconds(2));
+
+            IWebElement payNow = Driver.FindElement(By.CssSelector("#ctl00_cphContent_iPayOnline"));
+            payNow.Click();
+           // bool v = WaitjQuery();
+            WaitForPageLoading();
+
+            if (isSuccessful)
+            {
+                IWebElement ok = Driver.FindElement(By.CssSelector("#btnOK"));
+                ok.Click();
+            }
+            else
+            {
+                IWebElement fail = Driver.FindElement(By.CssSelector("#btnFAIL"));
+                fail.Click();
+            }
+
+            bool a = WaitjQuery();
+            WaitForPageLoading();
+
+            IWebElement returnToMerchant = Driver.FindElement(By.CssSelector("span[id$='ContinueMiddle']"));
+            returnToMerchant.Click();
+
+            WaitForPageLoading();
+
+        }
+
         /// <summary>
         /// Provides payment using Neteller
         /// </summary>

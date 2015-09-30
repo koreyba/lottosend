@@ -6,7 +6,8 @@
     public enum WayToPay
     {
         Offline,
-        Neteller
+        Neteller,
+        TrustPay
     }
 
     /// <summary>
