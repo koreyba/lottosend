@@ -1,11 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace LottoSend.com.BackEndObj
 {
@@ -18,7 +14,7 @@ namespace LottoSend.com.BackEndObj
         {
             if(!Driver.Url.Contains("admin/login"))
             {
-                throw new Exception("Sorry, it must be not admin/login page ");
+                throw new Exception("Sorry, it must be not admin/login page "); 
             }
 
             PageFactory.InitElements(Driver, this);
