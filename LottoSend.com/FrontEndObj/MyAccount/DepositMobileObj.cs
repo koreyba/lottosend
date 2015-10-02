@@ -89,7 +89,6 @@ namespace LottoSend.com.FrontEndObj.MyAccount
         /// <param name="isFailed">To fail payment of not</param>
         public void DepositOtherAmount(double amount, WayToPay merchant, bool ifProcess = true, bool isFailed = false)
         {
-            
             _otherRadioButton.Click();
             _amountInput.SendKeys(amount.ToString());
             _otherRadioButton.Click();

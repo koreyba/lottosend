@@ -25,11 +25,13 @@ namespace LottoSend.com.TestCases.Mobile
         private OrderVerifications _verifications;
         private CommonActions _commonActions;
         private WayToPay _merchant;
+        private string _device;
 
         public BuyRaffleTicketTests(string device, WayToPay merchant)
         {
+            _device = device;
             _merchant = merchant;
-            SetUp(CreateOptions(device));
+            SetUp(CreateOptions(_device));
             Buy_Raffle_Ticket(_merchant);
             CleanUp();
             
@@ -96,15 +98,6 @@ namespace LottoSend.com.TestCases.Mobile
             ChromeOptions options = new ChromeOptions();
             options.AddAdditionalCapability("mobileEmulation", mobileEmulation);
             return options;
-        }
-
-        private void Confirn_Payment()
-        {
-            _commonActions.Authorize_in_admin_panel();
-
-            _commonActions.Authorize_the_first_payment();
-
-            _commonActions.Approve_offline_payment();
         }
 
         [TearDown]

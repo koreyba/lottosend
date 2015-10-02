@@ -9,7 +9,6 @@ namespace LottoSend.com
     /// </summary>
     public class Debugger
     {
-        private IWebDriver _driver;
         private EventFiringWebDriver _firingDriver;
 
         public EventFiringWebDriver Driver
@@ -19,20 +18,18 @@ namespace LottoSend.com
 
         public Debugger(IWebDriver driver)
         {
-            _driver = driver;
-
-            _firingDriver = new EventFiringWebDriver(_driver);
-            _firingDriver.ExceptionThrown += new EventHandler<WebDriverExceptionEventArgs>(ExceptionThrown);
-            _firingDriver.ElementClicked += new EventHandler<WebElementEventArgs>(ElementClicked);
-            _firingDriver.ElementClicking += new EventHandler<WebElementEventArgs>(ElementClicking);
-            _firingDriver.FindElementCompleted += new EventHandler<FindElementEventArgs>(FindElementCompleted);
-            _firingDriver.FindingElement += new EventHandler<FindElementEventArgs>(FindingElement);
-            _firingDriver.Navigated += new EventHandler<WebDriverNavigationEventArgs>(Navigated);
-            _firingDriver.Navigating += new EventHandler<WebDriverNavigationEventArgs>(Navigating);
-            _firingDriver.ScriptExecuted += new EventHandler<WebDriverScriptEventArgs>(ScriptExecuted);
-            _firingDriver.ScriptExecuting += new EventHandler<WebDriverScriptEventArgs>(ScriptExecuting);
-            _firingDriver.ElementValueChanged += new EventHandler<WebElementEventArgs>(ElementValueChanged);
-            _firingDriver.ElementValueChanging += new EventHandler<WebElementEventArgs>(ElementValueChanging);
+            _firingDriver = new EventFiringWebDriver(driver);
+            _firingDriver.ExceptionThrown += ExceptionThrown;
+            _firingDriver.ElementClicked += ElementClicked;
+            _firingDriver.ElementClicking += ElementClicking;
+            _firingDriver.FindElementCompleted += FindElementCompleted;
+            _firingDriver.FindingElement += FindingElement;
+            _firingDriver.Navigated += Navigated;
+            _firingDriver.Navigating += Navigating;
+            _firingDriver.ScriptExecuted += ScriptExecuted;
+            _firingDriver.ScriptExecuting += ScriptExecuting;
+            _firingDriver.ElementValueChanged += ElementValueChanged;
+            _firingDriver.ElementValueChanging += ElementValueChanging;
         }
 
         public static void ElementValueChanging(object sender, WebElementEventArgs e)

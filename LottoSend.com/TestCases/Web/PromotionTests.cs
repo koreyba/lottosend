@@ -11,9 +11,18 @@ namespace LottoSend.com.TestCases.Web
     /// <summary>
     /// Includes tests connected to promotions
     /// </summary>
-    [TestFixture(typeof(ChromeDriver))]
-    [TestFixture(typeof(FirefoxDriver))]
-    [TestFixture(typeof(InternetExplorerDriver))]
+    [TestFixture(typeof(ChromeDriver), WayToPay.Neteller)]
+    [TestFixture(typeof(FirefoxDriver), WayToPay.Neteller)]
+    [TestFixture(typeof(InternetExplorerDriver), (WayToPay.Neteller))]
+    [TestFixture(typeof(ChromeDriver), WayToPay.Offline)]
+    [TestFixture(typeof(FirefoxDriver), WayToPay.Offline)]
+    [TestFixture(typeof(InternetExplorerDriver), WayToPay.Offline)]
+    [TestFixture(typeof(ChromeDriver), WayToPay.TrustPay)]
+    [TestFixture(typeof(FirefoxDriver), WayToPay.TrustPay)]
+    [TestFixture(typeof(InternetExplorerDriver), WayToPay.TrustPay)]
+    [TestFixture(typeof(ChromeDriver), WayToPay.Skrill)]
+    [TestFixture(typeof(FirefoxDriver), WayToPay.Skrill)]
+    [TestFixture(typeof(InternetExplorerDriver), WayToPay.Skrill)]
     public class PromotionTests<TWebDriver> where TWebDriver : IWebDriver, new()
     {
         private IWebDriver _driver;
@@ -21,21 +30,23 @@ namespace LottoSend.com.TestCases.Web
         private CommonActions _commonActions;
         private BalanceVerifications _verifications;
         private double _totalPrice;
+        private WayToPay _merchant;
 
-        /// <summary>
+        public PromotionTests(WayToPay merchant)
+        {
+            _merchant = merchant;
+        }
+
+            /// <summary>
         /// Cheks if a new user gets 1+1 promotion for the second payment if the first one was pendant
         /// </summary>
-        [TestCase(WayToPay.Offline)]
-        [TestCase(WayToPay.Neteller)]
-        [TestCase(WayToPay.Skrill)]
-        [TestCase(WayToPay.TrustPay)]
-        public void One_Plus_One_After_Pending_Deposit(WayToPay merchant)
+        public void One_Plus_One_After_Pending_Deposit()
         {
             //Sign up
             _commonActions.Sign_Up();
             _commonActions.DepositMoney(13, WayToPay.Offline, false);
-            
-            _commonActions.DepositMoney(11, merchant);
+
+            _commonActions.DepositMoney(11, _merchant);
 
             _verifications.CheckBalanceOnDepositPage(22);
         }
@@ -43,17 +54,13 @@ namespace LottoSend.com.TestCases.Web
         /// <summary>
         /// Cheks if a new user gets 1+1 promotion for the second payment if the first one was failed
         /// </summary>
-        [TestCase(WayToPay.Offline)]
-        [TestCase(WayToPay.Neteller)]
-        [TestCase(WayToPay.Skrill)]
-        [TestCase(WayToPay.TrustPay)]
-        public void One_Plus_One_After_Failed_Deposit(WayToPay merchant)
+        public void One_Plus_One_After_Failed_Deposit()
         {
             //Sign up
             _commonActions.Sign_Up();
             _commonActions.DepositMoney(13, WayToPay.Offline, true, true);
 
-            _commonActions.DepositMoney(11, merchant);
+            _commonActions.DepositMoney(11, _merchant);
 
             _verifications.CheckBalanceOnDepositPage(22);
         }
@@ -61,15 +68,11 @@ namespace LottoSend.com.TestCases.Web
         /// <summary>
         /// Cheks if a new user doesn't get 1+1 promotion for the second payment
         /// </summary>
-        [TestCase(WayToPay.Offline)]
-        [TestCase(WayToPay.Neteller)]
-        [TestCase(WayToPay.Skrill)]
-        [TestCase(WayToPay.TrustPay)]
-        public void One_Plus_One_Second_Payment(WayToPay merchant)
+        public void One_Plus_One_Second_Payment()
         {
             _commonActions.Sign_Up();
-            _commonActions.BuyRegularOneDrawTicket(merchant); //will get 1+1 promotion
-            _commonActions.BuyRaffleTicket(merchant); //this ticket must cost more then the previously bought one
+            _commonActions.BuyRegularOneDrawTicket(_merchant); //will get 1+1 promotion
+            _commonActions.BuyRaffleTicket(_merchant); //this ticket must cost more then the previously bought one
             
             _verifications.CheckBalanceOnDepositPage(0);
         }
@@ -77,16 +80,12 @@ namespace LottoSend.com.TestCases.Web
         /// <summary>
         /// Checks if a user doesn't get 1+1 promotion for the second deposit
         /// </summary>
-        [TestCase(WayToPay.Offline)]
-        [TestCase(WayToPay.Neteller)]
-        [TestCase(WayToPay.Skrill)]
-        [TestCase(WayToPay.TrustPay)]
-        public void One_Plus_One_Second_Deposit(WayToPay merchant)
+        public void One_Plus_One_Second_Deposit()
         {
             //Sign up
             _commonActions.Sign_Up();
-            _commonActions.DepositMoney(13, merchant); //is expected to get 1+1 promotion
-            _commonActions.DepositMoney(15, merchant);
+            _commonActions.DepositMoney(13, _merchant); //is expected to get 1+1 promotion
+            _commonActions.DepositMoney(15, _merchant);
 
             _verifications.CheckBalanceOnDepositPage(41); //13*2+15 
         }
@@ -94,15 +93,11 @@ namespace LottoSend.com.TestCases.Web
         /// <summary>
         /// Checks if a new user gets 1+1 promotion after buying a ticket
         /// </summary>
-        [TestCase(WayToPay.Offline)]
-        [TestCase(WayToPay.Neteller)]
-        [TestCase(WayToPay.Skrill)]
-        [TestCase(WayToPay.TrustPay)]
-        public void One_Plus_One_Promotion_Buying(WayToPay merchant)
+        public void One_Plus_One_Promotion_Buying()
         {
             //Sign up
            _commonActions.Sign_Up();
-            _totalPrice = _commonActions.BuyRaffleTicket(merchant);
+           _totalPrice = _commonActions.BuyRaffleTicket(_merchant);
 
             if (_totalPrice <= 30)
             {
@@ -117,18 +112,14 @@ namespace LottoSend.com.TestCases.Web
         /// <summary>
         /// Checks if a new user gets 1+1 promotion depositing money
         /// </summary>
-        [TestCase(WayToPay.Offline)]
-        [TestCase(WayToPay.Neteller)]
-        [TestCase(WayToPay.Skrill)]
-        [TestCase(WayToPay.TrustPay)]
-        public void One_Plus_One_Promotion_Deposit(WayToPay merchant)
+        public void One_Plus_One_Promotion_Deposit()
         {
             //Sign up
             _commonActions.Sign_Up();
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "account/deposits/new/");
             
             DepositObj deposit = new DepositObj(_driver);
-            deposit.DepositOtherAmount(17, merchant);
+            deposit.DepositOtherAmount(17, _merchant);
 
             _verifications.CheckBalanceOnDepositPage(34);
         }

@@ -10,11 +10,10 @@ namespace LottoSend.com.TestCases.Mobile
     /// <summary>
     /// Includes tests connected to promotions on mobile
     /// </summary>
-    [TestFixture("Apple iPhone 4")]
-    [TestFixture("Apple iPhone 6")]
-    [TestFixture("Apple iPhone 5")]
-    [TestFixture("Samsung Galaxy S4")]
-    [TestFixture("Samsung Galaxy Note II")]
+    [TestFixture("Apple iPhone 4", WayToPay.Neteller)]
+    [TestFixture("Apple iPhone 6", WayToPay.Offline)]
+    [TestFixture("Apple iPhone 5", WayToPay.TrustPay)]
+    [TestFixture("Samsung Galaxy S4", WayToPay.Skrill)]
     public class PromotionTests
     {
         private IWebDriver _driver;
@@ -23,23 +22,23 @@ namespace LottoSend.com.TestCases.Mobile
         private BalanceVerifications _verifications;
         private double _totalPrice;
         private string _device;
+        private WayToPay _merchant;
 
-        public PromotionTests(string device)
+        public PromotionTests(string device, WayToPay merchant)
         {
             _device = device;
+            _merchant = merchant;
         }
         /// <summary>
         /// Cheks if a new user gets 1+1 promotion for the second payment if the first one was pendant
         /// </summary>
-        [TestCase(WayToPay.Offline)]
-        [TestCase(WayToPay.Neteller)]
-        public void One_Plus_One_After_Pending_Deposit(WayToPay merchant)
+        public void One_Plus_One_After_Pending_Deposit()
         {
             //Sign up
             _commonActions.Sign_Up_Mobile();
             _commonActions.DepositMoneyMobile(13, WayToPay.Offline, false);
 
-            _commonActions.DepositMoneyMobile(11, merchant);
+            _commonActions.DepositMoneyMobile(11, _merchant);
 
             _verifications.CheckBalanceOnDepositPageMobile(22);
         }
@@ -47,15 +46,13 @@ namespace LottoSend.com.TestCases.Mobile
         /// <summary>
         /// Cheks if a new user gets 1+1 promotion for the second payment if the first one was failed
         /// </summary>
-        [TestCase(WayToPay.Offline)]
-        [TestCase(WayToPay.Neteller)]
-        public void One_Plus_One_After_Failed_Deposit(WayToPay merchant)
+        public void One_Plus_One_After_Failed_Deposit()
         {
             //Sign up
             _commonActions.Sign_Up_Mobile();
             _commonActions.DepositMoneyMobile(13, WayToPay.Offline, true, true);
 
-            _commonActions.DepositMoneyMobile(11, merchant);
+            _commonActions.DepositMoneyMobile(11, _merchant);
 
             _verifications.CheckBalanceOnDepositPageMobile(22);
         }
@@ -63,13 +60,11 @@ namespace LottoSend.com.TestCases.Mobile
         /// <summary>
         /// Cheks if a new user doesn't get 1+1 promotion for the second payment
         /// </summary>
-        [TestCase(WayToPay.Offline)]
-        [TestCase(WayToPay.Neteller)]
-        public void One_Plus_One_Second_Payment(WayToPay merchant)
+        public void One_Plus_One_Second_Payment()
         {
             _commonActions.Sign_Up_Mobile();
-            _commonActions.BuyRegularOneDrawTicket(merchant); //will get 1+1 promotion
-            _commonActions.BuyRaffleTicket(merchant); //this ticket must cost more then the previously bought one
+            _commonActions.BuyRegularOneDrawTicket(_merchant); //will get 1+1 promotion
+            _commonActions.BuyRaffleTicket(_merchant); //this ticket must cost more then the previously bought one
 
             _verifications.CheckBalanceOnDepositPageMobile(0);
         }
@@ -77,14 +72,12 @@ namespace LottoSend.com.TestCases.Mobile
         /// <summary>
         /// Checks if a user doesn't get 1+1 promotion for the second deposit
         /// </summary>
-        [TestCase(WayToPay.Offline)]
-        [TestCase(WayToPay.Neteller)]
-        public void One_Plus_One_Second_Deposit(WayToPay merchant)
+        public void One_Plus_One_Second_Deposit()
         {
             //Sign up
             _commonActions.Sign_Up_Mobile();
-            _commonActions.DepositMoneyMobile(13, merchant); //is expected to get 1+1 promotion
-            _commonActions.DepositMoneyMobile(15, merchant);
+            _commonActions.DepositMoneyMobile(13, _merchant); //is expected to get 1+1 promotion
+            _commonActions.DepositMoneyMobile(15, _merchant);
 
             _verifications.CheckBalanceOnDepositPageMobile(41); //13*2+15 
         }
@@ -92,13 +85,11 @@ namespace LottoSend.com.TestCases.Mobile
         /// <summary>
         /// Checks if a new user gets 1+1 promotion after buying a ticket
         /// </summary>
-        [TestCase(WayToPay.Offline)]
-        [TestCase(WayToPay.Neteller)]
-        public void One_Plus_One_Promotion_Buying(WayToPay merchant)
+        public void One_Plus_One_Promotion_Buying()
         {
             //Sign up
             _commonActions.Sign_Up_Mobile();
-            _totalPrice = _commonActions.BuyRaffleTicket(merchant);
+            _totalPrice = _commonActions.BuyRaffleTicket(_merchant);
 
             if (_totalPrice <= 30)
             {
@@ -113,16 +104,14 @@ namespace LottoSend.com.TestCases.Mobile
         /// <summary>
         /// Checks if a new user gets 1+1 promotion depositing money
         /// </summary>
-        [TestCase(WayToPay.Offline)]
-        [TestCase(WayToPay.Neteller)]
-        public void One_Plus_One_Promotion_Deposit(WayToPay merchant)
+        public void One_Plus_One_Promotion_Deposit()
         {
             //Sign up
             _commonActions.Sign_Up_Mobile();
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "account/deposits/new/");
 
             DepositMobileObj deposit = new DepositMobileObj(_driver);
-            deposit.DepositOtherAmount(17, merchant);
+            deposit.DepositOtherAmount(17, _merchant);
 
             _verifications.CheckBalanceOnDepositPageMobile(34);
         }

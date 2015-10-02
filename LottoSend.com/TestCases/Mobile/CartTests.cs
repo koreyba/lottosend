@@ -39,7 +39,7 @@ namespace LottoSend.com.TestCases.Mobile
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
             _commonActions.AddGroupTicketToCart("plays/powerball/");
 
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "carts");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/carts");
             CartObj cart = new CartObj(_driver);
             cart.EditTicket_Web("Powerball");
 

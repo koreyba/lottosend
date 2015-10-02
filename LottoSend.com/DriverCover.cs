@@ -10,6 +10,7 @@ using System.Configuration;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Support.Events;
 using System.Collections.Generic;
+using OpenQA.Selenium.Chrome;
 
 namespace LottoSend.com
 {

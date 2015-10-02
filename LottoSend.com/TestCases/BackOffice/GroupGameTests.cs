@@ -18,6 +18,9 @@ namespace LottoSend.com.TestCases.BackOffice
         private CommonActions _commonActions;
         private BackOfficeVerifications _backOfficeVerifications;
 
+        /// <summary>
+        /// Creates a new group ticket in a new group. Then removes the group with the ticket
+        /// </summary>
         [Test]
         public void CreateNewGroupTicket()
         {

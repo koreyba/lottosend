@@ -11,11 +11,10 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
     /// <summary>
     /// Buys a group multi-draw ticket and performs all needed assertations 
     /// </summary>
-    [TestFixture("Apple iPhone 4")]
-    [TestFixture("Apple iPhone 6")]
-    [TestFixture("Apple iPhone 5")]
-    [TestFixture("Samsung Galaxy S4")]
-    [TestFixture("Samsung Galaxy Note II")]
+    [TestFixture("Apple iPhone 4", WayToPay.Neteller)]
+    [TestFixture("Apple iPhone 6", WayToPay.Offline)]
+    [TestFixture("Apple iPhone 5", WayToPay.TrustPay)]
+    [TestFixture("Samsung Galaxy S4", WayToPay.Skrill)]
     public class BuyGroupMultiDrawTicketTests
     {
         private IWebDriver _driver;
@@ -24,16 +23,20 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         private int _numberOfDraws;
         private OrderVerifications _verifications;
         private CommonActions _commonActions;
+        private WayToPay _merchant;
+        private string _device;
 
-        public BuyGroupMultiDrawTicketTests(string device)
+        public BuyGroupMultiDrawTicketTests(string device, WayToPay merchant)
         {
-            SetUp(CreateOptions(device));
-            Buy_Group_Multi_Draw_Ticket();
+            _device = device;
+            _merchant = merchant;
+            SetUp(CreateOptions(_device));
+            Buy_Group_Multi_Draw_Ticket(_merchant);
             CleanUp();
 
-            SetUp();
-            Confirn_Payment();
-            CleanUp();
+            //SetUp();
+            //Confirn_Payment();
+            //CleanUp();
         }
 
         /// <summary>
@@ -110,7 +113,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         /// Performs once before all other tests. Buys a group single ticket 
         /// </summary>
        // [TestFixtureSetUp]
-        public void Buy_Group_Multi_Draw_Ticket()
+        public void Buy_Group_Multi_Draw_Ticket(WayToPay merchant)
         {
             // Log in     
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
@@ -124,7 +127,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
             _numberOfDraws = groupGame.NumberOfDraws;
 
             MerchantsObj merchants = groupGame.ClickBuyTicketsButton();
-            merchants.PayWithOfflineCharge();
+            merchants.Pay(merchant);
         }
 
         private ChromeOptions CreateOptions(string device)
@@ -137,15 +140,6 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
             ChromeOptions options = new ChromeOptions();
             options.AddAdditionalCapability("mobileEmulation", mobileEmulation);
             return options;
-        }
-
-        private void Confirn_Payment()
-        {
-            _commonActions.Authorize_in_admin_panel();
-
-            _commonActions.Authorize_the_first_payment();
-
-            _commonActions.Approve_offline_payment();
         }
 
         [TearDown]
