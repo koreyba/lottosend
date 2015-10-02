@@ -20,7 +20,7 @@ namespace LottoSend.com
             InternetExplorerDriver _driver = new InternetExplorerDriver();
             
             DriverCover driver = new DriverCover(_driver);
-            driver.NavigateToUrl(driver.BaseUrl + "web_users/sign_in");
+            driver.NavigateToUrl(driver.BaseUrl + "en/web_users/sign_in");
             SignInPageOneObj signInOne = new SignInPageOneObj(_driver);
 
             signInOne.FillInFields(driver.Login, driver.Password);
