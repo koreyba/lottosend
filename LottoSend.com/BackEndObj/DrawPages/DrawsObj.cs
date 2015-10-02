@@ -1,10 +1,9 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
 
-
-namespace LottoSend.com.BackEndObj
+namespace LottoSend.com.BackEndObj.DrawPages
 {
     public class DrawsObj : DriverCover
     {
