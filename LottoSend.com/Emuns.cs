@@ -7,7 +7,8 @@
     {
         Offline,
         Neteller,
-        TrustPay
+        TrustPay,
+        Skrill
     }
 
     /// <summary>

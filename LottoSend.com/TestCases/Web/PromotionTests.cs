@@ -27,6 +27,8 @@ namespace LottoSend.com.TestCases.Web
         /// </summary>
         [TestCase(WayToPay.Offline)]
         [TestCase(WayToPay.Neteller)]
+        [TestCase(WayToPay.Skrill)]
+        [TestCase(WayToPay.TrustPay)]
         public void One_Plus_One_After_Pending_Deposit(WayToPay merchant)
         {
             //Sign up
@@ -43,6 +45,8 @@ namespace LottoSend.com.TestCases.Web
         /// </summary>
         [TestCase(WayToPay.Offline)]
         [TestCase(WayToPay.Neteller)]
+        [TestCase(WayToPay.Skrill)]
+        [TestCase(WayToPay.TrustPay)]
         public void One_Plus_One_After_Failed_Deposit(WayToPay merchant)
         {
             //Sign up
@@ -59,6 +63,8 @@ namespace LottoSend.com.TestCases.Web
         /// </summary>
         [TestCase(WayToPay.Offline)]
         [TestCase(WayToPay.Neteller)]
+        [TestCase(WayToPay.Skrill)]
+        [TestCase(WayToPay.TrustPay)]
         public void One_Plus_One_Second_Payment(WayToPay merchant)
         {
             _commonActions.Sign_Up();
@@ -73,6 +79,8 @@ namespace LottoSend.com.TestCases.Web
         /// </summary>
         [TestCase(WayToPay.Offline)]
         [TestCase(WayToPay.Neteller)]
+        [TestCase(WayToPay.Skrill)]
+        [TestCase(WayToPay.TrustPay)]
         public void One_Plus_One_Second_Deposit(WayToPay merchant)
         {
             //Sign up
@@ -88,6 +96,8 @@ namespace LottoSend.com.TestCases.Web
         /// </summary>
         [TestCase(WayToPay.Offline)]
         [TestCase(WayToPay.Neteller)]
+        [TestCase(WayToPay.Skrill)]
+        [TestCase(WayToPay.TrustPay)]
         public void One_Plus_One_Promotion_Buying(WayToPay merchant)
         {
             //Sign up
@@ -109,6 +119,8 @@ namespace LottoSend.com.TestCases.Web
         /// </summary>
         [TestCase(WayToPay.Offline)]
         [TestCase(WayToPay.Neteller)]
+        [TestCase(WayToPay.Skrill)]
+        [TestCase(WayToPay.TrustPay)]
         public void One_Plus_One_Promotion_Deposit(WayToPay merchant)
         {
             //Sign up

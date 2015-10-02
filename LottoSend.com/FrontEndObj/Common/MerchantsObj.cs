@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using LottoSend.com.FrontEndObj.GamePages;
+using LottoSend.com.TestCases;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
@@ -29,6 +30,55 @@ namespace LottoSend.com.FrontEndObj.Common
 
         [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_18'] + img.merchant")]
         private IWebElement _trustPay;
+
+        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_17'] + img.merchant")]
+        private IWebElement _skrill;
+
+        /// <summary>
+        /// Pays with Skrill
+        /// </summary>
+        public void PayWithSkrill()
+        {
+            //TODO
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+            WaitForElement(_skrill, 15);
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+            _skrill.Click();
+            WaitForPageLoading();
+            bool w = WaitjQuery();
+
+            IWebElement alreadyHaveAccount = Driver.FindElement(By.CssSelector("#already_has_account"));
+            alreadyHaveAccount.Click();
+            bool q = WaitjQuery();
+
+            IWebElement email = Driver.FindElement(By.CssSelector("#email"));
+            email.Clear();
+            email.SendKeys("ron@numgames.com");
+
+            IWebElement password = Driver.FindElement(By.CssSelector("#password"));
+            password.Clear();
+            password.SendKeys("qwerty1234");
+
+            IWebElement login = Driver.FindElement(By.CssSelector("div.button_inner"));
+            login.Click();
+            bool e = WaitjQuery();
+
+            WaitForPageLoading();
+
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+
+            IWebElement play = Driver.FindElement(By.CssSelector("#payConfirm"));
+            play.Click();
+            bool t = WaitjQuery();
+
+            WaitForPageLoading();
+
+            IWebElement backToMerchant = Driver.FindElement(By.CssSelector("div.button_inner"));
+            backToMerchant.Click();
+            bool c = WaitjQuery();
+
+            WaitForPageLoading();
+        }
 
         /// <summary>
         /// Pays with trustpay (can success or fail the payment)
@@ -153,6 +203,51 @@ namespace LottoSend.com.FrontEndObj.Common
            
         }
 
-        
+        /// <summary>
+        /// Pays for whatever using selected merchant (also able to fail payment)
+        /// </summary>
+        /// <param name="merchant">How to pay</param>
+        /// <param name="ifProcess">To process payment (if it was offline)</param>
+        /// <param name="isFailed">To fail or not</param>
+        public void Pay(WayToPay merchant, bool ifProcess = true, bool isFailed = false)
+        {
+            MerchantsObj merchantsObj = new MerchantsObj(Driver);
+
+            if (merchant == WayToPay.Skrill)
+            {
+                merchantsObj.PayWithSkrill();
+            }
+
+            if (merchant == WayToPay.TrustPay)
+            {
+                merchantsObj.PayWithTrustPay(!isFailed);
+            }
+
+            if (merchant == WayToPay.Neteller)
+            {
+                merchantsObj.PayWithNeteller();
+            }
+
+            if (merchant == WayToPay.Offline)
+            {
+                merchantsObj.PayWithOfflineCharge();
+
+                if (ifProcess)
+                {
+                    CommonActions commonActions = new CommonActions(Driver);
+
+                    commonActions.Authorize_in_admin_panel();
+                    commonActions.Authorize_the_first_payment();
+                    if (!isFailed)
+                    {
+                        commonActions.Approve_offline_payment();
+                    }
+                    else
+                    {
+                        commonActions.Fail_offline_payment();
+                    }
+                }
+            }
+        }
     }
 }

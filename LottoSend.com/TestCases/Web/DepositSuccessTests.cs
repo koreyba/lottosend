@@ -20,6 +20,9 @@ namespace LottoSend.com.TestCases.Web
     [TestFixture(typeof(ChromeDriver), WayToPay.TrustPay)]
     [TestFixture(typeof(FirefoxDriver), WayToPay.TrustPay)]
     [TestFixture(typeof(InternetExplorerDriver), WayToPay.TrustPay)]
+    [TestFixture(typeof(ChromeDriver), WayToPay.Skrill)]
+    [TestFixture(typeof(FirefoxDriver), WayToPay.Skrill)]
+    [TestFixture(typeof(InternetExplorerDriver), WayToPay.Skrill)]
 
     public class DepositSuccessTests<TWebDriver> where TWebDriver : IWebDriver, new()
     {
@@ -29,10 +32,13 @@ namespace LottoSend.com.TestCases.Web
         private CommonActions _commonActions;
         private string _email;
         private WayToPay _merchant;
+        private double _balanceBeforePayment;
+        private double depositAmount;
 
         public DepositSuccessTests(WayToPay merchant)
         {
             _merchant = merchant;
+            depositAmount = 30;
 
             SetUp();
             Deposit_Money(merchant);
@@ -49,7 +55,17 @@ namespace LottoSend.com.TestCases.Web
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/deposits/new/");
 
             DepositObj deposit = new DepositObj(_driver);
-            deposit.DepositStandardAmount(30, merchant);
+            _balanceBeforePayment = deposit.Balance;
+            deposit.DepositStandardAmount(depositAmount, merchant);
+        }
+
+        /// <summary>
+        /// Checks user's current balance
+        /// </summary>
+        [Test]
+        public void Check_User_Balance()
+        {
+            _verifications.CheckUserBalance_Front(_balanceBeforePayment, depositAmount, "selenium2@gmail.com", _driverCover.Password);
         }
 
         /// <summary>Te

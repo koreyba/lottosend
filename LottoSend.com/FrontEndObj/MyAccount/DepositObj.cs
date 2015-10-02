@@ -50,7 +50,7 @@ namespace LottoSend.com.FrontEndObj.MyAccount
         /// <param name="merchant">How to pay</param>
         /// <param name="ifProcess">To process payment or not (for offline payment)</param>
         /// <param name="isFailed">To faild payment or not</param>
-        public void DepositStandardAmount(int amount, WayToPay merchant, bool ifProcess = true, bool isFailed = false)
+        public void DepositStandardAmount(double amount, WayToPay merchant, bool ifProcess = true, bool isFailed = false)
         {
             SelectStandardAmount(amount);
 
@@ -61,7 +61,7 @@ namespace LottoSend.com.FrontEndObj.MyAccount
         /// Selects standard amount of deposit
         /// </summary>
         /// <param name="amount"></param>
-        private void SelectStandardAmount(int amount)
+        private void SelectStandardAmount(double amount)
         {
             bool isFound = false;
 
@@ -105,37 +105,7 @@ namespace LottoSend.com.FrontEndObj.MyAccount
         private void PayForDeposit(WayToPay merchant, bool ifProcess = true, bool isFailed = false)
         {
             MerchantsObj merchantsObj = new MerchantsObj(Driver);
-
-            if (merchant == WayToPay.TrustPay)
-            {
-                merchantsObj.PayWithTrustPay(!isFailed);
-            }
-
-            if (merchant == WayToPay.Neteller)
-            {
-                merchantsObj.PayWithNeteller();
-            }
-
-            if (merchant == WayToPay.Offline)
-            {
-                merchantsObj.PayWithOfflineCharge();
-
-                if (ifProcess)
-                {
-                    CommonActions commonActions = new CommonActions(Driver);
-
-                    commonActions.Authorize_in_admin_panel();
-                    commonActions.Authorize_the_first_payment();
-                    if (!isFailed)
-                    {
-                        commonActions.Approve_offline_payment();
-                    }
-                    else
-                    {
-                        commonActions.Fail_offline_payment();
-                    }
-                }
-            }
+            merchantsObj.Pay(merchant, ifProcess, isFailed); 
         }
     }
 }

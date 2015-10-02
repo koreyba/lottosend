@@ -10,9 +10,22 @@ using OpenQA.Selenium.IE;
 
 namespace LottoSend.com.TestCases.Web
 {
-    [TestFixture(typeof(ChromeDriver))]
-    [TestFixture(typeof(FirefoxDriver))]
-    [TestFixture(typeof(InternetExplorerDriver))]
+    /// <summary>
+    /// Buys a raffle ticket on web
+    /// </summary>
+    /// <typeparam name="TWebDriver"></typeparam>
+    [TestFixture(typeof(ChromeDriver), WayToPay.Neteller)]
+    [TestFixture(typeof(FirefoxDriver), WayToPay.Neteller)]
+    [TestFixture(typeof(InternetExplorerDriver), (WayToPay.Neteller))]
+    [TestFixture(typeof(ChromeDriver), WayToPay.Offline)]
+    [TestFixture(typeof(FirefoxDriver), WayToPay.Offline)]
+    [TestFixture(typeof(InternetExplorerDriver), WayToPay.Offline)]
+    [TestFixture(typeof(ChromeDriver), WayToPay.TrustPay)]
+    [TestFixture(typeof(FirefoxDriver), WayToPay.TrustPay)]
+    [TestFixture(typeof(InternetExplorerDriver), WayToPay.TrustPay)]
+    [TestFixture(typeof(ChromeDriver), WayToPay.Skrill)]
+    [TestFixture(typeof(FirefoxDriver), WayToPay.Skrill)]
+    [TestFixture(typeof(InternetExplorerDriver), WayToPay.Skrill)]
     public class BuyRaffleTicketTests<TWebDriver> where TWebDriver : IWebDriver, new()
     {
         private IWebDriver _driver;
@@ -20,11 +33,15 @@ namespace LottoSend.com.TestCases.Web
         private double _totalPrice;
         private OrderVerifications _verifications;
         private CommonActions _commonActions;
+        private WayToPay _merchant;
+        
 
-        public BuyRaffleTicketTests()
+        public BuyRaffleTicketTests(WayToPay merchant)
         {
+            _merchant = merchant;
+
             SetUp();
-            Buy_Raffle_Ticket();
+            Buy_Raffle_Ticket(_merchant);
             CleanUp();
         }
 
@@ -61,7 +78,7 @@ namespace LottoSend.com.TestCases.Web
         [Test]
         public void Check_Transaction_Merchant_In_Transactions()
         {
-            _verifications.CheckTransactionMerchantInTransactions(WayToPay.Offline);
+            _verifications.CheckTransactionMerchantInTransactions(_merchant);
         }
 
         /// <summary>
@@ -76,7 +93,7 @@ namespace LottoSend.com.TestCases.Web
         /// <summary>
         /// Performs once before all other tests. Buys a raffle ticket
         /// </summary>
-        public void Buy_Raffle_Ticket()
+        public void Buy_Raffle_Ticket(WayToPay merchant)
         {
             // Log in     
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
@@ -89,13 +106,7 @@ namespace LottoSend.com.TestCases.Web
             CartObj cart = rafflePage.ClickBuyNowButton();
             MerchantsObj merchants = cart.ClickProceedToCheckoutButton();
 
-            merchants.PayWithOfflineCharge();
-            
-            _commonActions.Authorize_in_admin_panel();
-
-            _commonActions.Authorize_the_first_payment();
-
-            _commonActions.Approve_offline_payment();
+            merchants.Pay(merchant);
         }
 
         [TearDown]
@@ -111,32 +122,10 @@ namespace LottoSend.com.TestCases.Web
         [SetUp]
         public void SetUp()
         {
-             //= new FirefoxDriver();
-
-           // DesiredCapabilities capabilities = new DesiredCapabilities();
-            //capabilities = DesiredCapabilities.Firefox();
-            //capabilities.SetCapability(CapabilityType.BrowserName, "firefox");
-            //capabilities.SetCapability(CapabilityType.Platform, new Platform(PlatformType.Windows));
-
-            //_driver = new RemoteWebDriver(new Uri("http://localhost:4444/wd/hub"), capability); 
-
-
-            //var mobileEmulation = new Dictionary<string, string>
-            //    {
-            //        {"deviceName", "Apple iPhone 6"}
-            //    };
-
-            //var options = new ChromeOptions();
-            //options.AddAdditionalCapability("mobileEmulation", mobileEmulation);
-
-
-            
             _driver = new TWebDriver();
             _driverCover = new DriverCover(_driver);
             _verifications = new OrderVerifications(_driver);
             _commonActions = new CommonActions(_driver);
-
-           
         }
     }
 }

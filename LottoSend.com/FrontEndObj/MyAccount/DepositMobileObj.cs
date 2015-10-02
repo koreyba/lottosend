@@ -106,32 +106,7 @@ namespace LottoSend.com.FrontEndObj.MyAccount
         private void PayForDeposit(WayToPay merchant, bool ifProcess = true, bool isFailed = false)
         {
             MerchantsObj merchantsObj = new MerchantsObj(Driver);
-
-            if (merchant == WayToPay.Neteller)
-            {
-                merchantsObj.PayWithNeteller();
-            }
-
-            if (merchant == WayToPay.Offline)
-            {
-                merchantsObj.PayWithOfflineCharge();
-
-                if (ifProcess)
-                {
-                    CommonActions commonActions = new CommonActions(Driver);
-
-                    commonActions.Authorize_in_admin_panel();
-                    commonActions.Authorize_the_first_payment();
-                    if (!isFailed)
-                    {
-                        commonActions.Approve_offline_payment();
-                    }
-                    else
-                    {
-                        commonActions.Fail_offline_payment();
-                    }
-                }
-            }
+            merchantsObj.Pay(merchant, ifProcess, isFailed); 
         }
     }
 }

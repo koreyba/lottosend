@@ -12,9 +12,18 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
     /// <summary>
     /// Buys a regular one-draw ticket and performs all needed assertations 
     /// </summary>
-    [TestFixture(typeof(ChromeDriver))]
-    [TestFixture(typeof(FirefoxDriver))]
-    [TestFixture(typeof(InternetExplorerDriver))]
+    [TestFixture(typeof(ChromeDriver), WayToPay.Neteller)]
+    [TestFixture(typeof(FirefoxDriver), WayToPay.Neteller)]
+    [TestFixture(typeof(InternetExplorerDriver), (WayToPay.Neteller))]
+    [TestFixture(typeof(ChromeDriver), WayToPay.Offline)]
+    [TestFixture(typeof(FirefoxDriver), WayToPay.Offline)]
+    [TestFixture(typeof(InternetExplorerDriver), WayToPay.Offline)]
+    [TestFixture(typeof(ChromeDriver), WayToPay.TrustPay)]
+    [TestFixture(typeof(FirefoxDriver), WayToPay.TrustPay)]
+    [TestFixture(typeof(InternetExplorerDriver), WayToPay.TrustPay)]
+    [TestFixture(typeof(ChromeDriver), WayToPay.Skrill)]
+    [TestFixture(typeof(FirefoxDriver), WayToPay.Skrill)]
+    [TestFixture(typeof(InternetExplorerDriver), WayToPay.Skrill)]
     public class BuyRegularOneDrawTicketTests<TWebDriver> where TWebDriver : IWebDriver, new()
     {
         private IWebDriver _driver;
@@ -22,11 +31,14 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         private double _totalPrice;
         private OrderVerifications _verifications;
         private CommonActions _commonActions;
+        private WayToPay _merchant;
 
-        public BuyRegularOneDrawTicketTests()
+        public BuyRegularOneDrawTicketTests(WayToPay merchant)
         {
+            _merchant = merchant;
+
             SetUp();
-            Buy_Regular_One_Draw_Ticket();
+            Buy_Regular_One_Draw_Ticket(merchant);
             CleanUp();
         }
 
@@ -143,7 +155,7 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         /// <summary>
         /// Performs once before all other tests. Buys a regular single ticket 
         /// </summary>
-        public void Buy_Regular_One_Draw_Ticket()
+        public void Buy_Regular_One_Draw_Ticket(WayToPay merchant)
         {
             // Log in     
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
@@ -162,16 +174,7 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
             _totalPrice = regularGame.TotalPrice;
 
             MerchantsObj merchants = regularGame.ClickBuyTicketsButton();
-            merchants.PayWithOfflineCharge();
-
-            //Go to admin panel
-            _commonActions.Authorize_in_admin_panel();
-
-            //authorize payment in charge panel
-            _commonActions.Authorize_the_first_payment();
-
-            //approve payment
-            _commonActions.Approve_offline_payment();
+            merchants.Pay(merchant);
         }
 
 

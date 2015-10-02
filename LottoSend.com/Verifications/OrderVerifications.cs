@@ -27,6 +27,22 @@ namespace LottoSend.com.Verifications
         }
 
         /// <summary>
+        /// Check balance of the user based on his previous balance and amount of new transaction
+        /// </summary>
+        /// <param name="formerBalance">Balance before transaction</param>
+        /// <param name="transactionAmount">Amount of money that was deposited</param>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        public void CheckUserBalance_Front(double formerBalance, double transactionAmount, string email, string password)
+        {
+            _commonActions.Log_In_Front(email, password);
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/deposits/new/");
+            DepositObj depoist = new DepositObj(_driver);
+
+            Assert.AreEqual(depoist.Balance, formerBalance + transactionAmount, "Sorry but balance of user is wrong. ");
+        }
+
+        /// <summary>
         /// Checks is amount in the first transaction equals expected (front - transactions)
         /// </summary>
         /// <param name="expectedAmount"></param>
