@@ -32,7 +32,7 @@ namespace LottoSend.com.Verifications
         public void CheckNumberOfTicketsInCart(int expected)
         {
             //Go to the cart 
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/carts/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "carts/");
 
             //Check number of elemetns in the cart
             CartObj cart = new CartObj(_driver);
@@ -46,7 +46,7 @@ namespace LottoSend.com.Verifications
         public void CheckIfTicketIsNotInCart(string lotteryName)
         {
             //Go to the cart 
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/carts/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "carts/");
 
             CartObj cart = new CartObj(_driver);
             Assert.IsTrue(!cart.IsTicketInCart(lotteryName), "The ticket " + lotteryName + " was not removed from the cart ");
@@ -58,7 +58,7 @@ namespace LottoSend.com.Verifications
         public void CheckIfTicketIsInCart(string lotteryName)
         {
             //Go to the cart 
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/carts/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "carts/");
             CartObj cart = new CartObj(_driver);
             Assert.IsTrue(cart.IsTicketInCart(lotteryName), "The ticket " + lotteryName + " is not in the cart ");
         }
