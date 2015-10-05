@@ -6,7 +6,7 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
     /// <summary>
     /// Page Object for "CC Details" tab in the sales panel
     /// </summary>
-    public class CcDetails : DriverCover
+    public class CcDetails : Tabs
     {
         public CcDetails(IWebDriver driver) : base(driver)
         {

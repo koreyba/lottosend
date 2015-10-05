@@ -14,17 +14,11 @@ namespace LottoSend.com
     {
         static void Main(string[] args)
         {
-            string[] commons = new[] {"1"};
-            Convert.ToString(commons);
-
-            InternetExplorerDriver _driver = new InternetExplorerDriver();
+            ChromeDriver _driver = new ChromeDriver();
             
             DriverCover driver = new DriverCover(_driver);
-            driver.NavigateToUrl(driver.BaseUrl + "en/web_users/sign_in");
-            SignInPageOneObj signInOne = new SignInPageOneObj(_driver);
-
-            signInOne.FillInFields(driver.Login, driver.Password);
-            signInOne.ClickLogInButton();
+            //driver.NavigateToUrl(driver.BaseUrl + "en/web_users/sign_in");
+            IWebElement el = _driver.FindElement(By.CssSelector("#cart > div.order_item"));
 
 
             driver.NavigateToUrl("https://stg.lottobaba.com/en/plays/eurojackpot/");

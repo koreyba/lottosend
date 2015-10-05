@@ -53,7 +53,7 @@ namespace LottoSend.com.FrontEndObj
             Email.SendKeys(email);
             Password.SendKeys(password);
         }
-
+         
         public TopBarObj ClickLogInButton()
         {
             _loginButton.Click();

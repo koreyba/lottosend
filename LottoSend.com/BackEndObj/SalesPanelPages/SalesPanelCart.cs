@@ -1,9 +1,11 @@
-﻿using OpenQA.Selenium;
+﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
 namespace LottoSend.com.BackEndObj.SalesPanelPages
 {
-    public class SalesPanelCart : DriverCover
+    public class SalesPanelCart : Tabs
     {
         public SalesPanelCart(IWebDriver driver) : base(driver)
         {
@@ -23,6 +25,23 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
 
         [FindsBy(How = How.CssSelector, Using = "#cart > span.internal-balance")]
         private IWebElement _internalBalace;
+
+        [FindsBy(How = How.CssSelector, Using = "input#code")]
+        private IWebElement _couponCode;
+
+        [FindsBy(How = How.CssSelector, Using = "input#code + input")]
+        private IWebElement _apply;
+
+        [FindsBy(How = How.CssSelector, Using = "#cart > div.order_item")]
+        private IList<IWebElement> _ticktes;
+
+        /// <summary>
+        /// Returns number of tickets in the cart
+        /// </summary>
+        public int NumberOfTickets
+        {
+            get { return _ticktes.Count; }
+        }
 
         /// <summary>
         /// Returns InternalBalance in the cart
@@ -55,6 +74,17 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
         public void Charge()
         {
             _charge.Click();
+            WaitForPageLoading();
+        }
+
+        /// <summary>
+        /// Enters and applies a coupon
+        /// </summary>
+        /// <param name="code"></param>
+        public void ApplyCoupon(string code)
+        {
+            _couponCode.SendKeys(code);
+            _apply.Click();
             WaitForPageLoading();
         }
     }

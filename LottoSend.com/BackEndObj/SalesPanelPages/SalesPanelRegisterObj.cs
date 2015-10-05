@@ -7,7 +7,7 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
     /// <summary>
     /// Page object of the sales panel
     /// </summary>
-    public class SalesPanelRegisterObj : DriverCover
+    public class SalesPanelRegisterObj : Tabs
     {
         public SalesPanelRegisterObj(IWebDriver driver) : base(driver)
         {
