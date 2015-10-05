@@ -1,5 +1,7 @@
 ﻿using System.Security.Permissions;
 using LottoSend.com.BackEndObj;
+using LottoSend.com.BackEndObj.ChargePanelPages;
+using LottoSend.com.BackEndObj.DrawPages;
 using LottoSend.com.BackEndObj.GroupGapePages;
 using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.Common;
@@ -140,7 +142,7 @@ namespace LottoSend.com.TestCases
             {
                 merchants.PayWithOfflineCharge();
 
-                Authorize_in_admin_panel();
+                SignIn_in_admin_panel();
 
                 Authorize_the_first_payment();
 
@@ -180,7 +182,7 @@ namespace LottoSend.com.TestCases
             {
                 merchants.PayWithOfflineCharge();
 
-                Authorize_in_admin_panel();
+                SignIn_in_admin_panel();
 
                 Authorize_the_first_payment();
 
@@ -264,7 +266,7 @@ namespace LottoSend.com.TestCases
         /// <summary>
         /// Goes to admin panel and authorize
         /// </summary>
-        public void Authorize_in_admin_panel()
+        public void SignIn_in_admin_panel()
         {
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl);
             if (_driverCover.Driver.FindElements(By.ClassName("current_user")).Count == 0)

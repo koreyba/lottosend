@@ -2,7 +2,7 @@
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 
-namespace LottoSend.com.BackEndObj
+namespace LottoSend.com.BackEndObj.ChargePanelPages
 {
     /// <summary>
     /// Form that opens when "Charge" buttons is clicked in charge panel 

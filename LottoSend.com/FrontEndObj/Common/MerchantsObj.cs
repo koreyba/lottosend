@@ -236,7 +236,7 @@ namespace LottoSend.com.FrontEndObj.Common
                 {
                     CommonActions commonActions = new CommonActions(Driver);
 
-                    commonActions.Authorize_in_admin_panel();
+                    commonActions.SignIn_in_admin_panel();
                     commonActions.Authorize_the_first_payment();
                     if (!isFailed)
                     {
