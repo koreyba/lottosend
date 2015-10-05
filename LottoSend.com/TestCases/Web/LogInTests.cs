@@ -26,8 +26,8 @@ namespace LottoSend.com.TestCases.Web
         [Test]
         public void Login_Express_Checkout_Game_Page()
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "");
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "plays/eurojackpot/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/plays/eurojackpot/");
 
             //Pay for tickets
             RegularGamePageObj regularGame = new RegularGamePageObj(_driver);
@@ -48,8 +48,8 @@ namespace LottoSend.com.TestCases.Web
         [Test]
         public void Login_Express_Checkout_In_Cart()
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "plays/eurojackpot/");
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "raffles/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/plays/eurojackpot/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/");
 
             RafflesPageObj rafflePage = new RafflesPageObj(_driver);
 
@@ -68,8 +68,8 @@ namespace LottoSend.com.TestCases.Web
         [Test]
         public void Login_On_SignIn_Page_One()
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "");
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "web_users/sign_in");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/web_users/sign_in");
             SignInPageOneObj signInOne = new SignInPageOneObj(_driver);
 
             signInOne.FillInFields(_driverCover.Login, _driverCover.Password);
@@ -84,8 +84,8 @@ namespace LottoSend.com.TestCases.Web
         [Test]
         public void Login_In_PopUp_Form()
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "");
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "lotteries/results/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/lotteries/results/");
             TopBarObj topBar = new TopBarObj(_driver);
             LogInPopUpObj loginPopUp = topBar.ClickLogInButton();
 

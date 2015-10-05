@@ -33,7 +33,7 @@ namespace LottoSend.com.TestCases.Web
             // Log in     
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
 
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "raffles/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/");
 
             RafflesPageObj rafflePage = new RafflesPageObj(_driver);
 
@@ -65,7 +65,7 @@ namespace LottoSend.com.TestCases.Web
             // Log in     
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
 
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "plays/eurojackpot/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/plays/eurojackpot/");
 
             //Pay for tickets
             RegularGamePageObj regularGame = new RegularGamePageObj(_driver);
@@ -99,7 +99,7 @@ namespace LottoSend.com.TestCases.Web
             // Log in     
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
 
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "plays/powerball/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/plays/powerball/");
 
             //Pay for tickets
             GroupGamePageObj groupGame = new GroupGamePageObj(_driver);
