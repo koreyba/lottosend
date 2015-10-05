@@ -30,7 +30,7 @@ namespace LottoSend.com.FrontEndObj.GamePages
             get
             {
                 IWebElement span = GetFirstVisibleElementFromList(By.CssSelector(".filter-option.pull-left"));
-                return (int) span.Text.ParceDouble();
+                return (int) span.Text.ParseDouble();
             }
         }
 
@@ -42,7 +42,7 @@ namespace LottoSend.com.FrontEndObj.GamePages
         /// </summary>
         public double Discount
         {
-            get { return _discount.Text.ParceDouble(); }
+            get { return _discount.Text.ParseDouble(); }
         }
 
         [FindsBy(How = How.CssSelector, Using = "div.groups-prices > div.bet-resume > table > tbody > tr:nth-child(4) > td:nth-child(2)")]
@@ -53,7 +53,7 @@ namespace LottoSend.com.FrontEndObj.GamePages
         /// </summary>
         public double TotalPrice
         {
-            get { return _totalPrice.Text.ParceDouble(); }
+            get { return _totalPrice.Text.ParseDouble(); }
         }
 
         /// <summary>

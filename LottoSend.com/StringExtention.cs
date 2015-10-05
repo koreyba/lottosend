@@ -58,7 +58,7 @@ namespace LottoSend.com
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        public static double ParceDouble(this string str)
+        public static double ParseDouble(this string str)
         {
             bool isFirstFound = false;
             bool isLastFound = false;

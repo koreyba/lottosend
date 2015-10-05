@@ -32,7 +32,7 @@ namespace LottoSend.com.FrontEndObj.MyAccount
         {
             get
             {
-                return Convert.ToDouble(_firstRecord.FindElement(By.CssSelector("td:nth-child(3)")).Text.ParceDouble());
+                return Convert.ToDouble(_firstRecord.FindElement(By.CssSelector("td:nth-child(3)")).Text.ParseDouble());
             }
         }
 
@@ -43,7 +43,7 @@ namespace LottoSend.com.FrontEndObj.MyAccount
         {
             get
             {
-                return Convert.ToDouble(_secondRecord.FindElement(By.CssSelector("td:nth-child(3)")).Text.ParceDouble());
+                return Convert.ToDouble(_secondRecord.FindElement(By.CssSelector("td:nth-child(3)")).Text.ParseDouble());
             }
         }
 

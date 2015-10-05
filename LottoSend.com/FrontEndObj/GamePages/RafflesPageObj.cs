@@ -26,7 +26,7 @@ namespace LottoSend.com.FrontEndObj.GamePages
         /// </summary>
         public double TotalPrice
         {
-            get { return Convert.ToDouble(_totalPrice.Text.ParceDouble()); }
+            get { return Convert.ToDouble(_totalPrice.Text.ParseDouble()); }
         }
 
         [FindsBy(How = How.CssSelector, Using = "input#raffle_submit")]

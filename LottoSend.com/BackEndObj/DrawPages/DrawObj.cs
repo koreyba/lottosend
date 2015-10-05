@@ -24,7 +24,7 @@ namespace LottoSend.com.BackEndObj.DrawPages
         /// </summary>
         public double BetAmount
         {
-            get { return _firstRecord.FindElement(By.CssSelector("td:nth-child(7)")).Text.ParceDouble(); }
+            get { return _firstRecord.FindElement(By.CssSelector("td:nth-child(7)")).Text.ParseDouble(); }
         }
 
         /// <summary>

@@ -39,7 +39,7 @@ namespace LottoSend.com.FrontEndObj.MyAccount
         /// </summary>
         public double Balance
         {
-            get { return _balance.Text.ParceDouble(); }
+            get { return _balance.Text.ParseDouble(); }
         }
 
         /// <summary>
