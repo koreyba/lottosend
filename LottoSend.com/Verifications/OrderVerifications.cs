@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Text;
 using LottoSend.com.BackEndObj;
-using LottoSend.com.BackEndObj.DrawPages;
 using LottoSend.com.FrontEndObj.MyAccount;
 using LottoSend.com.TestCases;
 using NUnit.Framework;
@@ -173,7 +172,7 @@ namespace LottoSend.com.Verifications
         /// <param name="lotteryName"></param>
         public void CheckRecordBetTypeInDraw(string type, string lotteryName)
         {
-            _commonActions.SignIn_in_admin_panel();
+            _commonActions.Authorize_in_admin_panel();
             //navigate to the draw's page
             DrawObj draw = _commonActions.Find_The_Draw_Page(lotteryName);
 
@@ -185,7 +184,7 @@ namespace LottoSend.com.Verifications
         /// </summary>
         public void CheckRecordTimeInDraw(string lotteryName)
         {
-            _commonActions.SignIn_in_admin_panel();
+            _commonActions.Authorize_in_admin_panel();
             //navigate to the draw's page
             DrawObj draw = _commonActions.Find_The_Draw_Page(lotteryName);
 
@@ -201,7 +200,7 @@ namespace LottoSend.com.Verifications
         /// </summary>
         public void CheckTransactionsEmailInTransactions(string email)
         {
-            _commonActions.SignIn_in_admin_panel();
+            _commonActions.Authorize_in_admin_panel();
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/transactions");
             TransactionsObj transaction = new TransactionsObj(_driver);
             string realEmail = transaction.GetTransactionEmail();
@@ -215,7 +214,7 @@ namespace LottoSend.com.Verifications
         /// <param name="merchant">Payment method</param>
         public void CheckTransactionMerchantInTransactions(WayToPay merchant)
         {
-            _commonActions.SignIn_in_admin_panel();
+            _commonActions.Authorize_in_admin_panel();
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/transactions");
             TransactionsObj transaction = new TransactionsObj(_driver);
 
@@ -229,7 +228,7 @@ namespace LottoSend.com.Verifications
         /// </summary>
         public void CheckTransactionTimeInTransactions()
         {
-            _commonActions.SignIn_in_admin_panel();
+            _commonActions.Authorize_in_admin_panel();
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/transactions");
             TransactionsObj transaction = new TransactionsObj(_driver);
 
@@ -245,7 +244,7 @@ namespace LottoSend.com.Verifications
         /// </summary>
         public void CheckRecordEmailInDraw(string lotteryName, string expectedEmail)
         {
-            _commonActions.SignIn_in_admin_panel();
+            _commonActions.Authorize_in_admin_panel();
             //navigate to the draw's page
             DrawObj draw = _commonActions.Find_The_Draw_Page(lotteryName);
 
@@ -258,7 +257,7 @@ namespace LottoSend.com.Verifications
         /// </summary>
         public void CheckRecordPriceInDraw(double totalPrice)
         {
-            _commonActions.SignIn_in_admin_panel();
+            _commonActions.Authorize_in_admin_panel();
             //navigate to the draw's page
             DrawObj draw = _commonActions.Find_The_Draw_Page("EuroJackpot");
             Assert.AreEqual(totalPrice, draw.BetAmount, "Sorry, the price for the bet is  " + draw.BetAmount + " but " + totalPrice + " was expected, page: " + _driverCover.Driver.Url + " ");
@@ -269,7 +268,7 @@ namespace LottoSend.com.Verifications
         /// </summary>
         public void CheckRecordPriceInDraw(double totalPrice, int numberOfDraws)
         {
-            _commonActions.SignIn_in_admin_panel();
+            _commonActions.Authorize_in_admin_panel();
             //navigate to the draw's page
             DrawObj draw = _commonActions.Find_The_Draw_Page("EuroJackpot");
             Assert.AreEqual(totalPrice / numberOfDraws, draw.BetAmount, "Sorry, the price for the bet is  " + draw.BetAmount + " but " + totalPrice / numberOfDraws + " was expected, page: " + _driverCover.Driver.Url + " ");

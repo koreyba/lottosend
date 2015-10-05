@@ -1,8 +1,13 @@
-﻿using System;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.UI;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace LottoSend.com.BackEndObj.DrawPages
+namespace LottoSend.com.BackEndObj
 {
     /// <summary>
     /// Page object of a draw page

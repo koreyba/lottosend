@@ -43,7 +43,7 @@ namespace LottoSend.com.TestCases.Web
             merchants.PayWithOfflineCharge();
 
             //Go to admin panel
-            _commonActions.SignIn_in_admin_panel();
+            _commonActions.Authorize_in_admin_panel();
 
             //authorize payment in charge panel
             _commonActions.Authorize_the_first_payment();
@@ -77,7 +77,7 @@ namespace LottoSend.com.TestCases.Web
             merchants.PayWithOfflineCharge();
 
             //Go to admin panel
-            _commonActions.SignIn_in_admin_panel();
+            _commonActions.Authorize_in_admin_panel();
 
             //authorize payment in charge panel
             _commonActions.Authorize_the_first_payment();
@@ -108,7 +108,7 @@ namespace LottoSend.com.TestCases.Web
             merchants.PayWithOfflineCharge();
 
             //Go to admin panel
-            _commonActions.SignIn_in_admin_panel();
+            _commonActions.Authorize_in_admin_panel();
 
             //authorize payment in charge panel
             _commonActions.Authorize_the_first_payment();

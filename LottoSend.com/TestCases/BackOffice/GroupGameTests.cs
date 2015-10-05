@@ -24,7 +24,7 @@ namespace LottoSend.com.TestCases.BackOffice
         [Test]
         public void CreateNewGroupTicket()
         {
-            _commonActions.SignIn_in_admin_panel();
+            _commonActions.Authorize_in_admin_panel();
 
             string groupName = RandomGenerator.GenerateRandomString(10);
             _commonActions.CreateGroup(groupName);
@@ -58,7 +58,7 @@ namespace LottoSend.com.TestCases.BackOffice
         [Test]
         public void CreateNewGroup()
         {
-            _commonActions.SignIn_in_admin_panel();
+            _commonActions.Authorize_in_admin_panel();
 
             string name = RandomGenerator.GenerateRandomString(10);
 
