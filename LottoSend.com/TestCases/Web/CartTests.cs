@@ -29,9 +29,9 @@ namespace LottoSend.com.TestCases.Web
         public void Edit_Group_Ticket_And_Add_More()
         {
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
-            _commonActions.AddGroupTicketToCart("en/plays/powerball/");
+            _commonActions.AddGroupTicketToCart("plays/powerball/");
 
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/carts");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "carts");
             CartObj cart = new CartObj(_driver);
             cart.EditTicket_Web("Powerball");
 
@@ -97,8 +97,8 @@ namespace LottoSend.com.TestCases.Web
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
 
             //Add two tickets from different lotteries
-            _commonActions.AddGroupTicketToCart("en/plays/euromillions/");
-            _commonActions.AddGroupTicketToCart("en/plays/powerball/");
+            _commonActions.AddGroupTicketToCart("plays/euromillions/");
+            _commonActions.AddGroupTicketToCart("plays/powerball/");
 
             _cartVerifications.CheckNumberOfTicketsInCart(2);
 
@@ -122,11 +122,11 @@ namespace LottoSend.com.TestCases.Web
         {
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
 
-            _commonActions.AddRegularTicketToCart("en/plays/eurojackpot/");
+            _commonActions.AddRegularTicketToCart("plays/eurojackpot/");
 
             _cartVerifications.CheckNumberOfTicketsInCart(1);
 
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/carts/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "carts/");
             CartObj cart = new CartObj(_driver);
             cart.DeleteTicket_Web("EuroJackpot");
 

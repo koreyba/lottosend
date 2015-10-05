@@ -116,7 +116,7 @@ namespace LottoSend.com.TestCases.Web
         {
             //Sign up
             _commonActions.Sign_Up();
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/deposits/new/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "account/deposits/new/");
             
             DepositObj deposit = new DepositObj(_driver);
             deposit.DepositOtherAmount(17, _merchant);

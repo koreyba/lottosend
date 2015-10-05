@@ -51,7 +51,7 @@ namespace LottoSend.com.TestCases
         /// </summary>
         public void AddRaffleTicketToCart()
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "raffles/");
             RafflesPageObj raffle = new RafflesPageObj(_driver);
 
             raffle.ClickBuyNowButton();
@@ -74,7 +74,7 @@ namespace LottoSend.com.TestCases
         /// </summary>
         public void DeleteAllTicketFromCart()
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/carts/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "carts/");
             CartObj cart = new CartObj(_driver);
             cart.DeleteAllTickets();
         }
@@ -125,7 +125,7 @@ namespace LottoSend.com.TestCases
         /// <returns>Total price to pay</returns>
         public double BuyRaffleTicket(WayToPay merchant)
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "raffles/");
 
             RafflesPageObj rafflePage = new RafflesPageObj(_driver);
             double totalPrice = rafflePage.TotalPrice;
@@ -158,7 +158,7 @@ namespace LottoSend.com.TestCases
         /// <returns>Total price to pay</returns>
         public double BuyRegularOneDrawTicket(WayToPay merchant)
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/plays/eurojackpot/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "plays/eurojackpot/");
 
             //Pay for tickets
             RegularGamePageObj regularGame = new RegularGamePageObj(_driver);
@@ -201,7 +201,7 @@ namespace LottoSend.com.TestCases
         /// <param name="isFailed">To fail payment of not</param>
         public void DepositMoney(double amount, WayToPay merchant, bool ifProcess = true, bool isFailed = false)
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/deposits/new/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "account/deposits/new/");
 
             DepositObj deposit = new DepositObj(_driver);
             deposit.DepositOtherAmount(amount, merchant, ifProcess, isFailed);
@@ -216,7 +216,7 @@ namespace LottoSend.com.TestCases
         /// <param name="isFailed">To fail payment of not</param>
         public void DepositMoneyMobile(double amount, WayToPay merchant, bool ifProcess = true, bool isFailed = false)
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/deposits/new/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "account/deposits/new/");
 
             DepositMobileObj deposit = new DepositMobileObj(_driver);
             deposit.DepositOtherAmount(amount, merchant, ifProcess, isFailed);
@@ -254,7 +254,7 @@ namespace LottoSend.com.TestCases
         /// <param name="password"></param>
         public string Log_In_Front(string email, string password)
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/web_users/sign_in");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "web_users/sign_in");
             SignInPageOneObj signInOne = new SignInPageOneObj(_driver);
 
             signInOne.FillInFields(email, password);
@@ -323,7 +323,7 @@ namespace LottoSend.com.TestCases
         /// </summary>
         public string Sign_Up()
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/web_users/sign_up");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "web_users/sign_up");
             SignUpPageOneObj signUp = new SignUpPageOneObj(_driver);
             string email = signUp.FillInFieldsWeb();
             signUp.ClickSignUp();
@@ -337,7 +337,7 @@ namespace LottoSend.com.TestCases
         /// </summary>
         public string Sign_Up_Mobile()
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/web_users/sign_up");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "web_users/sign_up");
             SignUpPageOneObj signUp = new SignUpPageOneObj(_driver);
             string email = signUp.FillInFieldsMobile();
             signUp.ClickSignUp();

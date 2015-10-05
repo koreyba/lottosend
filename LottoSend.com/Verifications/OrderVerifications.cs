@@ -37,7 +37,7 @@ namespace LottoSend.com.Verifications
         public void CheckUserBalance_Front(double formerBalance, double transactionAmount, string email, string password)
         {
             _commonActions.Log_In_Front(email, password);
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/deposits/new/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "account/deposits/new/");
             DepositObj depoist = new DepositObj(_driver);
 
             Assert.AreEqual(depoist.Balance, formerBalance + transactionAmount, "Sorry but balance of user is wrong. ");
@@ -53,7 +53,7 @@ namespace LottoSend.com.Verifications
         public void CheckAmountInTransactionFront(double expectedAmount, string email, string password, int numberOfRecord = 1)
         {
             _commonActions.Log_In_Front(email, password);
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/balance/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "account/balance/");
             TransactionObj transaction = new TransactionObj(_driver);
 
             if (numberOfRecord == 1)
@@ -81,7 +81,7 @@ namespace LottoSend.com.Verifications
         public void CheckTypeOfTransactionFront(string expectedType, string email, string password, int numberOfRecord = 1)
         {
             _commonActions.Log_In_Front(email, password);
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/balance/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "account/balance/");
             TransactionObj transaction = new TransactionObj(_driver);
 
             if (numberOfRecord == 1)
@@ -106,7 +106,7 @@ namespace LottoSend.com.Verifications
         public void CheckTransactionDateFront(string email, string password, int numberOfRecord = 1)
         {
             _commonActions.Log_In_Front(email, password);
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/balance/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "account/balance/");
             TransactionObj myTransactions = new TransactionObj(_driver);
 
             //make month to be in right format
@@ -150,7 +150,7 @@ namespace LottoSend.com.Verifications
         public void CheckTransactionLotteryNameFront(string name, string email, string password, int numberOfRecord = 1)
         {
             _commonActions.Log_In_Front(email, password);
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/balance/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "account/balance/");
             TransactionObj myTransactions = new TransactionObj(_driver);
 
             if (numberOfRecord == 1)
