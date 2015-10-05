@@ -1,6 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 using System.Text;
 using LottoSend.com.BackEndObj.GroupGapePages;
+using LottoSend.com.BackEndObj.SalesPanelPages;
 using LottoSend.com.TestCases;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -20,6 +21,16 @@ namespace LottoSend.com.Verifications
             _driverCover = new DriverCover(_driver);
             Errors = new StringBuilder();
             _commonActions = new CommonActions(_driver);
+        }
+
+        public void IfUserSignedInSalesPanel()
+        {
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/orders");
+
+            SalesPanelRegisterObj register = new SalesPanelRegisterObj(_driver);
+            bool signedIn = register.IsSignedIn();
+
+            Assert.IsTrue(signedIn, "Sorry but no user is signed in the sales panel. Please check it ");
         }
 
         /// <summary>
