@@ -28,7 +28,7 @@ namespace LottoSend.com.FrontEndObj.MyAccount
         [FindsBy(How = How.CssSelector, Using = "#new_deposit> div.row > div.other > strong:nth-child(1)")]
         private IWebElement _otherRadioButton;
 
-        [FindsBy(How = How.CssSelector, Using = "#new_deposit> div.row > div.other > input#deposit_amount")]
+        [FindsBy(How = How.CssSelector, Using = "input#deposit_total")]
         private IWebElement _amountInput;
 
         [FindsBy(How = How.CssSelector, Using = "#account-detail > p > span")]

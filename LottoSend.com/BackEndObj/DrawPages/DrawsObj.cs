@@ -17,7 +17,7 @@ namespace LottoSend.com.BackEndObj.DrawPages
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = "div.index_as_table > table:nth-child(2) > tbody")]
+        [FindsBy(How = How.CssSelector, Using = "#index_table_draws > tbody:nth-child(2)")]
         private IWebElement _drawsTable;
 
 
@@ -31,7 +31,7 @@ namespace LottoSend.com.BackEndObj.DrawPages
 
             if(tr == null)
             {
-                throw new Exception("Lottery's draws is not found, maybe it's not on the first page ");
+                throw new Exception("Lottery's draws is not found on the first 5 pages! ");
             }
 
             _clickViewBetsButton(tr);

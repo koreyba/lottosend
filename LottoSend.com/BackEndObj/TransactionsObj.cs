@@ -59,19 +59,5 @@ namespace LottoSend.com.BackEndObj
 
             return timeSpan;
         }
-
-        /// <summary>
-        /// Returns UTC date that is displayed in admin panel
-        /// </summary>
-        /// <returns></returns>
-        public TimeSpan GetUtcDate()
-        {
-            PaneMenuObj panel = new PaneMenuObj(Driver);
-            string utcData = panel.GetUTCDate();
-
-            TimeSpan timeSpan = utcData.ParseTimeSpan();
-
-            return timeSpan;
-        }
     }
 }

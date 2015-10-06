@@ -36,7 +36,7 @@ namespace LottoSend.com.TestCases.Mobile
         [Test]
         public void SignUp_Express_Checkout_In_Cart()
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "raffles/");
 
             RafflesPageObj rafflePage = new RafflesPageObj(_driver);
 
@@ -56,7 +56,7 @@ namespace LottoSend.com.TestCases.Mobile
         [Test]
         public void SignUp_Express_Checkout_Game_Page()
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/plays/eurojackpot/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "play/eurojackpot/");
 
             //Pay for tickets
             RegularGamePageObj regularGame = new RegularGamePageObj(_driver);

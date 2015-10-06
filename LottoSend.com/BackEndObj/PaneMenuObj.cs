@@ -23,17 +23,5 @@ namespace LottoSend.com.BackEndObj
 
             PageFactory.InitElements(Driver, this);
         }
-
-        [FindsBy(How = How.CssSelector, Using = "span#clock")]
-        private IWebElement _date; 
-
-        /// <summary>
-        /// Returns date from the head of the site
-        /// </summary>
-        /// <returns></returns>
-        public string GetUTCDate()
-        {
-            return _date.Text;
-        }
     }
 }

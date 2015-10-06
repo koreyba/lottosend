@@ -32,6 +32,7 @@ namespace LottoSend.com.TestCases.Mobile
         /// <summary>
         /// Cheks if a new user gets 1+1 promotion for the second payment if the first one was pendant
         /// </summary>
+        [Test]
         public void One_Plus_One_After_Pending_Deposit()
         {
             //Sign up
@@ -46,6 +47,7 @@ namespace LottoSend.com.TestCases.Mobile
         /// <summary>
         /// Cheks if a new user gets 1+1 promotion for the second payment if the first one was failed
         /// </summary>
+        [Test]
         public void One_Plus_One_After_Failed_Deposit()
         {
             //Sign up
@@ -60,6 +62,7 @@ namespace LottoSend.com.TestCases.Mobile
         /// <summary>
         /// Cheks if a new user doesn't get 1+1 promotion for the second payment
         /// </summary>
+        [Test]
         public void One_Plus_One_Second_Payment()
         {
             _commonActions.Sign_Up_Mobile();
@@ -72,6 +75,7 @@ namespace LottoSend.com.TestCases.Mobile
         /// <summary>
         /// Checks if a user doesn't get 1+1 promotion for the second deposit
         /// </summary>
+        [Test]
         public void One_Plus_One_Second_Deposit()
         {
             //Sign up
@@ -85,6 +89,7 @@ namespace LottoSend.com.TestCases.Mobile
         /// <summary>
         /// Checks if a new user gets 1+1 promotion after buying a ticket
         /// </summary>
+        [Test]
         public void One_Plus_One_Promotion_Buying()
         {
             //Sign up
@@ -104,11 +109,12 @@ namespace LottoSend.com.TestCases.Mobile
         /// <summary>
         /// Checks if a new user gets 1+1 promotion depositing money
         /// </summary>
+        [Test]
         public void One_Plus_One_Promotion_Deposit()
         {
             //Sign up
             _commonActions.Sign_Up_Mobile();
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/deposits/new/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "account/deposits/new/");
 
             DepositMobileObj deposit = new DepositMobileObj(_driver);
             deposit.DepositOtherAmount(17, _merchant);

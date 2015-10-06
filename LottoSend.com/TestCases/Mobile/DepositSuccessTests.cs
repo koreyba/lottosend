@@ -46,7 +46,7 @@ namespace LottoSend.com.TestCases.Mobile
         private void Deposit_Money(WayToPay merchant)
         {
             _email = _commonActions.Log_In_Front("selenium2@gmail.com", _driverCover.Password);
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/deposits/new/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "account/deposits/new/");
 
             DepositMobileObj deposit = new DepositMobileObj(_driver);
             _balanceBeforePayment = deposit.Balance;
