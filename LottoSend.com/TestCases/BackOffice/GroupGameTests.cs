@@ -32,7 +32,8 @@ namespace LottoSend.com.TestCases.BackOffice
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/aggrupations/new");
             NewGroupTicketCreationObj newGroupTicket = new NewGroupTicketCreationObj(_driver);
 
-            newGroupTicket.FillInFields("FireFox Lottery", groupName, 50, true, 15, 11.3);
+            string lottery = "SuperLotto Plus";
+            newGroupTicket.FillInFields(lottery, groupName, 50, true, 15, 11.3);
 
             string common1 = "1, 2, 3, 4, 5";
             string common2 = "1, 2, 3, 4, 5";
@@ -47,7 +48,7 @@ namespace LottoSend.com.TestCases.BackOffice
 
             newGroupTicket.ClickCreateButton();
 
-            _backOfficeVerifications.IsTicketExists("Selenium Group", "FireFox", common3 + "," + special3 + "\r\n" + common2 + "," + special2 + "\r\n" + common1 + "," + special1);
+            _backOfficeVerifications.IsTicketExists(groupName, lottery, common3 + "," + special3 + "\r\n" + common2 + "," + special2 + "\r\n" + common1 + "," + special1);
 
             _commonActions.DeleteGroup(groupName);
         }

@@ -19,19 +19,19 @@ namespace LottoSend.com.FrontEndObj.Common
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_27'] + img.merchant")]
+        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_28'] + img.merchant")]
         private IWebElement _neteller;
 
-        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_22'] + img.merchant")]
+        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_23'] + img.merchant")]
         private IWebElement _eKontoePlatby;
 
         [FindsBy(How = How.CssSelector, Using = "input#credit_card + img.merchant")]
         private IWebElement _offline;
 
-        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_18'] + img.merchant")]
+        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_19'] + img.merchant")]
         private IWebElement _trustPay;
 
-        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_17'] + img.merchant")]
+        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_18'] + img.merchant")]
         private IWebElement _skrill;
 
         /// <summary>

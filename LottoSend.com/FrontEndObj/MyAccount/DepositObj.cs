@@ -29,7 +29,7 @@ namespace LottoSend.com.FrontEndObj.MyAccount
         [FindsBy(How = How.CssSelector, Using = "#deposit-options > div.text-center.grey.other > div > label > strong:nth-child(1)")]
         private IWebElement _otherRadioButton;
 
-        [FindsBy(How = How.CssSelector, Using = "#deposit-options > div.text-center.grey.other > div > label > input#deposit_amount")]
+        [FindsBy(How = How.CssSelector, Using = "#deposit-options > div.text-center.grey.other > div > label > input#deposit_total")]
         private IWebElement _amountInput;
 
         [FindsBy(How = How.Id, Using = "account-detail")]

@@ -27,7 +27,7 @@ namespace LottoSend.com.Verifications
         {
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/orders");
 
-            SalesPanelRegisterObj register = new SalesPanelRegisterObj(_driver);
+            RegisterObj register = new RegisterObj(_driver);
             bool signedIn = register.IsSignedIn();
 
             Assert.IsTrue(signedIn, "Sorry but no user is signed in the sales panel. Please check it ");

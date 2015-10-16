@@ -6,9 +6,9 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
     /// <summary>
     /// Page Object for "CC Details" tab in the sales panel
     /// </summary>
-    public class CcDetails : Tabs
+    public class CcDetailsObj : TabsObj
     {
-        public CcDetails(IWebDriver driver) : base(driver)
+        public CcDetailsObj(IWebDriver driver) : base(driver)
         {
             //TODO: add validation
 

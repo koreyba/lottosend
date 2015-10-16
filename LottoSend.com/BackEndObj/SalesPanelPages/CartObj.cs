@@ -5,9 +5,9 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace LottoSend.com.BackEndObj.SalesPanelPages
 {
-    public class SalesPanelCart : Tabs
+    public class CartObj : TabsObj
     {
-        public SalesPanelCart(IWebDriver driver) : base(driver)
+        public CartObj(IWebDriver driver) : base(driver)
         {
             //TODO: make validation
 
@@ -60,6 +60,31 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
         }
 
         /// <summary>
+        /// Removes ticket from the cart found by name of a lottery
+        /// </summary>
+        /// <param name="lottery"></param>
+        public void DeleteTicket(string lottery)
+        {
+            IWebElement tr = _findDivOfTicket(lottery);
+            tr.FindElement(By.CssSelector("div.actions > form > input.button")).Click();
+            WaitAjax();
+            WaitForPageLoading();
+            WaitAjax();
+        }
+
+        private IWebElement _findDivOfTicket(string lottery)
+        {
+            foreach (IWebElement t in _ticktes)
+            {
+
+                if (t.Text.Contains(lottery))
+                    return t;
+            }
+
+            return null;
+        }
+
+        /// <summary>
         /// Pays with internal balance (click button)
         /// </summary>
         public void PayWithInternalBalance()
@@ -87,5 +112,20 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
             _apply.Click();
             WaitForPageLoading();
         }
+
+        /// <summary>
+        /// Removes all ticket from the cart (clears the cart)
+        /// </summary>
+        public void DeleteAllTickets()
+        {
+            int n = NumberOfTickets;
+            for (int i = 0; i < n; ++i)
+            {
+                _ticktes[i].FindElement(By.CssSelector("div.actions > form > input.button")).Click();
+                WaitAjax();
+                WaitForPageLoading();
+                WaitAjax();
+            }
+        } 
     }
 }

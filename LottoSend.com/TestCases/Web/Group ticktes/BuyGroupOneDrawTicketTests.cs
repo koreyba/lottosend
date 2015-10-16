@@ -32,6 +32,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         private OrderVerifications _verifications;
         private CommonActions _commonActions;
         private WayToPay _merchant;
+        private CartVerifications _cartVerifications;
 
         public BuyGroupOneDrawTicketTests(WayToPay merchant)
         {
@@ -40,6 +41,16 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
             SetUp();
             Buy_Group_One_Draw_Ticket(_merchant);
             CleanUp();
+        }
+
+        /// <summary>
+        /// Checks if after buying a ticket (after payment) there are no items in the cart
+        /// </summary>
+        [Test]
+        public void Check_If_There_Is_No_Ticket_In_Cart()
+        {
+            _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            _cartVerifications.CheckNumberOfTicketsInCart(0);
         }
 
         /// <summary>
@@ -103,7 +114,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         [Test]
         public void Check_Transaction_Merchant_In_Transactions()
         {
-            _verifications.CheckTransactionMerchantInTransactions(WayToPay.Offline);
+            _verifications.CheckTransactionMerchantInTransactions(_merchant);
         }
 
         /// <summary>
@@ -121,7 +132,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         [Test]
         public void Check_Record_Time_In_Draw()
         {
-            _verifications.CheckRecordTimeInDraw("EuroJackpot");
+            _verifications.CheckRecordTimeInDraw("Eurojackpot");
         }
 
         /// <summary>
@@ -130,7 +141,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         [Test]
         public void Check_Record_Email_In_Draw()
         {
-            _verifications.CheckRecordEmailInDraw("EuroJackpot", _driverCover.Login);
+            _verifications.CheckRecordEmailInDraw("Eurojackpot", _driverCover.Login);
         }
 
         /// <summary>
@@ -139,7 +150,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         [Test]
         public void Check_Record_Type_In_Draw()
         {
-            _verifications.CheckRecordBetTypeInDraw("Single", "EuroJackpot");
+            _verifications.CheckRecordBetTypeInDraw("Single", "Eurojackpot");
         }
 
         /// <summary>
@@ -159,7 +170,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
             // Log in     
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
 
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "play/eurojackpot/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/play/eurojackpot/");
 
             //Pay for tickets
             GroupGamePageObj groupGame = new GroupGamePageObj(_driver);  
@@ -191,6 +202,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
             _driverCover = new DriverCover(_driver);
             _verifications = new OrderVerifications(_driver);
             _commonActions = new CommonActions(_driver);
+            _cartVerifications = new CartVerifications(_driver);
         }
     }
 }

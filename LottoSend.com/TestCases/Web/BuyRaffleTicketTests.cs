@@ -31,7 +31,8 @@ namespace LottoSend.com.TestCases.Web
         private IWebDriver _driver;
         private DriverCover _driverCover;
         private double _totalPrice;
-        private OrderVerifications _verifications;
+        private OrderVerifications _orderVerifications;
+        private CartVerifications _cartVerifications;
         private CommonActions _commonActions;
         private WayToPay _merchant;
         
@@ -46,12 +47,22 @@ namespace LottoSend.com.TestCases.Web
         }
 
         /// <summary>
+        /// Checks if after buying a ticket (after payment) there are no items in the cart
+        /// </summary>
+        [Test]
+        public void Check_If_There_Is_No_Ticket_In_Cart()
+        {
+            _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            _cartVerifications.CheckNumberOfTicketsInCart(0);
+        }
+
+        /// <summary>
         /// Checks an amount in the first record in transactions (front)
         /// </summary>
         [Test]
         public void Check_Amount_In_Transaction_Front()
         {
-            _verifications.CheckAmountInTransactionFront(_totalPrice, _driverCover.Login, _driverCover.Password, 1);
+            _orderVerifications.CheckAmountInTransactionFront(_totalPrice, _driverCover.Login, _driverCover.Password, 1);
         }
 
         /// <summary>
@@ -60,7 +71,7 @@ namespace LottoSend.com.TestCases.Web
         [Test]
         public void Check_Type_Of_Transaction_Front()
         {
-            _verifications.CheckTypeOfTransactionFront("Play - Raffle", _driverCover.Login, _driverCover.Password);
+            _orderVerifications.CheckTypeOfTransactionFront("Play - Raffle", _driverCover.Login, _driverCover.Password);
         }
 
         /// <summary>
@@ -69,7 +80,7 @@ namespace LottoSend.com.TestCases.Web
         [Test]
         public void Check_Transactions_Email_In_Transactions()
         {
-            _verifications.CheckTransactionsEmailInTransactions(_driverCover.Login);
+            _orderVerifications.CheckTransactionsEmailInTransactions(_driverCover.Login);
         }
 
         /// <summary>
@@ -78,7 +89,7 @@ namespace LottoSend.com.TestCases.Web
         [Test]
         public void Check_Transaction_Merchant_In_Transactions()
         {
-            _verifications.CheckTransactionMerchantInTransactions(_merchant);
+            _orderVerifications.CheckTransactionMerchantInTransactions(_merchant);
         }
 
         /// <summary>
@@ -87,7 +98,7 @@ namespace LottoSend.com.TestCases.Web
         [Test]
         public void Check_Transaction_Time_In_Transactions()
         {
-            _verifications.CheckTransactionTimeInTransactions();
+            _orderVerifications.CheckTransactionTimeInTransactions();
         }
 
         /// <summary>
@@ -98,7 +109,7 @@ namespace LottoSend.com.TestCases.Web
             // Log in     
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
 
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "raffles/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/");
 
             RafflesPageObj rafflePage = new RafflesPageObj(_driver);
             _totalPrice = rafflePage.TotalPrice;
@@ -113,9 +124,9 @@ namespace LottoSend.com.TestCases.Web
         public void CleanUp()
         {
             _driver.Dispose();
-            if (_verifications.Errors.Length > 0)
+            if (_orderVerifications.Errors.Length > 0)
             {
-                Assert.Fail(_verifications.Errors.ToString());
+                Assert.Fail(_orderVerifications.Errors.ToString());
             }
         }
 
@@ -124,8 +135,9 @@ namespace LottoSend.com.TestCases.Web
         {
             _driver = new TWebDriver();
             _driverCover = new DriverCover(_driver);
-            _verifications = new OrderVerifications(_driver);
+            _orderVerifications = new OrderVerifications(_driver);
             _commonActions = new CommonActions(_driver);
+            _cartVerifications = new CartVerifications(_driver);
         }
     }
 }

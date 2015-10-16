@@ -7,9 +7,9 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
     /// <summary>
     /// Page object of the sales panel
     /// </summary>
-    public class SalesPanelRegisterObj : Tabs
+    public class RegisterObj : TabsObj
     {
-        public SalesPanelRegisterObj(IWebDriver driver) : base(driver)
+        public RegisterObj(IWebDriver driver) : base(driver)
         {
             if (!Driver.Url.Contains("admin/orders"))
             {
@@ -76,6 +76,7 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
         {
             _clearButton.Click();
             WaitForPageLoading();
+            WaitjQuery();
         }
 
         /// <summary>

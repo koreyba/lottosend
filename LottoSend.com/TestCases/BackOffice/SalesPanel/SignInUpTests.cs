@@ -6,12 +6,12 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 
-namespace LottoSend.com.TestCases.BackOffice
+namespace LottoSend.com.TestCases.BackOffice.SalesPanel
 {
     [TestFixture(typeof(ChromeDriver))]
     [TestFixture(typeof(FirefoxDriver))]
     [TestFixture(typeof(InternetExplorerDriver))]
-    public class SalesPanelTests<TWebDriver> where TWebDriver : IWebDriver, new() 
+    public class SignInUpTests<TWebDriver> where TWebDriver : IWebDriver, new() 
     {
         private IWebDriver _driver;
         private DriverCover _driverCover;
@@ -23,7 +23,7 @@ namespace LottoSend.com.TestCases.BackOffice
         {
             _commonActions.SignIn_in_admin_panel();
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/orders");
-            SalesPanelRegisterObj register = new SalesPanelRegisterObj(_driver);
+            RegisterObj register = new RegisterObj(_driver);
             register.SignUp(RandomGenerator.GenerateRandomString(7) + "@ukr.net");
 
             _backOfficeVerifications.IfUserSignedInSalesPanel();
@@ -35,7 +35,7 @@ namespace LottoSend.com.TestCases.BackOffice
             _commonActions.SignIn_in_admin_panel();
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/orders");
 
-            SalesPanelRegisterObj register = new SalesPanelRegisterObj(_driver);
+            RegisterObj register = new RegisterObj(_driver);
             register.SignIn("selenium@gmail.com");
             _backOfficeVerifications.IfUserSignedInSalesPanel();
             register.SignOut();

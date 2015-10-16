@@ -49,7 +49,7 @@ namespace LottoSend.com.BackEndObj
         {
             bool isFound = false;
 
-            IList<IWebElement> emails =  _table.FindElements(By.CssSelector("tr > td.email"));
+            IList<IWebElement> emails = _table.FindElements(By.CssSelector("tr > td.col-email"));
             foreach (var el in emails)
             {
                 if (el.Text.Equals(email))

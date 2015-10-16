@@ -33,7 +33,7 @@ namespace LottoSend.com.TestCases.Web
             // Log in     
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
 
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "raffles/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/");
 
             RafflesPageObj rafflePage = new RafflesPageObj(_driver);
 
@@ -53,7 +53,7 @@ namespace LottoSend.com.TestCases.Web
 
             _cartVerifications.CheckIfTicketIsInCart("Cart Raffle");
 
-            _commonActions.DeleteAllTicketFromCart();
+            _commonActions.DeleteAllTicketFromCart_Front();
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace LottoSend.com.TestCases.Web
             // Log in     
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
 
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "play/eurojackpot/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/play/eurojackpot/");
 
             //Pay for tickets
             RegularGamePageObj regularGame = new RegularGamePageObj(_driver);
@@ -85,9 +85,9 @@ namespace LottoSend.com.TestCases.Web
             //approve payment
             _commonActions.Fail_offline_payment();
 
-            _cartVerifications.CheckIfTicketIsInCart("EuroJackpot");
+            _cartVerifications.CheckIfTicketIsInCart("Eurojackpot");
 
-            _commonActions.DeleteAllTicketFromCart();
+            _commonActions.DeleteAllTicketFromCart_Front();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace LottoSend.com.TestCases.Web
             // Log in     
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
 
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "play/powerball/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/play/powerball/");
 
             //Pay for tickets
             GroupGamePageObj groupGame = new GroupGamePageObj(_driver);
@@ -118,7 +118,7 @@ namespace LottoSend.com.TestCases.Web
 
             _cartVerifications.CheckIfTicketIsInCart("Powerball");
 
-            _commonActions.DeleteAllTicketFromCart();
+            _commonActions.DeleteAllTicketFromCart_Front();
         }
 
         [TearDown]

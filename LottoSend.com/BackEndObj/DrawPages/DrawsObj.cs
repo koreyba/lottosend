@@ -17,7 +17,7 @@ namespace LottoSend.com.BackEndObj.DrawPages
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = "#index_table_draws > tbody:nth-child(2)")]
+        [FindsBy(How = How.CssSelector, Using = "#index_table_draws > tbody:nth-child(4)")]
         private IWebElement _drawsTable;
 
 
@@ -31,7 +31,7 @@ namespace LottoSend.com.BackEndObj.DrawPages
 
             if(tr == null)
             {
-                throw new Exception("Lottery's draws is not found on the first 5 pages! ");
+                throw new Exception("Lottery's draws is not found on the first 9 pages! ");
             }
 
             _clickViewBetsButton(tr);
@@ -52,7 +52,7 @@ namespace LottoSend.com.BackEndObj.DrawPages
         {
             int count = 2;
 
-            while(count < 5) //will go through 5 first pages in order to find needed lottery draw
+            while(count < 9) //will go through 9 first pages in order to find needed lottery draw
             {
                 IWebElement tr = _findTrOfLottery(drawName);
                 if(tr != null)
@@ -97,11 +97,11 @@ namespace LottoSend.com.BackEndObj.DrawPages
         /// <returns></returns>
         private IWebElement _findTrOfLottery(string drawName)
         {
-            IList<IWebElement> trList = _drawsTable.FindElements(By.CssSelector("tr[id^='td-draw-'"));
+            IList<IWebElement> trList = _drawsTable.FindElements(By.CssSelector("tr"));
             foreach (IWebElement tr in trList)
             {
-                IWebElement name = tr.FindElement(By.CssSelector("td:nth-child(1) > div.draw-center-text"));
-                if (name.Text.Contains(drawName))
+                IWebElement name = tr.FindElement(By.CssSelector("td.text-center > img"));
+                if (name.GetAttribute("alt").Contains(drawName))
                 {
                     return tr;
                 }
@@ -112,7 +112,7 @@ namespace LottoSend.com.BackEndObj.DrawPages
 
         private void _clickViewBetsButton(IWebElement tr)
         {
-            tr.FindElement(By.CssSelector("td:nth-child(5) > ul > li:nth-child(4) > a")).Click();
+            tr.FindElement(By.CssSelector("td:nth-child(6) > a:nth-child(5)")).Click();
         }
     }
 }

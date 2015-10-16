@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.FrontEndObj.GamePages;
@@ -26,6 +25,7 @@ namespace LottoSend.com.TestCases.Mobile
         private CommonActions _commonActions;
         private WayToPay _merchant;
         private string _device;
+        private CartVerifications _cartVerifications;
 
         public BuyRaffleTicketTests(string device, WayToPay merchant)
         {
@@ -38,6 +38,17 @@ namespace LottoSend.com.TestCases.Mobile
             //SetUp();
             //Confirn_Payment();
             //CleanUp();
+        }
+
+        /// <summary>
+        /// Checks if after buying a ticket (after payment) there are no items in the cart
+        /// </summary>
+        [Test]
+        public void Check_If_There_Is_No_Ticket_In_Cart()
+        {
+            SetUp(CreateOptions(_device));
+            _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            _cartVerifications.CheckNumberOfTicketsInCart(0);
         }
 
         /// <summary>
@@ -78,7 +89,7 @@ namespace LottoSend.com.TestCases.Mobile
             // Log in     
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
 
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "raffles/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/");
 
             RafflesPageObj rafflePage = new RafflesPageObj(_driver);
             _totalPrice = rafflePage.TotalPrice;
@@ -124,6 +135,7 @@ namespace LottoSend.com.TestCases.Mobile
             _driverCover = new DriverCover(_driver);
             _verifications = new OrderVerifications(_driver);
             _commonActions = new CommonActions(_driver);
+            _cartVerifications = new CartVerifications(_driver);
         }
     }
 }

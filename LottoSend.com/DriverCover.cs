@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
 using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
-using System.Net;
 using System.Configuration;
 using OpenQA.Selenium.Support.UI;
-using OpenQA.Selenium.Support.Events;
 using System.Collections.Generic;
-using OpenQA.Selenium.Chrome;
 
 namespace LottoSend.com
 {
@@ -34,7 +29,7 @@ namespace LottoSend.com
         /// </summary>
         public string BaseUrl
         {
-            get { return ConfigurationManager.AppSettings["BaseUrl"].ToString(); }
+            get { return ConfigurationManager.AppSettings["BaseUrl"]; }
         }
 
         /// <summary>
@@ -42,7 +37,7 @@ namespace LottoSend.com
         /// </summary>
         public string BaseAdminUrl
         {
-            get { return ConfigurationManager.AppSettings["BaseAdminUrl"].ToString(); }
+            get { return ConfigurationManager.AppSettings["BaseAdminUrl"]; }
         }
 
         /// <summary>
@@ -50,7 +45,7 @@ namespace LottoSend.com
         /// </summary>
         public string Login
         {
-            get { return ConfigurationManager.AppSettings["Login"].ToString(); }
+            get { return ConfigurationManager.AppSettings["Login"]; }
         }
 
         /// <summary>
@@ -58,7 +53,7 @@ namespace LottoSend.com
         /// </summary>
         public string Password
         {
-            get { return ConfigurationManager.AppSettings["Password"].ToString(); }
+            get { return ConfigurationManager.AppSettings["Password"]; }
         }
 
         /// <summary>
@@ -154,9 +149,9 @@ namespace LottoSend.com
         /// <summary>
         /// Waits for Ajax executing 
         /// </summary>
-        /// <param name="secondsToWait">Time to wait (default 660 sec)</param>
+        /// <param name="secondsToWait">Time to wait (default 120 sec)</param>
         /// <returns>If Ajax was executing</returns>
-        public bool WaitAjax(int secondsToWait = 600)
+        public bool WaitAjax(int secondsToWait = 120)
         {
             bool ifExecuted = false;
 
@@ -168,7 +163,7 @@ namespace LottoSend.com
             sw.Start();
             try
             {
-                while (sw.Elapsed.TotalSeconds < secondsToWait)
+                while (sw.Elapsed.Seconds < secondsToWait)
                 {
                     var ajaxIsComplete = !(bool)
                         ((IJavaScriptExecutor)Driver).ExecuteScript("return  $.active > 0");
@@ -195,16 +190,16 @@ namespace LottoSend.com
         /// <summary>
         /// Waits for jQuery executing 
         /// </summary>
-        /// <param name="secondsToWait">Time to wait (default 660 sec)</param>
+        /// <param name="secondsToWait">Time to wait (default 120 sec)</param>
         /// <returns>If jQuery was executing</returns>
-        public bool WaitjQuery(int secondsToWait = 600)
+        public bool WaitjQuery(int secondsToWait = 120)
         {
             bool ifExecuted = false;
             Stopwatch sw = new Stopwatch();
             sw.Start();
             try
             {
-                while (sw.Elapsed.TotalSeconds < secondsToWait)
+                while (sw.Elapsed.Seconds < secondsToWait)
                 {
                     var ajaxIsComplete =
                         ((bool) ((IJavaScriptExecutor) Driver).ExecuteScript("return jQuery.active == 0"));
@@ -374,7 +369,6 @@ namespace LottoSend.com
         /// <summary>
         /// Returns the first visible element from list of elements that are found by the same cssSelector.
         /// </summary>
-        /// <param name="cssSelector">CssSelector of list of elements</param>
         /// <returns>Element/null</returns>
         public IWebElement GetFirstVisibleElementFromList(By selector)
         {

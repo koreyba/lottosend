@@ -25,6 +25,7 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
         private CommonActions _commonActions;
         private WayToPay _merchant;
         private string _device;
+        private CartVerifications _cartVerifications;
 
         public BuyRegularMultiDrawTicketTests(string device, WayToPay merchant)
         {
@@ -38,6 +39,17 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
             //SetUp();
             //Confirn_Payment();
             //CleanUp();
+        }
+
+        /// <summary>
+        /// Checks if after buying a ticket (after payment) there are no items in the cart
+        /// </summary>
+        [Test]
+        public void Check_If_There_Is_No_Ticket_In_Cart()
+        {
+            SetUp();
+            _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            _cartVerifications.CheckNumberOfTicketsInCart(0);
         }
 
         /// <summary>
@@ -57,7 +69,7 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
         public void Check_Transaction_Merchant_In_Transactions()
         {
             SetUp();
-            _verifications.CheckTransactionMerchantInTransactions(WayToPay.Offline);
+            _verifications.CheckTransactionMerchantInTransactions(_merchant);
         }
 
         /// <summary>
@@ -77,7 +89,7 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
         public void Check_Record_Time_In_Draw()
         {
             SetUp();
-            _verifications.CheckRecordTimeInDraw("EuroJackpot");
+            _verifications.CheckRecordTimeInDraw("Eurojackpot");
         }
 
         /// <summary>
@@ -87,7 +99,7 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
         public void Check_Record_Email_In_Draw()
         {
             SetUp();
-            _verifications.CheckRecordEmailInDraw("EuroJackpot", _driverCover.Login);
+            _verifications.CheckRecordEmailInDraw("Eurojackpot", _driverCover.Login);
         }
 
         /// <summary>
@@ -97,7 +109,7 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
         public void Check_Record_Type_In_Draw()
         {
             SetUp();
-            _verifications.CheckRecordBetTypeInDraw("Bulk buy", "EuroJackpot");
+            _verifications.CheckRecordBetTypeInDraw("Bulk buy", "Eurojackpot");
         }
 
         /// <summary>
@@ -119,7 +131,7 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
             // Log in     
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
 
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "play/eurojackpot/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/play/eurojackpot/");
 
             //Pay for tickets
             RegularGamePageObj regularGame = new RegularGamePageObj(_driver);
@@ -172,6 +184,7 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
             _driverCover = new DriverCover(_driver);
             _verifications = new OrderVerifications(_driver);
             _commonActions = new CommonActions(_driver);
+            _cartVerifications = new CartVerifications(_driver);
         }
     }
 }

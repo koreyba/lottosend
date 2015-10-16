@@ -22,7 +22,7 @@ namespace LottoSend.com.BackEndObj.GroupGapePages
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = "table#groups.index_table + table.index_table > tbody")]
+        [FindsBy(How = How.CssSelector, Using = "table.index_table + table.index_table > tbody")]
         private IWebElement _table;
 
         /// <summary>

@@ -29,7 +29,7 @@ namespace LottoSend.com.Verifications
         /// </summary>
         public void CheckBalanceOnDepositPage(double expected)
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "/account/deposits/new/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "/en/account/deposits/new/");
             DepositObj deposit = new DepositObj(_driver);
 
             Assert.AreEqual(expected, deposit.Balance, "Sorry but the balance is not as expected on page: " + _driverCover.Driver.Url + " ");
@@ -40,7 +40,7 @@ namespace LottoSend.com.Verifications
         /// </summary>
         public void CheckBalanceOnDepositPageMobile(double expected)
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "/account/deposits/new/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "/en/account/deposits/new/");
             DepositMobileObj deposit = new DepositMobileObj(_driver);
 
             Assert.AreEqual(expected, deposit.Balance, "Sorry but the balance is not as expected on page: " + _driverCover.Driver.Url + " ");

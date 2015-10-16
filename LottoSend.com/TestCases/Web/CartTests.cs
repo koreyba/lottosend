@@ -29,7 +29,7 @@ namespace LottoSend.com.TestCases.Web
         public void Edit_Group_Ticket_And_Add_More()
         {
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
-            _commonActions.AddGroupTicketToCart("play/powerball/");
+            _commonActions.AddGroupTicketToCart("en/play/powerball/");
 
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "carts");
             CartObj cart = new CartObj(_driver);
@@ -43,7 +43,7 @@ namespace LottoSend.com.TestCases.Web
 
             _cartVerifications.CheckNumberOfTicketsInCart(3);
 
-            _commonActions.DeleteAllTicketFromCart();
+            _commonActions.DeleteAllTicketFromCart_Front();
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace LottoSend.com.TestCases.Web
 
             _cartVerifications.CheckNumberOfTicketsInCart(4);
 
-            _commonActions.DeleteAllTicketFromCart();
+            _commonActions.DeleteAllTicketFromCart_Front();
         }
 
         /// <summary>
@@ -97,8 +97,8 @@ namespace LottoSend.com.TestCases.Web
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
 
             //Add two tickets from different lotteries
-            _commonActions.AddGroupTicketToCart("play/euromillions/");
-            _commonActions.AddGroupTicketToCart("play/powerball/");
+            _commonActions.AddGroupTicketToCart("en/play/euromillions/");
+            _commonActions.AddGroupTicketToCart("en/play/powerball/");
 
             _cartVerifications.CheckNumberOfTicketsInCart(2);
 
@@ -122,7 +122,7 @@ namespace LottoSend.com.TestCases.Web
         {
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
 
-            _commonActions.AddRegularTicketToCart("play/eurojackpot/");
+            _commonActions.AddRegularTicketToCart("en/play/eurojackpot/");
 
             _cartVerifications.CheckNumberOfTicketsInCart(1);
 
@@ -141,7 +141,7 @@ namespace LottoSend.com.TestCases.Web
             if (TestContext.CurrentContext.Result.Status == TestStatus.Failed)
             {
                 //Removes all tickets from the cart to make sure all other tests will work well
-                _commonActions.DeleteAllTicketFromCart();
+                _commonActions.DeleteAllTicketFromCart_Front();
             }
             _driver.Dispose();
         }

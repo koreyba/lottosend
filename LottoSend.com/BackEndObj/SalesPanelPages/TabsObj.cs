@@ -7,9 +7,9 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
     /// <summary>
     /// Tabs in the sales panel
     /// </summary>
-    public class Tabs : DriverCover
+    public class TabsObj : DriverCover
     {
-        public Tabs(IWebDriver driver) : base(driver)
+        public TabsObj(IWebDriver driver) : base(driver)
         {
             if (!Driver.Url.Contains("admin/orders"))
             {

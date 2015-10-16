@@ -24,20 +24,23 @@ namespace LottoSend.com.BackEndObj.ChargePanelPages
         [FindsBy(How = How.CssSelector, Using = "table.index_table > tbody:nth-child(2) > tr:last-child")]
         private IWebElement _theLastPayment;
 
+        [FindsBy(How = How.CssSelector, Using = "table.index_table > tbody:nth-child(2) > tr:first-child")]
+        private IWebElement _theFirstPayment;
+
         /// <summary>
-        /// Clicks on "Charge" button of the last payment on the first page
+        /// Clicks on "Charge" button of the last payment on the first page (the one at the top)
         /// </summary>
         /// <returns></returns>
         public ChargeFormObj ChargeTheLastPayment()
         {
-            IList<IWebElement> lastButton = Driver.FindElements(By.CssSelector("span.last > a"));
-            if (lastButton.Count > 0)
-            {
-                lastButton[0].Click(); // Go to the last page
-                WaitForPageLoading();
-            }
+            //IList<IWebElement> lastButton = Driver.FindElements(By.CssSelector("span.last > a"));
+            //if (lastButton.Count > 0)
+            //{
+            //    lastButton[0].Click(); // Go to the last page
+            //    WaitForPageLoading();
+            //}
 
-            IWebElement charge = _theLastPayment.FindElement(By.LinkText("Charge"));
+            IWebElement charge = _theFirstPayment.FindElement(By.LinkText("Charge"));
 
             charge.Click();
             WaitjQuery();

@@ -23,7 +23,7 @@ namespace LottoSend.com.BackEndObj
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = "table.index_table > tbody > tr:nth-child(2)")]
+        [FindsBy(How = How.CssSelector, Using = "table.index_table > tbody > tr:nth-child(1)")]
         private IWebElement _firstRecord;
 
         /// <summary>

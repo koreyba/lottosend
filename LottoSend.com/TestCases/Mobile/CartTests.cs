@@ -37,21 +37,21 @@ namespace LottoSend.com.TestCases.Mobile
         public void Edit_Group_Ticket_And_Add_More()
         {
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
-            _commonActions.AddGroupTicketToCart("play/powerball/");
+            _commonActions.AddGroupTicketToCart("en/play/powerball/");
 
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "carts");
             CartObj cart = new CartObj(_driver);
-            cart.EditTicket_Web("Powerball");
+            cart.EditTicket_Mobile("Powerball");
 
             GroupGamePageObj groupPage = new GroupGamePageObj(_driver);
 
             //add 3 shares to the second ticket
             groupPage.AddShares(2);
-            groupPage.ClickAddToCartButton();
+            groupPage.ClickBuyTicketsButton();
 
             _cartVerifications.CheckNumberOfTicketsInCart(3);
 
-            _commonActions.DeleteAllTicketFromCart();
+            _commonActions.DeleteAllTicketFromCart_Front();
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace LottoSend.com.TestCases.Mobile
             _commonActions.AddRaffleTicketToCart();
 
             CartObj cart = new CartObj(_driver);
-            cart.EditTicket_Web("Cart Raffle");
+            cart.EditRaffleTicketMobile("Cart Raffle");
 
             RafflesPageObj raffle = new RafflesPageObj(_driver);
 
@@ -74,7 +74,7 @@ namespace LottoSend.com.TestCases.Mobile
 
             _cartVerifications.CheckNumberOfTicketsInCart(4);
 
-            _commonActions.DeleteAllTicketFromCart();
+            _commonActions.DeleteAllTicketFromCart_Front();
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace LottoSend.com.TestCases.Mobile
 
             //Remove tickets
             CartObj cart = new CartObj(_driver);
-            cart.DeleteTicket_Web("Cart Raffle");
+            cart.DeleteRaffleTicket_Mobile("Cart Raffle");
 
             _cartVerifications.CheckIfTicketIsNotInCart("Cart Raffle");
             _cartVerifications.CheckNumberOfTicketsInCart(0);
@@ -105,15 +105,15 @@ namespace LottoSend.com.TestCases.Mobile
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
 
             //Add two tickets from different lotteries
-            _commonActions.AddGroupTicketToCart("play/euromillions/");
-            _commonActions.AddGroupTicketToCart("play/powerball/");
+            _commonActions.AddGroupTicketToCart("en/play/euromillions/");
+            _commonActions.AddGroupTicketToCart("en/play/powerball/");
 
             _cartVerifications.CheckNumberOfTicketsInCart(2);
 
             //Remove tickets
             CartObj cart = new CartObj(_driver);
-            cart.DeleteTicket_Web("EuroMillions");
-            cart.DeleteTicket_Web("Powerball");
+            cart.DeleteTicket_Mobile("EuroMillions");
+            cart.DeleteTicket_Mobile("Powerball");
 
             //Check if tickets are still present
             _cartVerifications.CheckIfTicketIsNotInCart("EuroMillions");
@@ -130,7 +130,7 @@ namespace LottoSend.com.TestCases.Mobile
         {
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
 
-            _commonActions.AddRegularTicketToCart("play/eurojackpot/");
+            _commonActions.AddRegularTicketToCart("en/play/eurojackpot/");
 
             _cartVerifications.CheckNumberOfTicketsInCart(1);
 
@@ -161,7 +161,7 @@ namespace LottoSend.com.TestCases.Mobile
             if (TestContext.CurrentContext.Result.Status == TestStatus.Failed)
             {
                 //Removes all tickets from the cart to make sure all other tests will work well
-                _commonActions.DeleteAllTicketFromCart();
+                _commonActions.DeleteAllTicketFromCart_Front();
             }
             _driver.Dispose();
         }

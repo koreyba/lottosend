@@ -1,4 +1,5 @@
-﻿using System.Security.Permissions;
+﻿using System.Configuration;
+using System.Security.Permissions;
 using LottoSend.com.BackEndObj;
 using LottoSend.com.BackEndObj.ChargePanelPages;
 using LottoSend.com.BackEndObj.DrawPages;
@@ -51,7 +52,7 @@ namespace LottoSend.com.TestCases
         /// </summary>
         public void AddRaffleTicketToCart()
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "raffles/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/");
             RafflesPageObj raffle = new RafflesPageObj(_driver);
 
             raffle.ClickBuyNowButton();
@@ -66,16 +67,26 @@ namespace LottoSend.com.TestCases
             //Add ticket to the cart
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + adress);
             GroupGamePageObj groupGame = new GroupGamePageObj(_driver);
-            groupGame.ClickAddToCartButton();
+            groupGame.ClickBuyTicketsButton();
         }
 
         /// <summary>
         /// Removes all ticket from the cart
         /// </summary>
-        public void DeleteAllTicketFromCart()
+        public void DeleteAllTicketFromCart_Front()
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "carts/");
             CartObj cart = new CartObj(_driver);
+            cart.DeleteAllTickets();
+        }
+
+        /// <summary>
+        /// Removes all ticket from the cart
+        /// </summary>
+        public void DeleteAllTicketFromCart_SalesPanel()
+        {
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/orders");
+            BackEndObj.SalesPanelPages.CartObj cart = new BackEndObj.SalesPanelPages.CartObj(_driver);
             cart.DeleteAllTickets();
         }
 
@@ -89,7 +100,7 @@ namespace LottoSend.com.TestCases
             RegularGamePageObj game = new RegularGamePageObj(_driver);
             game.ClickStandartGameButton();
 
-            game.ClickAddToCartButton();
+            game.ClickBuyTicketsButton();
         }
 
         /// <summary>
@@ -125,7 +136,7 @@ namespace LottoSend.com.TestCases
         /// <returns>Total price to pay</returns>
         public double BuyRaffleTicket(WayToPay merchant)
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "raffles/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/");
 
             RafflesPageObj rafflePage = new RafflesPageObj(_driver);
             double totalPrice = rafflePage.TotalPrice;
@@ -158,7 +169,7 @@ namespace LottoSend.com.TestCases
         /// <returns>Total price to pay</returns>
         public double BuyRegularOneDrawTicket(WayToPay merchant)
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "play/eurojackpot/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/play/eurojackpot/");
 
             //Pay for tickets
             RegularGamePageObj regularGame = new RegularGamePageObj(_driver);
@@ -201,7 +212,7 @@ namespace LottoSend.com.TestCases
         /// <param name="isFailed">To fail payment of not</param>
         public void DepositMoney(double amount, WayToPay merchant, bool ifProcess = true, bool isFailed = false)
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "account/deposits/new/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/deposits/new/");
 
             DepositObj deposit = new DepositObj(_driver);
             deposit.DepositOtherAmount(amount, merchant, ifProcess, isFailed);
@@ -216,7 +227,7 @@ namespace LottoSend.com.TestCases
         /// <param name="isFailed">To fail payment of not</param>
         public void DepositMoneyMobile(double amount, WayToPay merchant, bool ifProcess = true, bool isFailed = false)
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "account/deposits/new/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/deposits/new/");
 
             DepositMobileObj deposit = new DepositMobileObj(_driver);
             deposit.DepositOtherAmount(amount, merchant, ifProcess, isFailed);
@@ -272,7 +283,7 @@ namespace LottoSend.com.TestCases
             if (_driverCover.Driver.FindElements(By.ClassName("current_user")).Count == 0)
             {
                 LoginObj login = new LoginObj(_driver);
-                login.LogIn("koreybadenis@gmail.com", "299242909");
+                login.LogIn(ConfigurationManager.AppSettings["AdminLogin"], ConfigurationManager.AppSettings["AdminPassword"]);
             }
 
             //else already signed in
