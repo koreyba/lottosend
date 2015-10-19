@@ -37,9 +37,9 @@ namespace LottoSend.com.TestCases.Mobile
         {
             //Sign up
             _commonActions.Sign_Up_Mobile();
-            _commonActions.DepositMoneyMobile(13, WayToPay.Offline, false);
+            _commonActions.DepositMoney_Mobile(13, WayToPay.Offline, false);
 
-            _commonActions.DepositMoneyMobile(11, _merchant);
+            _commonActions.DepositMoney_Mobile(11, _merchant);
 
             _verifications.CheckBalanceOnDepositPageMobile(22);
         }
@@ -52,9 +52,9 @@ namespace LottoSend.com.TestCases.Mobile
         {
             //Sign up
             _commonActions.Sign_Up_Mobile();
-            _commonActions.DepositMoneyMobile(13, WayToPay.Offline, true, true);
+            _commonActions.DepositMoney_Mobile(13, WayToPay.Offline, true, true);
 
-            _commonActions.DepositMoneyMobile(11, _merchant);
+            _commonActions.DepositMoney_Mobile(11, _merchant);
 
             _verifications.CheckBalanceOnDepositPageMobile(22);
         }
@@ -66,8 +66,8 @@ namespace LottoSend.com.TestCases.Mobile
         public void One_Plus_One_Second_Payment()
         {
             _commonActions.Sign_Up_Mobile();
-            _commonActions.BuyRegularOneDrawTicket(_merchant); //will get 1+1 promotion
-            _commonActions.BuyRaffleTicket(_merchant); //this ticket must cost more then the previously bought one
+            _commonActions.BuyRegularOneDrawTicket_Front(_merchant); //will get 1+1 promotion
+            _commonActions.BuyRaffleTicket_Front(_merchant); //this ticket must cost more then the previously bought one
 
             _verifications.CheckBalanceOnDepositPageMobile(0);
         }
@@ -80,8 +80,8 @@ namespace LottoSend.com.TestCases.Mobile
         {
             //Sign up
             _commonActions.Sign_Up_Mobile();
-            _commonActions.DepositMoneyMobile(13, _merchant); //is expected to get 1+1 promotion
-            _commonActions.DepositMoneyMobile(15, _merchant);
+            _commonActions.DepositMoney_Mobile(13, _merchant); //is expected to get 1+1 promotion
+            _commonActions.DepositMoney_Mobile(15, _merchant);
 
             _verifications.CheckBalanceOnDepositPageMobile(41); //13*2+15 
         }
@@ -94,7 +94,7 @@ namespace LottoSend.com.TestCases.Mobile
         {
             //Sign up
             _commonActions.Sign_Up_Mobile();
-            _totalPrice = _commonActions.BuyRaffleTicket(_merchant);
+            _totalPrice = _commonActions.BuyRaffleTicket_Front(_merchant);
 
             if (_totalPrice <= 30)
             {

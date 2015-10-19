@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
 namespace LottoSend.com.BackEndObj.SalesPanelPages
@@ -18,11 +13,11 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = "#\\35")]
-        private IWebElement _megaMillions;
+        //[FindsBy(How = How.CssSelector, Using = "#\\35")]
+        //private IWebElement _megaMillions;
 
-        [FindsBy(How = How.CssSelector, Using = "#ui-id-26 > a")]
-        private IWebElement _testRaffle3;
+        //[FindsBy(How = How.CssSelector, Using = "#ui-id-26 > a")]
+        //private IWebElement _testRaffle3;
 
         [FindsBy(How = How.CssSelector, Using = "div.left")]
         private IWebElement _menu;

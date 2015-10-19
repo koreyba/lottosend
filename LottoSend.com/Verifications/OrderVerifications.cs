@@ -241,6 +241,20 @@ namespace LottoSend.com.Verifications
         }
 
         /// <summary>
+        /// Checks the state of the first transaction
+        /// </summary>
+        /// <param name="expectedState"></param>
+        public void CheckTransactionsStateInTransactions(string expectedState)
+        {
+            _commonActions.SignIn_in_admin_panel();
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/transactions");
+            TransactionsObj transaction = new TransactionsObj(_driver);
+            string state = transaction.GetTransactionState();
+
+            Assert.AreEqual(expectedState, state, "Sorry but the transaction state is wrong. ");
+        }
+
+        /// <summary>
         /// Checks an email in the first record (the last bet) 
         /// </summary>
         public void CheckRecordEmailInDraw(string lotteryName, string expectedEmail)

@@ -20,7 +20,7 @@ namespace LottoSend.com.TestCases.Mobile
     {
         private IWebDriver _driver;
         private DriverCover _driverCover;
-        private OrderVerifications _verifications;
+        private OrderVerifications _orderVerifications;
         private CommonActions _commonActions;
         private string _email;
         private WayToPay _merchant;
@@ -59,9 +59,17 @@ namespace LottoSend.com.TestCases.Mobile
         [Test]
         public void Check_User_Balance()
         {
-            _verifications.CheckUserBalance_Front(_balanceBeforePayment, _depositAmount, "selenium2@gmail.com", _driverCover.Password);
+            _orderVerifications.CheckUserBalance_Front(_balanceBeforePayment, _depositAmount, "selenium2@gmail.com", _driverCover.Password);
         }
 
+        /// <summary>
+        /// Checks if the transaction has correct status on "Transactions" page
+        /// </summary>
+        [Test]
+        public void Check_Transactions_State_In_Transactions()
+        {
+            _orderVerifications.CheckTransactionsStateInTransactions("TODO/");
+        }
 
         /// <summary>
         /// Cheks the email of the last transaction (the first record) on "Back - Transactions" page
@@ -69,7 +77,7 @@ namespace LottoSend.com.TestCases.Mobile
         [Test]
         public void Check_Transactions_Email_In_Transactions()
         {
-            _verifications.CheckTransactionsEmailInTransactions(_email);
+            _orderVerifications.CheckTransactionsEmailInTransactions(_email);
         }
 
         /// <summary>
@@ -78,7 +86,7 @@ namespace LottoSend.com.TestCases.Mobile
         [Test]
         public void Check_Transaction_Merchant_In_Transactions()
         {
-            _verifications.CheckTransactionMerchantInTransactions(_merchant);
+            _orderVerifications.CheckTransactionMerchantInTransactions(_merchant);
         }
 
         /// <summary>
@@ -87,7 +95,7 @@ namespace LottoSend.com.TestCases.Mobile
         [Test]
         public void Check_Transaction_Time_In_Transactions()
         {
-            _verifications.CheckTransactionTimeInTransactions();
+            _orderVerifications.CheckTransactionTimeInTransactions();
         }
 
         private ChromeOptions CreateOptions(string device)
@@ -113,7 +121,7 @@ namespace LottoSend.com.TestCases.Mobile
         {
             _driver = new ChromeDriver(CreateOptions(_device));
             _driverCover = new DriverCover(_driver);
-            _verifications = new OrderVerifications(_driver);
+            _orderVerifications = new OrderVerifications(_driver);
             _commonActions = new CommonActions(_driver);
         }
     }

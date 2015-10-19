@@ -58,12 +58,12 @@
       <HintPath>..\packages\Selenium.RC.2.47.0\lib\net40\ThoughtWorks.Selenium.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="WebDriver, Version=2.47.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selenium.WebDriver.2.47.0\lib\net40\WebDriver.dll</HintPath>
+    <Reference Include="WebDriver, Version=2.48.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.WebDriver.2.48.0\lib\net40\WebDriver.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="WebDriver.Support, Version=2.47.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selenium.Support.2.47.0\lib\net40\WebDriver.Support.dll</HintPath>
+    <Reference Include="WebDriver.Support, Version=2.48.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.Support.2.48.0\lib\net40\WebDriver.Support.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -76,6 +76,7 @@
     <Compile Include="BackEndObj\GroupGapePages\NewGroupCreationObj.cs" />
     <Compile Include="BackEndObj\GroupGapePages\NewGroupTicketCreationObj.cs" />
     <Compile Include="BackEndObj\LoginObj.cs" />
+    <Compile Include="BackEndObj\NewScannedImageObj.cs" />
     <Compile Include="BackEndObj\OrderProcessingObj.cs" />
     <Compile Include="BackEndObj\PaneMenuObj.cs" />
     <Compile Include="BackEndObj\SalesPanelPages\CcDetailsObj.cs" />
@@ -86,12 +87,14 @@
     <Compile Include="BackEndObj\SalesPanelPages\RegisterObj.cs" />
     <Compile Include="BackEndObj\SalesPanelPages\SingleGameObj.cs" />
     <Compile Include="BackEndObj\SalesPanelPages\TabsObj.cs" />
+    <Compile Include="BackEndObj\ScannedImagesObj.cs" />
     <Compile Include="BackEndObj\TransactionsObj.cs" />
     <Compile Include="BackEndObj\WebUsersPageObj.cs" />
     <Compile Include="FrontEndObj\Common\ExpressCheckoutObj.cs" />
     <Compile Include="FrontEndObj\MyAccount\DepositMobileObj.cs" />
     <Compile Include="FrontEndObj\SignUp\SignUpForm.cs" />
     <Compile Include="TestCases\BackOffice\GroupGameTests.cs" />
+    <Compile Include="TestCases\BackOffice\ManualMatchTests.cs" />
     <Compile Include="TestCases\BackOffice\SalesPanel\CartTests.cs" />
     <Compile Include="TestCases\BackOffice\SalesPanel\SignInUpTests.cs" />
     <Compile Include="TestCases\Mobile\CartTests.cs" />
@@ -151,6 +154,15 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\packages\Selenium.WebDriver.ChromeDriver.2.20.0.0\driver\chromedriver.exe">
+      <Link>chromedriver.exe</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\scannedimage.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

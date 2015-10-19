@@ -14,7 +14,7 @@ namespace LottoSend.com
     {
         static void Main(string[] args)
         {
-            
+            ChromeDriver d = new ChromeDriver();
         }
     }
 }

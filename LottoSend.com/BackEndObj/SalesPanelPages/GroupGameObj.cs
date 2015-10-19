@@ -57,7 +57,7 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
         /// <param name="numberOfShares"></param>
         public void AddShareToTicket(int ticketNumber, int numberOfShares)
         {
-            IWebElement ticket = _table.FindElement(By.CssSelector("tr:nth-child(" + ticketNumber + ")"));
+            IWebElement ticket = _table.FindElement(By.CssSelector("tr:nth-child(" + 3 * ticketNumber + ")")); //TODO: select all and then user foreach
             IWebElement select = ticket.FindElement(By.CssSelector("td:nth-child(6) > select"));
             ChooseElementInSelect(numberOfShares.ToString(), select, SelectBy.Value);
             WaitjQuery();

@@ -13,7 +13,7 @@ namespace LottoSend.com.TestCases.Web
 {
     [TestFixture(typeof(ChromeDriver))]
     [TestFixture(typeof(FirefoxDriver))]
-    [TestFixture(typeof(InternetExplorerDriver))]
+    //[TestFixture(typeof(InternetExplorerDriver))]
     public class LogInTests<TWebDriver> where TWebDriver : IWebDriver, new()
     {
         private IWebDriver _driver;

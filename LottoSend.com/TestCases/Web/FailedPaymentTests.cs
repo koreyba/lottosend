@@ -16,7 +16,7 @@ namespace LottoSend.com.TestCases.Web
     /// <typeparam name="TWebDriver"></typeparam>
     [TestFixture(typeof(ChromeDriver))]
     [TestFixture(typeof(FirefoxDriver))]
-    [TestFixture(typeof(InternetExplorerDriver))]
+    //[TestFixture(typeof(InternetExplorerDriver))]
     class FailedPaymentTests<TWebDriver> where TWebDriver : IWebDriver, new()
     {
         private IWebDriver _driver;
@@ -85,7 +85,7 @@ namespace LottoSend.com.TestCases.Web
             //approve payment
             _commonActions.Fail_offline_payment();
 
-            _cartVerifications.CheckIfTicketIsInCart("Eurojackpot");
+            _cartVerifications.CheckIfTicketIsInCart("EuroJackpot");
 
             _commonActions.DeleteAllTicketFromCart_Front();
         }

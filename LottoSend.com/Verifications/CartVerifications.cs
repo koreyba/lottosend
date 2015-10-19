@@ -29,7 +29,7 @@ namespace LottoSend.com.Verifications
         /// Checks the number of tickets (all types) in the cart
         /// </summary>
         /// <param name="expected"></param>
-        public void CheckNumberOfTicketsInCart(int expected)
+        public void CheckNumberOfTicketsInCart_Front(int expected)
         {
             //Go to the cart 
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "carts/");
@@ -38,6 +38,22 @@ namespace LottoSend.com.Verifications
             CartObj cart = new CartObj(_driver);
             Assert.AreEqual(expected, cart.NumberOfTickets, "There are " + cart.NumberOfTickets + " group tickets in the cart, but " + expected + " were expected ");
         }
+
+
+        /// <summary>
+        /// Checks the number of tickets (all types) in the cart
+        /// </summary>
+        /// <param name="expected"></param>
+        public void CheckNumberOfTicketsInCart_SalesPanel(int expected)
+        {
+            //Go to the sales panel
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/orders");
+
+            //Check number of elemetns in the cart
+            BackEndObj.SalesPanelPages.CartObj cart = new BackEndObj.SalesPanelPages.CartObj(_driver);
+            Assert.AreEqual(expected, cart.NumberOfTickets, "There are " + cart.NumberOfTickets + " group tickets in the cart, but " + expected + " were expected ");
+        } 
+            
 
         /// <summary>
         /// Checks if ticket is not in the cart

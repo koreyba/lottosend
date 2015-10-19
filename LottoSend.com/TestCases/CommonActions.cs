@@ -1,16 +1,16 @@
 ﻿using System.Configuration;
-using System.Security.Permissions;
 using LottoSend.com.BackEndObj;
 using LottoSend.com.BackEndObj.ChargePanelPages;
 using LottoSend.com.BackEndObj.DrawPages;
 using LottoSend.com.BackEndObj.GroupGapePages;
-using LottoSend.com.FrontEndObj;
+using LottoSend.com.BackEndObj.SalesPanelPages;
 using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.FrontEndObj.Login;
 using LottoSend.com.FrontEndObj.MyAccount;
 using LottoSend.com.FrontEndObj.SignUp;
 using OpenQA.Selenium;
+using CartObj = LottoSend.com.FrontEndObj.CartObj;
 
 
 namespace LottoSend.com.TestCases
@@ -29,6 +29,25 @@ namespace LottoSend.com.TestCases
             _driverCover = new DriverCover(_driver);
         }
 
+        /// <summary>
+        /// Adds a group lottery ticket to the cart
+        /// </summary>
+        /// <param name="lottery"></param>
+        public void AddGroupTicketToCart_SalesPanel(string lottery)
+        {
+            //Add ticket to the cart
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/orders");
+            MenuObj menu = new MenuObj(_driver);
+            menu.GoToLotteryPage(lottery);
+            GroupGameObj group = new GroupGameObj(_driver);
+            group.AddShareToTicket(1, 1);
+            group.ClickAddToCartButton();
+        }
+
+        /// <summary>
+        /// Creates a new group (for gorup tickets) in the backoffice 
+        /// </summary>
+        /// <param name="name"></param>
         public void CreateGroup(string name)
         {
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/groups/new");
@@ -62,7 +81,7 @@ namespace LottoSend.com.TestCases
         /// Adds a group ticket to the cart
         /// </summary>
         /// <param name="adress"></param>
-        public void AddGroupTicketToCart(string adress)
+        public void AddGroupTicketToCart_Front(string adress)
         {
             //Add ticket to the cart
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + adress);
@@ -94,7 +113,7 @@ namespace LottoSend.com.TestCases
         /// Adds a regular ticket to the cart
         /// </summary>
         /// <param name="address"></param>
-        public void AddRegularTicketToCart(string address)
+        public void AddRegularTicketToCart_Front(string address)
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + address);
             RegularGamePageObj game = new RegularGamePageObj(_driver);
@@ -104,7 +123,7 @@ namespace LottoSend.com.TestCases
         }
 
         /// <summary>
-        /// Removes a group (of group tickets)
+        /// Removes a group (of group tickets) in the back office
         /// </summary>
         /// <param name="name"></param>
         public void RemoveGroup(string name)
@@ -134,7 +153,7 @@ namespace LottoSend.com.TestCases
         /// Buys a raffle ticket 
         /// </summary>
         /// <returns>Total price to pay</returns>
-        public double BuyRaffleTicket(WayToPay merchant)
+        public double BuyRaffleTicket_Front(WayToPay merchant)
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/");
 
@@ -143,22 +162,7 @@ namespace LottoSend.com.TestCases
 
             CartObj cart = rafflePage.ClickBuyNowButton();
             MerchantsObj merchants = cart.ClickProceedToCheckoutButton();
-
-            if (merchant == WayToPay.Neteller)
-            {
-                merchants.PayWithNeteller();
-            }
-
-            if (merchant == WayToPay.Offline)
-            {
-                merchants.PayWithOfflineCharge();
-
-                SignIn_in_admin_panel();
-
-                Authorize_the_first_payment();
-
-                Approve_offline_payment();
-            }
+            merchants.Pay(merchant);
 
             return totalPrice;
         }
@@ -167,7 +171,7 @@ namespace LottoSend.com.TestCases
         /// Buys a regular one-draw ticket
         /// </summary>
         /// <returns>Total price to pay</returns>
-        public double BuyRegularOneDrawTicket(WayToPay merchant)
+        public double BuyRegularOneDrawTicket_Front(WayToPay merchant)
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/play/eurojackpot/");
 
@@ -183,22 +187,7 @@ namespace LottoSend.com.TestCases
             double totalPrice = regularGame.TotalPrice;
 
             MerchantsObj merchants = regularGame.ClickBuyTicketsButton();
-
-            if (merchant == WayToPay.Neteller)
-            {
-                merchants.PayWithNeteller();
-            }
-
-            if (merchant == WayToPay.Offline)
-            {
-                merchants.PayWithOfflineCharge();
-
-                SignIn_in_admin_panel();
-
-                Authorize_the_first_payment();
-
-                Approve_offline_payment();
-            }
+            merchants.Pay(merchant);
 
             return totalPrice;
         }
@@ -210,7 +199,7 @@ namespace LottoSend.com.TestCases
         /// <param name="merchant">Merchant to pay</param>
         /// <param name="ifProcess">Tells if process the payment or leave it pendant</param>
         /// <param name="isFailed">To fail payment of not</param>
-        public void DepositMoney(double amount, WayToPay merchant, bool ifProcess = true, bool isFailed = false)
+        public void DepositMoney_Front(double amount, WayToPay merchant, bool ifProcess = true, bool isFailed = false)
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/deposits/new/");
 
@@ -225,7 +214,7 @@ namespace LottoSend.com.TestCases
         /// <param name="merchant">Merchant to pay</param>
         /// <param name="ifProcess">Tells if process the payment or leave it pendant</param>
         /// <param name="isFailed">To fail payment of not</param>
-        public void DepositMoneyMobile(double amount, WayToPay merchant, bool ifProcess = true, bool isFailed = false)
+        public void DepositMoney_Mobile(double amount, WayToPay merchant, bool ifProcess = true, bool isFailed = false)
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/deposits/new/");
 
@@ -251,7 +240,7 @@ namespace LottoSend.com.TestCases
         /// On front-end play page switch to regular game tab. You have to be on this page to makethis action safely
         /// </summary>
         /// <returns></returns>
-        public RegularGamePageObj Select_regular_game_tab()
+        public RegularGamePageObj SelectRegularGameTab_Front()
         {
             RegularGamePageObj game = new RegularGamePageObj(_driver);
             game.ClickStandartGameButton();
@@ -332,7 +321,7 @@ namespace LottoSend.com.TestCases
         /// Registrate a new user
         /// <returns>User's email</returns>
         /// </summary>
-        public string Sign_Up()
+        public string Sign_Up_Front()
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "web_users/sign_up");
             SignUpPageOneObj signUp = new SignUpPageOneObj(_driver);

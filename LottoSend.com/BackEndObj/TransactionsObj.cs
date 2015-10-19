@@ -27,6 +27,16 @@ namespace LottoSend.com.BackEndObj
         private IWebElement _firstRecord;
 
         /// <summary>
+        /// Returns state of the first transaction
+        /// </summary>
+        /// <returns></returns>
+        public string GetTransactionState()
+        {
+            IWebElement status = _firstRecord.FindElement(By.CssSelector("td:nth-child(7)"));
+            return status.Text;
+        }
+
+        /// <summary>
         /// Returns email of the first transaction
         /// </summary>
         /// <returns></returns>
