@@ -58,7 +58,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         public void Check_Transactions_State_In_Transactions()
         {
             SetUp();
-            _orderVerifications.CheckTransactionsStateInTransactions("TODO/");
+            _orderVerifications.CheckTransactionsStateInTransactions("succeed");
         }
 
         /// <summary>

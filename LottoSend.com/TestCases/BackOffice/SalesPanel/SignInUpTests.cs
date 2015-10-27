@@ -29,18 +29,18 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             _backOfficeVerifications.IfUserSignedInSalesPanel();
         }
 
-        [Test]
-        public void Sign_In_Sales_Panel()
+        [TestCase("selenium@gmail.com", 40540)]
+        public void Sign_In_Sales_Panel(string email, int id)
         {
             _commonActions.SignIn_in_admin_panel();
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/orders");
 
             RegisterObj register = new RegisterObj(_driver);
-            register.SignIn("selenium@gmail.com");
+            register.SignIn(email);
             _backOfficeVerifications.IfUserSignedInSalesPanel();
             register.SignOut();
 
-            register.SignIn(7759);
+            register.SignIn(id);
             _backOfficeVerifications.IfUserSignedInSalesPanel();
         }
 

@@ -107,7 +107,7 @@ namespace LottoSend.com.TestCases.Web
         [Test]
         public void Check_Transactions_State_In_Transactions()
         {
-            _orderVerifications.CheckTransactionsStateInTransactions("TODO/");
+            _orderVerifications.CheckTransactionsStateInTransactions("succeed");
         }
 
         /// <summary>
