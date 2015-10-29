@@ -14,13 +14,13 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
     [TestFixture("Apple iPhone 4", WayToPay.Neteller)]
     [TestFixture("Apple iPhone 6", WayToPay.Offline)]
     [TestFixture("Apple iPhone 5", WayToPay.TrustPay)]
-   //[TestFixture("Samsung Galaxy S4", WayToPay.Skrill)]
+    [TestFixture("Samsung Galaxy S4", WayToPay.Skrill)]
     public class BuyGroupOneDrawTicketTests 
     {
         private IWebDriver _driver;
         private DriverCover _driverCover;
         private double _totalPrice;
-        private OrderVerifications _orderVerifications;
+        private OrderVerifications _verifications;
         private CommonActions _commonActions;
         private WayToPay _merchant;
         private string _device;
@@ -48,17 +48,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         {
             SetUp();
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
-            _cartVerifications.CheckNumberOfTicketsInCart_Front(0);
-        }
-
-        /// <summary>
-        /// Checks if the transaction has correct status on "Transactions" page
-        /// </summary>
-        [Test]
-        public void Check_Transactions_State_In_Transactions()
-        {
-            SetUp();
-            _orderVerifications.CheckTransactionsStateInTransactions("succeed");
+            _cartVerifications.CheckNumberOfTicketsInCart(0);
         }
 
         /// <summary>
@@ -68,7 +58,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         public void Check_Transactions_Email_In_Transactions()
         {
             SetUp();
-            _orderVerifications.CheckTransactionsEmailInTransactions(_driverCover.Login);
+            _verifications.CheckTransactionsEmailInTransactions(_driverCover.Login);
         }
 
         /// <summary>
@@ -78,7 +68,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         public void Check_Transaction_Merchant_In_Transactions()
         {
             SetUp();
-            _orderVerifications.CheckTransactionMerchantInTransactions(_merchant);
+            _verifications.CheckTransactionMerchantInTransactions(_merchant);
         }
 
         /// <summary>
@@ -88,7 +78,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         public void Check_Transaction_Time_In_Transactions()
         {
             SetUp();
-            _orderVerifications.CheckTransactionTimeInTransactions();
+            _verifications.CheckTransactionTimeInTransactions();
         }
 
         /// <summary>
@@ -98,7 +88,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         public void Check_Record_Time_In_Draw()
         {
             SetUp();
-            _orderVerifications.CheckRecordTimeInDraw("Eurojackpot");
+            _verifications.CheckRecordTimeInDraw("Eurojackpot");
         }
 
         /// <summary>
@@ -108,7 +98,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         public void Check_Record_Email_In_Draw()
         {
             SetUp();
-            _orderVerifications.CheckRecordEmailInDraw("Eurojackpot", _driverCover.Login);
+            _verifications.CheckRecordEmailInDraw("Eurojackpot", _driverCover.Login);
         }
 
         /// <summary>
@@ -118,7 +108,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         public void Check_Record_Type_In_Draw()
         {
             SetUp();
-            _orderVerifications.CheckRecordBetTypeInDraw("Single", "Eurojackpot");
+            _verifications.CheckRecordBetTypeInDraw("Single", "Eurojackpot");
         }
 
         /// <summary>
@@ -128,7 +118,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         public void Check_Record_Price_In_Draw()
         {
             SetUp();
-            _orderVerifications.CheckRecordPriceInDraw(_totalPrice) ;
+            _verifications.CheckRecordPriceInDraw(_totalPrice) ;
         }
 
         /// <summary>
@@ -170,9 +160,9 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         public void CleanUp()
         {
             _driver.Dispose();
-            if (_orderVerifications.Errors.Length > 0)
+            if (_verifications.Errors.Length > 0)
             {
-                Assert.Fail(_orderVerifications.Errors.ToString());
+                Assert.Fail(_verifications.Errors.ToString());
             }
         }
 
@@ -180,7 +170,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         {
             _driver = new ChromeDriver();
             _driverCover = new DriverCover(_driver);
-            _orderVerifications = new OrderVerifications(_driver);
+            _verifications = new OrderVerifications(_driver);
             _commonActions = new CommonActions(_driver);
         }
 
@@ -188,7 +178,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         {
             _driver = new ChromeDriver(option);
             _driverCover = new DriverCover(_driver);
-            _orderVerifications = new OrderVerifications(_driver);
+            _verifications = new OrderVerifications(_driver);
             _commonActions = new CommonActions(_driver);
             _cartVerifications = new CartVerifications(_driver);
         }

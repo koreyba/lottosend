@@ -13,9 +13,9 @@ using OpenQA.Selenium.IE;
 
 namespace LottoSend.com.TestCases.Web
 {
-    //[TestFixture(typeof(ChromeDriver))]
-    ////[TestFixture(typeof(FirefoxDriver))]
-    ////[TestFixture(typeof(InternetExplorerDriver))]
+    [TestFixture(typeof(ChromeDriver))]
+    [TestFixture(typeof(FirefoxDriver))]
+    [TestFixture(typeof(InternetExplorerDriver))]
     public class SignUpTests<TWebDriver> where TWebDriver : IWebDriver, new()
     {
         private IWebDriver _driver;
@@ -27,7 +27,7 @@ namespace LottoSend.com.TestCases.Web
         /// <summary>
         /// Signs up in express checkout in the cart
         /// </summary>
-        //[Test]
+        [Test]
         public void SignUp_Express_Checkout_In_Cart()
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "");
@@ -48,7 +48,7 @@ namespace LottoSend.com.TestCases.Web
         /// <summary>
         /// Signs up in express checkout on a game page
         /// </summary>
-        //[Test]
+        [Test]
         public void SignUp_Express_Checkout_Game_Page()
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "");
@@ -71,17 +71,17 @@ namespace LottoSend.com.TestCases.Web
         /// <summary>
         /// Checks if user exists in the backoffice - web_users page
         /// </summary>
-        //[Test]
+        [Test]
         public void Check_Back_Office_User()
         {
-            _email = _commonActions.Sign_Up_Front();
+            _email = _commonActions.Sign_Up();
             _usersVerifications.CheckBackOfficeUser(_email);
         }
 
          /// <summary>
         /// Sign up in pop up form
         /// </summary>
-        //[Test]
+        [Test]
         public void Sign_Up_In_Pop_Up()
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "");

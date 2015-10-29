@@ -8,9 +8,9 @@ using OpenQA.Selenium.IE;
 
 namespace LottoSend.com.TestCases.BackOffice
 {
-    //[TestFixture(typeof(ChromeDriver))]
-    ////[TestFixture(typeof(FirefoxDriver))]
-    ////[TestFixture(typeof(InternetExplorerDriver))]
+    [TestFixture(typeof(ChromeDriver))]
+    [TestFixture(typeof(FirefoxDriver))]
+    [TestFixture(typeof(InternetExplorerDriver))]
     public class GroupGameTests <TWebDriver> where TWebDriver : IWebDriver, new()
     {
         private IWebDriver _driver;
@@ -21,7 +21,7 @@ namespace LottoSend.com.TestCases.BackOffice
         /// <summary>
         /// Creates a new group ticket in a new group. Then removes the group with the ticket
         /// </summary>
-        //[Test]
+        [Test]
         public void CreateNewGroupTicket()
         {
             _commonActions.SignIn_in_admin_panel();
@@ -56,7 +56,7 @@ namespace LottoSend.com.TestCases.BackOffice
         /// <summary>
         /// Creates a new group in backoffice and checks if it is created (then removes it)
         /// </summary>
-        //[Test]
+        [Test]
         public void CreateNewGroup()
         {
             _commonActions.SignIn_in_admin_panel();

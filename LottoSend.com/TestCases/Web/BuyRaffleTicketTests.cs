@@ -15,17 +15,17 @@ namespace LottoSend.com.TestCases.Web
     /// </summary>
     /// <typeparam name="TWebDriver"></typeparam>
     [TestFixture(typeof(ChromeDriver), WayToPay.Neteller)]
-   // ////[TestFixture(typeof(FirefoxDriver), WayToPay.Neteller)]
-    //[TestFixture(typeof(InternetExplorerDriver), (WayToPay.Neteller))]
+    [TestFixture(typeof(FirefoxDriver), WayToPay.Neteller)]
+    [TestFixture(typeof(InternetExplorerDriver), (WayToPay.Neteller))]
     [TestFixture(typeof(ChromeDriver), WayToPay.Offline)]
-    //////[TestFixture(typeof(FirefoxDriver), WayToPay.Offline)]
-    //[TestFixture(typeof(InternetExplorerDriver), WayToPay.Offline)]
+    [TestFixture(typeof(FirefoxDriver), WayToPay.Offline)]
+    [TestFixture(typeof(InternetExplorerDriver), WayToPay.Offline)]
     [TestFixture(typeof(ChromeDriver), WayToPay.TrustPay)]
-   // ////[TestFixture(typeof(FirefoxDriver), WayToPay.TrustPay)]
-    //[TestFixture(typeof(InternetExplorerDriver), WayToPay.TrustPay)]
-    //[TestFixture(typeof(ChromeDriver), WayToPay.Skrill)]
-    //////[TestFixture(typeof(FirefoxDriver), WayToPay.Skrill)]
-    //[TestFixture(typeof(InternetExplorerDriver), WayToPay.Skrill)]
+    [TestFixture(typeof(FirefoxDriver), WayToPay.TrustPay)]
+    [TestFixture(typeof(InternetExplorerDriver), WayToPay.TrustPay)]
+    [TestFixture(typeof(ChromeDriver), WayToPay.Skrill)]
+    [TestFixture(typeof(FirefoxDriver), WayToPay.Skrill)]
+    [TestFixture(typeof(InternetExplorerDriver), WayToPay.Skrill)]
     public class BuyRaffleTicketTests<TWebDriver> where TWebDriver : IWebDriver, new()
     {
         private IWebDriver _driver;
@@ -53,7 +53,7 @@ namespace LottoSend.com.TestCases.Web
         public void Check_If_There_Is_No_Ticket_In_Cart()
         {
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
-            _cartVerifications.CheckNumberOfTicketsInCart_Front(0);
+            _cartVerifications.CheckNumberOfTicketsInCart(0);
         }
 
         /// <summary>
@@ -99,15 +99,6 @@ namespace LottoSend.com.TestCases.Web
         public void Check_Transaction_Time_In_Transactions()
         {
             _orderVerifications.CheckTransactionTimeInTransactions();
-        }
-
-        /// <summary>
-        /// Checks if the transaction has correct status on "Transactions" page
-        /// </summary>
-        [Test]
-        public void Check_Transactions_State_In_Transactions()
-        {
-            _orderVerifications.CheckTransactionsStateInTransactions("succeed");
         }
 
         /// <summary>
