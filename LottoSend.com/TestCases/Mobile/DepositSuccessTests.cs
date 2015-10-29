@@ -62,6 +62,17 @@ namespace LottoSend.com.TestCases.Mobile
             _verifications.CheckUserBalance_Front(_balanceBeforePayment, _depositAmount, "selenium2@gmail.com", _driverCover.Password);
         }
 
+<<<<<<< HEAD
+=======
+        /// <summary>
+        /// Checks if the transaction has correct status on "Transactions" page
+        /// </summary>
+        [Test]
+        public void Check_Transactions_State_In_Transactions()
+        {
+            _orderVerifications.CheckTransactionsStateInTransactions("TODO/");
+        }
+>>>>>>> parent of 3f4f35e... daily
 
         /// <summary>
         /// Cheks the email of the last transaction (the first record) on "Back - Transactions" page

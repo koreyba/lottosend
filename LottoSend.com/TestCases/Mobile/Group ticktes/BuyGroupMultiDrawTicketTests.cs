@@ -48,7 +48,21 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         {
             SetUp(CreateOptions(_device));
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+<<<<<<< HEAD
             _cartVerifications.CheckNumberOfTicketsInCart(0);
+=======
+            _cartVerifications.CheckNumberOfTicketsInCart_Front(0);
+        }
+
+        /// <summary>
+        /// Checks if the transaction has correct status on "Transactions" page
+        /// </summary>
+        [Test]
+        public void Check_Transactions_State_In_Transactions()
+        {
+            SetUp();
+            _orderVerifications.CheckTransactionsStateInTransactions("TODO/");
+>>>>>>> parent of 3f4f35e... daily
         }
 
         /// <summary>

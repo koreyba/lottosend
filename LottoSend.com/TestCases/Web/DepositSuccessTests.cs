@@ -92,7 +92,20 @@ namespace LottoSend.com.TestCases.Web
         [Test]
         public void Check_Transaction_Date_Front()
         {
+<<<<<<< HEAD
             _verifications.CheckTransactionDateFront(_email, _driverCover.Password);
+=======
+            _orderVerifications.CheckTransactionDateFront(_email, _driverCover.Password);
+        }
+
+        /// <summary>
+        /// Checks if the transaction has correct status on "Transactions" page
+        /// </summary>
+        [Test]
+        public void Check_Transactions_State_In_Transactions()
+        {
+            _orderVerifications.CheckTransactionsStateInTransactions("TODO/");
+>>>>>>> parent of 3f4f35e... daily
         }
 
         /// <summary>

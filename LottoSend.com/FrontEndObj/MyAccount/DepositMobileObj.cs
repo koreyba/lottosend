@@ -25,7 +25,7 @@ namespace LottoSend.com.FrontEndObj.MyAccount
         [FindsBy(How = How.CssSelector, Using = "#new_deposit")]
         private IWebElement _depositOptions;
 
-        [FindsBy(How = How.CssSelector, Using = "#new_deposit> div.row > div.other")]
+        [FindsBy(How = How.CssSelector, Using = "#new_deposit> div.row > div.other > strong:nth-child(1)")]
         private IWebElement _otherRadioButton;
 
         [FindsBy(How = How.CssSelector, Using = "input#deposit_total")]
@@ -91,8 +91,7 @@ namespace LottoSend.com.FrontEndObj.MyAccount
         {
             _otherRadioButton.Click();
             _amountInput.SendKeys(amount.ToString());
-            //_otherRadioButton.Click();
-            _balance.Click();
+            _otherRadioButton.Click();
 
             PayForDeposit(merchant, ifProcess, isFailed);
         }

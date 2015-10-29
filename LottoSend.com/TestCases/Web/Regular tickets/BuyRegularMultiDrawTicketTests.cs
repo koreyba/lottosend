@@ -115,7 +115,20 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         [Test]
         public void Check_Transaction_Merchant_In_Transactions()
         {
+<<<<<<< HEAD
             _verifications.CheckTransactionMerchantInTransactions(_merchant);
+=======
+            _orderVerifications.CheckTransactionMerchantInTransactions(_merchant);
+        }
+
+        /// <summary>
+        /// Checks if the transaction has correct status on "Transactions" page
+        /// </summary>
+        [Test]
+        public void Check_Transactions_State_In_Transactions()
+        {
+            _orderVerifications.CheckTransactionsStateInTransactions("TODO/");
+>>>>>>> parent of 3f4f35e... daily
         }
 
         /// <summary>

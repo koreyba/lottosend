@@ -85,7 +85,7 @@ namespace LottoSend.com.FrontEndObj.GamePages
         /// <returns></returns>
         public MerchantsObj ClickBuyTicketsButton()
         {
-            Thread.Sleep(200);
+            Thread.Sleep(100);
             _detectBuyTicketsButton().Click();
             bool w = WaitjQuery();
 

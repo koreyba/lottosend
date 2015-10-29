@@ -12,6 +12,15 @@
     }
 
     /// <summary>
+    /// Includes ways to run tests (web or mobile)
+    /// </summary>
+    public enum Environment
+    {
+        Web,
+        Mobile
+    }
+
+    /// <summary>
     /// Ways to choose an element in "select" 
     /// </summary>
     public enum SelectBy

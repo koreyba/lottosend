@@ -74,4 +74,3 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
         }
     }
 }
-

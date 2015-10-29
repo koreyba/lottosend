@@ -102,6 +102,18 @@ namespace LottoSend.com.TestCases.Web
         }
 
         /// <summary>
+<<<<<<< HEAD
+=======
+        /// Checks if the transaction has correct status on "Transactions" page
+        /// </summary>
+        [Test]
+        public void Check_Transactions_State_In_Transactions()
+        {
+            _orderVerifications.CheckTransactionsStateInTransactions("TODO/");
+        }
+
+        /// <summary>
+>>>>>>> parent of 3f4f35e... daily
         /// Performs once before all other tests. Buys a raffle ticket
         /// </summary>
         public void Buy_Raffle_Ticket(WayToPay merchant)

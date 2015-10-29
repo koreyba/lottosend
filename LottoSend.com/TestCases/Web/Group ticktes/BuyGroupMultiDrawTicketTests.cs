@@ -51,7 +51,20 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         public void Check_If_There_Is_No_Ticket_In_Cart()
         {
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+<<<<<<< HEAD
             _cartVerifications.CheckNumberOfTicketsInCart(0);
+=======
+            _cartVerifications.CheckNumberOfTicketsInCart_Front(0);
+        }
+
+        /// <summary>
+        /// Checks if the transaction has correct status on "Transactions" page
+        /// </summary>
+        [Test]
+        public void Check_Transactions_State_In_Transactions()
+        {
+            _orderVerifications.CheckTransactionsStateInTransactions("TODO/");
+>>>>>>> parent of 3f4f35e... daily
         }
 
         /// <summary>
