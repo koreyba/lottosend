@@ -12,10 +12,10 @@ using OpenQA.Selenium.Chrome;
 namespace LottoSend.com.TestCases.Mobile
 {
     [TestFixture("Apple iPhone 4")]
-    //[TestFixture("Apple iPhone 6")]
-    //[TestFixture("Apple iPhone 5")]
-    //[TestFixture("Samsung Galaxy S4")]
-    //[TestFixture("Samsung Galaxy Note II")]
+    [TestFixture("Apple iPhone 6")]
+    [TestFixture("Apple iPhone 5")]
+    [TestFixture("Samsung Galaxy S4")]
+    [TestFixture("Samsung Galaxy Note II")]
     public class SignUpTests
     {
         private IWebDriver _driver;

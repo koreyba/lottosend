@@ -13,10 +13,10 @@ namespace LottoSend.com.TestCases.Mobile
     /// Includes tests of the cart (front-mobile)
     /// </summary>
     [TestFixture("Apple iPhone 4")]
-    //[TestFixture("Apple iPhone 6")]
-    //[TestFixture("Apple iPhone 5")]
-    //[TestFixture("Samsung Galaxy S4")]
-    //[TestFixture("Samsung Galaxy Note II")]
+    [TestFixture("Apple iPhone 6")]
+    [TestFixture("Apple iPhone 5")]
+    [TestFixture("Samsung Galaxy S4")]
+    [TestFixture("Samsung Galaxy Note II")]
     public class CartTests
     {
         private IWebDriver _driver;
