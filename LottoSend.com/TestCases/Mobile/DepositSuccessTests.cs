@@ -4,8 +4,6 @@ using LottoSend.com.Verifications;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.IE;
 
 namespace LottoSend.com.TestCases.Mobile
 {
@@ -15,12 +13,12 @@ namespace LottoSend.com.TestCases.Mobile
     [TestFixture("Apple iPhone 4", WayToPay.Neteller)]
     [TestFixture("Apple iPhone 6", WayToPay.Offline)]
     [TestFixture("Apple iPhone 5", WayToPay.TrustPay)]
-    [TestFixture("Samsung Galaxy S4", WayToPay.Skrill)]
+   //[TestFixture("Samsung Galaxy S4", WayToPay.Skrill)]
     public class DepositSuccessTests
     {
         private IWebDriver _driver;
         private DriverCover _driverCover;
-        private OrderVerifications _verifications;
+        private OrderVerifications _orderVerifications;
         private CommonActions _commonActions;
         private string _email;
         private WayToPay _merchant;
@@ -59,20 +57,17 @@ namespace LottoSend.com.TestCases.Mobile
         [Test]
         public void Check_User_Balance()
         {
-            _verifications.CheckUserBalance_Front(_balanceBeforePayment, _depositAmount, "selenium2@gmail.com", _driverCover.Password);
+            _orderVerifications.CheckUserBalance_Front(_balanceBeforePayment, _depositAmount, "selenium2@gmail.com", _driverCover.Password);
         }
 
-<<<<<<< HEAD
-=======
         /// <summary>
         /// Checks if the transaction has correct status on "Transactions" page
         /// </summary>
         [Test]
         public void Check_Transactions_State_In_Transactions()
         {
-            _orderVerifications.CheckTransactionsStateInTransactions("TODO/");
+            _orderVerifications.CheckTransactionsStateInTransactions("succeed");
         }
->>>>>>> parent of 3f4f35e... daily
 
         /// <summary>
         /// Cheks the email of the last transaction (the first record) on "Back - Transactions" page
@@ -80,7 +75,7 @@ namespace LottoSend.com.TestCases.Mobile
         [Test]
         public void Check_Transactions_Email_In_Transactions()
         {
-            _verifications.CheckTransactionsEmailInTransactions(_email);
+            _orderVerifications.CheckTransactionsEmailInTransactions(_email);
         }
 
         /// <summary>
@@ -89,7 +84,7 @@ namespace LottoSend.com.TestCases.Mobile
         [Test]
         public void Check_Transaction_Merchant_In_Transactions()
         {
-            _verifications.CheckTransactionMerchantInTransactions(_merchant);
+            _orderVerifications.CheckTransactionMerchantInTransactions(_merchant);
         }
 
         /// <summary>
@@ -98,7 +93,7 @@ namespace LottoSend.com.TestCases.Mobile
         [Test]
         public void Check_Transaction_Time_In_Transactions()
         {
-            _verifications.CheckTransactionTimeInTransactions();
+            _orderVerifications.CheckTransactionTimeInTransactions();
         }
 
         private ChromeOptions CreateOptions(string device)
@@ -124,7 +119,7 @@ namespace LottoSend.com.TestCases.Mobile
         {
             _driver = new ChromeDriver(CreateOptions(_device));
             _driverCover = new DriverCover(_driver);
-            _verifications = new OrderVerifications(_driver);
+            _orderVerifications = new OrderVerifications(_driver);
             _commonActions = new CommonActions(_driver);
         }
     }

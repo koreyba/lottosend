@@ -15,17 +15,17 @@ namespace LottoSend.com.TestCases.Web
     /// </summary>
     /// <typeparam name="TWebDriver"></typeparam>
     [TestFixture(typeof(ChromeDriver), WayToPay.Neteller)]
-    [TestFixture(typeof(FirefoxDriver), WayToPay.Neteller)]
-    [TestFixture(typeof(InternetExplorerDriver), (WayToPay.Neteller))]
+   // ////[TestFixture(typeof(FirefoxDriver), WayToPay.Neteller)]
+    //[TestFixture(typeof(InternetExplorerDriver), (WayToPay.Neteller))]
     [TestFixture(typeof(ChromeDriver), WayToPay.Offline)]
-    [TestFixture(typeof(FirefoxDriver), WayToPay.Offline)]
-    [TestFixture(typeof(InternetExplorerDriver), WayToPay.Offline)]
+    //////[TestFixture(typeof(FirefoxDriver), WayToPay.Offline)]
+    //[TestFixture(typeof(InternetExplorerDriver), WayToPay.Offline)]
     [TestFixture(typeof(ChromeDriver), WayToPay.TrustPay)]
-    [TestFixture(typeof(FirefoxDriver), WayToPay.TrustPay)]
-    [TestFixture(typeof(InternetExplorerDriver), WayToPay.TrustPay)]
-    [TestFixture(typeof(ChromeDriver), WayToPay.Skrill)]
-    [TestFixture(typeof(FirefoxDriver), WayToPay.Skrill)]
-    [TestFixture(typeof(InternetExplorerDriver), WayToPay.Skrill)]
+   // ////[TestFixture(typeof(FirefoxDriver), WayToPay.TrustPay)]
+    //[TestFixture(typeof(InternetExplorerDriver), WayToPay.TrustPay)]
+    //[TestFixture(typeof(ChromeDriver), WayToPay.Skrill)]
+    //////[TestFixture(typeof(FirefoxDriver), WayToPay.Skrill)]
+    //[TestFixture(typeof(InternetExplorerDriver), WayToPay.Skrill)]
     public class BuyRaffleTicketTests<TWebDriver> where TWebDriver : IWebDriver, new()
     {
         private IWebDriver _driver;
@@ -53,7 +53,7 @@ namespace LottoSend.com.TestCases.Web
         public void Check_If_There_Is_No_Ticket_In_Cart()
         {
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
-            _cartVerifications.CheckNumberOfTicketsInCart(0);
+            _cartVerifications.CheckNumberOfTicketsInCart_Front(0);
         }
 
         /// <summary>
@@ -102,18 +102,15 @@ namespace LottoSend.com.TestCases.Web
         }
 
         /// <summary>
-<<<<<<< HEAD
-=======
         /// Checks if the transaction has correct status on "Transactions" page
         /// </summary>
         [Test]
         public void Check_Transactions_State_In_Transactions()
         {
-            _orderVerifications.CheckTransactionsStateInTransactions("TODO/");
+            _orderVerifications.CheckTransactionsStateInTransactions("succeed");
         }
 
         /// <summary>
->>>>>>> parent of 3f4f35e... daily
         /// Performs once before all other tests. Buys a raffle ticket
         /// </summary>
         public void Buy_Raffle_Ticket(WayToPay merchant)

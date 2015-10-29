@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using LottoSend.com.FrontEndObj.SignUp;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -56,6 +52,7 @@ namespace LottoSend.com.FrontEndObj.Common
         /// <param name="password"></param>
         public void SignIn(string email, string password)
         {
+            Thread.Sleep(TimeSpan.FromSeconds(1));
             _existingUser.Click();
             WaitjQuery();
             Thread.Sleep(TimeSpan.FromSeconds(1));

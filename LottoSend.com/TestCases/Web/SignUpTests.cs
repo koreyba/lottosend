@@ -14,8 +14,8 @@ using OpenQA.Selenium.IE;
 namespace LottoSend.com.TestCases.Web
 {
     [TestFixture(typeof(ChromeDriver))]
-    [TestFixture(typeof(FirefoxDriver))]
-    [TestFixture(typeof(InternetExplorerDriver))]
+    //[TestFixture(typeof(FirefoxDriver))]
+    //[TestFixture(typeof(InternetExplorerDriver))]
     public class SignUpTests<TWebDriver> where TWebDriver : IWebDriver, new()
     {
         private IWebDriver _driver;
@@ -74,7 +74,7 @@ namespace LottoSend.com.TestCases.Web
         [Test]
         public void Check_Back_Office_User()
         {
-            _email = _commonActions.Sign_Up();
+            _email = _commonActions.Sign_Up_Front();
             _usersVerifications.CheckBackOfficeUser(_email);
         }
 

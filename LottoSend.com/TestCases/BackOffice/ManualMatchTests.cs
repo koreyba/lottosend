@@ -9,9 +9,9 @@ using OpenQA.Selenium.IE;
 
 namespace LottoSend.com.TestCases.BackOffice
 {
-    //[TestFixture(typeof(ChromeDriver))]
-    ////[TestFixture(typeof(FirefoxDriver))]
-    ////[TestFixture(typeof(InternetExplorerDriver))]
+    [TestFixture(typeof(ChromeDriver))]
+    //[TestFixture(typeof(FirefoxDriver))]
+    //[TestFixture(typeof(InternetExplorerDriver))]
     class ManualMatchTests<TWebDriver> where TWebDriver : IWebDriver, new() 
     {
         private IWebDriver _driver;
@@ -24,26 +24,26 @@ namespace LottoSend.com.TestCases.BackOffice
         /// </summary>
         /// <param name="lottery"></param>
         /// <param name="group"></param>
-        //[TestCase("El Gordo", "Winning Guarantee")]
-        //[TestCase("Mega Millions", "Winning Guarantee")]
-        //[TestCase("SuperLotto Plus", "Winning Guarantee")]
-        //[TestCase("Powerball", "Winning Guarantee")]
-        //[TestCase("EuroMillions", "Winning Guarantee")]
-        //[TestCase("Euromiliony", "Random Selection")]
-        //[TestCase("EuroJackpot", "Random Selection")]
-        //[TestCase("EuroMillions", "Random Selection")]
-        //[TestCase("EuroJackpot", "Random Selection")]
-        //[TestCase("SuperLotto Plus", "Random Selection")]
-        //[TestCase("Powerball", "Random Selection")]
-        //[TestCase("Mega Millions", "Random Selection")]
-        //[TestCase("El Gordo", "Random Selection")]
-        //[TestCase("SuperEnalotto", "Random Selection")]
-        //[TestCase("Euromiliony", "Systematic")]
-        //[TestCase("Powerball", "Systematic")]
-        //[TestCase("EuroMillions", "Additionals Guarantee")]
-        //[TestCase("EuroJackpot", "Additionals Guarantee")]
-        //[TestCase("Powerball", "New Winning")]
-        //[TestCase("Powerball", "New Random")]
+        [TestCase("El Gordo", "Winning Guarantee")]
+        [TestCase("Mega Millions", "Winning Guarantee")]
+        [TestCase("SuperLotto Plus", "Winning Guarantee")]
+        [TestCase("Powerball", "Winning Guarantee")]
+        [TestCase("EuroMillions", "Winning Guarantee")]
+        [TestCase("Euromiliony", "Random Selection")]
+        [TestCase("EuroJackpot", "Random Selection")]
+        [TestCase("EuroMillions", "Random Selection")]
+        [TestCase("EuroJackpot", "Random Selection")]
+        [TestCase("SuperLotto Plus", "Random Selection")]
+        [TestCase("Powerball", "Random Selection")]
+        [TestCase("Mega Millions", "Random Selection")]
+        [TestCase("El Gordo", "Random Selection")]
+        [TestCase("SuperEnalotto", "Random Selection")]
+        [TestCase("Euromiliony", "Systematic")]
+        [TestCase("Powerball", "Systematic")]
+        [TestCase("EuroMillions", "Additionals Guarantee")]
+        [TestCase("EuroJackpot", "Additionals Guarantee")]
+        [TestCase("Powerball", "New Winning")]
+        [TestCase("Powerball", "New Random")]
         public void Add_New_Scanned_Image_Multiple(string lottery, string group)
         {
             _commonActions.SignIn_in_admin_panel();
@@ -64,13 +64,13 @@ namespace LottoSend.com.TestCases.BackOffice
         /// Adds a new scanned image for a single ticket
         /// </summary>
         /// <param name="lottery"></param>
-        //[TestCase("El Gordo")]
-        //[TestCase("Euromiliony")]
-        //[TestCase("SuperLotto Plus")]
-        //[TestCase("Mega Millions")]
-        //[TestCase("Powerball")]
-        //[TestCase("EuroMillions")]
-        //[TestCase("SuperEnalotto")]
+        [TestCase("El Gordo")]
+        [TestCase("Euromiliony")]
+        [TestCase("SuperLotto Plus")]
+        [TestCase("Mega Millions")]
+        [TestCase("Powerball")]
+        [TestCase("EuroMillions")]
+        [TestCase("SuperEnalotto")]
         public void Add_New_Scanned_Image_Single(string lottery)
         {
             _commonActions.SignIn_in_admin_panel();

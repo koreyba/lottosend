@@ -9,25 +9,49 @@ using OpenQA.Selenium.IE;
 namespace LottoSend.com.TestCases.BackOffice.SalesPanel
 {
     [TestFixture(typeof(ChromeDriver))]
-    [TestFixture(typeof(FirefoxDriver))]
-    [TestFixture(typeof(InternetExplorerDriver))]
+    //[TestFixture(typeof(FirefoxDriver))]
+    //[TestFixture(typeof(InternetExplorerDriver))]
     class CartTests<TWebDriver> where TWebDriver : IWebDriver, new() 
     {
         private IWebDriver _driver;
         private DriverCover _driverCover;
         private CommonActions _commonActions;
         private BackOfficeVerifications _backOfficeVerifications;
+        private CartVerifications _cartVerifications;
+
+        /// <summary>
+        /// Adds two different lottery group ticket to the cart and delets them. Checks if were added and deleted
+        /// </summary>
+        /// <param name="lotteryOne"></param>
+        /// <param name="lotteryTwo"></param>
+        [TestCase("El Gordo", "SuperLotto Plus")]
+        public void Remove_Two_Group_Tickets_From_Cart(string lotteryOne, string lotteryTwo)
+        {
+            _commonActions.SignIn_in_admin_panel();
+            _commonActions.AddGroupTicketToCart_SalesPanel(lotteryOne);
+            _commonActions.AddGroupTicketToCart_SalesPanel(lotteryTwo);
+
+            _cartVerifications.CheckNumberOfTicketsInCart_SalesPanel(2);
+
+            CartObj cart = new CartObj(_driver);
+            Assert.AreEqual(2, cart.NumberOfTickets, "Number of tickets in the cart is wrong");
+
+            cart.DeleteTicket(lotteryOne);
+            cart.DeleteTicket(lotteryTwo);
+
+            _cartVerifications.CheckNumberOfTicketsInCart_SalesPanel(0);
+        }
 
         /// <summary>
         /// Adds and removes a regular ticket from the cart
         /// </summary>
-        [Test]
-        public void Remove_Raffle_Ticket_From_Cart()
+        [TestCase("Loteria de Navidad")]
+        public void Remove_Raffle_Ticket_From_Cart(string raffleName)
         {
             _commonActions.SignIn_in_admin_panel();
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/orders");
             MenuObj menu = new MenuObj(_driver);
-            menu.GoToLotteryPage("Loteria de Navidad");
+            menu.GoToLotteryPage(raffleName);
 
             RafflePageObj raffle = new RafflePageObj(_driver);
             raffle.AddShareToTicket(5, 2);
@@ -36,22 +60,21 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             CartObj cart = new CartObj(_driver);
             Assert.AreEqual(2, cart.NumberOfTickets, "Number of tickets in the cart is wrong");
 
-            cart.DeleteTicket("raffle");
+            cart.DeleteTicket(raffleName);
+            cart.DeleteTicket(raffleName);
             Assert.AreEqual(0, cart.NumberOfTickets, "Number of tickets in the cart is wrong");
         }
 
         /// <summary>
         /// Adds and removes a regular ticket from the cart
         /// </summary>
-        [Test]
-        public void Remove_Regular_Ticket_From_Cart()
+        [TestCase("Mega Millions")]
+        public void Remove_Regular_Ticket_From_Cart(string lottery)
         {
-            //TODO: it is hardcoded for a specific lottery
-
             _commonActions.SignIn_in_admin_panel();
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/orders");
             MenuObj menu = new MenuObj(_driver);
-            menu.GoToLotteryPage("Mega Millions");
+            menu.GoToLotteryPage(lottery);
             GroupGameObj group = new GroupGameObj(_driver);
             group.SwitchToSingleTab();
 
@@ -61,7 +84,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             CartObj cart = new CartObj(_driver);
             Assert.AreEqual(1, cart.NumberOfTickets, "Number of tickets in the cart is wrong");
 
-            cart.DeleteTicket("Mega Millions");
+            cart.DeleteTicket(lottery);
             Assert.AreEqual(0, cart.NumberOfTickets, "Number of tickets in the cart is wrong");
         }
 
@@ -83,6 +106,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             _driverCover = new DriverCover(_driver);
             _commonActions = new CommonActions(_driver);
             _backOfficeVerifications = new BackOfficeVerifications(_driver);
+            _cartVerifications = new CartVerifications(_driver);
         }
     }
 }
