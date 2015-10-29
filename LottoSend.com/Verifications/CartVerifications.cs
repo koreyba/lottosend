@@ -32,7 +32,7 @@ namespace LottoSend.com.Verifications
         public void CheckNumberOfTicketsInCart_Front(int expected)
         {
             //Go to the cart 
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "carts/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/carts/");
 
             //Check number of elemetns in the cart
             CartObj cart = new CartObj(_driver);

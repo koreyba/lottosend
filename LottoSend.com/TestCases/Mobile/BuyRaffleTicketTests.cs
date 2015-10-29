@@ -15,7 +15,7 @@ namespace LottoSend.com.TestCases.Mobile
     [TestFixture("Apple iPhone 4", WayToPay.Neteller)]
     [TestFixture("Apple iPhone 6", WayToPay.Offline)]
     [TestFixture("Apple iPhone 5", WayToPay.TrustPay)]
-    [TestFixture("Samsung Galaxy S4", WayToPay.Skrill)]
+   //[TestFixture("Samsung Galaxy S4", WayToPay.Skrill)]
     public class BuyRaffleTicketTests
     {
         private IWebDriver _driver;

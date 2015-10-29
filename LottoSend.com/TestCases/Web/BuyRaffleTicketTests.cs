@@ -15,16 +15,16 @@ namespace LottoSend.com.TestCases.Web
     /// </summary>
     /// <typeparam name="TWebDriver"></typeparam>
     [TestFixture(typeof(ChromeDriver), WayToPay.Neteller)]
-    [TestFixture(typeof(FirefoxDriver), WayToPay.Neteller)]
+   // ////[TestFixture(typeof(FirefoxDriver), WayToPay.Neteller)]
     //[TestFixture(typeof(InternetExplorerDriver), (WayToPay.Neteller))]
     [TestFixture(typeof(ChromeDriver), WayToPay.Offline)]
-    [TestFixture(typeof(FirefoxDriver), WayToPay.Offline)]
+    //////[TestFixture(typeof(FirefoxDriver), WayToPay.Offline)]
     //[TestFixture(typeof(InternetExplorerDriver), WayToPay.Offline)]
     [TestFixture(typeof(ChromeDriver), WayToPay.TrustPay)]
-    [TestFixture(typeof(FirefoxDriver), WayToPay.TrustPay)]
+   // ////[TestFixture(typeof(FirefoxDriver), WayToPay.TrustPay)]
     //[TestFixture(typeof(InternetExplorerDriver), WayToPay.TrustPay)]
-    [TestFixture(typeof(ChromeDriver), WayToPay.Skrill)]
-    [TestFixture(typeof(FirefoxDriver), WayToPay.Skrill)]
+    //[TestFixture(typeof(ChromeDriver), WayToPay.Skrill)]
+    //////[TestFixture(typeof(FirefoxDriver), WayToPay.Skrill)]
     //[TestFixture(typeof(InternetExplorerDriver), WayToPay.Skrill)]
     public class BuyRaffleTicketTests<TWebDriver> where TWebDriver : IWebDriver, new()
     {

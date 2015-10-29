@@ -13,7 +13,7 @@ namespace LottoSend.com.TestCases.Web
     /// Includes tests of the cart (front)
     /// </summary>
     [TestFixture(typeof(ChromeDriver))]
-    [TestFixture(typeof(FirefoxDriver))]
+    //[TestFixture(typeof(FirefoxDriver))]
     //[TestFixture(typeof(InternetExplorerDriver))]
     public class CartTests<TWebDriver> where TWebDriver : IWebDriver, new()
     {
