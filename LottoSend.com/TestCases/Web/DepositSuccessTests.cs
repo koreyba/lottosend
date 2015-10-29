@@ -11,18 +11,18 @@ namespace LottoSend.com.TestCases.Web
     /// <summary>
     /// Includes tests to check depositing process 
     /// </summary>
-    [TestFixture(typeof(ChromeDriver), WayToPay.Neteller)]
-    ////[TestFixture(typeof(FirefoxDriver), WayToPay.Neteller)]
-    //[TestFixture(typeof(InternetExplorerDriver), (WayToPay.Neteller))]
-    [TestFixture(typeof(ChromeDriver), WayToPay.Offline)]
-    ////[TestFixture(typeof(FirefoxDriver), WayToPay.Offline)]
-    //[TestFixture(typeof(InternetExplorerDriver), WayToPay.Offline)]
-    [TestFixture(typeof(ChromeDriver), WayToPay.TrustPay)]
-    ////[TestFixture(typeof(FirefoxDriver), WayToPay.TrustPay)]
-    //[TestFixture(typeof(InternetExplorerDriver), WayToPay.TrustPay)]
-    //[TestFixture(typeof(ChromeDriver), WayToPay.Skrill)]
-    ////[TestFixture(typeof(FirefoxDriver), WayToPay.Skrill)]
-    //[TestFixture(typeof(InternetExplorerDriver), WayToPay.Skrill)]
+    //[TestFixture(typeof(ChromeDriver), WayToPay.Neteller)]
+    //////[TestFixture(typeof(FirefoxDriver), WayToPay.Neteller)]
+    ////[TestFixture(typeof(InternetExplorerDriver), (WayToPay.Neteller))]
+    //[TestFixture(typeof(ChromeDriver), WayToPay.Offline)]
+    //////[TestFixture(typeof(FirefoxDriver), WayToPay.Offline)]
+    ////[TestFixture(typeof(InternetExplorerDriver), WayToPay.Offline)]
+    //[TestFixture(typeof(ChromeDriver), WayToPay.TrustPay)]
+    //////[TestFixture(typeof(FirefoxDriver), WayToPay.TrustPay)]
+    ////[TestFixture(typeof(InternetExplorerDriver), WayToPay.TrustPay)]
+    ////[TestFixture(typeof(ChromeDriver), WayToPay.Skrill)]
+    //////[TestFixture(typeof(FirefoxDriver), WayToPay.Skrill)]
+    ////[TestFixture(typeof(InternetExplorerDriver), WayToPay.Skrill)]
 
     public class DepositSuccessTests<TWebDriver> where TWebDriver : IWebDriver, new()
     {
@@ -62,7 +62,7 @@ namespace LottoSend.com.TestCases.Web
         /// <summary>
         /// Checks user's current balance
         /// </summary>
-        [Test]
+        //[Test]
         public void Check_User_Balance()
         {
             _orderVerifications.CheckUserBalance_Front(_balanceBeforePayment, depositAmount, "selenium2@gmail.com", _driverCover.Password);
@@ -71,7 +71,7 @@ namespace LottoSend.com.TestCases.Web
         /// <summary>Te
         /// Checks an amount in the first record in transactions (front)
         /// </summary>
-        [Test]
+        //[Test]
         public void Check_Amount_In_Transaction_Front()
         {
             _orderVerifications.CheckAmountInTransactionFront(30, _email, _driverCover.Password, 1);
@@ -80,7 +80,7 @@ namespace LottoSend.com.TestCases.Web
         /// <summary>
         /// Checks a type of the first record in transactions (front)
         /// </summary>
-        [Test]
+        //[Test]
         public void Check_Type_Of_Transaction_Front()
         {
             _orderVerifications.CheckTypeOfTransactionFront("Deposit", _email, _driverCover.Password);
@@ -89,7 +89,7 @@ namespace LottoSend.com.TestCases.Web
         /// <summary>
         /// Checks date of the first and seconds records in users account - transactions (front-end)
         /// </summary>
-        [Test]
+        //[Test]
         public void Check_Transaction_Date_Front()
         {
             _orderVerifications.CheckTransactionDateFront(_email, _driverCover.Password);
@@ -98,7 +98,7 @@ namespace LottoSend.com.TestCases.Web
         /// <summary>
         /// Checks if the transaction has correct status on "Transactions" page
         /// </summary>
-        [Test]
+        //[Test]
         public void Check_Transactions_State_In_Transactions()
         {
             _orderVerifications.CheckTransactionsStateInTransactions("succeed");
@@ -107,7 +107,7 @@ namespace LottoSend.com.TestCases.Web
         /// <summary>
         /// Cheks the email of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
-        [Test]
+        //[Test]
         public void Check_Transactions_Email_In_Transactions()
         {
             _orderVerifications.CheckTransactionsEmailInTransactions(_email);
@@ -116,7 +116,7 @@ namespace LottoSend.com.TestCases.Web
         /// <summary>
         /// Cheks the merchant of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
-        [Test]
+        //[Test]
         public void Check_Transaction_Merchant_In_Transactions()
         {
             _orderVerifications.CheckTransactionMerchantInTransactions(_merchant);
@@ -125,7 +125,7 @@ namespace LottoSend.com.TestCases.Web
         /// <summary>
         /// Cheks the time of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
-        [Test]
+        //[Test]
         public void Check_Transaction_Time_In_Transactions()
         {
             _orderVerifications.CheckTransactionTimeInTransactions();

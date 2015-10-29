@@ -8,9 +8,9 @@ using OpenQA.Selenium.IE;
 
 namespace LottoSend.com.TestCases.BackOffice.SalesPanel
 {
-    [TestFixture(typeof(ChromeDriver))]
-    //[TestFixture(typeof(FirefoxDriver))]
-    //[TestFixture(typeof(InternetExplorerDriver))]
+    //[TestFixture(typeof(ChromeDriver))]
+    ////[TestFixture(typeof(FirefoxDriver))]
+    ////[TestFixture(typeof(InternetExplorerDriver))]
     public class SignInUpTests<TWebDriver> where TWebDriver : IWebDriver, new() 
     {
         private IWebDriver _driver;
@@ -18,7 +18,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         private CommonActions _commonActions;
         private BackOfficeVerifications _backOfficeVerifications;
 
-        [Test]
+        //[Test]
         public void Sign_Up_In_Sales_Panel()
         {
             _commonActions.SignIn_in_admin_panel();
@@ -29,7 +29,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             _backOfficeVerifications.IfUserSignedInSalesPanel();
         }
 
-        [TestCase("selenium@gmail.com", 40540)]
+        //[TestCase("selenium@gmail.com", 40540)]
         public void Sign_In_Sales_Panel(string email, int id)
         {
             _commonActions.SignIn_in_admin_panel();

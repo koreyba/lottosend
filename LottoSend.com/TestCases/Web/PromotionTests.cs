@@ -11,18 +11,18 @@ namespace LottoSend.com.TestCases.Web
     /// <summary>
     /// Includes tests connected to promotions
     /// </summary>
-    [TestFixture(typeof(ChromeDriver), WayToPay.Neteller)]
-    ////[TestFixture(typeof(FirefoxDriver), WayToPay.Neteller)]
-    //[TestFixture(typeof(InternetExplorerDriver), (WayToPay.Neteller))]
-    [TestFixture(typeof(ChromeDriver), WayToPay.Offline)]
-    ////[TestFixture(typeof(FirefoxDriver), WayToPay.Offline)]
-    //[TestFixture(typeof(InternetExplorerDriver), WayToPay.Offline)]
-    [TestFixture(typeof(ChromeDriver), WayToPay.TrustPay)]
-    ////[TestFixture(typeof(FirefoxDriver), WayToPay.TrustPay)]
-    //[TestFixture(typeof(InternetExplorerDriver), WayToPay.TrustPay)]
-    //[TestFixture(typeof(ChromeDriver), WayToPay.Skrill)]
-    ////[TestFixture(typeof(FirefoxDriver), WayToPay.Skrill)]
-    //[TestFixture(typeof(InternetExplorerDriver), WayToPay.Skrill)]
+    //[TestFixture(typeof(ChromeDriver), WayToPay.Neteller)]
+    //////[TestFixture(typeof(FirefoxDriver), WayToPay.Neteller)]
+    ////[TestFixture(typeof(InternetExplorerDriver), (WayToPay.Neteller))]
+    //[TestFixture(typeof(ChromeDriver), WayToPay.Offline)]
+    //////[TestFixture(typeof(FirefoxDriver), WayToPay.Offline)]
+    ////[TestFixture(typeof(InternetExplorerDriver), WayToPay.Offline)]
+    //[TestFixture(typeof(ChromeDriver), WayToPay.TrustPay)]
+    //////[TestFixture(typeof(FirefoxDriver), WayToPay.TrustPay)]
+    ////[TestFixture(typeof(InternetExplorerDriver), WayToPay.TrustPay)]
+    ////[TestFixture(typeof(ChromeDriver), WayToPay.Skrill)]
+    //////[TestFixture(typeof(FirefoxDriver), WayToPay.Skrill)]
+    ////[TestFixture(typeof(InternetExplorerDriver), WayToPay.Skrill)]
     public class PromotionTests<TWebDriver> where TWebDriver : IWebDriver, new()
     {
         private IWebDriver _driver;
@@ -40,7 +40,7 @@ namespace LottoSend.com.TestCases.Web
             /// <summary>
         /// Cheks if a new user gets 1+1 promotion for the second payment if the first one was pendant
         /// </summary>
-        [Test]
+        //[Test]
         public void One_Plus_One_After_Pending_Deposit()
         {
             //Sign up
@@ -55,7 +55,7 @@ namespace LottoSend.com.TestCases.Web
         /// <summary>
         /// Cheks if a new user gets 1+1 promotion for the second payment if the first one was failed
         /// </summary>
-        [Test]
+        //[Test]
         public void One_Plus_One_After_Failed_Deposit()
         {
             //Sign up
@@ -70,7 +70,7 @@ namespace LottoSend.com.TestCases.Web
         /// <summary>
         /// Cheks if a new user doesn't get 1+1 promotion for the second payment
         /// </summary>
-        [Test]
+        //[Test]
         public void One_Plus_One_Second_Payment()
         {
             _commonActions.Sign_Up_Front();
@@ -83,7 +83,7 @@ namespace LottoSend.com.TestCases.Web
         /// <summary>
         /// Checks if a user doesn't get 1+1 promotion for the second deposit
         /// </summary>
-        [Test]
+        //[Test]
         public void One_Plus_One_Second_Deposit()
         {
             //Sign up
@@ -97,7 +97,7 @@ namespace LottoSend.com.TestCases.Web
         /// <summary>
         /// Checks if a new user gets 1+1 promotion after buying a ticket
         /// </summary>
-        [Test]
+        //[Test]
         public void One_Plus_One_Promotion_Buying()
         {
             //Sign up
@@ -117,7 +117,7 @@ namespace LottoSend.com.TestCases.Web
         /// <summary>
         /// Checks if a new user gets 1+1 promotion depositing money
         /// </summary>
-        [Test]
+        //[Test]
         public void One_Plus_One_Promotion_Deposit()
         {
             //Sign up

@@ -8,9 +8,9 @@ using OpenQA.Selenium.IE;
 
 namespace LottoSend.com.TestCases.BackOffice.SalesPanel
 {
-    [TestFixture(typeof(ChromeDriver))]
-    //[TestFixture(typeof(FirefoxDriver))]
-    //[TestFixture(typeof(InternetExplorerDriver))]
+    //[TestFixture(typeof(ChromeDriver))]
+    ////[TestFixture(typeof(FirefoxDriver))]
+    ////[TestFixture(typeof(InternetExplorerDriver))]
     class CartTests<TWebDriver> where TWebDriver : IWebDriver, new() 
     {
         private IWebDriver _driver;
@@ -24,7 +24,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         /// </summary>
         /// <param name="lotteryOne"></param>
         /// <param name="lotteryTwo"></param>
-        [TestCase("El Gordo", "SuperLotto Plus")]
+        //[TestCase("El Gordo", "SuperLotto Plus")]
         public void Remove_Two_Group_Tickets_From_Cart(string lotteryOne, string lotteryTwo)
         {
             _commonActions.SignIn_in_admin_panel();
@@ -45,7 +45,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         /// <summary>
         /// Adds and removes a regular ticket from the cart
         /// </summary>
-        [TestCase("Loteria de Navidad")]
+        //[TestCase("Loteria de Navidad")]
         public void Remove_Raffle_Ticket_From_Cart(string raffleName)
         {
             _commonActions.SignIn_in_admin_panel();
@@ -68,7 +68,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         /// <summary>
         /// Adds and removes a regular ticket from the cart
         /// </summary>
-        [TestCase("Mega Millions")]
+        //[TestCase("Mega Millions")]
         public void Remove_Regular_Ticket_From_Cart(string lottery)
         {
             _commonActions.SignIn_in_admin_panel();

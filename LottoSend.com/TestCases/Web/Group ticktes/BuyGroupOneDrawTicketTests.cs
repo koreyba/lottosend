@@ -12,18 +12,18 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
     /// <summary>
     /// Buys a group one-draw ticket and performs all needed assertations 
     /// </summary>
-    [TestFixture(typeof(ChromeDriver), WayToPay.Neteller)]
-    ////[TestFixture(typeof(FirefoxDriver), WayToPay.Neteller)]
-    //[TestFixture(typeof(InternetExplorerDriver), (WayToPay.Neteller))]
-    [TestFixture(typeof(ChromeDriver), WayToPay.Offline)]
-    ////[TestFixture(typeof(FirefoxDriver), WayToPay.Offline)]
-    //[TestFixture(typeof(InternetExplorerDriver), WayToPay.Offline)]
-    [TestFixture(typeof(ChromeDriver), WayToPay.TrustPay)]
-    ////[TestFixture(typeof(FirefoxDriver), WayToPay.TrustPay)]
-    //[TestFixture(typeof(InternetExplorerDriver), WayToPay.TrustPay)]
-    //[TestFixture(typeof(ChromeDriver), WayToPay.Skrill)]
-    ////[TestFixture(typeof(FirefoxDriver), WayToPay.Skrill)]
-    //[TestFixture(typeof(InternetExplorerDriver), WayToPay.Skrill)]
+    //[TestFixture(typeof(ChromeDriver), WayToPay.Neteller)]
+    //////[TestFixture(typeof(FirefoxDriver), WayToPay.Neteller)]
+    ////[TestFixture(typeof(InternetExplorerDriver), (WayToPay.Neteller))]
+    //[TestFixture(typeof(ChromeDriver), WayToPay.Offline)]
+    //////[TestFixture(typeof(FirefoxDriver), WayToPay.Offline)]
+    ////[TestFixture(typeof(InternetExplorerDriver), WayToPay.Offline)]
+    //[TestFixture(typeof(ChromeDriver), WayToPay.TrustPay)]
+    //////[TestFixture(typeof(FirefoxDriver), WayToPay.TrustPay)]
+    ////[TestFixture(typeof(InternetExplorerDriver), WayToPay.TrustPay)]
+    ////[TestFixture(typeof(ChromeDriver), WayToPay.Skrill)]
+    //////[TestFixture(typeof(FirefoxDriver), WayToPay.Skrill)]
+    ////[TestFixture(typeof(InternetExplorerDriver), WayToPay.Skrill)]
     public class BuyGroupOneDrawTicketTests<TWebDriver> where TWebDriver : IWebDriver, new()
     {
         private IWebDriver _driver;
@@ -46,7 +46,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         /// <summary>
         /// Checks if after buying a ticket (after payment) there are no items in the cart
         /// </summary>
-        [Test]
+        //[Test]
         public void Check_If_There_Is_No_Ticket_In_Cart()
         {
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
@@ -56,7 +56,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         /// <summary>
         /// Checks an amount in the first record in transactions (front)
         /// </summary>
-        [Test]
+        //[Test]
         public void Check_Amount_In_Transaction_Front()
         {
             _orderVerifications.CheckAmountInTransactionFront(_totalPrice, _driverCover.Login, _driverCover.Password, 1);
@@ -65,8 +65,8 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         /// <summary>
         /// Checks a type of the first record in transactions (front)
         /// </summary>
-        [TestCase(1)]
-        [TestCase(2)]
+        //[TestCase(1)]
+        //[TestCase(2)]
         public void Check_Type_Of_Transaction_Front(int numberOfRecordToCheck)
         {
             if (numberOfRecordToCheck == 1)
@@ -83,8 +83,8 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         /// <summary>
         /// Checks date of the first and seconds records in users account - transactions (front-end)
         /// </summary>
-        [TestCase(1)]
-        [TestCase(2)]
+        //[TestCase(1)]
+        //[TestCase(2)]
         public void Check_Transaction_Date_Front(int numberOfRecordToCheck)
         {
             _orderVerifications.CheckTransactionDateFront(_driverCover.Login, _driverCover.Password, numberOfRecordToCheck);
@@ -93,7 +93,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         /// <summary>
         /// Checks lottery name of the first and the second records in user's account - transactions in the front-end
         /// </summary>
-        [Test]
+        //[Test]
         public void Check_Transaction_Lottery_Name_Front()
         {
             _orderVerifications.CheckTransactionLotteryNameFront("EuroJackpot", _driverCover.Login, _driverCover.Password, 2);
@@ -102,7 +102,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         /// <summary>
         /// Cheks the email of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
-        [Test]
+        //[Test]
         public void Check_Transactions_Email_In_Transactions()
         {
             _orderVerifications.CheckTransactionsEmailInTransactions(_driverCover.Login);
@@ -111,7 +111,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         /// <summary>
         /// Cheks the merchant of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
-        [Test]
+        //[Test]
         public void Check_Transaction_Merchant_In_Transactions()
         {
             _orderVerifications.CheckTransactionMerchantInTransactions(_merchant);
@@ -120,7 +120,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         /// <summary>
         /// Checks if the transaction has correct status on "Transactions" page
         /// </summary>
-        [Test]
+        //[Test]
         public void Check_Transactions_State_In_Transactions()
         {
             _orderVerifications.CheckTransactionsStateInTransactions("succeed");
@@ -129,7 +129,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         /// <summary>
         /// Cheks the time of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
-        [Test]
+        //[Test]
         public void Check_Transaction_Time_In_Transactions()
         {
             _orderVerifications.CheckTransactionTimeInTransactions();
@@ -138,7 +138,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         /// <summary>
         /// Checks a time when the last bet (in the first record) was made
         /// </summary>
-        [Test]
+        //[Test]
         public void Check_Record_Time_In_Draw()
         {
             _orderVerifications.CheckRecordTimeInDraw("Eurojackpot");
@@ -147,7 +147,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         /// <summary>
         /// Checks an email in the first record (the last bet) 
         /// </summary>
-        [Test]
+        //[Test]
         public void Check_Record_Email_In_Draw()
         {
             _orderVerifications.CheckRecordEmailInDraw("Eurojackpot", _driverCover.Login);
@@ -156,7 +156,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         /// <summary>
         /// Checks type of the ticket in the first record (must be Single)
         /// </summary>
-        [Test]
+        //[Test]
         public void Check_Record_Type_In_Draw()
         {
             _orderVerifications.CheckRecordBetTypeInDraw("Single", "Eurojackpot");
@@ -165,7 +165,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         /// <summary>
         /// Checks price of the last bet (the first record). Must be the same as in the front-end
         /// </summary>
-        [Test]
+        //[Test]
         public void Check_Record_Price_In_Draw()
         {
             _orderVerifications.CheckRecordPriceInDraw(_totalPrice) ;

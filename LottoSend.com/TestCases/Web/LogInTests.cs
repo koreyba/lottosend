@@ -11,9 +11,9 @@ using OpenQA.Selenium.IE;
 
 namespace LottoSend.com.TestCases.Web
 {
-    [TestFixture(typeof(ChromeDriver))]
-    //[TestFixture(typeof(FirefoxDriver))]
-    //[TestFixture(typeof(InternetExplorerDriver))]
+    //[TestFixture(typeof(ChromeDriver))]
+    ////[TestFixture(typeof(FirefoxDriver))]
+    ////[TestFixture(typeof(InternetExplorerDriver))]
     public class LogInTests<TWebDriver> where TWebDriver : IWebDriver, new()
     {
         private IWebDriver _driver;
@@ -23,7 +23,7 @@ namespace LottoSend.com.TestCases.Web
         /// <summary>
         /// Logs in express checkout on a game page
         /// </summary>
-        [Test]
+        //[Test]
         public void Login_Express_Checkout_Game_Page()
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "");
@@ -45,7 +45,7 @@ namespace LottoSend.com.TestCases.Web
         /// <summary>
         /// Logs in express checkout in the cart
         /// </summary>
-        [Test]
+        //[Test]
         public void Login_Express_Checkout_In_Cart()
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/play/eurojackpot/");
@@ -65,7 +65,7 @@ namespace LottoSend.com.TestCases.Web
         /// <summary>
         /// Logs in on sign_in page 
         /// </summary>
-        [Test]
+        //[Test]
         public void Login_On_SignIn_Page_One()
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "");
@@ -81,7 +81,7 @@ namespace LottoSend.com.TestCases.Web
         /// <summary>
         /// Logs in pup up form and checks in user logged in
         /// </summary>
-        [Test]
+        //[Test]
         public void Login_In_PopUp_Form()
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "");
