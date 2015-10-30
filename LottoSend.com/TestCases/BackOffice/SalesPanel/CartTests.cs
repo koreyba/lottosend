@@ -104,6 +104,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         [SetUp]
         public void SetUp()
         {
+            int a = 0;
            // DesiredCapabilities capabilities = new DesiredCapabilities();
 
            //// 
@@ -116,7 +117,6 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
            // {
            //      capabilities = DesiredCapabilities.Firefox();
            // }
-            
 
            // _driver = new RemoteWebDriver(
            //   new Uri("http://localhost:4444/wd/hub"), capabilities
