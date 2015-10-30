@@ -104,7 +104,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         [SetUp]
         public void SetUp()
         {
-            int a = 0;
+            
            // DesiredCapabilities capabilities = new DesiredCapabilities();
 
            //// 
