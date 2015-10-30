@@ -1,10 +1,12 @@
-﻿using LottoSend.com.BackEndObj.SalesPanelPages;
+﻿using System;
+using LottoSend.com.BackEndObj.SalesPanelPages;
 using LottoSend.com.Verifications;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Remote;
 
 namespace LottoSend.com.TestCases.BackOffice.SalesPanel
 {
@@ -102,11 +104,32 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         [SetUp]
         public void SetUp()
         {
+           // DesiredCapabilities capabilities = new DesiredCapabilities();
+
+           //// 
+           // if (typeof (TWebDriver).Name.Equals("ChromeDriver"))
+           // {
+           //      capabilities = DesiredCapabilities.Chrome();
+           // }
+
+           // if (typeof(TWebDriver).Name.Equals("FirefoxDriver"))
+           // {
+           //      capabilities = DesiredCapabilities.Firefox();
+           // }
+            
+
+           // _driver = new RemoteWebDriver(
+           //   new Uri("http://localhost:4444/wd/hub"), capabilities
+           // );
+
             _driver = new TWebDriver();
             _driverCover = new DriverCover(_driver);
             _commonActions = new CommonActions(_driver);
             _backOfficeVerifications = new BackOfficeVerifications(_driver);
             _cartVerifications = new CartVerifications(_driver);
+
+           
+            
         }
     }
 }
