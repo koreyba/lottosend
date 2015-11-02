@@ -1,4 +1,7 @@
 ﻿using System.Collections.Generic;
+using LottoSend.com.FrontEndObj;
+using LottoSend.com.FrontEndObj.Common;
+using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.FrontEndObj.MyAccount;
 using LottoSend.com.Verifications;
 using NUnit.Framework;
@@ -29,6 +32,66 @@ namespace LottoSend.com.TestCases.Mobile
             _device = device;
             _merchant = merchant;
         }
+
+        /// <summary>
+        /// Cheks if a new user gets 1+1 promotion for the second order payment if the first one was pending
+        /// </summary>
+        [Test]
+        public void One_Plus_One_After_Pending_Order()
+        {
+            //Sign up
+            _commonActions.Sign_Up_Mobile();
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/");
+
+            RafflesPageObj rafflePage = new RafflesPageObj(_driver);
+            double totalPrice = rafflePage.TotalPrice;
+
+            CartObj cart = rafflePage.ClickBuyNowButton();
+            MerchantsObj merchants = cart.ClickProceedToCheckoutButton();
+            merchants.Pay(WayToPay.Offline, false);
+
+            double price = _commonActions.BuyRegularOneDrawTicket_Front(_merchant);
+
+            if (price >= 30)
+            {
+                _verifications.CheckBalanceOnDepositPage(30);
+            }
+            else
+            {
+                _verifications.CheckBalanceOnDepositPage(price);
+            }
+
+        }
+
+        /// <summary>
+        /// Cheks if a new user gets 1+1 promotion for the second order payment if the first one was failed
+        /// </summary>
+        [Test]
+        public void One_Plus_One_After_Failed_Order()
+        {
+            //Sign up
+            _commonActions.Sign_Up_Mobile();
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/");
+
+            RafflesPageObj rafflePage = new RafflesPageObj(_driver);
+            double totalPrice = rafflePage.TotalPrice;
+
+            CartObj cart = rafflePage.ClickBuyNowButton();
+            MerchantsObj merchants = cart.ClickProceedToCheckoutButton();
+            merchants.Pay(WayToPay.Offline, true, true);
+
+            double price = _commonActions.BuyRegularOneDrawTicket_Front(_merchant);
+
+            if (price >= 30)
+            {
+                _verifications.CheckBalanceOnDepositPage(30);
+            }
+            else
+            {
+                _verifications.CheckBalanceOnDepositPage(price);
+            }
+        }
+
         /// <summary>
         /// Cheks if a new user gets 1+1 promotion for the second payment if the first one was pendant
         /// </summary>
