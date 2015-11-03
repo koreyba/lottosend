@@ -25,7 +25,23 @@ namespace LottoSend.com.BackEndObj
         private IWebElement _secondRecord;
 
         /// <summary>
-        /// Returns type of the first record
+        /// Returns transaction type of the first record
+        /// </summary>
+        public string SecondRecordTransactionType
+        {
+            get { return _secondRecord.FindElement(By.CssSelector("td:nth-child(5)")).Text; }
+        }
+
+        /// <summary>
+        /// Returns transaction type of the first record
+        /// </summary>
+        public string FirstRecordTransactionType
+        {
+            get { return _firstRecord.FindElement((By.CssSelector("td:nth-child(5)"))).Text; }
+        }
+
+        /// <summary>
+        /// Returns play type of the first record
         /// </summary>
         public string SecondRecordPlayType
         {
@@ -33,7 +49,7 @@ namespace LottoSend.com.BackEndObj
         }
 
         /// <summary>
-        /// Returns type of the first record
+        /// Returns play type of the first record
         /// </summary>
         public string FirstRecordPlayType
         {

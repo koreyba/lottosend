@@ -130,7 +130,7 @@ namespace LottoSend.com.Verifications
         /// </summary>
         /// <param name="expectedType"></param>
         /// <param name="numberOfRecord">Which record to check, the first one or the second one</param>
-        public void CheckTypeOfTransaction_Back(string expectedType, int numberOfRecord = 1)
+        public void CheckPlayTypeInTransactions_Back(string expectedType, int numberOfRecord = 1)
         {
             _commonActions.SignIn_in_admin_panel();
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/transactions");
@@ -145,6 +145,30 @@ namespace LottoSend.com.Verifications
             if (numberOfRecord == 2)
             {
                 Assert.AreEqual(expectedType, transaction.SecondRecordPlayType,
+                    "Sorry, but the type of the first record is not as expected. Page: " + _driverCover.Driver.Url + " ");
+            }
+        }
+
+        /// <summary>
+        /// Checks a type of the first transaction on Front-Transaction history
+        /// </summary>
+        /// <param name="expectedType"></param>
+        /// <param name="numberOfRecord">Which record to check, the first one or the second one</param>
+        public void CheckTransactionTypeInTransactions_Back(string expectedType, int numberOfRecord = 1)
+        {
+            _commonActions.SignIn_in_admin_panel();
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/transactions");
+            TransactionsObj transaction = new TransactionsObj(_driver);
+
+            if (numberOfRecord == 1)
+            {
+                Assert.AreEqual(expectedType, transaction.FirstRecordTransactionType,
+                    "Sorry, but the type of the first record is not as expected. Page: " + _driverCover.Driver.Url + " ");
+            }
+
+            if (numberOfRecord == 2)
+            {
+                Assert.AreEqual(expectedType, transaction.SecondRecordTransactionType,
                     "Sorry, but the type of the first record is not as expected. Page: " + _driverCover.Driver.Url + " ");
             }
         }

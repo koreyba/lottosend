@@ -102,13 +102,23 @@ namespace LottoSend.com.TestCases.Mobile
         }
 
         /// <summary>
-        /// Checks a type of the first record in transactions (front)
+        /// Checks a play type of the first record in transactions (back)
         /// </summary>
         [Test]
-        public void Check_Type_Of_Transaction_Back()
+        public void Check_PlayType_In_Transactions_Back()
         {
             SetUp();
-            _orderVerifications.CheckTypeOfTransaction_Back("Raffle");
+            _orderVerifications.CheckPlayTypeInTransactions_Back("Raffle");
+        }
+
+        /// <summary>
+        /// Checks a transaction type of the first record in transactions (back)
+        /// </summary>
+        [Test]
+        public void Check_TransactionType_In_Transactions_Back()
+        {
+            SetUp();
+            _orderVerifications.CheckTransactionTypeInTransactions_Back("play");
         }
 
         /// <summary>

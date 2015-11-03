@@ -102,21 +102,40 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
         }
 
         /// <summary>
-        /// Checks a type of the first record in transactions (back)
+        /// Checks a play type of the first record in transactions (back)
         /// </summary>
         [TestCase(1)]
         [TestCase(2)]
-        public void Check_Type_Of_Transaction_Back(int numberOfRecordToCheck)
+        public void Check_PlayType_In_Transactions_Back(int numberOfRecordToCheck)
         {
             SetUp();
             if (numberOfRecordToCheck == 1)
             {
-                _orderVerifications.CheckTypeOfTransaction_Back("Single");
+                _orderVerifications.CheckPlayTypeInTransactions_Back("Single");
             }
 
             if (numberOfRecordToCheck == 2)
             {
-                _orderVerifications.CheckTypeOfTransaction_Back("N/A", 2);
+                _orderVerifications.CheckPlayTypeInTransactions_Back("N/A", 2);
+            }
+        }
+
+        /// <summary>
+        /// Checks a transaction type of the first record in transactions (back)
+        /// </summary>
+        [TestCase(1)]
+        [TestCase(2)]
+        public void Check_TransactionType_In_Transactions_Back(int numberOfRecordToCheck)
+        {
+            SetUp();
+            if (numberOfRecordToCheck == 1)
+            {
+                _orderVerifications.CheckTransactionTypeInTransactions_Back("play");
+            }
+
+            if (numberOfRecordToCheck == 2)
+            {
+                _orderVerifications.CheckTransactionTypeInTransactions_Back("deposit_and_play", 2);
             }
         }
 
