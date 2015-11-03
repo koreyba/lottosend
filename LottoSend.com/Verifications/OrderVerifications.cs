@@ -50,7 +50,35 @@ namespace LottoSend.com.Verifications
         /// <param name="email">User's email to log in</param>
         /// <param name="password">User's password</param>
         /// <param name="numberOfRecord">Which record to check, the first one or the second one</param>
-        public void CheckAmountInTransactionFront(double expectedAmount, string email, string password, int numberOfRecord = 1)
+        public void CheckAmountInTransactions_Back(double expectedAmount, string email, string password, int numberOfRecord = 1)
+        {
+            _commonActions.SignIn_in_admin_panel();
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/transactions");
+            TransactionsObj transaction = new TransactionsObj(_driver);
+
+            if (numberOfRecord == 1)
+            {
+                Assert.AreEqual(expectedAmount, transaction.FirstRecordAmount,
+                    "Sorry, but the amount of the first record is not as expected. Page: " + _driverCover.Driver.Url +
+                    " ");
+            }
+
+            if (numberOfRecord == 2)
+            {
+                Assert.AreEqual(expectedAmount, transaction.SecondRecordAmount,
+                    "Sorry, but the amount of the first record is not as expected. Page: " + _driverCover.Driver.Url +
+                    " ");
+            }
+        }
+
+        /// <summary>
+        /// Checks is amount in the first transaction equals expected (front - transactions)
+        /// </summary>
+        /// <param name="expectedAmount"></param>
+        /// <param name="email">User's email to log in</param>
+        /// <param name="password">User's password</param>
+        /// <param name="numberOfRecord">Which record to check, the first one or the second one</param>
+        public void CheckAmountInTransaction_Front(double expectedAmount, string email, string password, int numberOfRecord = 1)
         {
             _commonActions.Log_In_Front(email, password);
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/balance/");
@@ -78,7 +106,7 @@ namespace LottoSend.com.Verifications
         /// <param name="email">User's email to log in</param>
         /// <param name="password">User's password</param>
         /// <param name="numberOfRecord">Which record to check, the first one or the second one</param>
-        public void CheckTypeOfTransactionFront(string expectedType, string email, string password, int numberOfRecord = 1)
+        public void CheckTypeOfTransaction_Front(string expectedType, string email, string password, int numberOfRecord = 1)
         {
             _commonActions.Log_In_Front(email, password);
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/balance/");
@@ -98,12 +126,36 @@ namespace LottoSend.com.Verifications
         }
 
         /// <summary>
+        /// Checks a type of the first transaction on Front-Transaction history
+        /// </summary>
+        /// <param name="expectedType"></param>
+        /// <param name="numberOfRecord">Which record to check, the first one or the second one</param>
+        public void CheckTypeOfTransaction_Back(string expectedType, int numberOfRecord = 1)
+        {
+            _commonActions.SignIn_in_admin_panel();
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/transactions");
+            TransactionsObj transaction = new TransactionsObj(_driver);
+
+            if (numberOfRecord == 1)
+            {
+                Assert.AreEqual(expectedType, transaction.FirstRecordPlayType,
+                    "Sorry, but the type of the first record is not as expected. Page: " + _driverCover.Driver.Url + " ");
+            }
+
+            if (numberOfRecord == 2)
+            {
+                Assert.AreEqual(expectedType, transaction.SecondRecordPlayType,
+                    "Sorry, but the type of the first record is not as expected. Page: " + _driverCover.Driver.Url + " ");
+            }
+        }
+
+        /// <summary>
         /// Checks date of the first and seconds records in users account - transactions (front-end)
         /// </summary>
         /// <param name="email">User's email to log in</param>
         /// <param name="password">User's password</param>
         /// <param name="numberOfRecord">Which record to check, the first one or the second one</param>
-        public void CheckTransactionDateFront(string email, string password, int numberOfRecord = 1)
+        public void CheckTransactionDate_Front(string email, string password, int numberOfRecord = 1)
         {
             _commonActions.Log_In_Front(email, password);
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/balance/");
@@ -147,7 +199,7 @@ namespace LottoSend.com.Verifications
         /// <param name="email">User's email to log in</param>
         /// <param name="password">User's password</param>
         /// <param name="numberOfRecord">Which record to check, the first one or the second one</param>
-        public void CheckTransactionLotteryNameFront(string name, string email, string password, int numberOfRecord = 1)
+        public void CheckTransactionLotteryName_Front(string name, string email, string password, int numberOfRecord = 1)
         {
             _commonActions.Log_In_Front(email, password);
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/balance/");
@@ -199,12 +251,12 @@ namespace LottoSend.com.Verifications
         /// <summary>
         /// Cheks the email of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
-        public void CheckTransactionsEmailInTransactions(string email)
+        public void CheckTransactionsEmailInTransactions_Back(string email)
         {
             _commonActions.SignIn_in_admin_panel();
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/transactions");
             TransactionsObj transaction = new TransactionsObj(_driver);
-            string realEmail = transaction.GetTransactionEmail();
+            string realEmail = transaction.GetFirstTransactionEmail();
 
             Assert.AreEqual(email, realEmail, "Sorry, the email in the first record is wrong, check if a record was added, page: " + _driverCover.Driver.Url + " ");
         }
@@ -213,13 +265,13 @@ namespace LottoSend.com.Verifications
         /// Cheks the merchant of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
         /// <param name="merchant">Payment method</param>
-        public void CheckTransactionMerchantInTransactions(WayToPay merchant)
+        public void CheckTransactionMerchantInTransactions_Back(WayToPay merchant)
         {
             _commonActions.SignIn_in_admin_panel();
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/transactions");
             TransactionsObj transaction = new TransactionsObj(_driver);
 
-            string transactionMerchant = transaction.GetTransactionMerchant();
+            string transactionMerchant = transaction.GetFirstTransactionMerchant();
 
             Assert.AreEqual(merchant.ToString(), transactionMerchant, "Sorry, the merchant in the first record is wrong, check if a record was added, page: " + _driverCover.Driver.Url + " ");
         }
@@ -227,13 +279,13 @@ namespace LottoSend.com.Verifications
         /// <summary>
         /// Cheks the time of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
-        public void CheckTransactionTimeInTransactions()
+        public void CheckTransactionTimeInTransactions_Back()
         {
             _commonActions.SignIn_in_admin_panel();
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/transactions");
             TransactionsObj transaction = new TransactionsObj(_driver);
 
-            TimeSpan transactionDate = transaction.GetTransactionDate();
+            TimeSpan transactionDate = transaction.GetFirstTransactionDate();
             TimeSpan currentUtcDate = DateTime.UtcNow.TimeOfDay;
 
             //Cheks if the transaction date placed in correct interval (no longer then 5 min from now)
@@ -244,12 +296,12 @@ namespace LottoSend.com.Verifications
         /// Checks the state of the first transaction
         /// </summary>
         /// <param name="expectedState"></param>
-        public void CheckTransactionsStateInTransactions(string expectedState)
+        public void CheckTransactionsStateInTransactions_Back(string expectedState)
         {
             _commonActions.SignIn_in_admin_panel();
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/transactions");
             TransactionsObj transaction = new TransactionsObj(_driver);
-            string state = transaction.GetTransactionState();
+            string state = transaction.GetFirstTransactionState();
 
             Assert.AreEqual(expectedState, state, "Sorry but the transaction state is wrong. ");
         }

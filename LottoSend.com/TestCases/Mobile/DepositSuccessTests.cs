@@ -66,7 +66,7 @@ namespace LottoSend.com.TestCases.Mobile
         [Test]
         public void Check_Transactions_State_In_Transactions()
         {
-            _orderVerifications.CheckTransactionsStateInTransactions("succeed");
+            _orderVerifications.CheckTransactionsStateInTransactions_Back("succeed");
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace LottoSend.com.TestCases.Mobile
         [Test]
         public void Check_Transactions_Email_In_Transactions()
         {
-            _orderVerifications.CheckTransactionsEmailInTransactions(_email);
+            _orderVerifications.CheckTransactionsEmailInTransactions_Back(_email);
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace LottoSend.com.TestCases.Mobile
         [Test]
         public void Check_Transaction_Merchant_In_Transactions()
         {
-            _orderVerifications.CheckTransactionMerchantInTransactions(_merchant);
+            _orderVerifications.CheckTransactionMerchantInTransactions_Back(_merchant);
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace LottoSend.com.TestCases.Mobile
         [Test]
         public void Check_Transaction_Time_In_Transactions()
         {
-            _orderVerifications.CheckTransactionTimeInTransactions();
+            _orderVerifications.CheckTransactionTimeInTransactions_Back();
         }
 
         private ChromeOptions CreateOptions(string device)

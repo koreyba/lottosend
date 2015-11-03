@@ -74,7 +74,7 @@ namespace LottoSend.com.TestCases.Web
         [Test]
         public void Check_Amount_In_Transaction_Front()
         {
-            _orderVerifications.CheckAmountInTransactionFront(30, _email, _driverCover.Password, 1);
+            _orderVerifications.CheckAmountInTransaction_Front(30, _email, _driverCover.Password, 1);
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace LottoSend.com.TestCases.Web
         [Test]
         public void Check_Type_Of_Transaction_Front()
         {
-            _orderVerifications.CheckTypeOfTransactionFront("Deposit", _email, _driverCover.Password);
+            _orderVerifications.CheckTypeOfTransaction_Front("Deposit", _email, _driverCover.Password);
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace LottoSend.com.TestCases.Web
         [Test]
         public void Check_Transaction_Date_Front()
         {
-            _orderVerifications.CheckTransactionDateFront(_email, _driverCover.Password);
+            _orderVerifications.CheckTransactionDate_Front(_email, _driverCover.Password);
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace LottoSend.com.TestCases.Web
         [Test]
         public void Check_Transactions_State_In_Transactions()
         {
-            _orderVerifications.CheckTransactionsStateInTransactions("succeed");
+            _orderVerifications.CheckTransactionsStateInTransactions_Back("succeed");
         }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace LottoSend.com.TestCases.Web
         [Test]
         public void Check_Transactions_Email_In_Transactions()
         {
-            _orderVerifications.CheckTransactionsEmailInTransactions(_email);
+            _orderVerifications.CheckTransactionsEmailInTransactions_Back(_email);
         }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace LottoSend.com.TestCases.Web
         [Test]
         public void Check_Transaction_Merchant_In_Transactions()
         {
-            _orderVerifications.CheckTransactionMerchantInTransactions(_merchant);
+            _orderVerifications.CheckTransactionMerchantInTransactions_Back(_merchant);
         }
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace LottoSend.com.TestCases.Web
         [Test]
         public void Check_Transaction_Time_In_Transactions()
         {
-            _orderVerifications.CheckTransactionTimeInTransactions();
+            _orderVerifications.CheckTransactionTimeInTransactions_Back();
         }
 
         [TearDown]

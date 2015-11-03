@@ -58,7 +58,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         public void Check_Transactions_State_In_Transactions()
         {
             SetUp();
-            _orderVerifications.CheckTransactionsStateInTransactions("succeed");
+            _orderVerifications.CheckTransactionsStateInTransactions_Back("succeed");
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         public void Check_Transactions_Email_In_Transactions()
         {
             SetUp();
-            _orderVerifications.CheckTransactionsEmailInTransactions(_driverCover.Login);
+            _orderVerifications.CheckTransactionsEmailInTransactions_Back(_driverCover.Login);
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         public void Check_Transaction_Merchant_In_Transactions()
         {
             SetUp();
-            _orderVerifications.CheckTransactionMerchantInTransactions(_merchant);
+            _orderVerifications.CheckTransactionMerchantInTransactions_Back(_merchant);
         }
 
         /// <summary>
@@ -88,7 +88,36 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         public void Check_Transaction_Time_In_Transactions()
         {
             SetUp();
-            _orderVerifications.CheckTransactionTimeInTransactions();
+            _orderVerifications.CheckTransactionTimeInTransactions_Back();
+        }
+
+        /// <summary>
+        /// Checks an amount of money in the first record in transactions (back)
+        /// </summary>
+        [Test]
+        public void Check_Amount_In_Transaction_Back()
+        {
+            SetUp();
+            _orderVerifications.CheckAmountInTransactions_Back(_totalPrice, _driverCover.Login, _driverCover.Password, 1);
+        }
+
+        /// <summary>
+        /// Checks a type of the first record in transactions (back)
+        /// </summary>
+        [TestCase(1)]
+        [TestCase(2)]
+        public void Check_Type_Of_Transaction_Back(int numberOfRecordToCheck)
+        {
+            SetUp();
+            if (numberOfRecordToCheck == 1)
+            {
+                _orderVerifications.CheckTypeOfTransaction_Back("Single");
+            }
+
+            if (numberOfRecordToCheck == 2)
+            {
+                _orderVerifications.CheckTypeOfTransaction_Back("N/A", 2);
+            }
         }
 
         /// <summary>

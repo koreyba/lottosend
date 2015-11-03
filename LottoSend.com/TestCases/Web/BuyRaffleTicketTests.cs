@@ -62,7 +62,7 @@ namespace LottoSend.com.TestCases.Web
         [Test]
         public void Check_Amount_In_Transaction_Front()
         {
-            _orderVerifications.CheckAmountInTransactionFront(_totalPrice, _driverCover.Login, _driverCover.Password, 1);
+            _orderVerifications.CheckAmountInTransaction_Front(_totalPrice, _driverCover.Login, _driverCover.Password, 1);
         }
 
         /// <summary>
@@ -71,7 +71,16 @@ namespace LottoSend.com.TestCases.Web
         [Test]
         public void Check_Type_Of_Transaction_Front()
         {
-            _orderVerifications.CheckTypeOfTransactionFront("Play - Raffle", _driverCover.Login, _driverCover.Password);
+            _orderVerifications.CheckTypeOfTransaction_Front("Play - Raffle", _driverCover.Login, _driverCover.Password);
+        }
+
+        /// <summary>
+        /// Checks a type of the first record in transactions (front)
+        /// </summary>
+        [Test]
+        public void Check_Type_Of_Transaction_Back()
+        {
+            _orderVerifications.CheckTypeOfTransaction_Back("Raffle");
         }
 
         /// <summary>
@@ -80,7 +89,7 @@ namespace LottoSend.com.TestCases.Web
         [Test]
         public void Check_Transactions_Email_In_Transactions()
         {
-            _orderVerifications.CheckTransactionsEmailInTransactions(_driverCover.Login);
+            _orderVerifications.CheckTransactionsEmailInTransactions_Back(_driverCover.Login);
         }
 
         /// <summary>
@@ -89,7 +98,7 @@ namespace LottoSend.com.TestCases.Web
         [Test]
         public void Check_Transaction_Merchant_In_Transactions()
         {
-            _orderVerifications.CheckTransactionMerchantInTransactions(_merchant);
+            _orderVerifications.CheckTransactionMerchantInTransactions_Back(_merchant);
         }
 
         /// <summary>
@@ -98,7 +107,7 @@ namespace LottoSend.com.TestCases.Web
         [Test]
         public void Check_Transaction_Time_In_Transactions()
         {
-            _orderVerifications.CheckTransactionTimeInTransactions();
+            _orderVerifications.CheckTransactionTimeInTransactions_Back();
         }
 
         /// <summary>
@@ -107,7 +116,16 @@ namespace LottoSend.com.TestCases.Web
         [Test]
         public void Check_Transactions_State_In_Transactions()
         {
-            _orderVerifications.CheckTransactionsStateInTransactions("succeed");
+            _orderVerifications.CheckTransactionsStateInTransactions_Back("succeed");
+        }
+
+        /// <summary>
+        /// Checks an amount of money in the first record in transactions (back)
+        /// </summary>
+        [Test]
+        public void Check_Amount_In_Transaction_Back()
+        {
+            _orderVerifications.CheckAmountInTransactions_Back(_totalPrice, _driverCover.Login, _driverCover.Password, 1);
         }
 
         /// <summary>
