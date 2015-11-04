@@ -8,7 +8,7 @@ namespace LottoSend.com.BackEndObj
     /// Page Object of New Scanned Image (add) page
     /// </summary>
     class NewScannedImageObj : DriverCover
-    {
+    { 
         public NewScannedImageObj(IWebDriver driver) : base(driver)
         {
             if (!Driver.Url.Contains("scanned_images/new"))
