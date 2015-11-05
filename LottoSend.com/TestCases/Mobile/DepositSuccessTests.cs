@@ -55,6 +55,7 @@ namespace LottoSend.com.TestCases.Mobile
         /// Checks user's current balance
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Check_User_Balance()
         {
             _orderVerifications.CheckUserBalance_Front(_balanceBeforePayment, _depositAmount, "selenium2@gmail.com", _driverCover.Password);
@@ -73,6 +74,7 @@ namespace LottoSend.com.TestCases.Mobile
         /// Cheks the email of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Check_Transactions_Email_In_Transactions()
         {
             _orderVerifications.CheckTransactionsEmailInTransactions_Back(_email);
@@ -82,6 +84,7 @@ namespace LottoSend.com.TestCases.Mobile
         /// Cheks the merchant of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Check_Transaction_Merchant_In_Transactions()
         {
             _orderVerifications.CheckTransactionMerchantInTransactions_Back(_merchant);
@@ -91,6 +94,7 @@ namespace LottoSend.com.TestCases.Mobile
         /// Cheks the time of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void a_Check_Transaction_Time_In_Transactions()
         {
             _orderVerifications.CheckTransactionTimeInTransactions_Back();

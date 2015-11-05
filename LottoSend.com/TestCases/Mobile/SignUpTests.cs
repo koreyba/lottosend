@@ -34,6 +34,7 @@ namespace LottoSend.com.TestCases.Mobile
         /// Signs up in express checkout in the cart
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void SignUp_Express_Checkout_In_Cart()
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/");
@@ -54,6 +55,7 @@ namespace LottoSend.com.TestCases.Mobile
         /// Signs up in express checkout on a game page
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void SignUp_Express_Checkout_Game_Page()
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/play/eurojackpot/");
@@ -76,6 +78,7 @@ namespace LottoSend.com.TestCases.Mobile
         /// Checks if user exists in the backoffice - web_users page
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Check_Back_Office_User()
         {
             _email = _commonActions.Sign_Up_Mobile();

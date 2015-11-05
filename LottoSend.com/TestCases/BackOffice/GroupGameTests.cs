@@ -22,6 +22,7 @@ namespace LottoSend.com.TestCases.BackOffice
         /// Creates a new group ticket in a new group. Then removes the group with the ticket
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void CreateNewGroupTicket()
         {
             _commonActions.SignIn_in_admin_panel();

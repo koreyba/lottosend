@@ -55,6 +55,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         /// Checks if the transaction has correct status on "Transactions" page
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Check_Transactions_State_In_Transactions()
         {
             SetUp();
@@ -85,6 +86,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         /// Cheks the time of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void a_Check_Transaction_Time_In_Transactions()
         {
             SetUp();
@@ -125,6 +127,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         /// </summary>
         [TestCase(1)]
         [TestCase(2)]
+        [Category("Critical")]
         public void Check_TransactionType_In_Transactions_Back(int numberOfRecordToCheck)
         {
             SetUp();

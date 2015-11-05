@@ -19,6 +19,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         private BackOfficeVerifications _backOfficeVerifications;
 
         [Test]
+        [Category("Critical")]
         public void Sign_Up_In_Sales_Panel()
         {
             _commonActions.SignIn_in_admin_panel();

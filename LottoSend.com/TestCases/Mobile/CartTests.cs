@@ -34,6 +34,7 @@ namespace LottoSend.com.TestCases.Mobile
         /// Adds and edit a group ticket adding more shares and checking if they were added
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Edit_Group_Ticket_And_Add_More()
         {
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
@@ -58,6 +59,7 @@ namespace LottoSend.com.TestCases.Mobile
         /// Adds and edit raffle ticket adding more shares and checking if they were added
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Edit_Raffle_Ticket_And_Add_More()
         {
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
@@ -81,6 +83,7 @@ namespace LottoSend.com.TestCases.Mobile
         /// Adds a raffle ticket to the cart and deletes it. Cheks if a ticket was added and removed
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Delete_Raffle_ticket_from_cart()
         {
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
@@ -100,6 +103,7 @@ namespace LottoSend.com.TestCases.Mobile
         /// Adds two different lottery group ticket to the cart and deletes them. Checks if were added and deleted
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Delete_two_group_ticket_from_cart()
         {
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
@@ -126,6 +130,7 @@ namespace LottoSend.com.TestCases.Mobile
         /// Adds single ticket to cart and removes it. Checks if there is no tickets of a specific lottery game
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Delete_Single_Ticket_From_Cart()
         {
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);

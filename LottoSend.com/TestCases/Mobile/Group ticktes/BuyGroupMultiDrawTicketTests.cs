@@ -85,6 +85,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         /// Cheks the time of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void a_Check_Transaction_Time_In_Transactions()
         {
             SetUp();
@@ -95,6 +96,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         /// Checks an amount of money in the first record in transactions (back)
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Check_Amount_In_Transaction_Back()
         {
             SetUp();
@@ -143,6 +145,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         /// Checks a time when the last bet (in the first record) was made
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Check_Record_Time_In_Draw()
         {
             SetUp();
@@ -173,6 +176,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         /// Checks price of the last bet (the first record). Must be the same as in the front-end
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Check_Record_Price_In_Draw()
         {
             SetUp();

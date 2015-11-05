@@ -49,6 +49,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         /// Cheks the time of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void a_Check_Transaction_Time_In_Transactions()
         {
             _orderVerifications.CheckTransactionTimeInTransactions_Back();
@@ -58,6 +59,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         /// Checks an amount of money in the first record in transactions (back)
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Check_Amount_In_Transaction_Back()
         {
             _orderVerifications.CheckAmountInTransactions_Back(_totalPrice, _driverCover.Login, _driverCover.Password, 1);

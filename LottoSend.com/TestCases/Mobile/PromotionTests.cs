@@ -37,6 +37,7 @@ namespace LottoSend.com.TestCases.Mobile
         /// Cheks if a new user gets 1+1 promotion for the second order payment if the first one was pending
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void One_Plus_One_After_Pending_Order()
         {
             //Sign up
@@ -67,6 +68,7 @@ namespace LottoSend.com.TestCases.Mobile
         /// Cheks if a new user gets 1+1 promotion for the second order payment if the first one was failed
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void One_Plus_One_After_Failed_Order()
         {
             //Sign up
@@ -96,6 +98,7 @@ namespace LottoSend.com.TestCases.Mobile
         /// Cheks if a new user gets 1+1 promotion for the second payment if the first one was pendant
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void One_Plus_One_After_Pending_Deposit()
         {
             //Sign up
@@ -111,6 +114,7 @@ namespace LottoSend.com.TestCases.Mobile
         /// Cheks if a new user gets 1+1 promotion for the second payment if the first one was failed
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void One_Plus_One_After_Failed_Deposit()
         {
             //Sign up

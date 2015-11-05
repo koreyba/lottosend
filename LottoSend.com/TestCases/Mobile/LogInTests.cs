@@ -33,6 +33,7 @@ namespace LottoSend.com.TestCases.Mobile
         /// Logs in express checkout on a game page
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Login_Express_Checkout_Game_Page()
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/play/eurojackpot/");
@@ -55,6 +56,7 @@ namespace LottoSend.com.TestCases.Mobile
         /// Logs in express checkout in the cart
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Login_Express_Checkout_In_Cart()
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/");
@@ -75,6 +77,7 @@ namespace LottoSend.com.TestCases.Mobile
         /// Logs in on sign_in page 
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Login_On_SignIn_Page_One()
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "");
