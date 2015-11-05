@@ -58,6 +58,7 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         /// Checks an amount in the first record in transactions (front)
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Check_Amount_In_Transaction_Front()
         {
             _orderVerifications.CheckAmountInTransaction_Front(_totalPrice, _driverCover.Login, _driverCover.Password, 1);
@@ -68,6 +69,7 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         /// </summary>
         [TestCase(1)]
         [TestCase(2)]
+        [Category("Critical")]
         public void Check_Type_Of_Transaction_Front(int numberOfRecordToCheck)
         {
             if (numberOfRecordToCheck == 1)
@@ -122,6 +124,7 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         /// </summary>
         [TestCase(1)]
         [TestCase(2)]
+        [Category("Critical")]
         public void Check_Transaction_Date_Front(int numberOfRecordToCheck)
         {
             _orderVerifications.CheckTransactionDate_Front(_driverCover.Login, _driverCover.Password, numberOfRecordToCheck);
@@ -131,6 +134,7 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         /// Checks lottery name of the first and the second records in user's account - transactions in the front-end
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Check_Transaction_Lottery_Name_Front()
         {
             _orderVerifications.CheckTransactionLotteryName_Front("EuroJackpot", _driverCover.Login, _driverCover.Password, 2);
@@ -149,6 +153,7 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         /// Cheks the merchant of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Check_Transaction_Merchant_In_Transactions()
         {
             _orderVerifications.CheckTransactionMerchantInTransactions_Back(_merchant);
@@ -167,7 +172,7 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         /// Cheks the time of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
         [Test]
-        public void Check_Transaction_Time_In_Transactions()
+        public void a_Check_Transaction_Time_In_Transactions()
         {
             _orderVerifications.CheckTransactionTimeInTransactions_Back();
         }
@@ -185,6 +190,7 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         /// Checks a time when the last bet (in the first record) was made
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Check_Record_Time_In_Draw()
         {
             _orderVerifications.CheckRecordTimeInDraw("Eurojackpot");
@@ -203,6 +209,7 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         /// Checks type of the ticket in the first record (must be Single)
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Check_Record_Type_In_Draw()
         {
             _orderVerifications.CheckRecordBetTypeInDraw("Bulk buy", "Eurojackpot");
@@ -212,6 +219,7 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         /// Checks price of the last bet (the first record). Must be the same as in the front-end
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Check_Record_Price_In_Draw()
         {
             _orderVerifications.CheckRecordPriceInDraw(_totalPrice, _numberOfDraws);

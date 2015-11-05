@@ -94,7 +94,7 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
         }
 
         /// <summary>
-        /// Charge user with credit card (must be previously inputed), click button
+        /// Charges user with credit card (must be previously inputed), clicks button
         /// </summary>
         public void Charge()
         {

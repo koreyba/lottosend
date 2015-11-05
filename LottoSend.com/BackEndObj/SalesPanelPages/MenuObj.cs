@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using System.Threading;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
 namespace LottoSend.com.BackEndObj.SalesPanelPages
@@ -29,6 +31,7 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
         /// <param name="lotteryName"></param>
         public void GoToLotteryPage(string lotteryName)
         {
+            Thread.Sleep(TimeSpan.FromSeconds(1));
             _menu.FindElement(By.LinkText(lotteryName)).Click();
             WaitForPageLoading();
             WaitjQuery();

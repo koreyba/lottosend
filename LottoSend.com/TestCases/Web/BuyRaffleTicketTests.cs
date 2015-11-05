@@ -60,6 +60,7 @@ namespace LottoSend.com.TestCases.Web
         /// Checks an amount in the first record in transactions (front)
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Check_Amount_In_Transaction_Front()
         {
             _orderVerifications.CheckAmountInTransaction_Front(_totalPrice, _driverCover.Login, _driverCover.Password, 1);
@@ -69,6 +70,7 @@ namespace LottoSend.com.TestCases.Web
         /// Checks a type of the first record in transactions (front)
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Check_Type_Of_Transaction_Front()
         {
             _orderVerifications.CheckTypeOfTransaction_Front("Play - Raffle", _driverCover.Login, _driverCover.Password);
@@ -105,6 +107,7 @@ namespace LottoSend.com.TestCases.Web
         /// Cheks the merchant of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Check_Transaction_Merchant_In_Transactions()
         {
             _orderVerifications.CheckTransactionMerchantInTransactions_Back(_merchant);
@@ -114,7 +117,8 @@ namespace LottoSend.com.TestCases.Web
         /// Cheks the time of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
         [Test]
-        public void Check_Transaction_Time_In_Transactions()
+        [Category("Critical")]
+        public void a_Check_Transaction_Time_In_Transactions()
         {
             _orderVerifications.CheckTransactionTimeInTransactions_Back();
         }
@@ -123,6 +127,7 @@ namespace LottoSend.com.TestCases.Web
         /// Checks if the transaction has correct status on "Transactions" page
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Check_Transactions_State_In_Transactions()
         {
             _orderVerifications.CheckTransactionsStateInTransactions_Back("succeed");

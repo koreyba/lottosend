@@ -133,6 +133,7 @@ namespace LottoSend.com.TestCases.Web
         /// Cheks if a new user doesn't get 1+1 promotion for the second payment
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void One_Plus_One_Second_Payment()
         {
             _commonActions.Sign_Up_Front();
@@ -160,6 +161,7 @@ namespace LottoSend.com.TestCases.Web
         /// Checks if a new user gets 1+1 promotion after buying a ticket
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void One_Plus_One_Promotion_Buying()
         {
             //Sign up
@@ -180,6 +182,7 @@ namespace LottoSend.com.TestCases.Web
         /// Checks if a new user gets 1+1 promotion depositing money
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void One_Plus_One_Promotion_Deposit()
         {
             //Sign up

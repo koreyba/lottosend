@@ -28,6 +28,7 @@ namespace LottoSend.com.TestCases.Web
         /// Checks if a raffle ticket stays in the cart after payment was failed
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void If_Raffle_Ticket_Stays_In_Cart_When_Payment_Was_Failed()
         {
             // Log in     

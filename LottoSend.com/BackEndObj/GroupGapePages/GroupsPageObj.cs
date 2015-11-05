@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using NUnit.Core;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 

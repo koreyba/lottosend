@@ -8,7 +8,8 @@
         Offline,
         Neteller,
         TrustPay,
-        Skrill
+        Skrill,
+        InternalBalance
     }
 
     /// <summary>

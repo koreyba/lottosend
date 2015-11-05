@@ -1,12 +1,10 @@
-﻿using System;
-using LottoSend.com.BackEndObj.SalesPanelPages;
+﻿using LottoSend.com.BackEndObj.SalesPanelPages;
 using LottoSend.com.Verifications;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
-using OpenQA.Selenium.Remote;
 
 namespace LottoSend.com.TestCases.BackOffice.SalesPanel
 {
@@ -126,10 +124,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             _driverCover = new DriverCover(_driver);
             _commonActions = new CommonActions(_driver);
             _backOfficeVerifications = new BackOfficeVerifications(_driver);
-            _cartVerifications = new CartVerifications(_driver);
-
-           
-            
+            _cartVerifications = new CartVerifications(_driver); 
         }
     }
 }

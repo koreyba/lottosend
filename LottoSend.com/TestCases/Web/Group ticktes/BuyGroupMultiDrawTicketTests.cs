@@ -149,6 +149,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         /// Cheks the email of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Check_Transactions_Email_In_Transactions()
         {
             _orderVerifications.CheckTransactionsEmailInTransactions_Back(_driverCover.Login);
@@ -158,6 +159,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         /// Cheks the merchant of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Check_Transaction_Merchant_In_Transactions()
         {
             _orderVerifications.CheckTransactionMerchantInTransactions_Back(_merchant);
@@ -167,7 +169,8 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         /// Cheks the time of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
         [Test]
-        public void Check_Transaction_Time_In_Transactions()
+        [Category("Critical")]
+        public void a_Check_Transaction_Time_In_Transactions()
         {
             _orderVerifications.CheckTransactionTimeInTransactions_Back();
         }
@@ -176,6 +179,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         /// Checks an amount of money in the first record in transactions (back)
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Check_Amount_In_Transaction_Back()
         {
             _orderVerifications.CheckAmountInTransactions_Back(_totalPrice, _driverCover.Login, _driverCover.Password, 1);
@@ -185,6 +189,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         /// Checks a time when the last bet (in the first record) was made
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Check_Record_Time_In_Draw()
         {
             _orderVerifications.CheckRecordTimeInDraw("Eurojackpot");
@@ -203,6 +208,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         /// Checks type of the ticket in the first record (must be Single)
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Check_Record_Type_In_Draw()
         {
             _orderVerifications.CheckRecordBetTypeInDraw("Bulk buy", "Eurojackpot");
@@ -212,6 +218,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         /// Checks price of the last bet (the first record). Must be the same as in the front-end
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Check_Record_Price_In_Draw()
         {
             _orderVerifications.CheckRecordPriceInDraw(_totalPrice, _numberOfDraws);

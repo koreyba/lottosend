@@ -269,7 +269,7 @@ namespace LottoSend.com.TestCases
         public void SignIn_in_admin_panel()
         {
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl);
-            if (_driverCover.Driver.FindElements(By.ClassName("current_user")).Count == 0)
+            if (_driverCover.Driver.FindElements(By.CssSelector("#current_user")).Count == 0)
             {
                 LoginObj login = new LoginObj(_driver);
                 login.LogIn(ConfigurationManager.AppSettings["AdminLogin"], ConfigurationManager.AppSettings["AdminPassword"]);
