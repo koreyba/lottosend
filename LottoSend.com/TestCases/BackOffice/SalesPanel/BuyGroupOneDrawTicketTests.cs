@@ -8,7 +8,7 @@ using OpenQA.Selenium.Chrome;
 namespace LottoSend.com.TestCases.BackOffice.SalesPanel
 {
     [TestFixture(typeof(ChromeDriver), WayToPay.Offline, "SuperLotto Plus")]
-    [TestFixture(typeof(ChromeDriver), WayToPay.InternalBalance, "SuperEnalotto")]
+    [TestFixture(typeof(ChromeDriver), WayToPay.InternalBalance, "Mega Millions")]
     class BuyGroupOneDrawTicketTests<TWebDriver> where TWebDriver : IWebDriver, new() 
     {
         private IWebDriver _driver;
@@ -63,6 +63,23 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         public void Check_Amount_In_Transaction_Back()
         {
             _orderVerifications.CheckAmountInTransactions_Back(_totalPrice, _driverCover.Login, _driverCover.Password, 1);
+        }
+
+        /// <summary>
+        /// Cheks the email of the last transaction (the first record) on "Back - Transactions" page
+        /// </summary>
+        [Test]
+        public void Check_Transactions_Email_In_Transactions()
+        {
+            if (_merchant == WayToPay.InternalBalance)
+            {
+                _orderVerifications.CheckTransactionsEmailInTransactions_Back("selenium2@gmail.com");
+            }
+
+            if (_merchant == WayToPay.Offline)
+            {
+                _orderVerifications.CheckTransactionsEmailInTransactions_Back(_driverCover.Login);
+            }
         }
 
 

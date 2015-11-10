@@ -98,6 +98,7 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
         /// </summary>
         public void Charge()
         {
+            WaitjQuery();
             _charge.Click();
             WaitForPageLoading();
         }

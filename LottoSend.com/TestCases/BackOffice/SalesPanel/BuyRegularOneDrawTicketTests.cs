@@ -65,6 +65,22 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             _orderVerifications.CheckAmountInTransactions_Back(_totalPrice, _driverCover.Login, _driverCover.Password, 1);
         }
 
+        /// <summary>
+        /// Cheks the email of the last transaction (the first record) on "Back - Transactions" page
+        /// </summary>
+        [Test]
+        public void Check_Transactions_Email_In_Transactions()
+        {
+            if (_merchant == WayToPay.InternalBalance)
+            {
+                _orderVerifications.CheckTransactionsEmailInTransactions_Back("selenium2@gmail.com");
+            }
+
+            if (_merchant == WayToPay.Offline)
+            {
+                _orderVerifications.CheckTransactionsEmailInTransactions_Back(_driverCover.Login);
+            }
+        }
 
         /// <summary>
         /// Performs once before all other tests. Buys a regular single ticket 
