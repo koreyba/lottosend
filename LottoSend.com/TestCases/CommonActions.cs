@@ -30,6 +30,40 @@ namespace LottoSend.com.TestCases
         }
 
         /// <summary>
+        /// Pays for tickets in the cart (offline or internal balance). To use this method you must be on the sales panel page
+        /// </summary>
+        /// <param name="merchant"></param>
+        public double PayForTicketsInCart_SalesPanel(WayToPay merchant)
+        {
+            LottoSend.com.BackEndObj.SalesPanelPages.CartObj cart = new LottoSend.com.BackEndObj.SalesPanelPages.CartObj(_driver);
+            double totalPrice = cart.TotalBalance;
+
+            if (merchant == WayToPay.Offline)
+            {
+                TabsObj tabs = new TabsObj(_driver);
+                tabs.GoToCcDetailsTab();
+                CcDetailsObj form = new CcDetailsObj(_driver);
+                form.InputCcDetails("VISA", "4580458045804580");
+
+                cart.Charge();
+
+                _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/charge_panel_manager");
+                ChargePanelObj chargePanel = new ChargePanelObj(_driver);
+                chargePanel.ChargeTheLastPayment();
+                ChargeFormObj chargeForm = new ChargeFormObj(_driver);
+                chargeForm.MakeTransactionSucceed();
+                chargeForm.UpdateTransaction();
+            }
+
+            if (merchant == WayToPay.InternalBalance)
+            {
+                cart.PayWithInternalBalance();
+            }
+
+            return totalPrice;
+        }
+
+        /// <summary>
         /// Adds a group lottery ticket to the cart
         /// </summary>
         /// <param name="lottery"></param>

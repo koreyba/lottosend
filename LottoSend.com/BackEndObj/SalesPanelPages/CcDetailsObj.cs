@@ -33,7 +33,7 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
         [FindsBy(How = How.CssSelector, Using = "input#transaction_holder_name")]
         private IWebElement _holderName;
 
-         [FindsBy(How = How.CssSelector, Using = "#new_transaction > input[type='submit']")]
+         [FindsBy(How = How.CssSelector, Using = "#details > div > form[id *='transaction'] > input[type='submit']")]
         private IWebElement _okButton;
 
         /// <summary>

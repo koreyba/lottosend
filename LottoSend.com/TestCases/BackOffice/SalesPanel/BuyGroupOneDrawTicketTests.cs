@@ -7,9 +7,9 @@ using OpenQA.Selenium.Chrome;
 
 namespace LottoSend.com.TestCases.BackOffice.SalesPanel
 {
-    [TestFixture(typeof(ChromeDriver), WayToPay.Offline, "El Gordo")]
-    [TestFixture(typeof(ChromeDriver), WayToPay.InternalBalance, "EuroMillions")]
-    class BuyRegularOneDrawTicketTest<TWebDriver> where TWebDriver : IWebDriver, new() 
+    [TestFixture(typeof(ChromeDriver), WayToPay.Offline, "SuperLotto Plus")]
+    [TestFixture(typeof(ChromeDriver), WayToPay.InternalBalance, "SuperEnalotto")]
+    class BuyGroupOneDrawTicketTests<TWebDriver> where TWebDriver : IWebDriver, new() 
     {
         private IWebDriver _driver;
         private DriverCover _driverCover;
@@ -18,12 +18,12 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         private WayToPay _merchant;
         private double _totalPrice;
 
-        public BuyRegularOneDrawTicketTest(WayToPay merchant, string lottery)
+        public BuyGroupOneDrawTicketTests(WayToPay merchant, string lottery)
         {
             _merchant = merchant;
 
             SetUp();
-            Buy_Regular_One_Draw_Ticket(merchant, lottery);
+            Buy_Group_One_Draw_Ticket(merchant, lottery);
             CleanUp();
         }
 
@@ -69,47 +69,18 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         /// <summary>
         /// Performs once before all other tests. Buys a regular single ticket 
         /// </summary>
-        public void Buy_Regular_One_Draw_Ticket(WayToPay merchant, string lottery)
+        public void Buy_Group_One_Draw_Ticket(WayToPay merchant, string lottery)
         {
             _commonActions.SignIn_in_admin_panel();
 
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/orders");
 
-            Pay_For_Tickets_In_Cart(lottery); //if merchant is internal balance then ticket will be bought
+            Add_Ticket_To_Cart(lottery);
 
-            if (_merchant == WayToPay.Offline) //if merchant is offline it needs approvement
-            {
-                ChargePanelObj chargePanel = new ChargePanelObj(_driver);
-                chargePanel.ChargeTheLastPayment();
-            }
+            //Pays for tickets in the cart (offline or internal balance).
+            _totalPrice = _commonActions.PayForTicketsInCart_SalesPanel(_merchant);
         }
 
-        /// <summary>
-        /// Pays for tickets in the cart (offline or internal balance)
-        /// </summary>
-        /// <param name="lotteryName"></param>
-        private void Pay_For_Tickets_In_Cart(string lotteryName)
-        {
-            Add_Ticket_To_Cart(lotteryName);
-
-            CartObj cart = new CartObj(_driver);
-            _totalPrice = cart.TotalBalance;
-
-            if (_merchant == WayToPay.Offline)
-            {
-                TabsObj tabs = new TabsObj(_driver);
-                tabs.GoToCcDetailsTab();
-                CcDetailsObj form = new CcDetailsObj(_driver);
-                form.InputCcDetails("VISA", "4580458045804580");
-
-                cart.Charge();
-            }
-
-            if (_merchant == WayToPay.InternalBalance)
-            {
-                cart.PayWithInternalBalance();
-            }
-        }
 
         /// <summary>
         /// Add a ticket to the cart
@@ -132,10 +103,8 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             MenuObj menu = new MenuObj(_driver);
             menu.GoToLotteryPage(lotteryName);
             GroupGameObj group = new GroupGameObj(_driver);
-            @group.SwitchToSingleTab();
-
-            SingleGameObj game = new SingleGameObj(_driver);
-            game.AddToCart();
+            group.AddShareToTicket(1, 1);
+            group.ClickAddToCartButton();
         }
 
         [TearDown]

@@ -71,6 +71,10 @@ namespace LottoSend.com
                     number += letter;
                     isFirstFound = true;
                 }
+                else if (letter.Equals(','))
+                {
+                    number += "";
+                }
                 else
                 {
                     if (isFirstFound == true)

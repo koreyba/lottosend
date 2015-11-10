@@ -86,7 +86,8 @@
     <Compile Include="FrontEndObj\SignUp\SignUpForm.cs" />
     <Compile Include="TestCases\BackOffice\GroupGameTests.cs" />
     <Compile Include="TestCases\BackOffice\ManualMatchTests.cs" />
-    <Compile Include="TestCases\BackOffice\SalesPanel\BuyRegularOneDrawTicketTest.cs" />
+    <Compile Include="TestCases\BackOffice\SalesPanel\BuyGroupOneDrawTicketTests.cs" />
+    <Compile Include="TestCases\BackOffice\SalesPanel\BuyRegularOneDrawTicketTests.cs" />
     <Compile Include="TestCases\BackOffice\SalesPanel\CartTests.cs" />
     <Compile Include="TestCases\BackOffice\SalesPanel\SignInUpTests.cs" />
     <Compile Include="TestCases\Mobile\CartTests.cs" />
