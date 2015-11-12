@@ -8,7 +8,7 @@ using OpenQA.Selenium.Chrome;
 namespace LottoSend.com.TestCases.BackOffice.SalesPanel
 {
     [TestFixture(typeof(ChromeDriver), WayToPay.Offline, "SuperLotto Plus")]
-    [TestFixture(typeof(ChromeDriver), WayToPay.InternalBalance, "Mega Millions")]
+    [TestFixture(typeof(ChromeDriver), WayToPay.InternalBalance, "SuperEnalotto")]
     class BuyGroupOneDrawTicketTests<TWebDriver> where TWebDriver : IWebDriver, new() 
     {
         private IWebDriver _driver;
