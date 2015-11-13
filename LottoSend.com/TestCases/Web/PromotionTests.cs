@@ -40,55 +40,106 @@ namespace LottoSend.com.TestCases.Web
             _merchant = merchant;
         }
 
-            /// <summary>
-        /// Cheks if a new user gets 1+1 promotion for the second payment if the first one was pendant
+        /// <summary>
+        /// Cheks if a new user gets 1+1 promotion for the second deposit when he had the first one pending and it was failed 
         /// </summary>
         [Test]
-        public void One_Plus_One_After_Pending_Deposit()
+        [Category("Critical")]
+        public void One_Plus_One_For_Second_Deposit_When_First_Failed()
         {
+            //TODO: needs testing
             //Sign up
             _commonActions.Sign_Up_Front();
-            _commonActions.DepositMoney_Front(13, WayToPay.Offline, false);
+            _commonActions.DepositMoney_Front(13, WayToPay.Offline, false); //will be pending deposit
 
-            _commonActions.DepositMoney_Front(11, _merchant);
+            _commonActions.DepositMoney_Front(11, _merchant); //will be successful deposit
 
-            _verifications.CheckBalanceOnDepositPage(22);
+            _commonActions.SignIn_in_admin_panel();
+            _commonActions.Fail_offline_payment(); //fail the first payment
+
+            _verifications.CheckBalanceOnDepositPage(22); //Check if for the second payment a user got 1+1 
         }
 
         /// <summary>
-        /// Cheks if a new user gets 1+1 promotion for the second order payment if the first one was pending
+        /// Cheks if a new user doesn't get 1+1 promotion for the second deposit if the first one is still pending
         /// </summary>
         [Test]
-        public void One_Plus_One_After_Pending_Order()
+        [Category("Critical")]
+        public void One_Plus_One_For_Second_Deposit_When_First_Pending(bool isFirstPaymentFailed)
         {
+            //TODO: needs tesing
+            //Sign up
+            _commonActions.Sign_Up_Front();
+            _commonActions.DepositMoney_Front(13, WayToPay.Offline, false); //will be pending deposit
+
+            _commonActions.DepositMoney_Front(11, _merchant); //will be successful deposit
+
+            _verifications.CheckBalanceOnDepositPage(11); //Check if there is no 1+1 promotion for the second payment if the first one is pending
+        }
+
+        /// <summary>
+        /// Cheks if a new user gets 1+1 promotion for the second order when he had the first one pending and it was failed 
+        /// </summary>
+        [Test]
+        [Category("Critical")]
+        public void One_Plus_One_For_Second_Order_When_First_Failed()
+        {
+            //TODO: needs testing
             //Sign up
             _commonActions.Sign_Up_Front();
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/");
 
             RafflesPageObj rafflePage = new RafflesPageObj(_driver);
-            double totalPrice = rafflePage.TotalPrice;
+           // double totalPrice = rafflePage.TotalPrice;
 
             CartObj cart = rafflePage.ClickBuyNowButton();
             MerchantsObj merchants = cart.ClickProceedToCheckoutButton();
-            merchants.Pay(WayToPay.Offline, false);
+            merchants.Pay(WayToPay.Offline, false); //will be pending order 
 
-            double price = _commonActions.BuyRegularOneDrawTicket_Front(_merchant);
+            double price = _commonActions.BuyRegularOneDrawTicket_Front(_merchant); //will be successful order
+
+            _commonActions.SignIn_in_admin_panel();
+            _commonActions.Fail_offline_payment(); //fail the first payment
 
             if (price >= 30)
             {
-                _verifications.CheckBalanceOnDepositPage(30);
+                _verifications.CheckBalanceOnDepositPage(30);  //Check if for the second payment a user got 1+1 
             }
             else
             {
-                _verifications.CheckBalanceOnDepositPage(price);
+                _verifications.CheckBalanceOnDepositPage(price);  //Check if for the second payment a user got 1+1 
             }
+        }
 
+        /// <summary>
+        /// Cheks if a new user doesn't get  1+1 promotion for the second order payment if the first one is pending
+        /// </summary>
+        [Test]
+        [Category("Critical")]
+        public void One_Plus_One_For_Second_Order_When_First_Pending()
+        {
+            //TODO: needs testing
+            //Sign up
+            _commonActions.Sign_Up_Front();
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/");
+
+            RafflesPageObj rafflePage = new RafflesPageObj(_driver);
+            // double totalPrice = rafflePage.TotalPrice;
+
+            CartObj cart = rafflePage.ClickBuyNowButton();
+            MerchantsObj merchants = cart.ClickProceedToCheckoutButton();
+            merchants.Pay(WayToPay.Offline, false); //will be pending order 
+
+            double price = _commonActions.BuyRegularOneDrawTicket_Front(_merchant); //will be successful order
+
+            _verifications.CheckBalanceOnDepositPage(0); //Check if there is no 1+1 promotion for the second payment if the first one is pending
         }
 
         /// <summary>
         /// Cheks if a new user gets 1+1 promotion for the second deposit payment if the first one was failed
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void One_Plus_One_After_Failed_Deposit()
         {
             //Sign up
@@ -104,6 +155,7 @@ namespace LottoSend.com.TestCases.Web
         /// Cheks if a new user gets 1+1 promotion for the second order payment if the first one was failed
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void One_Plus_One_After_Failed_Order()
         {
             //Sign up
@@ -111,7 +163,7 @@ namespace LottoSend.com.TestCases.Web
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/");
 
             RafflesPageObj rafflePage = new RafflesPageObj(_driver);
-            double totalPrice = rafflePage.TotalPrice;
+            //double totalPrice = rafflePage.TotalPrice;
 
             CartObj cart = rafflePage.ClickBuyNowButton();
             MerchantsObj merchants = cart.ClickProceedToCheckoutButton();

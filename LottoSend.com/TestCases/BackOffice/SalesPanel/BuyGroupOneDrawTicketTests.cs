@@ -1,5 +1,4 @@
-﻿using LottoSend.com.BackEndObj.ChargePanelPages;
-using LottoSend.com.BackEndObj.SalesPanelPages;
+﻿using LottoSend.com.BackEndObj.SalesPanelPages;
 using LottoSend.com.Verifications;
 using NUnit.Framework;
 using OpenQA.Selenium;

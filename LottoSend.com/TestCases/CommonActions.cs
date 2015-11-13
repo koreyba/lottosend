@@ -338,7 +338,7 @@ namespace LottoSend.com.TestCases
         }
 
         /// <summary>
-        /// Goes to charge panel and fails the last paymetn. Doesn't perform authorization in admin panel
+        /// Goes to charge panel and fails the last payment. Doesn't perform authorization in admin panel
         /// </summary>
         public void Fail_offline_payment()
         {
