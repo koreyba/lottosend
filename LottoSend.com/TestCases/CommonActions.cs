@@ -124,7 +124,7 @@ namespace LottoSend.com.TestCases
         }
 
         /// <summary>
-        /// Removes all ticket from the cart
+        /// Removes all ticket from the cart. Needs previous login
         /// </summary>
         public void DeleteAllTicketFromCart_Front()
         {

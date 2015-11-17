@@ -1,4 +1,6 @@
-﻿using LottoSend.com.FrontEndObj;
+﻿using System;
+using System.Runtime.CompilerServices;
+using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.Verifications;
@@ -35,14 +37,23 @@ namespace LottoSend.com.TestCases.Web
         private CartVerifications _cartVerifications;
         private CommonActions _commonActions;
         private WayToPay _merchant;
-        
 
         public BuyRaffleTicketTests(WayToPay merchant)
         {
             _merchant = merchant;
 
             SetUp();
-            Buy_Raffle_Ticket(_merchant);
+            try
+            {
+                Buy_Raffle_Ticket(_merchant);
+            }
+            catch (Exception e)
+            {
+                CleanUp();
+                TearDown();
+                throw new Exception("Exception was thrown while executing: " + e.Message + " ");
+            }
+            
             CleanUp();
         }
 
@@ -159,6 +170,18 @@ namespace LottoSend.com.TestCases.Web
             MerchantsObj merchants = cart.ClickProceedToCheckoutButton();
 
             merchants.Pay(merchant);
+        }
+
+        public void TearDown()
+        {
+            if (TestContext.CurrentContext.Result.Status == TestStatus.Failed || TestContext.CurrentContext.Result.State == TestState.Inconclusive)
+            {
+                SetUp();
+                _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+                //Removes all tickets from the cart to make sure all other tests will work well
+                _commonActions.DeleteAllTicketFromCart_Front();
+                CleanUp();
+            }
         }
 
         [TearDown]

@@ -1,4 +1,5 @@
-﻿using LottoSend.com.FrontEndObj.Common;
+﻿using System;
+using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.Verifications;
 using NUnit.Framework;
@@ -39,7 +40,17 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
             _merchant = merchant;
 
             SetUp();
-            Buy_Regular_One_Draw_Ticket(merchant);
+            try
+            {
+                Buy_Regular_One_Draw_Ticket(merchant);
+            }
+            catch (Exception e)
+            {
+                CleanUp();
+                TearDown();
+                throw new Exception("Exception was thrown while executing: " + e.Message + " ");
+            }
+
             CleanUp();
         }
 
@@ -252,6 +263,17 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
             merchants.Pay(merchant);
         }
 
+        public void TearDown()
+        {
+            if (TestContext.CurrentContext.Result.Status == TestStatus.Failed || TestContext.CurrentContext.Result.State == TestState.Inconclusive)
+            {
+                SetUp();
+                _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+                //Removes all tickets from the cart to make sure all other tests will work well
+                _commonActions.DeleteAllTicketFromCart_Front();
+                CleanUp();
+            }
+        }
 
         [TearDown]
         public void CleanUp()

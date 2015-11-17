@@ -1,11 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using OpenQA.Selenium.Support.UI;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LottoSend.com.BackEndObj
 {
@@ -21,6 +16,9 @@ namespace LottoSend.com.BackEndObj
 
         [FindsBy(How = How.LinkText, Using = "Authorize")]
         private IWebElement _authorizeButton;
+
+        [FindsBy(How = How.CssSelector, Using = ".index_table > tbody > tr > td:nth-child(2) > table > body > tr > td:nth-child(1) > nth-child(6)")]
+        private IWebElement _transID;
 
         /// <summary>
         /// Click "Authorize" button for the last payment (the one at the top)
@@ -40,7 +38,6 @@ namespace LottoSend.com.BackEndObj
                 }
             }
 
-            
             WaitjQuery();
         }
     }

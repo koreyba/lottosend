@@ -86,6 +86,7 @@
     <Compile Include="FrontEndObj\SignUp\SignUpForm.cs" />
     <Compile Include="TestCases\BackOffice\GroupGameTests.cs" />
     <Compile Include="TestCases\BackOffice\ManualMatchTests.cs" />
+    <Compile Include="TestCases\BackOffice\OrderProcessingTest.cs" />
     <Compile Include="TestCases\BackOffice\SalesPanel\BuyGroupOneDrawTicketTests.cs" />
     <Compile Include="TestCases\BackOffice\SalesPanel\BuyRaffleTicketTests.cs" />
     <Compile Include="TestCases\BackOffice\SalesPanel\BuyRegularOneDrawTicketTests.cs" />
@@ -143,7 +144,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="SeleniumTests.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -1,10 +1,10 @@
 ﻿using LottoSend.com.BackEndObj.SalesPanelPages;
 using LottoSend.com.Verifications;
-using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
+using NUnit.Framework;
 
 namespace LottoSend.com.TestCases.BackOffice.SalesPanel
 {
