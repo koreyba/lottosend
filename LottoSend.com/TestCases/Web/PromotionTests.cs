@@ -47,7 +47,6 @@ namespace LottoSend.com.TestCases.Web
         [Category("Critical")]
         public void One_Plus_One_For_Second_Deposit_When_First_Failed()
         {
-            //TODO: needs testing
             //Sign up
             _commonActions.Sign_Up_Front();
             _commonActions.DepositMoney_Front(13, WayToPay.Offline, false); //will be pending deposit
@@ -55,6 +54,7 @@ namespace LottoSend.com.TestCases.Web
             _commonActions.DepositMoney_Front(11, _merchant); //will be successful deposit
 
             _commonActions.SignIn_in_admin_panel();
+            _commonActions.Authorize_the_first_payment();
             _commonActions.Fail_offline_payment(); //fail the first payment
 
             _verifications.CheckBalanceOnDepositPage(22); //Check if for the second payment a user got 1+1 
@@ -65,9 +65,8 @@ namespace LottoSend.com.TestCases.Web
         /// </summary>
         [Test]
         [Category("Critical")]
-        public void One_Plus_One_For_Second_Deposit_When_First_Pending(bool isFirstPaymentFailed)
+        public void One_Plus_One_For_Second_Deposit_When_First_Pending()
         {
-            //TODO: needs tesing
             //Sign up
             _commonActions.Sign_Up_Front();
             _commonActions.DepositMoney_Front(13, WayToPay.Offline, false); //will be pending deposit
@@ -84,7 +83,6 @@ namespace LottoSend.com.TestCases.Web
         [Category("Critical")]
         public void One_Plus_One_For_Second_Order_When_First_Failed()
         {
-            //TODO: needs testing
             //Sign up
             _commonActions.Sign_Up_Front();
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/");
@@ -99,6 +97,7 @@ namespace LottoSend.com.TestCases.Web
             double price = _commonActions.BuyRegularOneDrawTicket_Front(_merchant); //will be successful order
 
             _commonActions.SignIn_in_admin_panel();
+            _commonActions.Authorize_the_first_payment();
             _commonActions.Fail_offline_payment(); //fail the first payment
 
             if (price >= 30)
@@ -118,7 +117,6 @@ namespace LottoSend.com.TestCases.Web
         [Category("Critical")]
         public void One_Plus_One_For_Second_Order_When_First_Pending()
         {
-            //TODO: needs testing
             //Sign up
             _commonActions.Sign_Up_Front();
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/");
@@ -130,7 +128,7 @@ namespace LottoSend.com.TestCases.Web
             MerchantsObj merchants = cart.ClickProceedToCheckoutButton();
             merchants.Pay(WayToPay.Offline, false); //will be pending order 
 
-            double price = _commonActions.BuyRegularOneDrawTicket_Front(_merchant); //will be successful order
+            _commonActions.BuyRegularOneDrawTicket_Front(_merchant); //will be successful order
 
             _verifications.CheckBalanceOnDepositPage(0); //Check if there is no 1+1 promotion for the second payment if the first one is pending
         }

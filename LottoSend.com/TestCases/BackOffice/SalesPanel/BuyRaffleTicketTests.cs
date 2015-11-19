@@ -1,4 +1,6 @@
-﻿using LottoSend.com.BackEndObj.SalesPanelPages;
+﻿using System;
+using LottoSend.com.BackEndObj.SalesPanelPages;
+using LottoSend.com.Helpers;
 using LottoSend.com.Verifications;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -16,13 +18,25 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
          private OrderVerifications _orderVerifications;
          private WayToPay _merchant;
          private double _totalPrice;
+         private TestsSharedCode _sharedCode;
 
          public BuyRaffleTicketTests(WayToPay merchant, string raffleName)
          {
              _merchant = merchant;
 
              SetUp();
-             BuyRaffleTicket(raffleName);
+             _sharedCode = new TestsSharedCode(_driver);
+
+             try
+             {
+                 BuyRaffleTicket(raffleName);
+             } 
+             catch (Exception e)
+             {
+                 CleanUp();
+                 _sharedCode.CleanCartIfTestWasFailed();
+                 throw new Exception("Exception was thrown while executing: " + e.Message + " ");
+             }
              CleanUp();
          }
 

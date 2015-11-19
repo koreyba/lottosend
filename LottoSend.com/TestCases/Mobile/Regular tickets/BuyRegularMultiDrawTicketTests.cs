@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.FrontEndObj.GamePages;
+using LottoSend.com.Helpers;
 using LottoSend.com.Verifications;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -26,6 +28,7 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
         private WayToPay _merchant;
         private string _device;
         private CartVerifications _cartVerifications;
+        private TestsSharedCode _sharedCode;
 
         public BuyRegularMultiDrawTicketTests(string device, WayToPay merchant)
         {
@@ -33,7 +36,18 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
             _merchant = merchant;
 
             SetUp(CreateOptions(_device));
-            Buy_Regular_Multi_Draw_Ticket(_merchant);
+            _sharedCode = new TestsSharedCode(_driver);
+            
+            try
+            {
+                Buy_Regular_Multi_Draw_Ticket(_merchant);
+            }
+            catch (Exception e)
+            {
+                CleanUp();
+                _sharedCode.CleanCartIfTestWasFailed();
+                throw new Exception("Exception was thrown while executing: " + e.Message + " ");
+            }
             CleanUp();
 
             //SetUp();
@@ -222,11 +236,7 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
         [TearDown]
         public void CleanUp()
         {
-            _driver.Dispose();
-            if (_orderVerifications.Errors.Length > 0)
-            {
-                Assert.Fail(_orderVerifications.Errors.ToString());
-            }
+            _sharedCode.CleanUp();
         }
 
         //[SetUp]

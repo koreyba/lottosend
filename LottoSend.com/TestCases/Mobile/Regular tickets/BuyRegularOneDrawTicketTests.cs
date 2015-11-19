@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.FrontEndObj.GamePages;
+using LottoSend.com.Helpers;
 using LottoSend.com.Verifications;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -25,6 +27,7 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
         private WayToPay _merchant;
         private string _device;
         private CartVerifications _cartVerifications;
+        private TestsSharedCode _sharedCode;
 
         public BuyRegularOneDrawTicketTests(string device, WayToPay merchant)
         {
@@ -32,7 +35,19 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
             _merchant = merchant;
 
             SetUp(CreateOptions(_device));
-            Buy_Regular_One_Draw_Ticket(_merchant);
+            _sharedCode = new TestsSharedCode(_driver);
+
+            try
+            {
+                Buy_Regular_One_Draw_Ticket(_merchant);
+            }
+            catch (Exception e)
+            {
+                CleanUp();
+                _sharedCode.CleanCartIfTestWasFailed();
+                throw new Exception("Exception was thrown while executing: " + e.Message + " ");
+            }
+
             CleanUp();
             
             //SetUp();
@@ -220,16 +235,14 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
             return options;
         }
 
-        [TearDown]
         public void CleanUp()
         {
-            _driver.Dispose();
-            if (_orderVerifications.Errors.Length > 0)
-            {
-                Assert.Fail(_orderVerifications.Errors.ToString());
-            }
+           _sharedCode.CleanUp();
         }
 
+        /// <summary>
+        /// Starts new WebDriver
+        /// </summary>
         public void SetUp()
         {
             _driver = new ChromeDriver();
@@ -238,6 +251,10 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
             _commonActions = new CommonActions(_driver);
         }
 
+        /// <summary>
+        /// Starts new ChromeDriver Mobile
+        /// </summary>
+        /// <param name="option"></param>
         public void SetUp(ChromeOptions option)
         {
             _driver = new ChromeDriver(option);

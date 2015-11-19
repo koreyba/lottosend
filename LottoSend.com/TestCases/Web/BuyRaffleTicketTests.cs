@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.FrontEndObj.GamePages;
+using LottoSend.com.Helpers;
 using LottoSend.com.Verifications;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -37,12 +38,15 @@ namespace LottoSend.com.TestCases.Web
         private CartVerifications _cartVerifications;
         private CommonActions _commonActions;
         private WayToPay _merchant;
+        private TestsSharedCode _sharedCode;
 
         public BuyRaffleTicketTests(WayToPay merchant)
         {
             _merchant = merchant;
 
             SetUp();
+            _sharedCode = new TestsSharedCode(_driver);
+
             try
             {
                 Buy_Raffle_Ticket(_merchant);
@@ -50,7 +54,7 @@ namespace LottoSend.com.TestCases.Web
             catch (Exception e)
             {
                 CleanUp();
-                TearDown();
+                _sharedCode.CleanCartIfTestWasFailed();
                 throw new Exception("Exception was thrown while executing: " + e.Message + " ");
             }
             
@@ -172,26 +176,10 @@ namespace LottoSend.com.TestCases.Web
             merchants.Pay(merchant);
         }
 
-        public void TearDown()
-        {
-            if (TestContext.CurrentContext.Result.Status == TestStatus.Failed || TestContext.CurrentContext.Result.State == TestState.Inconclusive)
-            {
-                SetUp();
-                _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
-                //Removes all tickets from the cart to make sure all other tests will work well
-                _commonActions.DeleteAllTicketFromCart_Front();
-                CleanUp();
-            }
-        }
-
         [TearDown]
         public void CleanUp()
         {
-            _driver.Dispose();
-            if (_orderVerifications.Errors.Length > 0)
-            {
-                Assert.Fail(_orderVerifications.Errors.ToString());
-            }
+            _sharedCode.CleanUp();
         }
 
         [SetUp]
