@@ -137,6 +137,7 @@ namespace LottoSend.com
             }
             catch (Exception)
             {
+                Driver.Dispose();
                 throw new TimeoutException("Page loading time out time has passed " + secondsToWait + " seconds");
             }
             finally
@@ -187,6 +188,7 @@ namespace LottoSend.com
             }
             catch (Exception)
             {
+                Driver.Dispose();
                 throw new TimeoutException("Ajax call time out time has passed " + secondsToWait + " seconds");
             }
             finally
@@ -224,6 +226,7 @@ namespace LottoSend.com
             }
             catch (Exception)
             {
+                Driver.Dispose();
                 throw new TimeoutException("Ajax call time out time has passed " + secondsToWait + " seconds");
             }
             finally
@@ -256,6 +259,7 @@ namespace LottoSend.com
             }
             catch (Exception e)
             {
+                Driver.Dispose();
                 throw new Exception("Time to wait " + timeOutInSeconds + " seconds is elapsed ");
             }
         }
@@ -284,6 +288,7 @@ namespace LottoSend.com
             }
             catch (Exception e)
             {
+                Driver.Dispose();
                 throw new Exception("Time to wait " + timeOutInSeconds + " seconds is elapsed ");
             }
         }

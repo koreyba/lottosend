@@ -179,7 +179,7 @@ namespace LottoSend.com.TestCases.Web
         [TearDown]
         public void CleanUp()
         {
-            _sharedCode.CleanUp();
+            _sharedCode.CleanUp(ref _driver);
         }
 
         [SetUp]

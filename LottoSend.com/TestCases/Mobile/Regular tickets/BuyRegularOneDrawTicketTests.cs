@@ -237,7 +237,7 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
 
         public void CleanUp()
         {
-           _sharedCode.CleanUp();
+            _sharedCode.CleanUp(ref _driver);
         }
 
         /// <summary>

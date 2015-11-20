@@ -267,7 +267,7 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         [TearDown]
         public void CleanUp()
         {
-            _sharedCode.CleanUp();
+            _sharedCode.CleanUp(ref _driver);
         }
 
         [SetUp]

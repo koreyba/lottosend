@@ -36,16 +36,16 @@ namespace LottoSend.com.Helpers
                 CommonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
                 //Removes all tickets from the cart to make sure all other tests will work well
                 CommonActions.DeleteAllTicketFromCart_Front();
-                CleanUp();
+                CleanUp(ref _driver);
             }
         }
 
         /// <summary>
         /// Dispose WebDriver and pushes erros to console from OrderVerifications class
         /// </summary>
-        public void CleanUp()
+        public void CleanUp(ref IWebDriver driver)
         {
-            _driver.Dispose();
+            driver.Dispose();
             if (OrderVerifications.Errors.Length > 0)
             {
                 Assert.Fail(OrderVerifications.Errors.ToString());
