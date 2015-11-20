@@ -157,22 +157,6 @@ namespace LottoSend.com.TestCases.Mobile
         }
 
         /// <summary>
-        /// Cheks if a new user gets 1+1 promotion for the second payment if the first one was pendant
-        /// </summary>
-        [Test]
-        [Category("Critical")]
-        public void One_Plus_One_After_Pending_Deposit()
-        {
-            //Sign up
-            _commonActions.Sign_Up_Mobile();
-            _commonActions.DepositMoney_Mobile(13, WayToPay.Offline, false);
-
-            _commonActions.DepositMoney_Mobile(11, _merchant);
-
-            _verifications.CheckBalanceOnDepositPageMobile(22);
-        }
-
-        /// <summary>
         /// Cheks if a new user gets 1+1 promotion for the second payment if the first one was failed
         /// </summary>
         [Test]

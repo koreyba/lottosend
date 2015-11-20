@@ -1,4 +1,5 @@
-﻿using LottoSend.com.BackEndObj.SalesPanelPages;
+﻿using System.Configuration;
+using LottoSend.com.BackEndObj.SalesPanelPages;
 using LottoSend.com.Verifications;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -29,19 +30,19 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
 
             _backOfficeVerifications.IfUserSignedInSalesPanel();
         }
-
-        [TestCase("selenium@gmail.com", 40540)]
-        public void Sign_In_Sales_Panel(string email, int id)
+        
+        [Test]
+        public void Sign_In_Sales_Panel()
         {
             _commonActions.SignIn_in_admin_panel();
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/orders");
 
             RegisterObj register = new RegisterObj(_driver);
-            register.SignIn(email);
+            register.SignIn(_driverCover.Login);
             _backOfficeVerifications.IfUserSignedInSalesPanel();
             register.SignOut();
 
-            register.SignIn(id);
+            register.SignIn(40540);
             _backOfficeVerifications.IfUserSignedInSalesPanel();
         }
 

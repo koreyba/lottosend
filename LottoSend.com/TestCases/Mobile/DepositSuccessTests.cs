@@ -43,7 +43,7 @@ namespace LottoSend.com.TestCases.Mobile
         /// <param name="merchant"></param>
         private void Deposit_Money(WayToPay merchant)
         {
-            _email = _commonActions.Log_In_Front("selenium2@gmail.com", _driverCover.Password);
+            _email = _commonActions.Log_In_Front(_driverCover.LoginTwo, _driverCover.Password);
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/deposits/new/");
 
             DepositMobileObj deposit = new DepositMobileObj(_driver);
@@ -58,7 +58,7 @@ namespace LottoSend.com.TestCases.Mobile
         [Category("Critical")]
         public void Check_User_Balance()
         {
-            _orderVerifications.CheckUserBalance_Front(_balanceBeforePayment, _depositAmount, "selenium2@gmail.com", _driverCover.Password);
+            _orderVerifications.CheckUserBalance_Front(_balanceBeforePayment, _depositAmount, _driverCover.LoginTwo, _driverCover.Password);
         }
 
         /// <summary>

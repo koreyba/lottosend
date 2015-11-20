@@ -48,7 +48,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
          {
              if (_merchant == WayToPay.InternalBalance)
              {
-                 _orderVerifications.CheckTransactionsEmailInTransactions_Back("selenium2@gmail.com");
+                 _orderVerifications.CheckTransactionsEmailInTransactions_Back(_driverCover.LoginTwo);
              }
 
              if (_merchant == WayToPay.Offline)
@@ -136,12 +136,12 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
 
              if (_merchant == WayToPay.Offline)
              {
-                 regForm.SignIn("selenium@gmail.com");
+                 regForm.SignIn(_driverCover.Login);
              }
 
              if (_merchant == WayToPay.InternalBalance)
              {
-                 regForm.SignIn("selenium2@gmail.com");
+                 regForm.SignIn(_driverCover.LoginTwo);
              }
 
              MenuObj menu = new MenuObj(_driver);
