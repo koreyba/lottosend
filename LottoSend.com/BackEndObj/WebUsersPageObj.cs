@@ -30,6 +30,15 @@ namespace LottoSend.com.BackEndObj
         private IWebElement _table;
 
         /// <summary>
+        /// Returns balance of the first users (at the top)
+        /// </summary>
+        /// <returns></returns>
+        public double GetFirstRecordBalance()
+        {
+            return _table.FindElement(By.CssSelector("tr > td:nth-child(7)")).Text.ParseDouble();
+        }
+
+        /// <summary>
         /// Inputs email and click Filter button
         /// </summary>
         /// <param name="email"></param>

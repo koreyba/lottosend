@@ -51,6 +51,7 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
 
             _okButton.Click();
             WaitForPageLoading();
+            WaitjQuery();
         }
     }
 }

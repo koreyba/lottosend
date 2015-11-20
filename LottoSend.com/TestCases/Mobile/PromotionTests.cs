@@ -50,7 +50,7 @@ namespace LottoSend.com.TestCases.Mobile
             _commonActions.Authorize_the_first_payment();
             _commonActions.Fail_offline_payment(); //fail the first payment
 
-            _verifications.CheckBalanceOnDepositPage(22); //Check if for the second payment a user got 1+1 
+            _verifications.CheckBalanceOnDepositPage_Web(22); //Check if for the second payment a user got 1+1 
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace LottoSend.com.TestCases.Mobile
 
             _commonActions.DepositMoney_Mobile(11, _merchant); //will be successful deposit
 
-            _verifications.CheckBalanceOnDepositPage(11); //Check if there is no 1+1 promotion for the second payment if the first one is pending
+            _verifications.CheckBalanceOnDepositPage_Web(11); //Check if there is no 1+1 promotion for the second payment if the first one is pending
         }
 
         /// <summary>
@@ -95,11 +95,11 @@ namespace LottoSend.com.TestCases.Mobile
 
             if (price >= 30)
             {
-                _verifications.CheckBalanceOnDepositPage(30);  //Check if for the second payment a user got 1+1 
+                _verifications.CheckBalanceOnDepositPage_Web(30);  //Check if for the second payment a user got 1+1 
             }
             else
             {
-                _verifications.CheckBalanceOnDepositPage(price);  //Check if for the second payment a user got 1+1 
+                _verifications.CheckBalanceOnDepositPage_Web(price);  //Check if for the second payment a user got 1+1 
             }
         }
 
@@ -123,7 +123,7 @@ namespace LottoSend.com.TestCases.Mobile
 
             _commonActions.BuyRegularOneDrawTicket_Front(_merchant); //will be successful order
 
-            _verifications.CheckBalanceOnDepositPage(0); //Check if there is no 1+1 promotion for the second payment if the first one is pending
+            _verifications.CheckBalanceOnDepositPage_Web(0); //Check if there is no 1+1 promotion for the second payment if the first one is pending
         }
 
         /// <summary>
@@ -148,11 +148,11 @@ namespace LottoSend.com.TestCases.Mobile
 
             if (price >= 30)
             {
-                _verifications.CheckBalanceOnDepositPage(30);
+                _verifications.CheckBalanceOnDepositPage_Web(30);
             }
             else
             {
-                _verifications.CheckBalanceOnDepositPage(price);
+                _verifications.CheckBalanceOnDepositPage_Web(price);
             }
         }
 
@@ -169,7 +169,7 @@ namespace LottoSend.com.TestCases.Mobile
 
             _commonActions.DepositMoney_Mobile(11, _merchant);
 
-            _verifications.CheckBalanceOnDepositPageMobile(22);
+            _verifications.CheckBalanceOnDepositPage_Mobile(22);
         }
 
         /// <summary>
@@ -182,7 +182,7 @@ namespace LottoSend.com.TestCases.Mobile
             _commonActions.BuyRegularOneDrawTicket_Front(_merchant); //will get 1+1 promotion
             _commonActions.BuyRaffleTicket_Front(_merchant); //this ticket must cost more then the previously bought one
 
-            _verifications.CheckBalanceOnDepositPageMobile(0);
+            _verifications.CheckBalanceOnDepositPage_Mobile(0);
         }
 
         /// <summary>
@@ -196,7 +196,7 @@ namespace LottoSend.com.TestCases.Mobile
             _commonActions.DepositMoney_Mobile(13, _merchant); //is expected to get 1+1 promotion
             _commonActions.DepositMoney_Mobile(15, _merchant);
 
-            _verifications.CheckBalanceOnDepositPageMobile(41); //13*2+15 
+            _verifications.CheckBalanceOnDepositPage_Mobile(41); //13*2+15 
         }
 
         /// <summary>
@@ -211,11 +211,11 @@ namespace LottoSend.com.TestCases.Mobile
 
             if (_totalPrice <= 30)
             {
-                _verifications.CheckBalanceOnDepositPageMobile(_totalPrice);
+                _verifications.CheckBalanceOnDepositPage_Mobile(_totalPrice);
             }
             else
             {
-                _verifications.CheckBalanceOnDepositPageMobile(30);
+                _verifications.CheckBalanceOnDepositPage_Mobile(30);
             }
         }
 
@@ -232,7 +232,7 @@ namespace LottoSend.com.TestCases.Mobile
             DepositMobileObj deposit = new DepositMobileObj(_driver);
             deposit.DepositOtherAmount(17, _merchant);
 
-            _verifications.CheckBalanceOnDepositPageMobile(34);
+            _verifications.CheckBalanceOnDepositPage_Mobile(34);
         }
 
         private ChromeOptions CreateOptions(string device)

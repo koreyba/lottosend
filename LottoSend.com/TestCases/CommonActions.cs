@@ -30,6 +30,17 @@ namespace LottoSend.com.TestCases
         }
 
         /// <summary>
+        /// Opens CC Details button and input CC details. Doesn't navigate to the sales panel
+        /// </summary>
+        public void AddCCDetails_SalesPanel()
+        {
+            TabsObj tabs = new TabsObj(_driver);
+            tabs.GoToCcDetailsTab();
+            CcDetailsObj form = new CcDetailsObj(_driver);
+            form.InputCcDetails("VISA", "4580458045804580");
+        }
+
+        /// <summary>
         /// Pays for tickets in the cart (offline or internal balance). To use this method you must be on the sales panel page
         /// </summary>
         /// <param name="merchant"></param>
@@ -40,10 +51,7 @@ namespace LottoSend.com.TestCases
 
             if (merchant == WayToPay.Offline)
             {
-                TabsObj tabs = new TabsObj(_driver);
-                tabs.GoToCcDetailsTab();
-                CcDetailsObj form = new CcDetailsObj(_driver);
-                form.InputCcDetails("VISA", "4580458045804580");
+                AddCCDetails_SalesPanel();
 
                 cart.Charge();
 
@@ -296,6 +304,36 @@ namespace LottoSend.com.TestCases
 
             return email;
         }
+
+        /// <summary>
+        /// Goes to the sales panel and signs in. Needs previous login in backoffice
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public string Log_In_SalesPanel(string email, string password)
+        {
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/orders");
+
+            RegisterObj regForm = new RegisterObj(_driver);
+            regForm.SignIn(_driverCover.Login);
+
+            return email;
+        }
+
+        /// <summary>
+        /// Goes to the sales panel and sign up a new user. Needs previous login in backoffice
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public string Sign_Up_SalesPanel(string email)
+        {
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/orders");
+
+            RegisterObj regForm = new RegisterObj(_driver);
+            return regForm.SignUp(email);
+        }
+        
 
         /// <summary>
         /// Goes to admin panel and authorize

@@ -108,7 +108,7 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
         /// </summary>
         /// <param name="email"></param>
         /// <returns></returns>
-        public void SignUp(string email)
+        public string SignUp(string email)
         {
             _email.SendKeys(email);
             _firstName.SendKeys(RandomGenerator.GenerateRandomString(5));
@@ -120,6 +120,8 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
             _okSignUpButton.Click();
             bool b = WaitAjax();
             WaitForPageLoading();
+
+            return email;
         }
     }
 }

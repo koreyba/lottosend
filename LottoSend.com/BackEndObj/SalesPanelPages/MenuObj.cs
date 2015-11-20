@@ -24,6 +24,18 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
         [FindsBy(How = How.CssSelector, Using = "div.left")]
         private IWebElement _menu;
 
+        [FindsBy(How = How.CssSelector, Using = "#orders_deposit")]
+        private IWebElement _deposit;
+
+        /// <summary>
+        /// Clicks "Deposit" button in menu
+        /// </summary>
+        public void GoToDeposit()
+        {
+            _deposit.Click();
+            WaitForPageLoading();
+            WaitjQuery();
+        }
 
         /// <summary>
         /// Navigates to the lottery (also works for raffles)
