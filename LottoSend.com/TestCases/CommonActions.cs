@@ -30,6 +30,93 @@ namespace LottoSend.com.TestCases
         }
 
         /// <summary>
+        /// Buys a raffle ticket in the sales panel (approves payment)
+        /// </summary>
+        /// <param name="raffleName"></param>
+        /// <returns></returns>
+        public double BuyRaffleTicket_SalesPanel(string raffleName)
+        {
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/orders");
+
+            AddRaffleTicketToCart_SalesPanel(raffleName);
+
+            return PayForTicketsInCart_SalesPanel(WayToPay.Offline);
+        }
+        
+        /// <summary>
+        /// Adds a raffle ticket to the cart in the sales panel. Need previous sign in in the sales panel
+        /// </summary>
+        /// <param name="raffleName"></param>
+        public void AddRaffleTicketToCart_SalesPanel(string raffleName)
+        {
+            MenuObj menu = new MenuObj(_driver);
+            menu.GoToLotteryPage(raffleName);
+
+            RafflePageObj rafflePage = new RafflePageObj(_driver);
+            rafflePage.AddShareToTicket(1, 1);
+            rafflePage.ClickAddToCartButton();
+        }
+
+        /// <summary>
+        /// Buys a regular one draw ticket in the sales panel (approves payment). Need previous sign in in the sales panel
+        /// </summary>
+        /// <param name="lotteryName"></param>
+        /// <returns></returns>
+        public double BuyRegularOneDrawTicket_SalesPanel(string lotteryName)
+        {
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/orders");
+
+            AddRegularOneDrawTicketToCart_SalesPanel(lotteryName);
+
+            return PayForTicketsInCart_SalesPanel(WayToPay.Offline);
+        }
+
+        /// <summary>
+        /// Adds a regular one draw tickte to the cart in the sales panel
+        /// </summary>
+        /// <param name="lotteryName"></param>
+        public void AddRegularOneDrawTicketToCart_SalesPanel(string lotteryName)
+        {
+            MenuObj menu = new MenuObj(_driver);
+            menu.GoToLotteryPage(lotteryName);
+            GroupGameObj group = new GroupGameObj(_driver);
+            group.SwitchToSingleTab();
+
+            SingleGameObj game = new SingleGameObj(_driver);
+            game.AddToCart();
+        }
+
+        /// <summary>
+        /// Adds CC Details and deposits money (approves payment). You need previously sign in in the sales panel
+        /// </summary>
+        /// <param name="amount"></param>
+        /// <param name="ifProcess"></param>
+        /// <param name="isFailed"></param>
+        public void DepositMoney_SalesPanel(double amount, bool ifProcess = true, bool isFailed = false)
+        {
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/orders");
+            AddCCDetails_SalesPanel();
+
+            MenuObj menu = new MenuObj(_driver);
+            menu.GoToDeposit();
+
+            DepositBoxObj box = new DepositBoxObj(_driver);
+            box.DepositOtherAmoun(amount);
+
+            if (ifProcess)
+            {
+                if (!isFailed)
+                {
+                    Approve_offline_payment();
+                }
+                else
+                {
+                    Fail_offline_payment();
+                }
+            }
+        }
+
+        /// <summary>
         /// Opens CC Details button and input CC details. Doesn't navigate to the sales panel
         /// </summary>
         public void AddCCDetails_SalesPanel()
@@ -109,9 +196,9 @@ namespace LottoSend.com.TestCases
         }
 
         /// <summary>
-        /// Adds a raffle ticket to the cart
+        /// Adds a raffle ticket to the cart on front
         /// </summary>
-        public void AddRaffleTicketToCart()
+        public void AddRaffleTicketToCart_Front()
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/");
             RafflesPageObj raffle = new RafflesPageObj(_driver);
@@ -332,6 +419,18 @@ namespace LottoSend.com.TestCases
 
             RegisterObj regForm = new RegisterObj(_driver);
             return regForm.SignUp(email);
+        }
+
+        /// <summary>
+        /// Navigates to the sales panel and signs in
+        /// </summary>
+        /// <param name="email"></param>
+        public void Sign_In_SalesPanel(string email)
+        {
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/orders");
+
+            RegisterObj regForm = new RegisterObj(_driver);
+            regForm.SignIn(email);
         }
         
 

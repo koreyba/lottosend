@@ -66,7 +66,14 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         [Category("Critical")]
         public void One_Plus_One_After_Failed_Deposit()
         {
-            
+            _commonActions.SignIn_in_admin_panel();
+            string email = _commonActions.Sign_Up_SalesPanel(RandomGenerator.GenerateRandomString(7) + "@grr.la");
+
+            _commonActions.DepositMoney_SalesPanel(11, true, true);
+
+            _commonActions.DepositMoney_SalesPanel(31);
+
+            _balanceVerifications.CheckUserBalance_BackOffice(email, 61);
         }
 
         /// <summary>
@@ -76,7 +83,27 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         [Category("Critical")]
         public void One_Plus_One_After_Failed_Order()
         {
-          
+            _commonActions.SignIn_in_admin_panel();
+            string email = _commonActions.Sign_Up_SalesPanel(RandomGenerator.GenerateRandomString(7) + "@grr.la");
+
+            _commonActions.AddCCDetails_SalesPanel();
+            _commonActions.AddRegularOneDrawTicketToCart_SalesPanel("Powerball");
+        
+            CartObj cart = new CartObj(_driver);
+            cart.Charge();
+
+            _commonActions.Fail_offline_payment();
+
+            double price = _commonActions.BuyRegularOneDrawTicket_SalesPanel("Mega Millions");
+
+            if (price >= 30)
+            {
+                _balanceVerifications.CheckUserBalance_BackOffice(email, 30);
+            }
+            else
+            {
+                _balanceVerifications.CheckUserBalance_BackOffice(email, price);
+            }
         }
 
         /// <summary>
@@ -86,7 +113,15 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         [Category("Critical")]
         public void One_Plus_One_Second_Payment()
         {
-          
+            _commonActions.SignIn_in_admin_panel();
+            string email = _commonActions.Sign_Up_SalesPanel(RandomGenerator.GenerateRandomString(7) + "@grr.la");
+
+            _commonActions.BuyRegularOneDrawTicket_SalesPanel("El Gordo");
+            
+            _commonActions.Sign_In_SalesPanel(email);
+            _commonActions.BuyRaffleTicket_SalesPanel("Loteria de Navidad");
+
+            _balanceVerifications.CheckUserBalance_BackOffice(email, 0);
         }
 
         /// <summary>
@@ -95,7 +130,14 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         [Test]
         public void One_Plus_One_Second_Deposit()
         {
-           
+            _commonActions.SignIn_in_admin_panel();
+            string email = _commonActions.Sign_Up_SalesPanel(RandomGenerator.GenerateRandomString(7) + "@grr.la");
+
+            _commonActions.DepositMoney_SalesPanel(11);
+
+            _commonActions.DepositMoney_SalesPanel(18);
+
+            _balanceVerifications.CheckUserBalance_BackOffice(email, 40); //11*2+18 = 40
         }
 
         /// <summary>
@@ -105,7 +147,29 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         [Category("Critical")]
         public void One_Plus_One_Promotion_Buying()
         {
-       
+            _commonActions.SignIn_in_admin_panel();
+            string email = _commonActions.Sign_Up_SalesPanel(RandomGenerator.GenerateRandomString(7) + "@grr.la");
+
+            _commonActions.AddCCDetails_SalesPanel();
+
+            MenuObj menu = new MenuObj(_driver);
+            menu.GoToLotteryPage("Euromiliony");
+
+            GroupGameObj group = new GroupGameObj(_driver);
+            group.AddShareToTicket(1, 1);
+            group.ClickAddToCartButton();
+
+            double totalPrice = _commonActions.PayForTicketsInCart_SalesPanel(WayToPay.Offline);
+
+            if (totalPrice <= 30)
+            {
+                _balanceVerifications.CheckUserBalance_BackOffice(email, totalPrice);
+            }
+            else
+            {
+                _balanceVerifications.CheckUserBalance_BackOffice(email, 30);
+            }
+            
         }
 
         /// <summary>
@@ -118,15 +182,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             _commonActions.SignIn_in_admin_panel();
             string email = _commonActions.Sign_Up_SalesPanel(RandomGenerator.GenerateRandomString(7) + "@grr.la");
 
-            _commonActions.AddCCDetails_SalesPanel();
-            
-            MenuObj menu = new MenuObj(_driver);
-            menu.GoToDeposit();
-
-            DepositBoxObj box = new DepositBoxObj(_driver);
-            box.DepositOtherAmoun(18);
-
-            _commonActions.Approve_offline_payment();
+            _commonActions.DepositMoney_SalesPanel(18);
 
             _balanceVerifications.CheckUserBalance_BackOffice(email, 36);
         }

@@ -4,6 +4,9 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace LottoSend.com.BackEndObj.SalesPanelPages
 {
+    /// <summary>
+    /// Raffle page object in the sales panel
+    /// </summary>
     public class RafflePageObj : DriverCover
     {
         public RafflePageObj(IWebDriver driver) : base(driver)

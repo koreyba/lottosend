@@ -55,7 +55,7 @@ namespace LottoSend.com.TestCases.Web
         public void Edit_Raffle_Ticket_And_Add_More()
         {
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
-            _commonActions.AddRaffleTicketToCart();
+            _commonActions.AddRaffleTicketToCart_Front();
 
             CartObj cart = new CartObj(_driver);
             cart.EditTicket_Web("Cart Raffle");
@@ -80,7 +80,7 @@ namespace LottoSend.com.TestCases.Web
         {
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
 
-            _commonActions.AddRaffleTicketToCart();
+            _commonActions.AddRaffleTicketToCart_Front();
             _cartVerifications.CheckNumberOfTicketsInCart_Front(1);
 
             //Remove tickets
