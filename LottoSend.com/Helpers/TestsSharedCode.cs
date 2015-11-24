@@ -56,6 +56,8 @@ namespace LottoSend.com.Helpers
         {
             _driver = new ChromeDriver();
             _driverCover = new DriverCover(_driver);
+            CommonActions = new CommonActions(_driver);
+            OrderVerifications = new OrderVerifications(_driver);
         }
     }
 }

@@ -246,6 +246,7 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
             _driverCover = new DriverCover(_driver);
             _orderVerifications = new OrderVerifications(_driver);
             _commonActions = new CommonActions(_driver);
+            _cartVerifications = new CartVerifications(_driver);
         }
 
         public void SetUp(ChromeOptions option)
