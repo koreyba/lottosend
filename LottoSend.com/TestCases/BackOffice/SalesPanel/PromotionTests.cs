@@ -1,6 +1,4 @@
-﻿using LottoSend.com.BackEndObj.SalesPanelPages;
-using LottoSend.com.FrontEndObj.MyAccount;
-using LottoSend.com.Verifications;
+﻿using LottoSend.com.Verifications;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -11,13 +9,9 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
     public class PromotionTests<TWebDriver> where TWebDriver : IWebDriver, new()
     {
         private IWebDriver _driver;
-        private DriverCover _driverCover;
         private CommonActions _commonActions;
-        private BalanceVerifications _verifications;
         private double _totalPrice;
         private BalanceVerifications _balanceVerifications;
-
-
 
         /// <summary>
         /// Cheks if a new user gets 1+1 promotion for the second deposit when he had the first one pending and it was failed 
@@ -26,7 +20,16 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         [Category("Critical")]
         public void One_Plus_One_For_Second_Deposit_When_First_Failed()
         {
+            _commonActions.SignIn_in_admin_panel();
+            string email = _commonActions.Sign_Up_SalesPanel(RandomGenerator.GenerateRandomString(10) + "@grr.la");
 
+            _commonActions.DepositMoney_SalesPanel(11, false); //will be pending deposit
+
+            _commonActions.DepositMoney_SalesPanel(31); // will be successful deposit
+
+            _commonActions.Fail_offline_payment(); //will faild previous deposit
+
+            _balanceVerifications.CheckUserBalance_BackOffice(email, 61); //Check if for the second payment a user got 1+1 
         }
 
         /// <summary>
@@ -36,7 +39,14 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         [Category("Critical")]
         public void One_Plus_One_For_Second_Deposit_When_First_Pending()
         {
+            _commonActions.SignIn_in_admin_panel();
+            string email = _commonActions.Sign_Up_SalesPanel(RandomGenerator.GenerateRandomString(10) + "@grr.la");
 
+            _commonActions.DepositMoney_SalesPanel(11, false); //will be pending deposit
+
+            _commonActions.DepositMoney_SalesPanel(31); // will be successful deposit
+
+            _balanceVerifications.CheckUserBalance_BackOffice(email, 31); //Check if there is no 1+1 promotion for the second payment if the first one is pending
         }
 
         /// <summary>
@@ -46,7 +56,28 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         [Category("Critical")]
         public void One_Plus_One_For_Second_Order_When_First_Failed()
         {
-           
+            _commonActions.SignIn_in_admin_panel();
+            string email = _commonActions.Sign_Up_SalesPanel(RandomGenerator.GenerateRandomString(10) + "@grr.la");
+
+            _commonActions.AddRegularOneDrawTicketToCart_SalesPanel("SuperEnalotto");
+            _commonActions.PayForTicketsInCart_SalesPanel(WayToPay.Offline, false);
+
+            _commonActions.Log_In_SalesPanel(email);
+
+            //double price = _commonActions.BuyRegularOneDrawTicket_SalesPanel("EuroJackpot");
+
+            double price = _commonActions.BuyRaffleTicket_SalesPanel("Loteria de Navidad");
+
+            _commonActions.Fail_offline_payment(); //fail the first payment
+
+            if (price >= 30)
+            {
+                _balanceVerifications.CheckUserBalance_BackOffice(email, 30);
+            }
+            else
+            {
+                _balanceVerifications.CheckUserBalance_BackOffice(email, price);
+            }
         }
 
         /// <summary>
@@ -56,7 +87,19 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         [Category("Critical")]
         public void One_Plus_One_For_Second_Order_When_First_Pending()
         {
-            
+            _commonActions.SignIn_in_admin_panel();
+            string email = _commonActions.Sign_Up_SalesPanel(RandomGenerator.GenerateRandomString(10) + "@grr.la");
+
+            _commonActions.AddRegularOneDrawTicketToCart_SalesPanel("SuperLotto Plus");
+            _commonActions.PayForTicketsInCart_SalesPanel(WayToPay.Offline, false);
+
+            _commonActions.Log_In_SalesPanel(email);
+
+            _commonActions.BuyRegularOneDrawTicket_SalesPanel("El Gordo");
+
+            //double price = _commonActions.BuyRaffleTicket_SalesPanel("Loteria de Navidad");
+
+            _balanceVerifications.CheckUserBalance_BackOffice(email, 0);
         }
 
         /// <summary>
@@ -67,7 +110,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         public void One_Plus_One_After_Failed_Deposit()
         {
             _commonActions.SignIn_in_admin_panel();
-            string email = _commonActions.Sign_Up_SalesPanel(RandomGenerator.GenerateRandomString(7) + "@grr.la");
+            string email = _commonActions.Sign_Up_SalesPanel(RandomGenerator.GenerateRandomString(10) + "@grr.la");
 
             _commonActions.DepositMoney_SalesPanel(11, true, true);
 
@@ -84,16 +127,12 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         public void One_Plus_One_After_Failed_Order()
         {
             _commonActions.SignIn_in_admin_panel();
-            string email = _commonActions.Sign_Up_SalesPanel(RandomGenerator.GenerateRandomString(7) + "@grr.la");
+            string email = _commonActions.Sign_Up_SalesPanel(RandomGenerator.GenerateRandomString(10) + "@grr.la");
 
-            _commonActions.AddCCDetails_SalesPanel();
             _commonActions.AddRegularOneDrawTicketToCart_SalesPanel("Powerball");
-        
-            CartObj cart = new CartObj(_driver);
-            cart.Charge();
-
-            _commonActions.Fail_offline_payment();
-
+            _commonActions.PayForTicketsInCart_SalesPanel(WayToPay.Offline, true, true);
+            
+            _commonActions.Log_In_SalesPanel(email);
             double price = _commonActions.BuyRegularOneDrawTicket_SalesPanel("Mega Millions");
 
             if (price >= 30)
@@ -114,7 +153,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         public void One_Plus_One_Second_Payment()
         {
             _commonActions.SignIn_in_admin_panel();
-            string email = _commonActions.Sign_Up_SalesPanel(RandomGenerator.GenerateRandomString(7) + "@grr.la");
+            string email = _commonActions.Sign_Up_SalesPanel(RandomGenerator.GenerateRandomString(10) + "@grr.la");
 
             _commonActions.BuyRegularOneDrawTicket_SalesPanel("El Gordo");
             
@@ -131,7 +170,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         public void One_Plus_One_Second_Deposit()
         {
             _commonActions.SignIn_in_admin_panel();
-            string email = _commonActions.Sign_Up_SalesPanel(RandomGenerator.GenerateRandomString(7) + "@grr.la");
+            string email = _commonActions.Sign_Up_SalesPanel(RandomGenerator.GenerateRandomString(10) + "@grr.la");
 
             _commonActions.DepositMoney_SalesPanel(11);
 
@@ -148,18 +187,9 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         public void One_Plus_One_Promotion_Buying()
         {
             _commonActions.SignIn_in_admin_panel();
-            string email = _commonActions.Sign_Up_SalesPanel(RandomGenerator.GenerateRandomString(7) + "@grr.la");
+            string email = _commonActions.Sign_Up_SalesPanel(RandomGenerator.GenerateRandomString(10) + "@grr.la");
 
-            _commonActions.AddCCDetails_SalesPanel();
-
-            MenuObj menu = new MenuObj(_driver);
-            menu.GoToLotteryPage("Euromiliony");
-
-            GroupGameObj group = new GroupGameObj(_driver);
-            group.AddShareToTicket(1, 1);
-            group.ClickAddToCartButton();
-
-            double totalPrice = _commonActions.PayForTicketsInCart_SalesPanel(WayToPay.Offline);
+            double totalPrice = _commonActions.BuyRegularOneDrawTicket_SalesPanel("Euromiliony");
 
             if (totalPrice <= 30)
             {
@@ -180,7 +210,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         public void One_Plus_One_Promotion_Deposit()
         {
             _commonActions.SignIn_in_admin_panel();
-            string email = _commonActions.Sign_Up_SalesPanel(RandomGenerator.GenerateRandomString(7) + "@grr.la");
+            string email = _commonActions.Sign_Up_SalesPanel(RandomGenerator.GenerateRandomString(10) + "@grr.la");
 
             _commonActions.DepositMoney_SalesPanel(18);
 
@@ -197,9 +227,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         public void SetUp()
         {
             _driver = new TWebDriver();
-            _driverCover = new DriverCover(_driver);
             _commonActions = new CommonActions(_driver);
-            _verifications = new BalanceVerifications(_driver);
             _balanceVerifications = new BalanceVerifications(_driver);
         }
     }

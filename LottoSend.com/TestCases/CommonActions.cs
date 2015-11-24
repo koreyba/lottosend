@@ -131,7 +131,9 @@ namespace LottoSend.com.TestCases
         /// Pays for tickets in the cart (offline or internal balance). To use this method you must be on the sales panel page
         /// </summary>
         /// <param name="merchant"></param>
-        public double PayForTicketsInCart_SalesPanel(WayToPay merchant)
+        /// <param name="ifProcess"></param>
+        /// <param name="isFailed"></param>
+        public double PayForTicketsInCart_SalesPanel(WayToPay merchant, bool ifProcess = true, bool isFailed = false)
         {
             LottoSend.com.BackEndObj.SalesPanelPages.CartObj cart = new LottoSend.com.BackEndObj.SalesPanelPages.CartObj(_driver);
             double totalPrice = cart.TotalBalance;
@@ -142,12 +144,24 @@ namespace LottoSend.com.TestCases
 
                 cart.Charge();
 
-                _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/charge_panel_manager");
-                ChargePanelObj chargePanel = new ChargePanelObj(_driver);
-                chargePanel.ChargeTheLastPayment();
-                ChargeFormObj chargeForm = new ChargeFormObj(_driver);
-                chargeForm.MakeTransactionSucceed();
-                chargeForm.UpdateTransaction();
+                if (ifProcess)
+                {
+                    _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/charge_panel_manager");
+                    ChargePanelObj chargePanel = new ChargePanelObj(_driver);
+                    chargePanel.ChargeTheLastPayment();
+                    ChargeFormObj chargeForm = new ChargeFormObj(_driver);
+
+                    if (!isFailed)
+                    {
+                        chargeForm.MakeTransactionSucceed();
+                    }
+                    else
+                    {
+                        chargeForm.MakeTransactionFailed();
+                    }
+                    
+                    chargeForm.UpdateTransaction();
+                }  
             }
 
             if (merchant == WayToPay.InternalBalance)
@@ -396,14 +410,13 @@ namespace LottoSend.com.TestCases
         /// Goes to the sales panel and signs in. Needs previous login in backoffice
         /// </summary>
         /// <param name="email"></param>
-        /// <param name="password"></param>
         /// <returns></returns>
-        public string Log_In_SalesPanel(string email, string password)
+        public string Log_In_SalesPanel(string email)
         {
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/orders");
 
             RegisterObj regForm = new RegisterObj(_driver);
-            regForm.SignIn(_driverCover.Login);
+            regForm.SignIn(email);
 
             return email;
         }
