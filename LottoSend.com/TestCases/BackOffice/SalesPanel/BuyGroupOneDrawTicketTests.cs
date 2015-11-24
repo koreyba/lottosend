@@ -59,6 +59,43 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         }
 
         /// <summary>
+        /// Checks a play type of the first record in transactions (back)
+        /// </summary>
+        [TestCase(1)]
+        [TestCase(2)]
+        public void Check_PlayType_In_Transactions_Back(int numberOfRecordToCheck)
+        {
+            if (numberOfRecordToCheck == 1)
+            {
+                _orderVerifications.CheckPlayTypeInTransactions_Back("Single");
+            }
+
+            if (numberOfRecordToCheck == 2)
+            {
+                _orderVerifications.CheckPlayTypeInTransactions_Back("N/A", 2);
+            }
+        }
+
+        /// <summary>
+        /// Checks a transaction type of the first record in transactions (back)
+        /// </summary>
+        [TestCase(1)]
+        [TestCase(2)]
+        [Category("Critical")]
+        public void Check_TransactionType_In_Transactions_Back(int numberOfRecordToCheck)
+        {
+            if (numberOfRecordToCheck == 1)
+            {
+                _orderVerifications.CheckTransactionTypeInTransactions_Back("play");
+            }
+
+            if (numberOfRecordToCheck == 2)
+            {
+                _orderVerifications.CheckTransactionTypeInTransactions_Back("deposit_and_play", 2);
+            }
+        }
+
+        /// <summary>
         /// Cheks the time of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
         [Test]
@@ -133,6 +170,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             MenuObj menu = new MenuObj(_driver);
             menu.GoToLotteryPage(lotteryName);
             GroupGameObj group = new GroupGameObj(_driver);
+            group.ClickOneDrawRadioButton();
             group.AddShareToTicket(1, 1);
             group.ClickAddToCartButton();
         }

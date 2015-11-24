@@ -1,5 +1,4 @@
 ﻿using System;
-using LottoSend.com.BackEndObj.ChargePanelPages;
 using LottoSend.com.BackEndObj.SalesPanelPages;
 using LottoSend.com.Helpers;
 using LottoSend.com.Verifications;
@@ -39,6 +38,43 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
                 throw new Exception("Exception was thrown while executing: " + e.Message + " ");
             }
             CleanUp();
+        }
+
+        /// <summary>
+        /// Checks a play type of the first record in transactions (back)
+        /// </summary>
+        [TestCase(1)]
+        [TestCase(2)]
+        public void Check_PlayType_In_Transactions_Back(int numberOfRecordToCheck)
+        {
+            if (numberOfRecordToCheck == 1)
+            {
+                _orderVerifications.CheckPlayTypeInTransactions_Back("Single");
+            }
+
+            if (numberOfRecordToCheck == 2)
+            {
+                _orderVerifications.CheckPlayTypeInTransactions_Back("N/A", 2);
+            }
+        }
+
+        /// <summary>
+        /// Checks a transaction type of the first record in transactions (back)
+        /// </summary>
+        [TestCase(1)]
+        [TestCase(2)]
+        [Category("Critical")]
+        public void Check_TransactionType_In_Transactions_Back(int numberOfRecordToCheck)
+        {
+            if (numberOfRecordToCheck == 1)
+            {
+                _orderVerifications.CheckTransactionTypeInTransactions_Back("play");
+            }
+
+            if (numberOfRecordToCheck == 2)
+            {
+                _orderVerifications.CheckTransactionTypeInTransactions_Back("deposit_and_play", 2);
+            }
         }
 
         /// <summary>

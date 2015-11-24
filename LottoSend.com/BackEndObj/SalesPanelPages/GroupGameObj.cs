@@ -28,6 +28,18 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
         [FindsBy(How = How.CssSelector, Using = "#games >ul > li:nth-child(1) > a")]
         private IWebElement _singleTab;
 
+        [FindsBy(How = How.CssSelector, Using = "#bet-group > label > #bet_order_item_attributes_buy_option_single")]
+        private IWebElement _oneDraw;
+
+        /// <summary>
+        /// Selects one-time entry (1 draw)
+        /// </summary>
+        public void ClickOneDrawRadioButton()
+        {
+            _oneDraw.Click();
+            WaitjQuery();
+        }
+
         /// <summary>
         /// Switches from Groups to Single tab
         /// </summary>
@@ -72,5 +84,7 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
             WaitForPageLoading();
             WaitjQuery();
         }
+
+
     }
 }
