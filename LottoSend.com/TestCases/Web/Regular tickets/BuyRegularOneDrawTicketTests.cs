@@ -21,6 +21,7 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
     ////[TestFixture(typeof(FirefoxDriver), WayToPay.Offline)]
     //[TestFixture(typeof(InternetExplorerDriver), WayToPay.Offline)]
     [TestFixture(typeof(ChromeDriver), WayToPay.TrustPay)]
+    [TestFixture(typeof(ChromeDriver), WayToPay.InternalBalance)]
     ////[TestFixture(typeof(FirefoxDriver), WayToPay.TrustPay)]
     //[TestFixture(typeof(InternetExplorerDriver), WayToPay.TrustPay)]
     //[TestFixture(typeof(ChromeDriver), WayToPay.Skrill)]
@@ -51,7 +52,16 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
             catch (Exception e)
             {
                 CleanUp();
-                _sharedCode.CleanCartIfTestWasFailed(_driverCover.Login, _driverCover.Password);
+
+                if (_merchant == WayToPay.InternalBalance)
+                {
+                    _sharedCode.CleanCartIfTestWasFailed(_driverCover.LoginTwo, _driverCover.Password);
+                }
+                else
+                {
+                    _sharedCode.CleanCartIfTestWasFailed(_driverCover.Login, _driverCover.Password);
+                }
+
                 throw new Exception("Exception was thrown while executing: " + e.Message + " ");
             }
 
@@ -64,7 +74,15 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         [Test]
         public void Check_If_There_Is_No_Ticket_In_Cart()
         {
-            _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            if (_merchant != WayToPay.InternalBalance)
+            {
+                _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            }
+            else
+            {
+                //If pay with internal balance we need to log in with different user
+                _commonActions.Log_In_Front(_driverCover.LoginTwo, _driverCover.Password);
+            }
             _cartVerifications.CheckNumberOfTicketsInCart_Front(0);
         }
 
@@ -75,7 +93,16 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         [Category("Critical")]
         public void Check_Amount_In_Transaction_Front()
         {
-            _orderVerifications.CheckAmountInTransaction_Front(_totalPrice, _driverCover.Login, _driverCover.Password, 1);
+            // Log in     
+            if (_merchant != WayToPay.InternalBalance)
+            {
+                _orderVerifications.CheckAmountInTransaction_Front(_totalPrice, _driverCover.Login, _driverCover.Password, 1);
+            }
+            else
+            {
+                //If pay with internal balance we need to log in with different user
+                _orderVerifications.CheckAmountInTransaction_Front(_totalPrice, _driverCover.LoginTwo, _driverCover.Password, 1);
+            }
         }
 
         /// <summary>
@@ -88,12 +115,25 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         {
             if (numberOfRecordToCheck == 1)
             {
-                _orderVerifications.CheckTypeOfTransaction_Front("Play - Single", _driverCover.Login, _driverCover.Password);
+                if (_merchant != WayToPay.InternalBalance)
+                {
+                    _orderVerifications.CheckTypeOfTransaction_Front("Play - Single", _driverCover.Login,
+                        _driverCover.Password);
+                }
+                else
+                {
+                    _orderVerifications.CheckTypeOfTransaction_Front("Play - Single", _driverCover.LoginTwo,
+                        _driverCover.Password);
+                }
             }
 
-            if (numberOfRecordToCheck == 2)
+            if (_merchant != WayToPay.InternalBalance)
             {
-                _orderVerifications.CheckTypeOfTransaction_Front("Deposit and play", _driverCover.Login, _driverCover.Password, 2);
+                if (numberOfRecordToCheck == 2)
+                {
+                    _orderVerifications.CheckTypeOfTransaction_Front("Deposit and play", _driverCover.Login,
+                        _driverCover.Password, 2);
+                }
             }
         }
 
@@ -109,9 +149,12 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
                 _orderVerifications.CheckPlayTypeInTransactions_Back("Single");
             }
 
-            if (numberOfRecordToCheck == 2)
+            if (_merchant != WayToPay.InternalBalance)
             {
-                _orderVerifications.CheckPlayTypeInTransactions_Back("N/A", 2);
+                if (numberOfRecordToCheck == 2)
+                {
+                    _orderVerifications.CheckPlayTypeInTransactions_Back("N/A", 2);
+                }
             }
         }
 
@@ -127,9 +170,12 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
                 _orderVerifications.CheckTransactionTypeInTransactions_Back("play");
             }
 
-            if (numberOfRecordToCheck == 2)
+            if (_merchant != WayToPay.InternalBalance)
             {
-                _orderVerifications.CheckTransactionTypeInTransactions_Back("deposit_and_play", 2);
+                if (numberOfRecordToCheck == 2)
+                {
+                    _orderVerifications.CheckTransactionTypeInTransactions_Back("deposit_and_play", 2);
+                }
             }
         }
 
@@ -141,7 +187,16 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         [Category("Critical")]
         public void Check_Transaction_Date_Front(int numberOfRecordToCheck)
         {
-            _orderVerifications.CheckTransactionDate_Front(_driverCover.Login, _driverCover.Password, numberOfRecordToCheck);
+            if (_merchant != WayToPay.InternalBalance)
+            {
+                _orderVerifications.CheckTransactionDate_Front(_driverCover.Login, _driverCover.Password,
+                    numberOfRecordToCheck);
+            }
+            else
+            {
+                _orderVerifications.CheckTransactionDate_Front(_driverCover.LoginTwo, _driverCover.Password,
+                    numberOfRecordToCheck);
+            }
         }
 
         /// <summary>
@@ -151,7 +206,16 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         [Category("Critical")]
         public void Check_Transaction_Lottery_Name_Front()
         {
-            _orderVerifications.CheckTransactionLotteryName_Front("EuroJackpot", _driverCover.Login, _driverCover.Password, 2);
+            if (_merchant != WayToPay.InternalBalance)
+            {
+                _orderVerifications.CheckTransactionLotteryName_Front("El Gordo", _driverCover.Login,
+                    _driverCover.Password, 2);
+            }
+            else
+            {
+                _orderVerifications.CheckTransactionLotteryName_Front("El Gordo", _driverCover.LoginTwo,
+                    _driverCover.Password, 1);
+            }
         }
 
         /// <summary>
@@ -160,7 +224,14 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         [Test]
         public void Check_Transactions_Email_In_Transactions()
         {
-            _orderVerifications.CheckTransactionsEmailInTransactions_Back(_driverCover.Login);
+            if (_merchant != WayToPay.InternalBalance)
+            {
+                _orderVerifications.CheckTransactionsEmailInTransactions_Back(_driverCover.Login);
+            }
+            else
+            {
+                _orderVerifications.CheckTransactionsEmailInTransactions_Back(_driverCover.LoginTwo);
+            }
         }
 
         /// <summary>
@@ -199,7 +270,16 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         [Test]
         public void Check_Amount_In_Transaction_Back()
         {
-            _orderVerifications.CheckAmountInTransactions_Back(_totalPrice, _driverCover.Login, _driverCover.Password, 1);
+            if (_merchant != WayToPay.InternalBalance)
+            {
+                _orderVerifications.CheckAmountInTransactions_Back(_totalPrice, _driverCover.Login,
+                    _driverCover.Password, 1);
+            }
+            else
+            {
+                _orderVerifications.CheckAmountInTransactions_Back(_totalPrice, _driverCover.LoginTwo,
+                    _driverCover.Password, 1);
+            }
         }
 
         /// <summary>
@@ -210,7 +290,7 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         public void Check_Record_Time_In_Draw()
 
         {
-            _orderVerifications.CheckRecordTimeInDraw("Eurojackpot");
+            _orderVerifications.CheckRecordTimeInDraw("Elgordo");
         }
 
         /// <summary>
@@ -219,7 +299,14 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         [Test]
         public void Check_Record_Email_In_Draw()
         {
-            _orderVerifications.CheckRecordEmailInDraw("Eurojackpot", _driverCover.Login);
+            if (_merchant != WayToPay.InternalBalance)
+            {
+                _orderVerifications.CheckRecordEmailInDraw("Elgordo", _driverCover.Login);
+            }
+            else
+            {
+                _orderVerifications.CheckRecordEmailInDraw("Elgordo", _driverCover.LoginTwo);
+            }
         }
 
         /// <summary>
@@ -229,7 +316,7 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         [Category("Critical")]
         public void Check_Record_Type_In_Draw()
         {
-            _orderVerifications.CheckRecordBetTypeInDraw("Single", "Eurojackpot");
+            _orderVerifications.CheckRecordBetTypeInDraw("Single", "Elgordo");
         }
 
         /// <summary>
@@ -239,7 +326,7 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         [Category("Critical")]
         public void Check_Record_Price_In_Draw()
         {
-            _orderVerifications.CheckRecordPriceInDraw(_totalPrice, "Eurojackpot");
+            _orderVerifications.CheckRecordPriceInDraw(_totalPrice, "Elgordo");
         }
 
         /// <summary>
@@ -248,9 +335,17 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         public void Buy_Regular_One_Draw_Ticket(WayToPay merchant)
         {
             // Log in     
-            _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            if (merchant != WayToPay.InternalBalance)
+            {
+                _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            }
+            else
+            {
+                //If pay with internal balance we need to log in with different user
+                _commonActions.Log_In_Front(_driverCover.LoginTwo, _driverCover.Password);
+            }
 
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/play/eurojackpot/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/play/el-gordo-de-la-primitiva/");
 
             //Pay for tickets
             RegularGamePageObj regularGame = new RegularGamePageObj(_driver);
@@ -264,7 +359,16 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
             _totalPrice = regularGame.TotalPrice;
 
             MerchantsObj merchants = regularGame.ClickBuyTicketsButton();
-            merchants.Pay(merchant);
+
+            if (merchant != WayToPay.InternalBalance)
+            {
+                merchants.Pay(merchant);
+            }
+            else
+            {
+                CheckoutObj checkout = new CheckoutObj(_driver);
+                checkout.ClickCompleteYourOrderButton();
+            }
         }
 
         [TearDown]
