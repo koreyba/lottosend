@@ -73,6 +73,8 @@ namespace LottoSend.com.FrontEndObj.Common
             Thread.Sleep(TimeSpan.FromSeconds(2));
             _completeYourOrder.Click();
             Thread.Sleep(TimeSpan.FromSeconds(2));
+            WaitForPageLoading();
+            WaitAjax();
         }
 
         /// <summary>
