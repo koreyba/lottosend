@@ -239,7 +239,7 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         [Category("Critical")]
         public void Check_Record_Price_In_Draw()
         {
-            _orderVerifications.CheckRecordPriceInDraw(_totalPrice);
+            _orderVerifications.CheckRecordPriceInDraw(_totalPrice, "Eurojackpot");
         }
 
         /// <summary>

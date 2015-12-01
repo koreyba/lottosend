@@ -51,6 +51,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
             catch (Exception e)
             {
                 CleanUp();
+
                 if (_merchant == WayToPay.InternalBalance)
                 {
                     _sharedCode.CleanCartIfTestWasFailed(_driverCover.LoginTwo, _driverCover.Password);

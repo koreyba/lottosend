@@ -194,7 +194,7 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
         public void Check_Record_Price_In_Draw()
         {
             SetUp();
-            _orderVerifications.CheckRecordPriceInDraw(_totalPrice);
+            _orderVerifications.CheckRecordPriceInDraw(_totalPrice, "Eurojackpot");
         }
 
         /// <summary>

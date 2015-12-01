@@ -193,7 +193,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         public void Check_Record_Price_In_Draw()
         {
             SetUp();
-            _orderVerifications.CheckRecordPriceInDraw(_totalPrice) ;
+            _orderVerifications.CheckRecordPriceInDraw(_totalPrice, "Eurojackpot");
         }
 
         /// <summary>
