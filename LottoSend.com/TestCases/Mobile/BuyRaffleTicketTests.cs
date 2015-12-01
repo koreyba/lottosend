@@ -17,6 +17,7 @@ namespace LottoSend.com.TestCases.Mobile
     [TestFixture("Apple iPhone 4", WayToPay.Neteller)]
     [TestFixture("Apple iPhone 6", WayToPay.Offline)]
     [TestFixture("Apple iPhone 5", WayToPay.TrustPay)]
+    [TestFixture("Apple iPhone 4", WayToPay.InternalBalance)]
    //[TestFixture("Samsung Galaxy S4", WayToPay.Skrill)]
     public class BuyRaffleTicketTests
     {
@@ -45,7 +46,16 @@ namespace LottoSend.com.TestCases.Mobile
             catch (Exception e)
             {
                 CleanUp();
-                _sharedCode.CleanCartIfTestWasFailed(_driverCover.Login, _driverCover.Password);
+
+                if (_merchant == WayToPay.InternalBalance)
+                {
+                    _sharedCode.CleanCartIfTestWasFailed(_driverCover.LoginTwo, _driverCover.Password);
+                }
+                else
+                {
+                    _sharedCode.CleanCartIfTestWasFailed(_driverCover.Login, _driverCover.Password);
+                }
+
                 throw new Exception("Exception was thrown while executing: " + e.Message + " ");
             }
             CleanUp();
@@ -62,7 +72,16 @@ namespace LottoSend.com.TestCases.Mobile
         public void Check_If_There_Is_No_Ticket_In_Cart()
         {
             SetUp(CreateOptions(_device));
-            _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            // Log in     
+            if (_merchant != WayToPay.InternalBalance)
+            {
+                _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            }
+            else
+            {
+                //If pay with internal balance we need to log in with different user
+                _commonActions.Log_In_Front(_driverCover.LoginTwo, _driverCover.Password);
+            }
             _cartVerifications.CheckNumberOfTicketsInCart_Front(0);
         }
 
@@ -73,7 +92,14 @@ namespace LottoSend.com.TestCases.Mobile
         public void Check_Transactions_Email_In_Transactions()
         {
             SetUp();
-            _orderVerifications.CheckTransactionsEmailInTransactions_Back(_driverCover.Login);
+            if (_merchant != WayToPay.InternalBalance)
+            {
+                _orderVerifications.CheckTransactionsEmailInTransactions_Back(_driverCover.Login);
+            }
+            else
+            {
+                _orderVerifications.CheckTransactionsEmailInTransactions_Back(_driverCover.LoginTwo);
+            }
         }
 
         /// <summary>
@@ -116,7 +142,16 @@ namespace LottoSend.com.TestCases.Mobile
         public void Check_Amount_In_Transaction_Back()
         {
             SetUp();
-            _orderVerifications.CheckAmountInTransactions_Back(_totalPrice, _driverCover.Login, _driverCover.Password, 1);
+            if (_merchant != WayToPay.InternalBalance)
+            {
+                _orderVerifications.CheckAmountInTransactions_Back(_totalPrice, _driverCover.Login,
+                    _driverCover.Password, 1);
+            }
+            else
+            {
+                _orderVerifications.CheckAmountInTransactions_Back(_totalPrice, _driverCover.LoginTwo,
+                    _driverCover.Password, 1);
+            }
         }
 
         /// <summary>
@@ -146,7 +181,15 @@ namespace LottoSend.com.TestCases.Mobile
         private void Buy_Raffle_Ticket(WayToPay merchant)
         {
             // Log in     
-            _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            if (merchant != WayToPay.InternalBalance)
+            {
+                _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            }
+            else
+            {
+                //If pay with internal balance we need to log in with different user
+                _commonActions.Log_In_Front(_driverCover.LoginTwo, _driverCover.Password);
+            }
 
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
 
@@ -155,7 +198,16 @@ namespace LottoSend.com.TestCases.Mobile
 
             CartObj cart = rafflePage.ClickBuyNowButton();
             MerchantsObj merchants = cart.ClickProceedToCheckoutButton();
-            merchants.Pay(merchant);
+
+            if (merchant != WayToPay.InternalBalance)
+            {
+                merchants.Pay(merchant);
+            }
+            else
+            {
+                CheckoutObj checkout = new CheckoutObj(_driver);
+                checkout.ClickCompleteYourOrderButton();
+            }
         }
 
         private ChromeOptions CreateOptions(string device)
