@@ -56,7 +56,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             menu.GoToLotteryPage(raffleName);
 
             RafflePageObj raffle = new RafflePageObj(_driver);
-            raffle.AddShareToTicket(5, 2);
+            raffle.AddShareToTicket(1, 2);
             raffle.ClickAddToCartButton();
 
             CartObj cart = new CartObj(_driver);

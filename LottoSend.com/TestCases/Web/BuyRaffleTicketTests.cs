@@ -165,7 +165,7 @@ namespace LottoSend.com.TestCases.Web
             // Log in     
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
 
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
 
             RafflesPageObj rafflePage = new RafflesPageObj(_driver);
             _totalPrice = rafflePage.TotalPrice;

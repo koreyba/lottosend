@@ -212,9 +212,9 @@ namespace LottoSend.com.TestCases
         /// <summary>
         /// Adds a raffle ticket to the cart on front
         /// </summary>
-        public void AddRaffleTicketToCart_Front()
+        public void AddRaffleTicketToCart_Front(string address)
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/");
+            _driverCover.NavigateToUrl(address);
             RafflesPageObj raffle = new RafflesPageObj(_driver);
 
             raffle.ClickBuyNowButton();
@@ -298,7 +298,7 @@ namespace LottoSend.com.TestCases
         /// <returns>Total price to pay</returns>
         public double BuyRaffleTicket_Front(WayToPay merchant)
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
 
             RafflesPageObj rafflePage = new RafflesPageObj(_driver);
             double totalPrice = rafflePage.TotalPrice;

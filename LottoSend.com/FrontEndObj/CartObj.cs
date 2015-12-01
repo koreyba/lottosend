@@ -24,6 +24,16 @@ namespace LottoSend.com.FrontEndObj
         [FindsBy(How = How.CssSelector, Using = "div.control > a.btn.btn-lg.btn-success.btn-xl.btn-block")]
         private IWebElement _proceedToCheckoutButton;
 
+        [FindsBy(How = How.CssSelector, Using = "#cart-resume> div > table > tbody > tr.blue > td.text-center > strong")]
+        private IWebElement _totalPrice;
+
+        /// <summary>
+        /// Gets total price of the order
+        /// </summary>
+        public double TotalPrice
+        {
+            get { return _totalPrice.Text.ParseDouble(); }
+        }
         /// <summary>
         /// Clicks on Proceed to Checkout button
         /// </summary>

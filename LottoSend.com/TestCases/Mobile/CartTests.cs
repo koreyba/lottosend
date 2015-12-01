@@ -63,7 +63,7 @@ namespace LottoSend.com.TestCases.Mobile
         public void Edit_Raffle_Ticket_And_Add_More()
         {
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
-            _commonActions.AddRaffleTicketToCart_Front();
+            _commonActions.AddRaffleTicketToCart_Front(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
 
             CartObj cart = new CartObj(_driver);
             cart.EditRaffleTicketMobile("Cart Raffle");
@@ -88,7 +88,7 @@ namespace LottoSend.com.TestCases.Mobile
         {
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
 
-            _commonActions.AddRaffleTicketToCart_Front();
+            _commonActions.AddRaffleTicketToCart_Front(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
             _cartVerifications.CheckNumberOfTicketsInCart_Front(1);
 
             //Remove tickets

@@ -83,6 +83,7 @@
     <Compile Include="BackEndObj\TransactionsObj.cs" />
     <Compile Include="BackEndObj\WebUsersPageObj.cs" />
     <Compile Include="FrontEndObj\Common\ExpressCheckoutObj.cs" />
+    <Compile Include="FrontEndObj\Common\CheckoutObj.cs" />
     <Compile Include="FrontEndObj\MyAccount\DepositMobileObj.cs" />
     <Compile Include="FrontEndObj\SignUp\SignUpForm.cs" />
     <Compile Include="Helpers\TestsSharedCode.cs" />
@@ -102,6 +103,7 @@
     <Compile Include="TestCases\Mobile\LogInTests.cs" />
     <Compile Include="TestCases\Mobile\PromotionTests.cs" />
     <Compile Include="TestCases\Mobile\SignUpTests.cs" />
+    <Compile Include="TestCases\Web\CouponTests.cs" />
     <Compile Include="TestCases\Web\DepositSuccessTests.cs" />
     <Compile Include="TestCases\Mobile\BuyRaffleTicketTests.cs" />
     <Compile Include="TestCases\Mobile\Regular tickets\BuyRegularMultiDrawTicketTests.cs" />

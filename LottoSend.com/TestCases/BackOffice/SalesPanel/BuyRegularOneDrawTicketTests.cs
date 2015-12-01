@@ -52,9 +52,12 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
                 _orderVerifications.CheckPlayTypeInTransactions_Back("Single");
             }
 
-            if (numberOfRecordToCheck == 2)
+            if (_merchant != WayToPay.InternalBalance)
             {
-                _orderVerifications.CheckPlayTypeInTransactions_Back("N/A", 2);
+                if (numberOfRecordToCheck == 2)
+                {
+                    _orderVerifications.CheckPlayTypeInTransactions_Back("N/A", 2);
+                }
             }
         }
 
@@ -71,9 +74,12 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
                 _orderVerifications.CheckTransactionTypeInTransactions_Back("play");
             }
 
-            if (numberOfRecordToCheck == 2)
+            if (_merchant != WayToPay.InternalBalance)
             {
-                _orderVerifications.CheckTransactionTypeInTransactions_Back("deposit_and_play", 2);
+                if (numberOfRecordToCheck == 2)
+                {
+                    _orderVerifications.CheckTransactionTypeInTransactions_Back("deposit_and_play", 2);
+                }
             }
         }
 

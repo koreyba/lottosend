@@ -78,7 +78,7 @@ namespace LottoSend.com.TestCases.Mobile
         {
             //Sign up
             _commonActions.Sign_Up_Mobile();
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
 
             RafflesPageObj rafflePage = new RafflesPageObj(_driver);
             // double totalPrice = rafflePage.TotalPrice;
@@ -112,7 +112,7 @@ namespace LottoSend.com.TestCases.Mobile
         {
             //Sign up
             _commonActions.Sign_Up_Mobile();
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
 
             RafflesPageObj rafflePage = new RafflesPageObj(_driver);
             // double totalPrice = rafflePage.TotalPrice;
@@ -135,7 +135,7 @@ namespace LottoSend.com.TestCases.Mobile
         {
             //Sign up
             _commonActions.Sign_Up_Mobile();
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
 
             RafflesPageObj rafflePage = new RafflesPageObj(_driver);
             double totalPrice = rafflePage.TotalPrice;
