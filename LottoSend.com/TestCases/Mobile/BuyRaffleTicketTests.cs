@@ -142,16 +142,7 @@ namespace LottoSend.com.TestCases.Mobile
         public void Check_Amount_In_Transaction_Back()
         {
             SetUp();
-            if (_merchant != WayToPay.InternalBalance)
-            {
-                _orderVerifications.CheckAmountInTransactions_Back(_totalPrice, _driverCover.Login,
-                    _driverCover.Password, 1);
-            }
-            else
-            {
-                _orderVerifications.CheckAmountInTransactions_Back(_totalPrice, _driverCover.LoginTwo,
-                    _driverCover.Password, 1);
-            }
+            _orderVerifications.CheckAmountInTransactions_Back(_totalPrice, 1);
         }
 
         /// <summary>

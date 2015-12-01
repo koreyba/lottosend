@@ -114,7 +114,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         public void Check_Amount_In_Transaction_Back()
         {
             SetUp();
-            _orderVerifications.CheckAmountInTransactions_Back(_totalPrice, _driverCover.Login, _driverCover.Password, 1);
+            _orderVerifications.CheckAmountInTransactions_Back(_totalPrice, 1);
         }
 
         /// <summary>
@@ -243,6 +243,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
             _driverCover = new DriverCover(_driver);
             _orderVerifications = new OrderVerifications(_driver);
             _commonActions = new CommonActions(_driver);
+            _cartVerifications = new CartVerifications(_driver);
         }
 
         public void SetUp(ChromeOptions option)

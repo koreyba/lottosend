@@ -115,7 +115,7 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
         public void Check_Amount_In_Transaction_Back()
         {
             SetUp();
-            _orderVerifications.CheckAmountInTransactions_Back(_totalPrice, _driverCover.Login, _driverCover.Password, 1);
+            _orderVerifications.CheckAmountInTransactions_Back(_totalPrice, 1);
         }
 
         /// <summary>

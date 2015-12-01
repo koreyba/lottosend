@@ -44,13 +44,11 @@ namespace LottoSend.com.Verifications
         }
 
         /// <summary>
-        /// Checks is amount in the first transaction equals expected (front - transactions)
+        /// Checks if amount in the first transaction equals expected (back - transactions)
         /// </summary>
         /// <param name="expectedAmount"></param>
-        /// <param name="email">User's email to log in</param>
-        /// <param name="password">User's password</param>
         /// <param name="numberOfRecord">Which record to check, the first one or the second one</param>
-        public void CheckAmountInTransactions_Back(double expectedAmount, string email, string password, int numberOfRecord = 1)
+        public void CheckAmountInTransactions_Back(double expectedAmount, int numberOfRecord = 1)
         {
             _commonActions.SignIn_in_admin_panel();
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/transactions");
