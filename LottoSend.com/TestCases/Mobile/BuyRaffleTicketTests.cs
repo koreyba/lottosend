@@ -45,7 +45,7 @@ namespace LottoSend.com.TestCases.Mobile
             catch (Exception e)
             {
                 CleanUp();
-                _sharedCode.CleanCartIfTestWasFailed();
+                _sharedCode.CleanCartIfTestWasFailed(_driverCover.Login, _driverCover.Password);
                 throw new Exception("Exception was thrown while executing: " + e.Message + " ");
             }
             CleanUp();

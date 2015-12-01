@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
@@ -15,6 +16,8 @@ namespace LottoSend.com.FrontEndObj.Common
             {
                 throw new Exception("Sorry it must be not checkout. Check if checkout is displayed. Current page: " + Driver.Url + " ");
             }
+
+            PageFactory.InitElements(Driver, this);
         }
 
         [FindsBy(How = How.CssSelector, Using = ".btn.btn-info.show-coupon")]
@@ -34,6 +37,9 @@ namespace LottoSend.com.FrontEndObj.Common
 
         [FindsBy(How = How.CssSelector, Using = "#cart-resume > div > table.table.order > tbody > tr.blue >td.text-center > strong")]
         private IWebElement _totalPrice;
+
+        [FindsBy(How = How.CssSelector, Using = "div.control > .btn.btn-lg.btn-success.btn-xl.btn-block")]
+        private IWebElement _completeYourOrder;
 
         /// <summary>
         /// Gets total price at checkout
@@ -57,6 +63,16 @@ namespace LottoSend.com.FrontEndObj.Common
         public double DiscountCoupon
         {
             get { return _discountCoupon.Text.ParseDouble(); }
+        }
+
+        /// <summary>
+        /// Clicks on "Completer Your Order" button in order to pay with internal balance
+        /// </summary>
+        public void ClickCompleteYourOrderButton()
+        {
+            Thread.Sleep(TimeSpan.FromSeconds(2));
+            _completeYourOrder.Click();
+            Thread.Sleep(TimeSpan.FromSeconds(2));
         }
 
         /// <summary>

@@ -28,12 +28,12 @@ namespace LottoSend.com.Helpers
         /// <summary>
         /// If a test was failed or inconclusive then the user's cart will be cleaned up
         /// </summary>
-        public void CleanCartIfTestWasFailed()
+        public void CleanCartIfTestWasFailed(string email, string password)
         {
             if (TestContext.CurrentContext.Result.Status == TestStatus.Failed || TestContext.CurrentContext.Result.State == TestState.Inconclusive)
             {
                 SetUp();
-                CommonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+                CommonActions.Log_In_Front(email, password);
                 //Removes all tickets from the cart to make sure all other tests will work well
                 CommonActions.DeleteAllTicketFromCart_Front();
                 CleanUp(ref _driver);
