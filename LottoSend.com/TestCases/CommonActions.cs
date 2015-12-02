@@ -42,7 +42,7 @@ namespace LottoSend.com.TestCases
 
             return PayForTicketsInCart_SalesPanel(WayToPay.Offline);
         }
-        
+
         /// <summary>
         /// Adds a raffle ticket to the cart in the sales panel. Need previous sign in in the sales panel
         /// </summary>
@@ -135,7 +135,7 @@ namespace LottoSend.com.TestCases
         /// <param name="isFailed"></param>
         public double PayForTicketsInCart_SalesPanel(WayToPay merchant, bool ifProcess = true, bool isFailed = false)
         {
-            LottoSend.com.BackEndObj.SalesPanelPages.CartObj cart = new LottoSend.com.BackEndObj.SalesPanelPages.CartObj(_driver);
+            BackEndObj.SalesPanelPages.CartObj cart = new BackEndObj.SalesPanelPages.CartObj(_driver);
             double totalPrice = cart.TotalBalance;
 
             if (merchant == WayToPay.Offline)
@@ -159,9 +159,9 @@ namespace LottoSend.com.TestCases
                     {
                         chargeForm.MakeTransactionFailed();
                     }
-                    
+
                     chargeForm.UpdateTransaction();
-                }  
+                }
             }
 
             if (merchant == WayToPay.InternalBalance)
@@ -214,7 +214,7 @@ namespace LottoSend.com.TestCases
         /// </summary>
         public void AddRaffleTicketToCart_Front(string address)
         {
-            _driverCover.NavigateToUrl(address);
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + address);
             RafflesPageObj raffle = new RafflesPageObj(_driver);
 
             raffle.ClickBuyNowButton();
@@ -445,7 +445,7 @@ namespace LottoSend.com.TestCases
             RegisterObj regForm = new RegisterObj(_driver);
             regForm.SignIn(email);
         }
-        
+
 
         /// <summary>
         /// Goes to admin panel and authorize

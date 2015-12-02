@@ -35,11 +35,22 @@ namespace LottoSend.com.FrontEndObj.Common
         [FindsBy(How = How.CssSelector, Using = "table.table.order > tbody > tr.bulk-buy> td.text-success.text-center")]
         private IWebElement _discountBulk;
 
-        [FindsBy(How = How.CssSelector, Using = "#cart-resume > div > table.table.order > tbody > tr.blue >td.text-center > strong")]
+        [FindsBy(How = How.CssSelector, Using = "#payment table.table.order > tbody tr.blue > td.text-center > strong")]
         private IWebElement _totalPrice;
 
         [FindsBy(How = How.CssSelector, Using = "div.control > .btn.btn-lg.btn-success.btn-xl.btn-block")]
         private IWebElement _completeYourOrder;
+
+        [FindsBy(How = How.CssSelector, Using = "#cart-resume > div > table.table.order > tbody > tr:nth-child(1) > td.text-center > strong")]
+        private IWebElement _subTotalPrice;
+
+        /// <summary>
+        /// Gets sub-total price in the checkout
+        /// </summary>
+        public double SubTotalPrice
+        {
+            get { return _subTotalPrice.Text.ParseDouble(); }
+        }
 
         /// <summary>
         /// Gets total price at checkout
@@ -83,6 +94,7 @@ namespace LottoSend.com.FrontEndObj.Common
         /// <param name="code"></param>
         public void ApplyCoupon(string code)
         {
+            Thread.Sleep(TimeSpan.FromSeconds(2));
             _doYouHaveCouponButton.Click();
             WaitjQuery();
             _codeInput.SendKeys(code);

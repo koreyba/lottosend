@@ -1,8 +1,6 @@
 ﻿using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.Common;
-using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.Helpers;
-using LottoSend.com.Verifications;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -19,22 +17,24 @@ namespace LottoSend.com.TestCases.Web
         private TestsSharedCode _sharedCode;
 
         [TestCase("Denis666", 50)]
+        [Category("Critical")]
         public void Check_Discount_Checkout(string code, double discount)
         {
-            // Log in     
-            _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            // sign up    
+            _commonActions.Sign_Up_Front();
             _commonActions.AddGroupTicketToCart_Front("en/play/euro-miliony-slovakia/");
             _commonActions.AddRegularTicketToCart_Front("en/play/el-gordo-de-la-primitiva/");
             _commonActions.AddRaffleTicketToCart_Front("en/raffles/loteria-de-navidad/");
 
-            CartObj cart = new CartObj(_driver);
-            double totalPrice = cart.TotalPrice;
+            CartObj cart = new CartObj(_driver);  
             cart.ClickProceedToCheckoutButton();
             CheckoutObj checkout = new CheckoutObj(_driver);
             checkout.ApplyCoupon(code);
+            double subTotalPrice = checkout.SubTotalPrice;
+            double price = checkout.TotalPrice;
+            double disc = checkout.DiscountMultiDraw;
 
-
-            Assert.AreEqual(totalPrice - totalPrice*100/discount, checkout.TotalPrice);
+            Assert.AreEqual(subTotalPrice - disc - (subTotalPrice - disc) / 100 * discount, price);
         }
 
         [TearDown]
