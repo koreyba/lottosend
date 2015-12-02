@@ -16,6 +16,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
     [TestFixture("Apple iPhone 4", WayToPay.Neteller)]
     [TestFixture("Apple iPhone 6", WayToPay.Offline)]
     [TestFixture("Apple iPhone 5", WayToPay.TrustPay)]
+    [TestFixture("Apple iPhone 4", WayToPay.InternalBalance)]
    //[TestFixture("Samsung Galaxy S4", WayToPay.Skrill)]
     public class BuyGroupMultiDrawTicketTests
     {
@@ -45,7 +46,16 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
             catch (Exception e)
             {
                 CleanUp();
-                _sharedCode.CleanCartIfTestWasFailed(_driverCover.Login, _driverCover.Password);
+
+                if (_merchant == WayToPay.InternalBalance)
+                {
+                    _sharedCode.CleanCartIfTestWasFailed(_driverCover.LoginTwo, _driverCover.Password);
+                }
+                else
+                {
+                    _sharedCode.CleanCartIfTestWasFailed(_driverCover.Login, _driverCover.Password);
+                }
+
                 throw new Exception("Exception was thrown while executing: " + e.Message + " ");
             }
             CleanUp();
@@ -62,7 +72,18 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         public void Check_If_There_Is_No_Ticket_In_Cart()
         {
             SetUp(CreateOptions(_device));
-            _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+
+            // Log in     
+            if (_merchant != WayToPay.InternalBalance)
+            {
+                _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            }
+            else
+            {
+                //If pay with internal balance we need to log in with different user
+                _commonActions.Log_In_Front(_driverCover.LoginTwo, _driverCover.Password);
+            }
+
             _cartVerifications.CheckNumberOfTicketsInCart_Front(0);
         }
 
@@ -83,7 +104,14 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         public void Check_Transactions_Email_In_Transactions()
         {
             SetUp();
-            _orderVerifications.CheckTransactionsEmailInTransactions_Back(_driverCover.Login);
+            if (_merchant != WayToPay.InternalBalance)
+            {
+                _orderVerifications.CheckTransactionsEmailInTransactions_Back(_driverCover.Login);
+            }
+            else
+            {
+                _orderVerifications.CheckTransactionsEmailInTransactions_Back(_driverCover.LoginTwo);
+            }
         }
 
         /// <summary>
@@ -131,9 +159,12 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
                 _orderVerifications.CheckPlayTypeInTransactions_Back("Bulk buy");
             }
 
-            if (numberOfRecordToCheck == 2)
+            if (_merchant != WayToPay.InternalBalance)
             {
-                _orderVerifications.CheckPlayTypeInTransactions_Back("N/A", 2);
+                if (numberOfRecordToCheck == 2)
+                {
+                    _orderVerifications.CheckPlayTypeInTransactions_Back("N/A", 2);
+                }
             }
         }
 
@@ -150,9 +181,12 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
                 _orderVerifications.CheckTransactionTypeInTransactions_Back("play");
             }
 
-            if (numberOfRecordToCheck == 2)
+            if (_merchant != WayToPay.InternalBalance)
             {
-                _orderVerifications.CheckTransactionTypeInTransactions_Back("deposit_and_play", 2);
+                if (numberOfRecordToCheck == 2)
+                {
+                    _orderVerifications.CheckTransactionTypeInTransactions_Back("deposit_and_play", 2);
+                }
             }
         }
 
@@ -174,7 +208,14 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         public void Check_Record_Email_In_Draw()
         {
             SetUp();
-            _orderVerifications.CheckRecordEmailInDraw("Eurojackpot", _driverCover.Login);
+            if (_merchant != WayToPay.InternalBalance)
+            {
+                _orderVerifications.CheckRecordEmailInDraw("Eurojackpot", _driverCover.Login);
+            }
+            else
+            {
+                _orderVerifications.CheckRecordEmailInDraw("Eurojackpot", _driverCover.LoginTwo);
+            }
         }
 
         /// <summary>
@@ -205,7 +246,15 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         public void Buy_Group_Multi_Draw_Ticket(WayToPay merchant)
         {
             // Log in     
-            _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            if (merchant != WayToPay.InternalBalance)
+            {
+                _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            }
+            else
+            {
+                //If pay with internal balance we need to log in with different user
+                _commonActions.Log_In_Front(_driverCover.LoginTwo, _driverCover.Password);
+            }
 
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/play/eurojackpot/");
 
@@ -216,7 +265,16 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
             _numberOfDraws = groupGame.NumberOfDraws;
 
             MerchantsObj merchants = groupGame.ClickBuyTicketsButton();
-            merchants.Pay(merchant);
+
+            if (merchant != WayToPay.InternalBalance)
+            {
+                merchants.Pay(merchant);
+            }
+            else
+            {
+                CheckoutObj checkout = new CheckoutObj(_driver);
+                checkout.ClickCompleteYourOrderButton();
+            }
         }
 
         private ChromeOptions CreateOptions(string device)

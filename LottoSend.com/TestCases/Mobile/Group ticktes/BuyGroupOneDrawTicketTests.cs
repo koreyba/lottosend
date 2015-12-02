@@ -16,6 +16,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
     [TestFixture("Apple iPhone 4", WayToPay.Neteller)]
     [TestFixture("Apple iPhone 6", WayToPay.Offline)]
     [TestFixture("Apple iPhone 5", WayToPay.TrustPay)]
+    [TestFixture("Apple iPhone 5", WayToPay.InternalBalance)]
    //[TestFixture("Samsung Galaxy S4", WayToPay.Skrill)]
     public class BuyGroupOneDrawTicketTests 
     {
@@ -44,7 +45,16 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
             catch (Exception e)
             {
                 CleanUp();
-                _sharedCode.CleanCartIfTestWasFailed(_driverCover.Login, _driverCover.Password);
+
+                if (_merchant == WayToPay.InternalBalance)
+                {
+                    _sharedCode.CleanCartIfTestWasFailed(_driverCover.LoginTwo, _driverCover.Password);
+                }
+                else
+                {
+                    _sharedCode.CleanCartIfTestWasFailed(_driverCover.Login, _driverCover.Password);
+                }
+
                 throw new Exception("Exception was thrown while executing: " + e.Message + " ");
             }
             CleanUp();
@@ -61,7 +71,16 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         public void Check_If_There_Is_No_Ticket_In_Cart()
         {
             SetUp();
-            _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            // Log in     
+            if (_merchant != WayToPay.InternalBalance)
+            {
+                _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            }
+            else
+            {
+                //If pay with internal balance we need to log in with different user
+                _commonActions.Log_In_Front(_driverCover.LoginTwo, _driverCover.Password);
+            }
             _cartVerifications.CheckNumberOfTicketsInCart_Front(0);
         }
 
@@ -83,7 +102,14 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         public void Check_Transactions_Email_In_Transactions()
         {
             SetUp();
-            _orderVerifications.CheckTransactionsEmailInTransactions_Back(_driverCover.Login);
+            if (_merchant != WayToPay.InternalBalance)
+            {
+                _orderVerifications.CheckTransactionsEmailInTransactions_Back(_driverCover.Login);
+            }
+            else
+            {
+                _orderVerifications.CheckTransactionsEmailInTransactions_Back(_driverCover.LoginTwo);
+            }
         }
 
         /// <summary>
@@ -130,9 +156,12 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
                 _orderVerifications.CheckPlayTypeInTransactions_Back("Single");
             }
 
-            if (numberOfRecordToCheck == 2)
+            if (_merchant != WayToPay.InternalBalance)
             {
-                _orderVerifications.CheckPlayTypeInTransactions_Back("N/A", 2);
+                if (numberOfRecordToCheck == 2)
+                {
+                    _orderVerifications.CheckPlayTypeInTransactions_Back("N/A", 2);
+                }
             }
         }
 
@@ -150,9 +179,12 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
                 _orderVerifications.CheckTransactionTypeInTransactions_Back("play");
             }
 
-            if (numberOfRecordToCheck == 2)
+            if (_merchant != WayToPay.InternalBalance)
             {
-                _orderVerifications.CheckTransactionTypeInTransactions_Back("deposit_and_play", 2);
+                if (numberOfRecordToCheck == 2)
+                {
+                    _orderVerifications.CheckTransactionTypeInTransactions_Back("deposit_and_play", 2);
+                }
             }
         }
 
@@ -163,7 +195,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         public void Check_Record_Time_In_Draw()
         {
             SetUp();
-            _orderVerifications.CheckRecordTimeInDraw("Eurojackpot");
+            _orderVerifications.CheckRecordTimeInDraw("Elgordo");
         }
 
         /// <summary>
@@ -173,7 +205,14 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         public void Check_Record_Email_In_Draw()
         {
             SetUp();
-            _orderVerifications.CheckRecordEmailInDraw("Eurojackpot", _driverCover.Login);
+            if (_merchant != WayToPay.InternalBalance)
+            {
+                _orderVerifications.CheckRecordEmailInDraw("Elgordo", _driverCover.Login);
+            }
+            else
+            {
+                _orderVerifications.CheckRecordEmailInDraw("Elgordo", _driverCover.LoginTwo);
+            }
         }
 
         /// <summary>
@@ -183,7 +222,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         public void Check_Record_Type_In_Draw()
         {
             SetUp();
-            _orderVerifications.CheckRecordBetTypeInDraw("Single", "Eurojackpot");
+            _orderVerifications.CheckRecordBetTypeInDraw("Single", "Elgordo");
         }
 
         /// <summary>
@@ -193,7 +232,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         public void Check_Record_Price_In_Draw()
         {
             SetUp();
-            _orderVerifications.CheckRecordPriceInDraw(_totalPrice, "Eurojackpot");
+            _orderVerifications.CheckRecordPriceInDraw(_totalPrice, "Elgordo");
         }
 
         /// <summary>
@@ -203,9 +242,17 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         public void Buy_Group_One_Draw_Ticket(WayToPay merchant)
         {
             // Log in     
-            _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            if (merchant != WayToPay.InternalBalance)
+            {
+                _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            }
+            else
+            {
+                //If pay with internal balance we need to log in with different user
+                _commonActions.Log_In_Front(_driverCover.LoginTwo, _driverCover.Password);
+            }
 
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/play/eurojackpot/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/play/el-gordo-de-la-primitiva/");
 
             //Pay for tickets
             GroupGamePageObj groupGame = new GroupGamePageObj(_driver);  
@@ -216,7 +263,16 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
             _totalPrice = groupGame.TotalPrice;
 
             MerchantsObj merchants = groupGame.ClickBuyTicketsButton();
-            merchants.Pay(merchant);
+
+            if (merchant != WayToPay.InternalBalance)
+            {
+                merchants.Pay(merchant);
+            }
+            else
+            {
+                CheckoutObj checkout = new CheckoutObj(_driver);
+                checkout.ClickCompleteYourOrderButton();
+            }
         }
 
         private ChromeOptions CreateOptions(string device)
