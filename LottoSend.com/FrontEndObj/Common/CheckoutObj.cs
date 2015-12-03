@@ -41,7 +41,7 @@ namespace LottoSend.com.FrontEndObj.Common
         [FindsBy(How = How.CssSelector, Using = "div.control > .btn.btn-lg.btn-success.btn-xl.btn-block")]
         private IWebElement _completeYourOrder;
 
-        [FindsBy(How = How.CssSelector, Using = "#cart-resume > div > table.table.order > tbody > tr:nth-child(1) > td.text-center > strong")]
+        [FindsBy(How = How.CssSelector, Using = "#game div > table.table.order > tbody > tr:nth-child(1) > td.text-center > strong")]
         private IWebElement _subTotalPrice;
 
         /// <summary>
