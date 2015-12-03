@@ -35,6 +35,10 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
         [FindsBy(How = How.CssSelector, Using = "#cart > div.order_item")]
         private IList<IWebElement> _ticktes;
 
+        [FindsBy(How = How.CssSelector, Using = "#cart > a.button")]
+        private IWebElement _cancel;
+
+
         /// <summary>
         /// Returns number of tickets in the cart
         /// </summary>
@@ -54,7 +58,7 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
         /// <summary>
         /// Returns total price in the cart
         /// </summary>
-        public double TotalBalance
+        public double TotalPrice
         {
             get { return _total.Text.ParseDouble(); }
         }
@@ -111,6 +115,17 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
         {
             _couponCode.SendKeys(code);
             _apply.Click();
+            WaitAjax();
+            WaitForPageLoading();
+        }
+
+        /// <summary>
+        /// Removes applied coupon
+        /// </summary>
+        public void CancelCoupon()
+        {
+            _cancel.Click();
+            WaitAjax();
             WaitForPageLoading();
         }
 

@@ -30,6 +30,18 @@ namespace LottoSend.com.TestCases
         }
 
         /// <summary>
+        /// Being in the sales panel method applies a coupon in the cart
+        /// </summary>
+        /// <param name="code"></param>
+        public BackEndObj.SalesPanelPages.CartObj ApplyCouponInCart_SalesPanel(string code)
+        {
+            BackEndObj.SalesPanelPages.CartObj cart = new BackEndObj.SalesPanelPages.CartObj(_driver);
+            cart.ApplyCoupon(code);
+
+            return cart;
+        }
+
+        /// <summary>
         /// Being in the cart method proceeds to checkout and applies a coupon
         /// </summary>
         /// <param name="code"></param>
@@ -150,7 +162,7 @@ namespace LottoSend.com.TestCases
         public double PayForTicketsInCart_SalesPanel(WayToPay merchant, bool ifProcess = true, bool isFailed = false)
         {
             BackEndObj.SalesPanelPages.CartObj cart = new BackEndObj.SalesPanelPages.CartObj(_driver);
-            double totalPrice = cart.TotalBalance;
+            double totalPrice = cart.TotalPrice;
 
             if (merchant == WayToPay.Offline)
             {
