@@ -38,7 +38,7 @@ namespace LottoSend.com.TestCases.Mobile
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/carts/");
 
             CartObj cart = new CartObj(_driver);
-            double totalPrice = cart.TotalPrice;
+            double totalPrice = cart.TotalPrice_Mobile;
 
             CheckoutObj checkout = _commonActions.ApplyCouponInCart_Web(code);
             checkout.RemoveCoupon();
