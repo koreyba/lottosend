@@ -44,6 +44,8 @@ namespace LottoSend.com.FrontEndObj.Common
         [FindsBy(How = How.CssSelector, Using = "#game div > table.table.order > tbody > tr:nth-child(1) > td.text-center > strong")]
         private IWebElement _subTotalPrice;
 
+        [FindsBy(How = How.CssSelector, Using = "#game .btn.btn-info.pull-right")]
+        private IWebElement _removeCoupon; 
         /// <summary>
         /// Gets sub-total price in the checkout
         /// </summary>
@@ -74,6 +76,15 @@ namespace LottoSend.com.FrontEndObj.Common
         public double DiscountCoupon
         {
             get { return _discountCoupon.Text.ParseDouble(); }
+        }
+
+        /// <summary>
+        /// Removes applied coupon
+        /// </summary>
+        public void RemoveCoupon()
+        {
+            _removeCoupon.Click();
+            WaitAjax();
         }
 
         /// <summary>

@@ -2,7 +2,6 @@
 using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.Helpers;
-using LottoSend.com.Verifications;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -24,6 +23,34 @@ namespace LottoSend.com.TestCases.Mobile
             _device = device;
         }
 
+        /// <summary>
+        /// Applies a coupon and removes it. Checks if total price is the same as before applying 
+        /// </summary>
+        /// <param name="code"></param>
+        [TestCase("Denis666")]
+        [Category("Critical")]
+        public void Cancel_Coupon(string code)
+        {
+            SetUp(CreateOptions(_device));
+            // sign up    
+            _commonActions.Sign_Up_Mobile();
+            _commonActions.AddGroupTicketToCart_Front("en/play/euro-miliony-slovakia/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/carts/");
+
+            CartObj cart = new CartObj(_driver);
+            double totalPrice = cart.TotalPrice;
+
+            CheckoutObj checkout = _commonActions.ApplyCouponInCart_Web(code);
+            checkout.RemoveCoupon();
+
+            Assert.AreEqual(totalPrice, checkout.TotalPrice, "Sorry but coupon is probably not removed ");
+        }
+
+        /// <summary>
+        /// Applies a coupon and checks if total price is correct (calculates using coupon discount and multi-draw discount)
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="discount"></param>
         [TestCase("Denis666", 50)]
         [Category("Critical")]
         public void Check_Discount_Checkout(string code, double discount)
@@ -46,7 +73,18 @@ namespace LottoSend.com.TestCases.Mobile
             Assert.AreEqual(subTotalPrice - disc - (subTotalPrice - disc) / 100 * discount, price);
         }
 
-        private ChromeOptions CreateOptions(string device)
+        [TearDown]
+        public void CleanUp()
+        {
+            _sharedCode.CleanUp(ref _driver);
+        }
+
+        /// <summary>
+        /// Creates and returns ChromeOptions for a mobile device
+        /// </summary>
+        /// <param name="device"></param>
+        /// <returns></returns>
+        public ChromeOptions CreateOptions(string device)
         {
             var mobileEmulation = new Dictionary<string, string>
             {
@@ -56,12 +94,6 @@ namespace LottoSend.com.TestCases.Mobile
             ChromeOptions options = new ChromeOptions();
             options.AddAdditionalCapability("mobileEmulation", mobileEmulation);
             return options;
-        }
-
-        [TearDown]
-        public void CleanUp()
-        {
-            _sharedCode.CleanUp(ref _driver);
         }
 
         public void SetUp(ChromeOptions option)

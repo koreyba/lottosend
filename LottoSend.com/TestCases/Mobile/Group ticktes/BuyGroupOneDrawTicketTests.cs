@@ -275,7 +275,12 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
             }
         }
 
-        private ChromeOptions CreateOptions(string device)
+        /// <summary>
+        /// Creates and returns ChromeOptions for a mobile device
+        /// </summary>
+        /// <param name="device"></param>
+        /// <returns></returns>
+        public ChromeOptions CreateOptions(string device)
         {
             var mobileEmulation = new Dictionary<string, string>
             {

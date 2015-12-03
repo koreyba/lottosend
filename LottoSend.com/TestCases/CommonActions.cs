@@ -30,6 +30,20 @@ namespace LottoSend.com.TestCases
         }
 
         /// <summary>
+        /// Being in the cart method proceeds to checkout and applies a coupon
+        /// </summary>
+        /// <param name="code"></param>
+        public CheckoutObj ApplyCouponInCart_Web(string code)
+        {
+            CartObj cart = new CartObj(_driver);
+            cart.ClickProceedToCheckoutButton();
+            CheckoutObj checkout = new CheckoutObj(_driver);
+            checkout.ApplyCoupon(code);
+
+            return checkout;
+        }
+
+        /// <summary>
         /// Buys a raffle ticket in the sales panel (approves payment)
         /// </summary>
         /// <param name="raffleName"></param>

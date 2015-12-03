@@ -1,4 +1,5 @@
-﻿using LottoSend.com.TestCases;
+﻿using System.Collections.Generic;
+using LottoSend.com.TestCases;
 using LottoSend.com.Verifications;
 using NUnit.Framework;
 using OpenQA.Selenium;
