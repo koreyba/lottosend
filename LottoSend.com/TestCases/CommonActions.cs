@@ -214,7 +214,7 @@ namespace LottoSend.com.TestCases
         /// </summary>
         public void AddRaffleTicketToCart_Front(string address)
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + address);
+            _driverCover.NavigateToUrl(address);
             RafflesPageObj raffle = new RafflesPageObj(_driver);
 
             raffle.ClickBuyNowButton();

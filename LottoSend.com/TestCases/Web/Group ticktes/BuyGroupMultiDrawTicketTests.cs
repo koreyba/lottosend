@@ -357,6 +357,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         public void CleanUp()
         {
             _sharedCode.CleanUp(ref _driver);
+            
         }
 
         [SetUp]

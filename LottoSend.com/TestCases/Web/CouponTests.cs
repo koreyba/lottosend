@@ -24,7 +24,7 @@ namespace LottoSend.com.TestCases.Web
             _commonActions.Sign_Up_Front();
             _commonActions.AddGroupTicketToCart_Front("en/play/euro-miliony-slovakia/");
             _commonActions.AddRegularTicketToCart_Front("en/play/el-gordo-de-la-primitiva/");
-            _commonActions.AddRaffleTicketToCart_Front("en/raffles/loteria-de-navidad/");
+            _commonActions.AddRaffleTicketToCart_Front(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
 
             CartObj cart = new CartObj(_driver);  
             cart.ClickProceedToCheckoutButton();
