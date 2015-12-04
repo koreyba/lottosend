@@ -1,6 +1,8 @@
-﻿using LottoSend.com.FrontEndObj.GamePages;
+﻿using LottoSend.com.FrontEndObj.Common;
+using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.Helpers;
 using NUnit.Framework;
+using NUnit.Framework.Constraints;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
@@ -17,6 +19,29 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         private DriverCover _driverCover;
         private CommonActions _commonActions;
         private TestsSharedCode _sharedCode;
+
+        /// <summary>
+        /// Buys a group ticket and removes it from its draw. Checks if the share was returned to the ticket
+        /// </summary>
+        [Test]
+        [Category("Critical")]
+        public void If_Share_Removed_From_Draw_Returns_To_Ticket()
+        {
+            _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/play/powerball/");
+            GroupGamePageObj groupGame = new GroupGamePageObj(_driver);
+            groupGame.SelectOneTimeEntryGame();
+            
+            int sharesBefore = groupGame.GetNumberOfLeftShares(1);
+            MerchantsObj merchants = groupGame.ClickBuyTicketsButton();
+            merchants.Pay(WayToPay.Offline);
+
+            _commonActions.RemoveBetFromDraw_BackOffice("Powerball", 1, false);
+
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/play/powerball/");
+
+            Assert.AreEqual(sharesBefore, groupGame.GetNumberOfLeftShares(1), "Sorry but the share was not returned back to the ticket. Current URL: " + _driverCover.Driver.Url + " ");
+        }
 
         /// <summary>
         /// Adds a group ticket to the cart and removes it. Checks if the share was returned to the ticket

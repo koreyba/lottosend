@@ -30,6 +30,20 @@ namespace LottoSend.com.TestCases
         }
 
         /// <summary>
+        /// Removes a specific bet (with sent number) from a specific draw
+        /// </summary>
+        /// <param name="lotteryName"></param>
+        /// <param name="betNumber"></param>
+        /// <param name="isBulk">Is bet bulk?</param>
+        public void RemoveBetFromDraw_BackOffice(string lotteryName, int betNumber, bool isBulk)
+        {
+            SignIn_in_admin_panel();
+            //navigate to the draw's page
+            DrawObj draw = Find_The_Draw_Page(lotteryName);
+            draw.DeleteBet(betNumber, isBulk);
+        }
+
+        /// <summary>
         /// Being in the sales panel method applies a coupon in the cart
         /// </summary>
         /// <param name="code"></param>
