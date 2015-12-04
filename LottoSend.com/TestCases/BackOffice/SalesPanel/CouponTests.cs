@@ -12,8 +12,26 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         private IWebDriver _driver;
         private DriverCover _driverCover;
         private CommonActions _commonActions;
-        private WayToPay _merchant;
         private TestsSharedCode _sharedCode;
+
+        /// <summary>
+        /// Pays for tickets using coupon with 100% discount (Completes order)
+        /// </summary>
+        /// <param name="code"></param>
+        [TestCase("ForFree100")]
+        [Category("Critical")]
+        public void Pay_With_Free_Coupon(string code)
+        {
+            _commonActions.SignIn_in_admin_panel();
+            _commonActions.Sign_Up_SalesPanel(RandomGenerator.GenerateRandomString(10) + "@urk.net");
+
+            _commonActions.AddGroupTicketToCart_SalesPanel("Powerball");
+            _commonActions.AddRegularOneDrawTicketToCart_SalesPanel("SuperLotto Plus");
+            _commonActions.AddRaffleTicketToCart_SalesPanel("Loteria de Navidad");
+
+            BackEndObj.SalesPanelPages.CartObj cart = _commonActions.ApplyCouponInCart_SalesPanel(code);
+            cart.PayWithInternalBalance();
+        }
 
         /// <summary>
         /// Applies a coupon and removes it. Checks if total price is the same as before applying 

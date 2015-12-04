@@ -22,6 +22,9 @@ namespace LottoSend.com.FrontEndObj.GamePages
             PageFactory.InitElements(Driver, this);
         }
 
+        [FindsBy(How = How.CssSelector, Using = "#bet-group div.text-primary")]
+        private IList<IWebElement> _sharesLeft; 
+
         /// <summary>
         /// Gets selected amount of draws to play
         /// </summary>
@@ -54,6 +57,16 @@ namespace LottoSend.com.FrontEndObj.GamePages
         public double TotalPrice
         {
             get { return _totalPrice.Text.ParseDouble(); }
+        }
+
+        /// <summary>
+        /// Returns number of shares left in a group ticket
+        /// </summary>
+        /// <param name="ticketNumber">ID of the ticket (1,2,3,4,5 etc)</param>
+        /// <returns></returns>
+        public int GetNumberOfLeftShares(int ticketNumber)
+        {
+            return (int)_sharesLeft[ticketNumber - 1].Text.ParseDouble();
         }
 
         /// <summary>

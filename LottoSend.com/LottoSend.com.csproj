@@ -109,8 +109,9 @@
     <Compile Include="TestCases\Web\DepositSuccessTests.cs" />
     <Compile Include="TestCases\Mobile\BuyRaffleTicketTests.cs" />
     <Compile Include="TestCases\Mobile\Regular tickets\BuyRegularMultiDrawTicketTests.cs" />
-    <Compile Include="TestCases\Mobile\Regular tickets\BuyRegularOneDrawTicketTests.cs" />
+    <Compile Include="TestCases\Mobile\BuyRegularOneDrawTicketTests.cs" />
     <Compile Include="TestCases\Web\FailedPaymentTests.cs" />
+    <Compile Include="TestCases\Web\Group ticktes\GroupTicketTests.cs" />
     <Compile Include="Verifications\BackOfficeVerifications.cs" />
     <Compile Include="Verifications\BalanceVerifications.cs" />
     <Compile Include="Debugger.cs" />

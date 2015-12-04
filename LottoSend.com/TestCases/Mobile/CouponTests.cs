@@ -14,13 +14,34 @@ namespace LottoSend.com.TestCases.Mobile
         private IWebDriver _driver;
         private DriverCover _driverCover;
         private CommonActions _commonActions;
-        private WayToPay _merchant;
         private string _device;
         private TestsSharedCode _sharedCode;
 
         public CouponTests(string device)
         {
             _device = device;
+        }
+
+        /// <summary>
+        /// Pays for tickets using coupon with 100% discount (Completes order)
+        /// </summary>
+        /// <param name="code"></param>
+        [TestCase("ForFree100")]
+        [Category("Critical")]
+        public void Pay_With_Free_Coupon(string code)
+        {
+            SetUp(CreateOptions(_device));
+
+            // sign up    
+            _commonActions.Sign_Up_Mobile();
+            _commonActions.AddGroupTicketToCart_Front("en/play/euro-miliony-slovakia/");
+            _commonActions.AddRegularTicketToCart_Front("en/play/megamillions/");
+            _commonActions.AddRaffleTicketToCart_Front(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
+
+            CheckoutObj checkout = _commonActions.ApplyCouponInCart_Web(code);
+            checkout.ClickCompleteYourOrderButton();
+
+            Assert.IsTrue(_driverCover.Driver.Url.Contains("payments/success"));
         }
 
         /// <summary>

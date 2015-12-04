@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
@@ -76,6 +75,11 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
             WaitAjax();
         }
 
+        /// <summary>
+        /// Finds HTML tag div of the ticket
+        /// </summary>
+        /// <param name="lottery"></param>
+        /// <returns></returns>
         private IWebElement _findDivOfTicket(string lottery)
         {
             foreach (IWebElement t in _ticktes)
@@ -95,6 +99,7 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
         {
             _payWithInternalBalance.Click();
             WaitForPageLoading();
+            WaitAjax();
         }
 
         /// <summary>

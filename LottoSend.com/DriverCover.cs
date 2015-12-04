@@ -120,7 +120,7 @@ namespace LottoSend.com
         
         /// <summary>
         /// Waits for loading of a page
-        /// <param name="secondsToWait">Time to wait (default 660 sec)</param>
+        /// <param name="secondsToWait">Time to wait (default 600 sec)</param>
         /// </summary>
         public void WaitForPageLoading(int secondsToWait = 600)
         {
@@ -154,6 +154,7 @@ namespace LottoSend.com
         {
             Driver.Navigate().Refresh();
             WaitForPageLoading();
+            WaitAjax();
         }
 
         /// <summary>
