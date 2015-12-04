@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System;
+using System.Collections.Generic;
 
 namespace LottoSend.com.FrontEndObj.GamePages
 {
@@ -18,6 +19,9 @@ namespace LottoSend.com.FrontEndObj.GamePages
             PageFactory.InitElements(Driver, this);
         }
 
+        [FindsBy(How = How.CssSelector, Using = ".table.raffle tr > td:nth-child(2)")]
+        private IList<IWebElement> _sharesLeft; 
+
         [FindsBy(How = How.CssSelector, Using = "table.table.resume > tbody > tr.total > td.text-right")]
         private IWebElement _totalPrice;
 
@@ -34,6 +38,16 @@ namespace LottoSend.com.FrontEndObj.GamePages
 
         [FindsBy(How = How.CssSelector, Using = "table.table.raffle > tbody")]
         private IWebElement _rafflesTable;
+
+        /// <summary>
+        /// Returns number of shares left in a group ticket
+        /// </summary>
+        /// <param name="ticketNumber">ID of the ticket (1,2,3,4,5 etc)</param>
+        /// <returns></returns>
+        public int GetNumberOfLeftShares(int ticketNumber)
+        {
+            return (int)_sharesLeft[ticketNumber - 1].Text.ParseDouble();
+        }
 
         /// <summary>
         /// Adds shares to selected ticket (from 1 to 5)
