@@ -29,7 +29,7 @@ namespace LottoSend.com.BackEndObj.DrawPages
         [FindsBy(How = How.CssSelector, Using = "table.index_table > tbody > tr:nth-child(2)")]
         private IWebElement _firstRecord;
 
-        [FindsBy(How = How.CssSelector, Using = ".index_table tr > td:nth-child(19)  > a.button.bet")]
+        [FindsBy(How = How.CssSelector, Using = ".index_table tr > td:nth-child(20)  > a.button.bet")]
         private IList<IWebElement> _delete; 
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace LottoSend.com.BackEndObj.DrawPages
         /// </summary>
         public double BetAmount
         {
-            get { return _firstRecord.FindElement(By.CssSelector("td:nth-child(7)")).Text.ParseDouble(); }
+            get { return _firstRecord.FindElement(By.CssSelector("td:nth-child(8)")).Text.ParseDouble(); }
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace LottoSend.com.BackEndObj.DrawPages
         /// </summary>
         public string Type
         {
-            get { return _firstRecord.FindElement(By.CssSelector("td:nth-child(10)")).Text; }
+            get { return _firstRecord.FindElement(By.CssSelector("td:nth-child(11)")).Text; }
         }
 
         /// <summary>

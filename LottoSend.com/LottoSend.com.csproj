@@ -61,6 +61,8 @@
   <ItemGroup>
     <Compile Include="BackEndObj\ChargePanelPages\ChargeFormObj.cs" />
     <Compile Include="BackEndObj\ChargePanelPages\ChargePanelObj.cs" />
+    <Compile Include="BackEndObj\CMS\NewPageObj.cs" />
+    <Compile Include="BackEndObj\CMS\PagesObj.cs" />
     <Compile Include="BackEndObj\DrawPages\DrawObj.cs" />
     <Compile Include="BackEndObj\DrawPages\DrawsObj.cs" />
     <Compile Include="BackEndObj\GroupGapePages\GroupsPageObj.cs" />
@@ -87,6 +89,7 @@
     <Compile Include="FrontEndObj\MyAccount\DepositMobileObj.cs" />
     <Compile Include="FrontEndObj\SignUp\SignUpForm.cs" />
     <Compile Include="Helpers\TestsSharedCode.cs" />
+    <Compile Include="TestCases\BackOffice\CMS\PagesTests.cs" />
     <Compile Include="TestCases\BackOffice\GroupGameTests.cs" />
     <Compile Include="TestCases\BackOffice\ManualMatchTests.cs" />
     <Compile Include="TestCases\BackOffice\OrderProcessingTest.cs" />

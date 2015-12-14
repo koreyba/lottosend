@@ -12,6 +12,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         private CommonActions _commonActions;
         private double _totalPrice;
         private BalanceVerifications _balanceVerifications;
+        private DriverCover _driverCover;
 
         /// <summary>
         /// Cheks if a new user gets 1+1 promotion for the second deposit when he had the first one pending and it was failed 
@@ -227,6 +228,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         public void SetUp()
         {
             _driver = new TWebDriver();
+            _driverCover = new DriverCover(_driver);
             _commonActions = new CommonActions(_driver);
             _balanceVerifications = new BalanceVerifications(_driver);
         }

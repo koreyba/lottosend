@@ -101,7 +101,7 @@ namespace LottoSend.com.BackEndObj.DrawPages
             foreach (IWebElement tr in trList)
             {
                 IWebElement name = tr.FindElement(By.CssSelector("td.text-center > img"));
-                if (name.GetAttribute("alt").Contains(drawName))
+                if (name.GetAttribute("alt").ToLower().Contains(drawName.ToLower()))
                 {
                     return tr;
                 }

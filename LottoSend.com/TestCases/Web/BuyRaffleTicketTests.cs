@@ -126,7 +126,7 @@ namespace LottoSend.com.TestCases.Web
         }
 
         /// <summary>
-        /// Checks a play type of the first record in transactions (front)
+        /// Checks a play type of the first record in transactions (back)
         /// </summary>
         [Test]
         public void Check_PlayType_In_Transactions_Back()

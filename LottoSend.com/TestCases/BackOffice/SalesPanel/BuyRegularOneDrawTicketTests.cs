@@ -19,22 +19,32 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         private WayToPay _merchant;
         private double _totalPrice;
         private TestsSharedCode _sharedCode;
+        private string _lotteryName;
+        private CartVerifications _cartVerifications;
 
         public BuyRegularOneDrawTicketTests(WayToPay merchant, string lottery)
         {
             _merchant = merchant;
+            _lotteryName = lottery;
 
             SetUp();
             _sharedCode = new TestsSharedCode(_driver);
 
             try
             {
-                Buy_Regular_One_Draw_Ticket(merchant, lottery);
+                Buy_Regular_One_Draw_Ticket(merchant, _lotteryName);
             }
             catch (Exception e)
             {
                 CleanUp();
-                _sharedCode.CleanCartIfTestWasFailed(_driverCover.Login, _driverCover.Password);
+                if (_merchant == WayToPay.InternalBalance)
+                {
+                    _sharedCode.CleanCartIfTestWasFailed(_driverCover.LoginTwo, _driverCover.Password);
+                }
+                else
+                {
+                    _sharedCode.CleanCartIfTestWasFailed(_driverCover.Login, _driverCover.Password);
+                }
                 throw new Exception("Exception was thrown while executing: " + e.Message + " ");
             }
             CleanUp();
@@ -139,6 +149,52 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         }
 
         /// <summary>
+        /// Checks a time when the last bet (in the first record) was made
+        /// </summary>
+        [Test]
+        [Category("Critical")]
+        public void Check_Record_Time_In_Draw()
+        {
+            _orderVerifications.CheckRecordTimeInDraw(_lotteryName);
+        }
+
+        /// <summary>
+        /// Checks an email in the first record (the last bet) 
+        /// </summary>
+        [Test]
+        public void Check_Record_Email_In_Draw()
+        {
+            if (_merchant != WayToPay.InternalBalance)
+            {
+                _orderVerifications.CheckRecordEmailInDraw(_lotteryName, _driverCover.Login);
+            }
+            else
+            {
+                _orderVerifications.CheckRecordEmailInDraw(_lotteryName, _driverCover.LoginTwo);
+            }
+        }
+
+        /// <summary>
+        /// Checks type of the ticket in the first record (must be Single)
+        /// </summary>
+        [Test]
+        [Category("Critical")]
+        public void Check_Record_Type_In_Draw()
+        {
+            _orderVerifications.CheckRecordBetTypeInDraw("Single", _lotteryName);
+        }
+
+        /// <summary>
+        /// Checks price of the last bet (the first record). Must be the same as in the front-end
+        /// </summary>
+        [Test]
+        [Category("Critical")]
+        public void Check_Record_Price_In_Draw()
+        {
+            _orderVerifications.CheckRecordPriceInDraw(_totalPrice, _lotteryName);
+        }
+
+        /// <summary>
         /// Performs once before all other tests. Buys a regular single ticket 
         /// </summary>
         public void Buy_Regular_One_Draw_Ticket(WayToPay merchant, string lottery)
@@ -153,6 +209,23 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             _totalPrice = _commonActions.PayForTicketsInCart_SalesPanel(_merchant);
         }
 
+        /// <summary>
+        /// Checks if after buying a ticket (after payment) there are no items in the cart
+        /// </summary>
+        [Test]
+        public void Check_If_There_Is_No_Ticket_In_Cart()
+        {
+            if (_merchant != WayToPay.InternalBalance)
+            {
+                _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            }
+            else
+            {
+                //If pay with internal balance we need to log in with different user
+                _commonActions.Log_In_Front(_driverCover.LoginTwo, _driverCover.Password);
+            }
+            _cartVerifications.CheckNumberOfTicketsInCart_Front(0);
+        }
 
         /// <summary>
         /// Add a ticket to the cart
@@ -194,6 +267,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             _driverCover = new DriverCover(_driver);
             _commonActions = new CommonActions(_driver);
             _orderVerifications = new OrderVerifications(_driver);
+            _cartVerifications = new CartVerifications(_driver);
         }
     }
 }
