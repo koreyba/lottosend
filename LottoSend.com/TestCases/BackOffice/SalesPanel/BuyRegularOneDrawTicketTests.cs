@@ -228,6 +228,96 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         }
 
         /// <summary>
+        /// Checks an amount in the first record in transactions (front)
+        /// </summary>
+        [Test]
+        [Category("Critical")]
+        public void Check_Amount_In_Transaction_Front()
+        {
+            // Log in     
+            if (_merchant != WayToPay.InternalBalance)
+            {
+                _orderVerifications.CheckAmountInTransaction_Front(_totalPrice, _driverCover.Login, _driverCover.Password, 1);
+            }
+            else
+            {
+                //If pay with internal balance we need to log in with different user
+                _orderVerifications.CheckAmountInTransaction_Front(_totalPrice, _driverCover.LoginTwo, _driverCover.Password, 1);
+            }
+        }
+
+        /// <summary>
+        /// Checks a type of the first record in transactions (front)
+        /// </summary>
+        [TestCase(1)]
+        [TestCase(2)]
+        [Category("Critical")]
+        public void Check_Type_Of_Transaction_Front(int numberOfRecordToCheck)
+        {
+            if (numberOfRecordToCheck == 1)
+            {
+                if (_merchant != WayToPay.InternalBalance)
+                {
+                    _orderVerifications.CheckTypeOfTransaction_Front("Play - Single", _driverCover.Login,
+                        _driverCover.Password);
+                }
+                else
+                {
+                    _orderVerifications.CheckTypeOfTransaction_Front("Play - Single", _driverCover.LoginTwo,
+                        _driverCover.Password);
+                }
+            }
+
+            if (_merchant != WayToPay.InternalBalance)
+            {
+                if (numberOfRecordToCheck == 2)
+                {
+                    _orderVerifications.CheckTypeOfTransaction_Front("Deposit and play", _driverCover.Login,
+                        _driverCover.Password, 2);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Checks date of the first and seconds records in users account - transactions (front-end)
+        /// </summary>
+        [TestCase(1)]
+        [TestCase(2)]
+        [Category("Critical")]
+        public void Check_Transaction_Date_Front(int numberOfRecordToCheck)
+        {
+            if (_merchant != WayToPay.InternalBalance)
+            {
+                _orderVerifications.CheckTransactionDate_Front(_driverCover.Login, _driverCover.Password,
+                    numberOfRecordToCheck);
+            }
+            else
+            {
+                _orderVerifications.CheckTransactionDate_Front(_driverCover.LoginTwo, _driverCover.Password,
+                    numberOfRecordToCheck);
+            }
+        }
+
+        /// <summary>
+        /// Checks lottery name of the first and the second records in user's account - transactions in the front-end
+        /// </summary>
+        [Test]
+        [Category("Critical")]
+        public void Check_Transaction_Lottery_Name_Front()
+        {
+            if (_merchant != WayToPay.InternalBalance)
+            {
+                _orderVerifications.CheckTransactionLotteryName_Front(_lotteryName, _driverCover.Login,
+                    _driverCover.Password, 2);
+            }
+            else
+            {
+                _orderVerifications.CheckTransactionLotteryName_Front(_lotteryName, _driverCover.LoginTwo,
+                    _driverCover.Password, 1);
+            }
+        }
+
+        /// <summary>
         /// Add a ticket to the cart
         /// </summary>
         /// <param name="lotteryName"></param>

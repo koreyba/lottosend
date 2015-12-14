@@ -138,6 +138,45 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         }
 
         /// <summary>
+        /// Checks date of the first and seconds records in users account - transactions (front-end)
+        /// </summary>
+        [TestCase(1)]
+        [TestCase(2)]
+        [Category("Critical")]
+        public void Check_Transaction_Date_Front(int numberOfRecordToCheck)
+        {
+            if (_merchant != WayToPay.InternalBalance)
+            {
+                _orderVerifications.CheckTransactionDate_Front(_driverCover.Login, _driverCover.Password,
+                    numberOfRecordToCheck);
+            }
+            else
+            {
+                _orderVerifications.CheckTransactionDate_Front(_driverCover.LoginTwo, _driverCover.Password,
+                    numberOfRecordToCheck);
+            }
+        }
+
+        /// <summary>
+        /// Checks lottery name of the first and the second records in user's account - transactions in the front-end
+        /// </summary>
+        [Test]
+        [Category("Critical")]
+        public void Check_Transaction_Lottery_Name_Front()
+        {
+            if (_merchant != WayToPay.InternalBalance)
+            {
+                _orderVerifications.CheckTransactionLotteryName_Front("El Gordo", _driverCover.Login,
+                    _driverCover.Password, 2);
+            }
+            else
+            {
+                _orderVerifications.CheckTransactionLotteryName_Front("El Gordo", _driverCover.LoginTwo,
+                    _driverCover.Password, 1);
+            }
+        }
+
+        /// <summary>
         /// Checks a play type of the first record in transactions (back)
         /// </summary>
         [TestCase(1)]
@@ -176,45 +215,6 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
                 {
                     _orderVerifications.CheckTransactionTypeInTransactions_Back("deposit_and_play", 2);
                 }
-            }
-        }
-
-        /// <summary>
-        /// Checks date of the first and seconds records in users account - transactions (front-end)
-        /// </summary>
-        [TestCase(1)]
-        [TestCase(2)]
-        [Category("Critical")]
-        public void Check_Transaction_Date_Front(int numberOfRecordToCheck)
-        {
-            if (_merchant != WayToPay.InternalBalance)
-            {
-                _orderVerifications.CheckTransactionDate_Front(_driverCover.Login, _driverCover.Password,
-                    numberOfRecordToCheck);
-            }
-            else
-            {
-                _orderVerifications.CheckTransactionDate_Front(_driverCover.LoginTwo, _driverCover.Password,
-                    numberOfRecordToCheck);
-            }
-        }
-
-        /// <summary>
-        /// Checks lottery name of the first and the second records in user's account - transactions in the front-end
-        /// </summary>
-        [Test]
-        [Category("Critical")]
-        public void Check_Transaction_Lottery_Name_Front()
-        {
-            if (_merchant != WayToPay.InternalBalance)
-            {
-                _orderVerifications.CheckTransactionLotteryName_Front("El Gordo", _driverCover.Login,
-                    _driverCover.Password, 2);
-            }
-            else
-            {
-                _orderVerifications.CheckTransactionLotteryName_Front("El Gordo", _driverCover.LoginTwo,
-                    _driverCover.Password, 1);
             }
         }
 
