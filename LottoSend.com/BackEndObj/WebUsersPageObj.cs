@@ -30,10 +30,19 @@ namespace LottoSend.com.BackEndObj
         private IWebElement _table;
 
         /// <summary>
-        /// Returns balance of the first users (at the top)
+        /// Returns store credit money of the first users (at the top)
         /// </summary>
         /// <returns></returns>
-        public double GetFirstRecordBalance()
+        public double GetFirstRecordStoreCredit()
+        {
+            return _table.FindElement(By.CssSelector("tr > td:nth-child(8)")).Text.ParseDouble();
+        }
+
+        /// <summary>
+        /// Returns real money of the first users (at the top)
+        /// </summary>
+        /// <returns></returns>
+        public double GetFirstRecordRealMoney()
         {
             return _table.FindElement(By.CssSelector("tr > td:nth-child(7)")).Text.ParseDouble();
         }

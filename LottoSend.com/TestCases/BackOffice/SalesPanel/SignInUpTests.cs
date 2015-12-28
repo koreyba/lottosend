@@ -19,12 +19,13 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
 
         [Test]
         [Category("Critical")]
+        [Category("Test")]
         public void Sign_Up_In_Sales_Panel()
         {
             _commonActions.SignIn_in_admin_panel();
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/orders");
             RegisterObj register = new RegisterObj(_driver);
-            register.SignUp(RandomGenerator.GenerateRandomString(7) + "@ukr.net");
+            register.SignUp(RandomGenerator.GenerateRandomString(7) + "@grr.la");
 
             _backOfficeVerifications.IfUserSignedInSalesPanel();
         }

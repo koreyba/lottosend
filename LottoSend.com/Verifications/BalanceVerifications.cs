@@ -26,18 +26,35 @@ namespace LottoSend.com.Verifications
         }
 
         /// <summary>
-        /// Checks user's balance in back office on web users page
+        /// Checks user's store credit money in back office on web users page
         /// </summary>
         /// <param name="email"></param>
         /// <param name="expected"></param>
-        public void CheckUserBalance_BackOffice(string email, double expected)
+        public void CheckUserStoreCredit_BackOffice(string email, double expected)
         {
             _commonActions.SignIn_in_admin_panel();
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/web_users");
 
             WebUsersPageObj users = new WebUsersPageObj(_driver);
             users.FilterByEmail(email);
-            double actual = users.GetFirstRecordBalance();
+            double actual = users.GetFirstRecordStoreCredit();
+
+            Assert.AreEqual(expected, actual, "Sorry but the balance is not as expected on page: " + _driverCover.Driver.Url + " ");
+        }
+
+        /// <summary>
+        /// Checks user's store real money in back office on web users page
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="expected"></param>
+        public void CheckUserSRealMoney_BackOffice(string email, double expected)
+        {
+            _commonActions.SignIn_in_admin_panel();
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/web_users");
+
+            WebUsersPageObj users = new WebUsersPageObj(_driver);
+            users.FilterByEmail(email);;
+            double actual = users.GetFirstRecordRealMoney();
 
             Assert.AreEqual(expected, actual, "Sorry but the balance is not as expected on page: " + _driverCover.Driver.Url + " ");
         }

@@ -178,14 +178,14 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
             SetUp();
             if (numberOfRecordToCheck == 1)
             {
-                _orderVerifications.CheckTransactionTypeInTransactions_Back("play");
+                _orderVerifications.CheckTransactionTypeInTransactions_Back("Play from real money");
             }
 
             if (_merchant != WayToPay.InternalBalance)
             {
                 if (numberOfRecordToCheck == 2)
                 {
-                    _orderVerifications.CheckTransactionTypeInTransactions_Back("deposit_and_play", 2);
+                    _orderVerifications.CheckTransactionTypeInTransactions_Back("Credit to real money", 2);
                 }
             }
         }

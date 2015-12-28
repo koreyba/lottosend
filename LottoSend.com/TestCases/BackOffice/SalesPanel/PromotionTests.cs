@@ -30,7 +30,8 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
 
             _commonActions.Fail_offline_payment(); //will faild previous deposit
 
-            _balanceVerifications.CheckUserBalance_BackOffice(email, 61); //Check if for the second payment a user got 1+1 
+            _balanceVerifications.CheckUserStoreCredit_BackOffice(email, 30); //Check if for the second payment a user got 1+1 
+            _balanceVerifications.CheckUserSRealMoney_BackOffice(email, 31);
         }
 
         /// <summary>
@@ -47,7 +48,8 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
 
             _commonActions.DepositMoney_SalesPanel(31); // will be successful deposit
 
-            _balanceVerifications.CheckUserBalance_BackOffice(email, 31); //Check if there is no 1+1 promotion for the second payment if the first one is pending
+            _balanceVerifications.CheckUserStoreCredit_BackOffice(email, 0); //Check if there is no 1+1 promotion for the second payment if the first one is pending
+            _balanceVerifications.CheckUserSRealMoney_BackOffice(email, 31);
         }
 
         /// <summary>
@@ -73,11 +75,11 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
 
             if (price >= 30)
             {
-                _balanceVerifications.CheckUserBalance_BackOffice(email, 30);
+                _balanceVerifications.CheckUserStoreCredit_BackOffice(email, 30);
             }
             else
             {
-                _balanceVerifications.CheckUserBalance_BackOffice(email, price);
+                _balanceVerifications.CheckUserStoreCredit_BackOffice(email, price);
             }
         }
 
@@ -100,7 +102,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
 
             //double price = _commonActions.BuyRaffleTicket_SalesPanel("Loteria de Navidad");
 
-            _balanceVerifications.CheckUserBalance_BackOffice(email, 0);
+            _balanceVerifications.CheckUserStoreCredit_BackOffice(email, 0);
         }
 
         /// <summary>
@@ -117,7 +119,8 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
 
             _commonActions.DepositMoney_SalesPanel(31);
 
-            _balanceVerifications.CheckUserBalance_BackOffice(email, 61);
+            _balanceVerifications.CheckUserStoreCredit_BackOffice(email, 30);
+            _balanceVerifications.CheckUserSRealMoney_BackOffice(email, 31);
         }
 
         /// <summary>
@@ -138,11 +141,11 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
 
             if (price >= 30)
             {
-                _balanceVerifications.CheckUserBalance_BackOffice(email, 30);
+                _balanceVerifications.CheckUserStoreCredit_BackOffice(email, 30);
             }
             else
             {
-                _balanceVerifications.CheckUserBalance_BackOffice(email, price);
+                _balanceVerifications.CheckUserStoreCredit_BackOffice(email, price);
             }
         }
 
@@ -161,7 +164,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             _commonActions.Sign_In_SalesPanel(email);
             _commonActions.BuyRaffleTicket_SalesPanel("Loteria de Navidad");
 
-            _balanceVerifications.CheckUserBalance_BackOffice(email, 0);
+            _balanceVerifications.CheckUserStoreCredit_BackOffice(email, 0);
         }
 
         /// <summary>
@@ -177,7 +180,8 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
 
             _commonActions.DepositMoney_SalesPanel(18);
 
-            _balanceVerifications.CheckUserBalance_BackOffice(email, 40); //11*2+18 = 40
+            _balanceVerifications.CheckUserStoreCredit_BackOffice(email, 11); //11*2+18 = 40
+            _balanceVerifications.CheckUserSRealMoney_BackOffice(email, 29);
         }
 
         /// <summary>
@@ -194,11 +198,11 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
 
             if (totalPrice <= 30)
             {
-                _balanceVerifications.CheckUserBalance_BackOffice(email, totalPrice);
+                _balanceVerifications.CheckUserStoreCredit_BackOffice(email, totalPrice);
             }
             else
             {
-                _balanceVerifications.CheckUserBalance_BackOffice(email, 30);
+                _balanceVerifications.CheckUserStoreCredit_BackOffice(email, 30);
             }
             
         }
@@ -215,7 +219,8 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
 
             _commonActions.DepositMoney_SalesPanel(18);
 
-            _balanceVerifications.CheckUserBalance_BackOffice(email, 36);
+            _balanceVerifications.CheckUserStoreCredit_BackOffice(email, 18);
+            _balanceVerifications.CheckUserSRealMoney_BackOffice(email, 18);
         }
 
         [TearDown]
