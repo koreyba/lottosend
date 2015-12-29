@@ -6,6 +6,7 @@ using OpenQA.Selenium.Chrome;
 namespace LottoSend.com.TestCases.BackOffice.CMS
 {
     [TestFixture(typeof(ChromeDriver))]
+    [Parallelizable(ParallelScope.Fixtures)]
     public class PagesTests <TWebDriver> where TWebDriver : IWebDriver, new()
     {
         private IWebDriver _driver;

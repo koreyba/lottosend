@@ -96,7 +96,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         /// <summary>
         /// Cheks the merchant of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
-        [Test, Property("Priority", "Critical")]
+        [Category("Critical")]
         public void Check_Transaction_Merchant_In_Transactions()
         {
             _orderVerifications.CheckTransactionMerchantInTransactions_Back(_merchant);

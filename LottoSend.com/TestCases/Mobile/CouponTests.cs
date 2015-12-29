@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.Helpers;
@@ -9,6 +10,7 @@ using OpenQA.Selenium.Chrome;
 namespace LottoSend.com.TestCases.Mobile
 {
     [TestFixture("Apple iPhone 4")]
+    [Parallelizable(ParallelScope.Fixtures)]
     class CouponTests
     {
         private IWebDriver _driver;
@@ -91,7 +93,7 @@ namespace LottoSend.com.TestCases.Mobile
             double price = checkout.TotalPrice;
             double disc = checkout.DiscountMultiDraw;
 
-            Assert.AreEqual(subTotalPrice - disc - (subTotalPrice - disc) / 100 * discount, price);
+            Assert.AreEqual(Math.Round(subTotalPrice - disc - (subTotalPrice - disc) / 100 * discount, 2), Math.Round(price, 2));
         }
 
         [TearDown]

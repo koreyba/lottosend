@@ -10,6 +10,7 @@ using OpenQA.Selenium.IE;
 namespace LottoSend.com.TestCases.BackOffice
 {
     [TestFixture(typeof(ChromeDriver))]
+    [Parallelizable(ParallelScope.Fixtures)]
     //[TestFixture(typeof(FirefoxDriver))]
     //[TestFixture(typeof(InternetExplorerDriver))]
     class ManualMatchTests<TWebDriver> where TWebDriver : IWebDriver, new() 
@@ -50,7 +51,7 @@ namespace LottoSend.com.TestCases.BackOffice
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/scanned_images/new");
 
             NewScannedImageObj page = new NewScannedImageObj(_driver);
-            page.AddNewImage_Multiple(Path.Combine(Directory.GetCurrentDirectory(), @"Assets\scannedimage.jpg"), lottery, group);
+            page.AddNewImage_Multiple(Path.Combine(Directory.GetCurrentDirectory(), @"Assets\scannedimage2.jpg"), lottery, group);
 
             ScannedImagesObj imagesPage = new ScannedImagesObj(_driver);
 
@@ -77,7 +78,7 @@ namespace LottoSend.com.TestCases.BackOffice
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/scanned_images/new");
 
             NewScannedImageObj page = new NewScannedImageObj(_driver);
-            page.AddNewImage_Single(Path.Combine(Directory.GetCurrentDirectory(), @"Assets\scannedimage.jpg"), lottery);
+            page.AddNewImage_Single(Path.Combine(Directory.GetCurrentDirectory(), @"Assets\scannedimage2.jpg"), lottery);
             
             ScannedImagesObj imagesPage = new ScannedImagesObj(_driver);
 

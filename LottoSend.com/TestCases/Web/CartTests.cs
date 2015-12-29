@@ -6,6 +6,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using NUnit.Framework;
+using NUnit.Framework.Interfaces;
 
 namespace LottoSend.com.TestCases.Web
 {
@@ -13,6 +14,7 @@ namespace LottoSend.com.TestCases.Web
     /// Includes tests of the cart (front)
     /// </summary>
     [TestFixture(typeof(ChromeDriver))]
+    [Parallelizable(ParallelScope.Fixtures)]
     //[TestFixture(typeof(FirefoxDriver))]
     //[TestFixture(typeof(InternetExplorerDriver))]
     public class CartTests<TWebDriver> where TWebDriver : IWebDriver, new()
@@ -29,7 +31,7 @@ namespace LottoSend.com.TestCases.Web
         [Category("Critical")]
         public void Edit_Group_Ticket_And_Add_More()
         {
-            _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            _commonActions.Log_In_Front(_driverCover.LoginThree, _driverCover.Password);
             _commonActions.AddGroupTicketToCart_Front("en/play/powerball/");
 
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "carts");
@@ -54,7 +56,7 @@ namespace LottoSend.com.TestCases.Web
         [Category("Critical")]
         public void Edit_Raffle_Ticket_And_Add_More()
         {
-            _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            _commonActions.Log_In_Front(_driverCover.LoginThree, _driverCover.Password);
             _commonActions.AddRaffleTicketToCart_Front(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
 
             CartObj cart = new CartObj(_driver);
@@ -78,7 +80,7 @@ namespace LottoSend.com.TestCases.Web
         [Category("Critical")]
         public void Delete_Raffle_Ticket_From_Cart()
         {
-            _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            _commonActions.Log_In_Front(_driverCover.LoginThree, _driverCover.Password);
 
             _commonActions.AddRaffleTicketToCart_Front(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
             _cartVerifications.CheckNumberOfTicketsInCart_Front(1);
@@ -98,7 +100,7 @@ namespace LottoSend.com.TestCases.Web
         [Category("Critical")]
         public void Delete_Two_Group_Ticket_From_Cart()
         {
-            _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            _commonActions.Log_In_Front(_driverCover.LoginThree, _driverCover.Password);
 
             //Add two tickets from different lotteries
             _commonActions.AddGroupTicketToCart_Front("en/play/euromillions/");
@@ -125,7 +127,7 @@ namespace LottoSend.com.TestCases.Web
         [Category("Critical")]
         public void Delete_Single_Ticket_From_Cart()
         {
-            _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            _commonActions.Log_In_Front(_driverCover.LoginThree, _driverCover.Password);
 
             _commonActions.AddRegularTicketToCart_Front("en/play/eurojackpot/");
 
@@ -143,7 +145,7 @@ namespace LottoSend.com.TestCases.Web
         [TearDown]
         public void CleanUp()
         {
-            if (TestContext.CurrentContext.Result.Status == TestStatus.Failed)
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
             {
                 //Removes all tickets from the cart to make sure all other tests will work well
                 _commonActions.DeleteAllTicketFromCart_Front();

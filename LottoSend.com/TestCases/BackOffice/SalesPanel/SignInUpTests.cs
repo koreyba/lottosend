@@ -8,6 +8,7 @@ using OpenQA.Selenium.Chrome;
 namespace LottoSend.com.TestCases.BackOffice.SalesPanel
 {
     [TestFixture(typeof(ChromeDriver))]
+    [Parallelizable(ParallelScope.Fixtures)]
     //[TestFixture(typeof(FirefoxDriver))]
     //[TestFixture(typeof(InternetExplorerDriver))]
     public class SignInUpTests<TWebDriver> where TWebDriver : IWebDriver, new() 

@@ -9,6 +9,7 @@ using OpenQA.Selenium.IE;
 namespace LottoSend.com.TestCases.BackOffice
 {
     [TestFixture(typeof(ChromeDriver))]
+    [Parallelizable(ParallelScope.Fixtures)]
     //[TestFixture(typeof(FirefoxDriver))]
     //[TestFixture(typeof(InternetExplorerDriver))]
     public class GroupGameTests <TWebDriver> where TWebDriver : IWebDriver, new()

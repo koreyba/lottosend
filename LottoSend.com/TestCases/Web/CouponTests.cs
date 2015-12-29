@@ -1,4 +1,5 @@
-﻿using LottoSend.com.FrontEndObj;
+﻿using System;
+using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.Helpers;
 using NUnit.Framework;
@@ -8,6 +9,7 @@ using OpenQA.Selenium.Chrome;
 namespace LottoSend.com.TestCases.Web
 {
     [TestFixture(typeof(ChromeDriver))]
+    [Parallelizable(ParallelScope.Fixtures)]
     class CouponTests <TWebDriver> where TWebDriver : IWebDriver, new()
     {
         private IWebDriver _driver;
@@ -78,7 +80,7 @@ namespace LottoSend.com.TestCases.Web
             double price = checkout.TotalPrice;
             double disc = checkout.DiscountMultiDraw;
 
-            Assert.AreEqual(subTotalPrice - disc - (subTotalPrice - disc) / 100 * discount, price, "Sory, but coupon is probably applied wrong ");
+            Assert.AreEqual(Math.Round(subTotalPrice - disc - (subTotalPrice - disc) / 100 * discount, 2), Math.Round(price, 2), "Sory, but coupon is probably applied wrong ");
         }
 
         [TearDown]

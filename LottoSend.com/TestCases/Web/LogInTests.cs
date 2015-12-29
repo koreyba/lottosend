@@ -12,6 +12,7 @@ using OpenQA.Selenium.IE;
 namespace LottoSend.com.TestCases.Web
 {
     [TestFixture(typeof(ChromeDriver))]
+    [Parallelizable(ParallelScope.Fixtures)]
     //[TestFixture(typeof(FirefoxDriver))]
     //[TestFixture(typeof(InternetExplorerDriver))]
     public class LogInTests<TWebDriver> where TWebDriver : IWebDriver, new()

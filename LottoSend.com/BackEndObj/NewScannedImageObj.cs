@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
@@ -74,6 +75,8 @@ namespace LottoSend.com.BackEndObj
             ChooseElementInSelect(group, _group, SelectBy.Text);
             
             _chooseFile.SendKeys(path);
+
+            Thread.Sleep(TimeSpan.FromSeconds(0.5));
 
             _createScannedImageButton.Click();
 

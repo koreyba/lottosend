@@ -13,6 +13,7 @@ using OpenQA.Selenium.Chrome;
 namespace LottoSend.com.TestCases.Mobile
 {
     [TestFixture("Apple iPhone 4")]
+    [Parallelizable(ParallelScope.Fixtures)]
     //[TestFixture("Apple iPhone 6")]
     //[TestFixture("Apple iPhone 5")]
     //[TestFixture("Samsung Galaxy S4")]

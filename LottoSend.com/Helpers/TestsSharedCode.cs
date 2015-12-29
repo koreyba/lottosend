@@ -2,6 +2,7 @@
 using LottoSend.com.TestCases;
 using LottoSend.com.Verifications;
 using NUnit.Framework;
+using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
@@ -31,7 +32,7 @@ namespace LottoSend.com.Helpers
         /// </summary>
         public void CleanCartIfTestWasFailed(string email, string password)
         {
-            if (TestContext.CurrentContext.Result.Status == TestStatus.Failed || TestContext.CurrentContext.Result.State == TestState.Inconclusive)
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Inconclusive)
             {
                 SetUp();
                 CommonActions.Log_In_Front(email, password);
