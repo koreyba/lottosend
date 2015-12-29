@@ -13,6 +13,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
     /// </summary>
     /// <typeparam name="TWebDriver"></typeparam>
     [TestFixture(typeof(ChromeDriver))]
+    [Parallelizable(ParallelScope.Fixtures)]
     class GroupTicketTests <TWebDriver> where TWebDriver : IWebDriver, new()
     {
         private IWebDriver _driver;
@@ -27,7 +28,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         [Category("Critical")]
         public void If_Share_Removed_From_Draw_Returns_To_Ticket()
         {
-            _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            _commonActions.Log_In_Front(_driverCover.LoginFive, _driverCover.Password);
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/play/powerball/");
             GroupGamePageObj groupGame = new GroupGamePageObj(_driver);
             groupGame.SelectOneTimeEntryGame();

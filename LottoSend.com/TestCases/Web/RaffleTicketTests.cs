@@ -11,6 +11,7 @@ namespace LottoSend.com.TestCases.Web
     /// </summary>
     /// <typeparam name="TWebDriver"></typeparam>
     [TestFixture(typeof(ChromeDriver))]
+    [Parallelizable(ParallelScope.Fixtures)]
     class RaffleTicketTests <TWebDriver> where TWebDriver : IWebDriver, new()
     {
         private IWebDriver _driver;

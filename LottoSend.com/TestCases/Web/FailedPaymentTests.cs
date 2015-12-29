@@ -15,7 +15,6 @@ namespace LottoSend.com.TestCases.Web
     /// </summary>
     /// <typeparam name="TWebDriver"></typeparam>
     [TestFixture(typeof(ChromeDriver))]
-    [Parallelizable(ParallelScope.Fixtures)]
     //[TestFixture(typeof(FirefoxDriver))]
     //[TestFixture(typeof(InternetExplorerDriver))]
     class FailedPaymentTests<TWebDriver> where TWebDriver : IWebDriver, new()
