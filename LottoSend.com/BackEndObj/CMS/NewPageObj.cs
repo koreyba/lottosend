@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Threading;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.PageObjects;
 
 namespace LottoSend.com.BackEndObj.CMS
@@ -28,6 +32,9 @@ namespace LottoSend.com.BackEndObj.CMS
         [FindsBy(How = How.CssSelector, Using = "#locale_en_banner")]
         private IWebElement _bannerEnInput;
 
+        [FindsBy(How = How.CssSelector, Using = "#new_page > div.form-group.form-actions > div > a > span")]
+        private IWebElement _test;
+
         //[FindsBy(How = How.CssSelector, Using = "div.CodeMirror-scroll")] 
        // private IWebElement _contentEnInput;
 
@@ -46,7 +53,7 @@ namespace LottoSend.com.BackEndObj.CMS
             _slugEnInput.SendKeys(label);
             _titleEnInput.SendKeys(label);
             //_contentEnInput.SendKeys(label); doesn't work
-
+            ScrollToElement(_test);
             _createButton.Click();
             WaitForPageLoading();
             WaitAjax();

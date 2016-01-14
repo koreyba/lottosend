@@ -114,7 +114,7 @@ namespace LottoSend.com.BackEndObj
         /// <returns></returns>
         public TimeSpan GetFirstTransactionDate()
         {
-            IWebElement dateTD = _firstRecord.FindElement(By.CssSelector("td:nth-child(13)"));
+            IWebElement dateTD = _firstRecord.FindElement(By.CssSelector("td:nth-child(14)"));
 
             string date = dateTD.Text;
             TimeSpan timeSpan = date.ParseTimeSpan();

@@ -34,7 +34,7 @@ namespace LottoSend.com.TestCases.Mobile
         /// <summary>
         /// Signs up in express checkout in the cart
         /// </summary>
-        [Test]
+        //[Test]
         [Category("Critical")]
         public void SignUp_Express_Checkout_In_Cart()
         {
@@ -42,8 +42,8 @@ namespace LottoSend.com.TestCases.Mobile
 
             RafflesPageObj rafflePage = new RafflesPageObj(_driver);
 
-            CartObj cart = rafflePage.ClickBuyNowButton();
-            cart.ClickProceedToCheckoutButton();
+            //CartObj cart = rafflePage.ClickBuyNowButton();
+           // cart.ClickProceedToCheckoutButton();
 
             ExpressCheckoutObj checkout = new ExpressCheckoutObj(_driver);
             Thread.Sleep(TimeSpan.FromSeconds(1));
@@ -55,7 +55,7 @@ namespace LottoSend.com.TestCases.Mobile
         /// <summary>
         /// Signs up in express checkout on a game page
         /// </summary>
-        [Test]
+        //[Test]
         [Category("Critical")]
         public void SignUp_Express_Checkout_Game_Page()
         {

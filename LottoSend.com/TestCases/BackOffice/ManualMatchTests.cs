@@ -1,4 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Net.Mime;
+using System.Reflection;
 using LottoSend.com.BackEndObj;
 using LottoSend.com.Verifications;
 using NUnit.Framework;
@@ -50,12 +53,14 @@ namespace LottoSend.com.TestCases.BackOffice
             _commonActions.SignIn_in_admin_panel();
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/scanned_images/new");
 
-            NewScannedImageObj page = new NewScannedImageObj(_driver);
-            page.AddNewImage_Multiple(Path.Combine(Directory.GetCurrentDirectory(), @"Assets\scannedimage2.jpg"), lottery, group);
+            var imgPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Assets\scannedimage2.jpg");
+            NewScannedImageObj page = new NewScannedImageObj(_driver); 
+
+            page.AddNewImage_Multiple(imgPath, lottery, group);
 
             ScannedImagesObj imagesPage = new ScannedImagesObj(_driver);
 
-            imagesPage.SwitchToMultipleTab();
+            imagesPage.SwitchToMultipleTab(); 
             Assert.IsTrue(imagesPage.GetTheFirstPictureName().Contains("scannedimage"), "Sorry but the scannedimage picture doesn't exist, maybe it wasn't uploaded. Please check it ");
 
             imagesPage.FinishTheFirstMultiple();
@@ -77,8 +82,9 @@ namespace LottoSend.com.TestCases.BackOffice
             _commonActions.SignIn_in_admin_panel();
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/scanned_images/new");
 
+            var imgPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Assets\scannedimage2.jpg");
             NewScannedImageObj page = new NewScannedImageObj(_driver);
-            page.AddNewImage_Single(Path.Combine(Directory.GetCurrentDirectory(), @"Assets\scannedimage2.jpg"), lottery);
+            page.AddNewImage_Single(imgPath, lottery);
             
             ScannedImagesObj imagesPage = new ScannedImagesObj(_driver);
 

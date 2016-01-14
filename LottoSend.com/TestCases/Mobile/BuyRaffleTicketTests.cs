@@ -187,8 +187,8 @@ namespace LottoSend.com.TestCases.Mobile
             RafflesPageObj rafflePage = new RafflesPageObj(_driver);
             _totalPrice = rafflePage.TotalPrice;
 
-            CartObj cart = rafflePage.ClickBuyNowButton();
-            MerchantsObj merchants = cart.ClickProceedToCheckoutButton();
+            rafflePage.ClickBuyNowButton();//
+            MerchantsObj merchants = new MerchantsObj(_driver);
 
             if (merchant != WayToPay.InternalBalance)
             {

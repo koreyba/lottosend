@@ -40,6 +40,7 @@ namespace LottoSend.com.TestCases.Mobile
             _commonActions.AddRegularTicketToCart_Front("en/play/megamillions/");
             _commonActions.AddRaffleTicketToCart_Front(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
 
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/carts");
             CheckoutObj checkout = _commonActions.ApplyCouponInCart_Web(code);
             checkout.ClickCompleteYourOrderButton();
 
@@ -85,6 +86,7 @@ namespace LottoSend.com.TestCases.Mobile
             _commonActions.AddRegularTicketToCart_Front("en/play/el-gordo-de-la-primitiva/");
             _commonActions.AddRaffleTicketToCart_Front(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
 
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/carts");
             CartObj cart = new CartObj(_driver);  
             cart.ClickProceedToCheckoutButton();
             CheckoutObj checkout = new CheckoutObj(_driver);

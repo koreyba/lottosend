@@ -38,8 +38,8 @@ namespace LottoSend.com.TestCases.Web
 
             RafflesPageObj rafflePage = new RafflesPageObj(_driver);
 
-            CartObj cart = rafflePage.ClickBuyNowButton();
-            MerchantsObj merchants = cart.ClickProceedToCheckoutButton();
+            rafflePage.ClickBuyNowButton();//
+            MerchantsObj merchants = new MerchantsObj(_driver);
 
             merchants.PayWithOfflineCharge();
 

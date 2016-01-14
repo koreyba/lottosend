@@ -59,6 +59,8 @@ namespace LottoSend.com.TestCases.Web
             _commonActions.Log_In_Front(_driverCover.LoginThree, _driverCover.Password);
             _commonActions.AddRaffleTicketToCart_Front(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
 
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/carts");
+
             CartObj cart = new CartObj(_driver);
             cart.EditTicket_Web("Cart Raffle");
 

@@ -343,8 +343,8 @@ namespace LottoSend.com.TestCases
             RafflesPageObj rafflePage = new RafflesPageObj(_driver);
             double totalPrice = rafflePage.TotalPrice;
 
-            CartObj cart = rafflePage.ClickBuyNowButton();
-            MerchantsObj merchants = cart.ClickProceedToCheckoutButton();
+            rafflePage.ClickBuyNowButton();//
+            MerchantsObj merchants = new MerchantsObj(_driver);
             merchants.Pay(merchant);
 
             return totalPrice;

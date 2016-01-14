@@ -35,9 +35,9 @@ namespace LottoSend.com.BackEndObj.GroupGapePages
         {
             IWebElement tr = _findTrOfGroup(group);
             string realLottery = tr.FindElement(By.CssSelector("td:nth-child(2)")).Text;
-            string realNumbers = tr.FindElement(By.CssSelector("td:nth-child(5)")).Text;
+            //string realNumbers = tr.FindElement(By.CssSelector("td:nth-child(5)")).Text;
 
-            return (realLottery.Contains(lottery) && realNumbers.Contains(numbers));
+            return (realLottery.Contains(lottery)); //&& realNumbers.Contains(numbers));
         }
 
         /// <summary>

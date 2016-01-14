@@ -83,8 +83,8 @@ namespace LottoSend.com.TestCases.Mobile
             RafflesPageObj rafflePage = new RafflesPageObj(_driver);
             // double totalPrice = rafflePage.TotalPrice;
 
-            CartObj cart = rafflePage.ClickBuyNowButton();
-            MerchantsObj merchants = cart.ClickProceedToCheckoutButton();
+            rafflePage.ClickBuyNowButton();//
+            MerchantsObj merchants = new MerchantsObj(_driver);
             merchants.Pay(WayToPay.Offline, false); //will be pending order 
 
             double price = _commonActions.BuyRegularOneDrawTicket_Front(_merchant); //will be successful order
@@ -117,8 +117,8 @@ namespace LottoSend.com.TestCases.Mobile
             RafflesPageObj rafflePage = new RafflesPageObj(_driver);
             // double totalPrice = rafflePage.TotalPrice;
 
-            CartObj cart = rafflePage.ClickBuyNowButton();
-            MerchantsObj merchants = cart.ClickProceedToCheckoutButton();
+            rafflePage.ClickBuyNowButton();//
+            MerchantsObj merchants = new MerchantsObj(_driver);
             merchants.Pay(WayToPay.Offline, false); //will be pending order 
 
             _commonActions.BuyRegularOneDrawTicket_Front(_merchant); //will be successful order
@@ -140,8 +140,8 @@ namespace LottoSend.com.TestCases.Mobile
             RafflesPageObj rafflePage = new RafflesPageObj(_driver);
             double totalPrice = rafflePage.TotalPrice;
 
-            CartObj cart = rafflePage.ClickBuyNowButton();
-            MerchantsObj merchants = cart.ClickProceedToCheckoutButton();
+            rafflePage.ClickBuyNowButton();//
+            MerchantsObj merchants = new MerchantsObj(_driver);
             merchants.Pay(WayToPay.Offline, true, true);
 
             double price = _commonActions.BuyRegularOneDrawTicket_Front(_merchant);

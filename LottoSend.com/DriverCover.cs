@@ -6,7 +6,6 @@ using OpenQA.Selenium.Interactions;
 using System.Configuration;
 using OpenQA.Selenium.Support.UI;
 using System.Collections.Generic;
-using OpenQA.Selenium.Chrome;
 
 namespace LottoSend.com
 {
@@ -326,7 +325,9 @@ namespace LottoSend.com
         /// <returns>Element</returns>
         public IWebElement ScrollToElement(IWebElement webElement)
         {
-            ((IJavaScriptExecutor)Driver).ExecuteScript("arguments[0].scrollIntoView();", webElement);
+            Actions action = new Actions(Driver);
+            action.MoveToElement(webElement).Build().Perform();
+            //((IJavaScriptExecutor)Driver).ExecuteScript("arguments[0].scrollIntoView();", webElement);
 
             return webElement;
         }

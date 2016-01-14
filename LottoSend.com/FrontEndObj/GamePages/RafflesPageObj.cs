@@ -71,13 +71,13 @@ namespace LottoSend.com.FrontEndObj.GamePages
         /// <summary>
         /// Clicks on "Buy Now" button
         /// </summary>
-        public CartObj ClickBuyNowButton()
+        public void ClickBuyNowButton()
         {
             _buyNowButton.Click();
             WaitjQuery();
             WaitForPageLoading();
 
-            return new CartObj(Driver);
+            //return new CartObj(Driver);
         }
     }
 }

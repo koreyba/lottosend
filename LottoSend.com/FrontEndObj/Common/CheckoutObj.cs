@@ -35,16 +35,16 @@ namespace LottoSend.com.FrontEndObj.Common
         [FindsBy(How = How.CssSelector, Using = "table.table.order > tbody > tr.bulk-buy> td.text-success.text-center")]
         private IWebElement _discountBulk;
 
-        [FindsBy(How = How.CssSelector, Using = "#payment table.table.order > tbody tr.blue > td.text-center > strong")]
+        [FindsBy(How = How.CssSelector, Using = "table.table.order > tbody tr.blue > td.text-center > strong")]
         private IWebElement _totalPrice;
 
         [FindsBy(How = How.CssSelector, Using = "div.control > .btn.btn-lg.btn-success.btn-xl.btn-block")]
         private IWebElement _completeYourOrder;
 
-        [FindsBy(How = How.CssSelector, Using = "#game div > table.table.order > tbody > tr:nth-child(1) > td.text-center > strong")]
+        [FindsBy(How = How.CssSelector, Using = "table.table.order > tbody > tr:nth-child(1) > td.text-center > strong")]
         private IWebElement _subTotalPrice;
 
-        [FindsBy(How = How.CssSelector, Using = "#game .btn.btn-info.pull-right")]
+        [FindsBy(How = How.CssSelector, Using = ".btn.btn-info.pull-right")]
         private IWebElement _removeCoupon; 
         /// <summary>
         /// Gets sub-total price in the checkout
