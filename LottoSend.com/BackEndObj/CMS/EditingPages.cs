@@ -31,6 +31,9 @@ namespace LottoSend.com.BackEndObj.CMS
         [FindsBy(How = How.CssSelector, Using = ".center-column-content .form-horizontal:nth-child(2)  .btn.btn-primary.pull-right")]
         protected IWebElement _updateButtonFirst;
 
+        [FindsBy(How = How.CssSelector, Using = "div.center-column-content >  form > div.text-center  > input")]
+        protected IWebElement _updateAllKeysButton;
+
         /// <summary>
         /// Gets text of the first "Content" field on the page
         /// </summary>
@@ -48,6 +51,19 @@ namespace LottoSend.com.BackEndObj.CMS
             _contentInputFirst.Clear();
             _contentInputFirst.SendKeys(content);
             _updateButtonFirst.Click();
+            WaitForPageLoading();
+            WaitAjax();
+        }
+
+        /// <summary>
+        /// Updates the first field "Content" on the page (doesn't matter which language is the first)
+        /// </summary>
+        /// <param name="content">new content of the field</param>
+        public void UpdateFirstLanguageContent_EditPlus(string content)
+        {
+            _contentInputFirst.Clear();
+            _contentInputFirst.SendKeys(content);
+            _updateAllKeysButton.Click(); //TODO: check if scrolling is needed
             WaitForPageLoading();
             WaitAjax();
         }

@@ -99,5 +99,17 @@ namespace LottoSend.com.BackEndObj.CMS
             WaitForPageLoading();
             WaitAjax();
         }
+
+        /// <summary>
+        /// Clicks on Edit+ button of the key and opens its editing+ page
+        /// </summary>
+        /// <param name="key"></param>
+        public void ClickEditPlusForKey(string key)
+        {
+            SearchKey(key);
+            Driver.FindElement(By.LinkText("Edit +")).Click();
+            WaitForPageLoading();
+            WaitAjax();
+        }
     }
 }

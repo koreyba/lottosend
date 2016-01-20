@@ -18,6 +18,27 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
         /// </summary>
         [Test]
         [Category("Critical")]
+        public void EditPlus_Translation_Content()
+        {
+            _commonActions.SignIn_in_admin_panel();
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "cms/sites/1/translations");
+
+            KeysPageObj pages = new KeysPageObj(_driver);
+            pages.ClickEditPlusForKey("account.balance.transaction.to");
+            EditTranslationObj snippetEditing = new EditTranslationObj(_driver);
+
+            string content = RandomGenerator.GenerateRandomString(50);
+            snippetEditing.UpdateFirstLanguageContent_EditPlus(content);
+            string real = snippetEditing.TextOfFirstContentInput;
+
+            Assert.AreEqual(content, snippetEditing.TextOfFirstContentInput);
+        }
+
+        /// <summary>
+        /// Edits a translation's content and checks if it was updated
+        /// </summary>
+        [Test]
+        [Category("Critical")]
         public void Edit_Translation_Content()
         {
             _commonActions.SignIn_in_admin_panel();
