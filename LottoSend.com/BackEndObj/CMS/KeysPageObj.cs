@@ -6,15 +6,15 @@ using OpenQA.Selenium.Support.PageObjects;
 namespace LottoSend.com.BackEndObj.CMS
 {
     /// <summary>
-    /// Page object of "Pages" page in CMS
+    /// Page object of "Keys" pages in CMS (translations, snippets, pages)
     /// </summary>
-    public class PagesObj : DriverCover
+    public class KeysPageObj : DriverCover
     {
-        public PagesObj(IWebDriver driver) : base(driver)
+        public KeysPageObj(IWebDriver driver) : base(driver)
         {
-            if (!Driver.Url.Contains("cms/sites/1/pages"))
+            if (!Driver.Url.Contains("cms/sites/1/"))
             {
-                throw new Exception("Sorry but it must be not 'Pages' page. Current URL is: " + Driver.Url + " ");
+                throw new Exception("Sorry but it must be not 'Pages/Snippets/Translations' page. Current URL is: " + Driver.Url + " ");
             }
 
             PageFactory.InitElements(Driver, this);
@@ -23,7 +23,7 @@ namespace LottoSend.com.BackEndObj.CMS
         [FindsBy(How = How.CssSelector, Using = "div.page-header a.btn.btn-default:nth-child(4)")]
         private IWebElement _newButton;
 
-        [FindsBy(How = How.CssSelector, Using = "#label")]
+        [FindsBy(How = How.CssSelector, Using = ".search-input.form-control.ui-autocomplete-input")]
         private IWebElement _searchInput;
 
         [FindsBy(How = How.CssSelector, Using = ".btn.search-submit")]
@@ -92,15 +92,12 @@ namespace LottoSend.com.BackEndObj.CMS
         /// Clicks on the key and opens its editing page
         /// </summary>
         /// <param name="key"></param>
-        /// <returns></returns>
-        public EditPageObj ClickEditKey(string key)
+        public void ClickEditKey(string key)
         {
             SearchKey(key);
             Driver.FindElement(By.LinkText(key)).Click();
             WaitForPageLoading();
             WaitAjax();
-
-            return new EditPageObj(Driver);
         }
     }
 }

@@ -77,25 +77,28 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="ThoughtWorks.Selenium.Core, Version=2.48.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selenium.RC.2.48.2\lib\net40\ThoughtWorks.Selenium.Core.dll</HintPath>
+    <Reference Include="ThoughtWorks.Selenium.Core, Version=2.49.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.RC.2.49.0\lib\net40\ThoughtWorks.Selenium.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="WebDriver, Version=2.48.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selenium.WebDriver.2.48.2\lib\net40\WebDriver.dll</HintPath>
+    <Reference Include="WebDriver, Version=2.49.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.WebDriver.2.49.0\lib\net40\WebDriver.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="WebDriver.Support, Version=2.48.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selenium.Support.2.48.2\lib\net40\WebDriver.Support.dll</HintPath>
+    <Reference Include="WebDriver.Support, Version=2.49.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.Support.2.49.0\lib\net40\WebDriver.Support.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BackEndObj\ChargePanelPages\ChargeFormObj.cs" />
     <Compile Include="BackEndObj\ChargePanelPages\ChargePanelObj.cs" />
+    <Compile Include="BackEndObj\CMS\EditingPages.cs" />
     <Compile Include="BackEndObj\CMS\EditPageObj.cs" />
+    <Compile Include="BackEndObj\CMS\EditSnippetObj.cs" />
+    <Compile Include="BackEndObj\CMS\EditTranslationObj.cs" />
     <Compile Include="BackEndObj\CMS\NewPageObj.cs" />
-    <Compile Include="BackEndObj\CMS\PagesObj.cs" />
+    <Compile Include="BackEndObj\CMS\KeysPageObj.cs" />
     <Compile Include="BackEndObj\DrawPages\DrawObj.cs" />
     <Compile Include="BackEndObj\DrawPages\DrawsObj.cs" />
     <Compile Include="BackEndObj\GroupGapePages\GroupsPageObj.cs" />
@@ -122,7 +125,7 @@
     <Compile Include="FrontEndObj\MyAccount\DepositMobileObj.cs" />
     <Compile Include="FrontEndObj\SignUp\SignUpForm.cs" />
     <Compile Include="Helpers\TestsSharedCode.cs" />
-    <Compile Include="TestCases\BackOffice\CMS\PagesTests.cs" />
+    <Compile Include="TestCases\BackOffice\CMS\CommonTests.cs" />
     <Compile Include="TestCases\BackOffice\GroupGameTests.cs" />
     <Compile Include="TestCases\BackOffice\ManualMatchTests.cs" />
     <Compile Include="TestCases\BackOffice\OrderProcessingTest.cs" />
