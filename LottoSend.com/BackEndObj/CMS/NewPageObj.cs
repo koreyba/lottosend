@@ -35,8 +35,11 @@ namespace LottoSend.com.BackEndObj.CMS
         [FindsBy(How = How.CssSelector, Using = "#new_page > div.form-group.form-actions > div > a > span")]
         private IWebElement _test;
 
-        //[FindsBy(How = How.CssSelector, Using = "div.CodeMirror-scroll")] 
-       // private IWebElement _contentEnInput;
+        /// <summary>
+        /// The first input field for content (doesn'a matter a language but the first one on the page)
+        /// </summary>
+        [FindsBy(How = How.CssSelector, Using = "#redactor-toolbar-0 + .redactor-editor:nth-child(2)")] 
+        private IWebElement _contentInputFirst;
 
         [FindsBy(How = How.CssSelector, Using = "div.form-group.form-actions input.btn-primary")]
         private IWebElement _createButton;
@@ -52,8 +55,8 @@ namespace LottoSend.com.BackEndObj.CMS
             _labelInput.SendKeys(label);
             _slugEnInput.SendKeys(label);
             _titleEnInput.SendKeys(label);
-            //_contentEnInput.SendKeys(label); doesn't work
-            ScrollToElement(_test);
+            _contentInputFirst.SendKeys(label); 
+           // ScrollToElement(_test);
             _createButton.Click();
             WaitForPageLoading();
             WaitAjax();

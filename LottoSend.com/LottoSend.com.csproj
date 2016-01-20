@@ -93,6 +93,7 @@
   <ItemGroup>
     <Compile Include="BackEndObj\ChargePanelPages\ChargeFormObj.cs" />
     <Compile Include="BackEndObj\ChargePanelPages\ChargePanelObj.cs" />
+    <Compile Include="BackEndObj\CMS\EditPageObj.cs" />
     <Compile Include="BackEndObj\CMS\NewPageObj.cs" />
     <Compile Include="BackEndObj\CMS\PagesObj.cs" />
     <Compile Include="BackEndObj\DrawPages\DrawObj.cs" />

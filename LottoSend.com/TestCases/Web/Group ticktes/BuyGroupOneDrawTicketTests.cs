@@ -280,7 +280,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         [Category("Critical")]
         public void Check_Record_Time_In_Draw()
         {
-            _orderVerifications.CheckRecordTimeInDraw("Elgordo");
+            _orderVerifications.CheckRecordTimeInDraw("El Gordo");
         }
 
         /// <summary>
@@ -291,11 +291,11 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         {
             if (_merchant != WayToPay.InternalBalance)
             {
-                _orderVerifications.CheckRecordEmailInDraw("Elgordo", _driverCover.Login);
+                _orderVerifications.CheckRecordEmailInDraw("El Gordo", _driverCover.Login);
             }
             else
             {
-                _orderVerifications.CheckRecordEmailInDraw("Elgordo", _driverCover.LoginTwo);
+                _orderVerifications.CheckRecordEmailInDraw("El Gordo", _driverCover.LoginTwo);
             }
         }
 
@@ -306,7 +306,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         [Category("Critical")]
         public void Check_Record_Type_In_Draw()
         {
-            _orderVerifications.CheckRecordBetTypeInDraw("Single", "Elgordo");
+            _orderVerifications.CheckRecordBetTypeInDraw("Single", "El Gordo");
         }
 
         /// <summary>
@@ -316,7 +316,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         [Category("Critical")]
         public void Check_Record_Price_In_Draw()
         {
-            _orderVerifications.CheckRecordPriceInDraw(_totalPrice, "Elgordo");
+            _orderVerifications.CheckRecordPriceInDraw(_totalPrice, "El Gordo");
         }
 
         /// <summary>

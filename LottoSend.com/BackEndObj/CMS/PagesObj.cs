@@ -87,5 +87,20 @@ namespace LottoSend.com.BackEndObj.CMS
 
             return Driver.FindElements(By.CssSelector("div > .table.table-hover.table-bordered:nth-child(2) > tbody > tr")).Count;
         }
+
+        /// <summary>
+        /// Clicks on the key and opens its editing page
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public EditPageObj ClickEditKey(string key)
+        {
+            SearchKey(key);
+            Driver.FindElement(By.LinkText(key)).Click();
+            WaitForPageLoading();
+            WaitAjax();
+
+            return new EditPageObj(Driver);
+        }
     }
 }

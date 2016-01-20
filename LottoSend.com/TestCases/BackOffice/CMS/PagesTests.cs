@@ -14,6 +14,25 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
         private CommonActions _commonActions;
 
         /// <summary>
+        /// Edits a page's content and checks if it was saved
+        /// </summary>
+        [Test]
+        [Category("Critical")]
+        public void Edit_Page_Content()
+        {
+            _commonActions.SignIn_in_admin_panel();
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "cms/sites/1/pages");
+
+            PagesObj pages = new PagesObj(_driver);
+            EditPageObj pageEditing = pages.ClickEditKey("content-test-key");
+
+            string content = RandomGenerator.GenerateRandomString(50);
+            pageEditing.UpdateFirstLanguageContent(content);
+
+            Assert.AreEqual(content, pageEditing.TextOfFirstContentInput);
+        }
+
+        /// <summary>
         /// Creates a page key in CMS and removes it (also use search in this test)
         /// </summary>
         [Test]
