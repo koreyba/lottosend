@@ -14,7 +14,47 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
         private CommonActions _commonActions;
 
         /// <summary>
-        /// Edits a translation's content and checks if it was updated
+        /// Edits a page's content and checks if it was updated using "Edit +" function 
+        /// </summary>
+        [Test]
+        [Category("Critical")]
+        public void EditPlus_Page_Content()
+        {
+            _commonActions.SignIn_in_admin_panel();
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "cms/sites/1/pages");
+
+            KeysPageObj pages = new KeysPageObj(_driver);
+            pages.ClickEditPlusForKey("content-test-key");
+            EditPageObj snippetEditing = new EditPageObj(_driver);
+
+            string content = RandomGenerator.GenerateRandomString(50);
+            snippetEditing.UpdateFirstLanguageContent_EditPlus(content);
+
+            Assert.AreEqual(content, snippetEditing.TextOfFirstContentInput);
+        }
+
+        /// <summary>
+        /// Edits a snippet's content and checks if it was updated using "Edit +" function 
+        /// </summary>
+        [Test]
+        [Category("Critical")]
+        public void EditPlus_Snippet_Content()
+        {
+            _commonActions.SignIn_in_admin_panel();
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "cms/sites/1/snippets");
+
+            KeysPageObj pages = new KeysPageObj(_driver);
+            pages.ClickEditPlusForKey("content-test-key");
+            EditSnippetObj snippetEditing = new EditSnippetObj(_driver);
+
+            string content = RandomGenerator.GenerateRandomString(50);
+            snippetEditing.UpdateFirstLanguageContent_EditPlus(content);
+
+            Assert.AreEqual(content, snippetEditing.TextOfFirstContentInput);
+        }
+
+        /// <summary>
+        /// Edits a translation's content and checks if it was updated using "Edit +" function 
         /// </summary>
         [Test]
         [Category("Critical")]
@@ -29,7 +69,6 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
 
             string content = RandomGenerator.GenerateRandomString(50);
             snippetEditing.UpdateFirstLanguageContent_EditPlus(content);
-            string real = snippetEditing.TextOfFirstContentInput;
 
             Assert.AreEqual(content, snippetEditing.TextOfFirstContentInput);
         }

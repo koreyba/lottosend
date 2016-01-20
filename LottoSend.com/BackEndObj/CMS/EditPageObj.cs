@@ -11,7 +11,8 @@ namespace LottoSend.com.BackEndObj.CMS
     {
         public EditPageObj(IWebDriver driver) : base(driver)
         {
-            if (!Driver.FindElement(By.CssSelector("div.page-header > h2")).Text.Equals("Edit Page"))
+            if (!Driver.FindElement(By.CssSelector("div.page-header > h2")).Text.Equals("Edit Page") &&
+                !Driver.FindElement(By.CssSelector("div.page-header > h2")).Text.Equals("Edit Multiple Pages"))
             {
                 throw new Exception("Sorry but it must be not 'Edit Page' page. Current URL is: " + Driver.Url + " ");
             }

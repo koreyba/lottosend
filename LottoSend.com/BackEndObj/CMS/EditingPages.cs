@@ -39,7 +39,17 @@ namespace LottoSend.com.BackEndObj.CMS
         /// </summary>
         public string TextOfFirstContentInput
         {
-            get { return _contentInputFirst.Text; }
+            get
+            {
+                if (_contentInputFirst.Text.Length != 0)
+                {
+                    return _contentInputFirst.Text;
+                }
+                else
+                {
+                    return _contentInputFirst.GetAttribute("value");
+                }
+            }
         }
 
         /// <summary>
@@ -63,6 +73,7 @@ namespace LottoSend.com.BackEndObj.CMS
         {
             _contentInputFirst.Clear();
             _contentInputFirst.SendKeys(content);
+            ScrollToElement(_updateAllKeysButton);
             _updateAllKeysButton.Click(); //TODO: check if scrolling is needed
             WaitForPageLoading();
             WaitAjax();
