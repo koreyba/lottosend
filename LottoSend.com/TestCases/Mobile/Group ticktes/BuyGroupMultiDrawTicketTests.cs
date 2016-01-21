@@ -298,7 +298,6 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         public void CleanUp()
         {
             _sharedCode.CleanUp(ref _driver);
-            _driver.Dispose();
         }
 
         public void SetUp()

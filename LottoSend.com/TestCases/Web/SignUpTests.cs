@@ -8,8 +8,6 @@ using LottoSend.com.Verifications;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.IE;
 
 namespace LottoSend.com.TestCases.Web
 {
