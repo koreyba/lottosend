@@ -29,6 +29,7 @@ namespace LottoSend.com.TestCases.Web
         /// </summary>
         [Test]
         [Category("Critical")]
+        [Category("Parallel")]
         public void Edit_Group_Ticket_And_Add_More()
         {
             _commonActions.Log_In_Front(_driverCover.LoginThree, _driverCover.Password);
@@ -54,6 +55,7 @@ namespace LottoSend.com.TestCases.Web
         /// </summary>
         [Test]
         [Category("Critical")]
+        [Category("Parallel")]
         public void Edit_Raffle_Ticket_And_Add_More()
         {
             _commonActions.Log_In_Front(_driverCover.LoginThree, _driverCover.Password);
@@ -80,6 +82,7 @@ namespace LottoSend.com.TestCases.Web
         /// </summary>
         [Test]
         [Category("Critical")]
+        [Category("Parallel")]
         public void Delete_Raffle_Ticket_From_Cart()
         {
             _commonActions.Log_In_Front(_driverCover.LoginThree, _driverCover.Password);
@@ -100,6 +103,7 @@ namespace LottoSend.com.TestCases.Web
         /// </summary>
         [Test]
         [Category("Critical")]
+        [Category("Parallel")]
         public void Delete_Two_Group_Ticket_From_Cart()
         {
             _commonActions.Log_In_Front(_driverCover.LoginThree, _driverCover.Password);
@@ -127,6 +131,7 @@ namespace LottoSend.com.TestCases.Web
         /// </summary>
         [Test]
         [Category("Critical")]
+        [Category("Parallel")]
         public void Delete_Single_Ticket_From_Cart()
         {
             _commonActions.Log_In_Front(_driverCover.LoginThree, _driverCover.Password);

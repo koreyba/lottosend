@@ -24,6 +24,7 @@ namespace LottoSend.com.TestCases.BackOffice
         /// </summary>
         [Test]
         [Category("Critical")]
+        [Category("Parallel")]
         public void CreateNewGroupTicket()
         {
             _commonActions.SignIn_in_admin_panel();

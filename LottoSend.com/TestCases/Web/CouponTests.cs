@@ -24,6 +24,7 @@ namespace LottoSend.com.TestCases.Web
         /// <param name="code"></param>
         [TestCase("ForFree100")]
         [Category("Critical")]
+        [Category("Parallel")]
         public void Pay_With_Free_Coupon(string code)
         {
             // sign up    
@@ -45,6 +46,7 @@ namespace LottoSend.com.TestCases.Web
         /// <param name="code"></param>
         [TestCase("Denis666")]
         [Category("Critical")]
+        [Category("Parallel")]
         public void Cancel_Coupon(string code)
         {
             // sign up    
@@ -68,6 +70,7 @@ namespace LottoSend.com.TestCases.Web
         /// <param name="discount"></param>
         [TestCase("Denis666", 50)]
         [Category("Critical")]
+        [Category("Parallel")]
         public void Check_Discount_Checkout(string code, double discount)
         {
             // sign up    

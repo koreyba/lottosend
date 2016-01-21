@@ -26,6 +26,7 @@ namespace LottoSend.com.TestCases.Web
         /// </summary>
       //  [Test]
         [Category("Critical")]
+        [Category("Parallel")]
         public void Login_Express_Checkout_Game_Page()
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "");
@@ -69,6 +70,7 @@ namespace LottoSend.com.TestCases.Web
         /// </summary>
         [Test]
         [Category("Critical")]
+        [Category("Parallel")]
         public void Login_On_SignIn_Page_One()
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "");
@@ -86,6 +88,7 @@ namespace LottoSend.com.TestCases.Web
         /// </summary>
         [Test]
         [Category("Critical")]
+        [Category("Parallel")]
         public void Login_In_PopUp_Form()
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "");

@@ -36,6 +36,7 @@ namespace LottoSend.com.TestCases.Mobile
         /// </summary>
         //[Test]
         [Category("Critical")]
+        [Category("Parallel")]
         public void SignUp_Express_Checkout_In_Cart()
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
@@ -57,6 +58,7 @@ namespace LottoSend.com.TestCases.Mobile
         /// </summary>
         //[Test]
         [Category("Critical")]
+        [Category("Parallel")]
         public void SignUp_Express_Checkout_Game_Page()
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/play/eurojackpot/");
@@ -80,6 +82,7 @@ namespace LottoSend.com.TestCases.Mobile
         /// </summary>
         [Test]
         [Category("Critical")]
+        [Category("Parallel")]
         public void Check_Back_Office_User()
         {
             _email = _commonActions.Sign_Up_Mobile();

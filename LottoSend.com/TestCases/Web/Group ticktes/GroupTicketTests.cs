@@ -26,6 +26,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         /// </summary>
         [Test]
         [Category("Critical")]
+        [Category("Parallel")]
         public void If_Share_Removed_From_Draw_Returns_To_Ticket()
         {
             _commonActions.Log_In_Front(_driverCover.LoginFive, _driverCover.Password);
@@ -49,6 +50,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         /// </summary>
         [Test]
         [Category("Critical")]
+        [Category("Parallel")]
         public void If_Share_Removed_From_Cart_Returns_To_Ticket()
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/play/el-gordo-de-la-primitiva/");

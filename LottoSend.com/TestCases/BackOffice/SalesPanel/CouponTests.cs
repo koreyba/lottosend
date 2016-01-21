@@ -21,6 +21,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         /// <param name="code"></param>
         [TestCase("ForFree100")]
         [Category("Critical")]
+        [Category("Parallel")]
         public void Pay_With_Free_Coupon(string code)
         {
             _commonActions.SignIn_in_admin_panel();
@@ -40,6 +41,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         /// <param name="code"></param>
         [TestCase("Denis666")]
         [Category("Critical")]
+        [Category("Parallel")]
         public void Cancel_Coupon(string code)
         {
             _commonActions.SignIn_in_admin_panel();
@@ -64,6 +66,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         /// <param name="discount"></param>
         [TestCase("Denis666", 50)]
         [Category("Critical")]
+        [Category("Parallel")]
         public void Check_Discount_Checkout(string code, double discount)
         {
             _commonActions.SignIn_in_admin_panel();

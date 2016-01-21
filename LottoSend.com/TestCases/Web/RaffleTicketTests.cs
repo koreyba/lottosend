@@ -24,6 +24,7 @@ namespace LottoSend.com.TestCases.Web
         /// </summary>
         [Test]
         [Category("Critical")]
+        [Category("Parallel")]
         public void If_Share_Removed_From_Cart_Returns_To_Ticket()
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/loteria-del-torro/");

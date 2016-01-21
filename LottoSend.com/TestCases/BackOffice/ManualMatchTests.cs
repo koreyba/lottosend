@@ -48,6 +48,7 @@ namespace LottoSend.com.TestCases.BackOffice
         [TestCase("EuroJackpot", "Additionals Guarantee")]
         [TestCase("Powerball", "New Winning")]
         [TestCase("Powerball", "New Random")]
+        [Category("Parallel")]
         public void Add_New_Scanned_Image_Multiple(string lottery, string group)
         {
             _commonActions.SignIn_in_admin_panel();

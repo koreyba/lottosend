@@ -21,6 +21,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         [Test]
         [Category("Critical")]
         [Category("Test")]
+        [Category("Parallel")]
         public void Sign_Up_In_Sales_Panel()
         {
             _commonActions.SignIn_in_admin_panel();

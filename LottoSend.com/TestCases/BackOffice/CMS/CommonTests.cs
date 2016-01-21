@@ -18,6 +18,7 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
         /// </summary>
         [Test]
         [Category("Critical")]
+        [Category("Parallel")]
         public void EditPlus_Page_Content()
         {
             _commonActions.SignIn_in_admin_panel();
@@ -38,6 +39,7 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
         /// </summary>
         [Test]
         [Category("Critical")]
+        [Category("Parallel")]
         public void EditPlus_Snippet_Content()
         {
             _commonActions.SignIn_in_admin_panel();
@@ -58,6 +60,7 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
         /// </summary>
         [Test]
         [Category("Critical")]
+        [Category("Parallel")]
         public void EditPlus_Translation_Content()
         {
             _commonActions.SignIn_in_admin_panel();
@@ -78,6 +81,7 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
         /// </summary>
         [Test]
         [Category("Critical")]
+        [Category("Parallel")]
         public void Edit_Translation_Content()
         {
             _commonActions.SignIn_in_admin_panel();
@@ -98,6 +102,7 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
         /// </summary>
         [Test]
         [Category("Critical")]
+        [Category("Parallel")]
         public void Edit_Snippet_Content()
         {
             _commonActions.SignIn_in_admin_panel();
@@ -118,6 +123,7 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
         /// </summary>
         [Test]
         [Category("Critical")]
+        [Category("Parallel")]
         public void Edit_Page_Content()
         {
             _commonActions.SignIn_in_admin_panel();
@@ -138,6 +144,7 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
         /// </summary>
         [Test]
         [Category("Critical")]
+        [Category("Parallel")]
         public void Remove_Page_Key()
         {
             _commonActions.SignIn_in_admin_panel();

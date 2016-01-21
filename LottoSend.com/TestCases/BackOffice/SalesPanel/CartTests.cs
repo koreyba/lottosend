@@ -28,6 +28,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         /// <param name="lotteryTwo"></param>
         [TestCase("El Gordo", "SuperLotto Plus")]
         [Category("Critical")]
+        [Category("Parallel")]
         public void Remove_Two_Group_Tickets_From_Cart(string lotteryOne, string lotteryTwo)
         {
             _commonActions.SignIn_in_admin_panel();
@@ -50,6 +51,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         /// </summary>
         [TestCase("Loteria de Navidad")]
         [Category("Critical")]
+        [Category("Parallel")]
         public void Remove_Raffle_Ticket_From_Cart(string raffleName)
         {
             _commonActions.SignIn_in_admin_panel();
@@ -74,6 +76,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         /// </summary>
         [TestCase("Mega Millions")]
         [Category("Critical")]
+        [Category("Parallel")]
         public void Remove_Regular_Ticket_From_Cart(string lottery)
         {
             _commonActions.SignIn_in_admin_panel();
