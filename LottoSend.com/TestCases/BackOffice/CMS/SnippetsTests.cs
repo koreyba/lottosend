@@ -14,6 +14,49 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
         private CommonActions _commonActions;
 
         /// <summary>
+        /// Searches a key on the "snippets" page by content and checks how many results are found (should be 1)
+        /// </summary>
+        [Test]
+        [Category("Critical")]
+        [Category("Parallel")]
+        public void Search_Snippet_By_Content()
+        {
+            _commonActions.SignIn_in_admin_panel();
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "cms/sites/1/snippets");
+
+            KeysPageObj keysPage = new KeysPageObj(_driver);
+
+            keysPage.ClickEditKey("content-test-key");
+            EditSnippetObj pageEditing = new EditSnippetObj(_driver);
+
+            string content = RandomGenerator.GenerateRandomString(50);
+            pageEditing.UpdateFirstLanguageContent(content);
+
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "cms/sites/1/snippets");
+
+            int numberOfResults = keysPage.SearchKey(content, SearchBy.Content);
+
+            Assert.AreEqual(1, numberOfResults, "Sorry but the key was not found ");
+        } 
+
+        /// <summary>
+        /// Searches a key on the snippets page and checks how many results are found (should be 1)
+        /// </summary>
+        [Test]
+        [Category("Critical")]
+        [Category("Parallel")]
+        public void Search_Snippet_By_Key()
+        {
+            _commonActions.SignIn_in_admin_panel();
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "cms/sites/1/snippets");
+
+            KeysPageObj keysPage = new KeysPageObj(_driver);
+            int numberOfResults = keysPage.SearchKey("content-test-key", SearchBy.Key);
+
+            Assert.AreEqual(1, numberOfResults, "Sorry but the key was not found ");
+        }  
+
+        /// <summary>
         /// Edits a snippet's content and checks if it was updated using "mass edit" function
         /// </summary>
         [Test]

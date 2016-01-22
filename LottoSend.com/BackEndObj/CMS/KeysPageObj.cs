@@ -34,6 +34,9 @@ namespace LottoSend.com.BackEndObj.CMS
 
         private string _deleteButton = ".btn.btn-small.btn-danger";
 
+        [FindsBy(How = How.CssSelector, Using = "#search_by")]
+        private IWebElement _searchBySelect;
+
         /// <summary>
         /// Click "New" button on "Pages" page
         /// </summary>
@@ -53,7 +56,7 @@ namespace LottoSend.com.BackEndObj.CMS
         /// <param name="key"></param>
         public void RemoveKey(string key)
         {
-            if (SearchKey(key) == 0)
+            if (SearchKey(key, SearchBy.Key) == 0)
             {
                 throw new Exception("Sorry but the key '" + key + "' was not found on the current page: " + Driver.Url + " ");
             }
@@ -78,9 +81,15 @@ namespace LottoSend.com.BackEndObj.CMS
         /// Provide searching of a key and tells how many keys were found. You have to be on "Pages" page
         /// </summary>
         /// <param name="key"></param>
+        /// <param name="howToSearch"></param>
         /// <returns>Number of keys found</returns>
-        public int SearchKey(string key)
+        public int SearchKey(string key, SearchBy howToSearch)
         {
+            if (howToSearch == SearchBy.Content)
+            {
+                ChooseElementInSelect("Content", _searchBySelect, SelectBy.Text);
+            }
+
             _searchInput.SendKeys(key);
             _searchKeyButton.Click();
             WaitAjax();
@@ -94,7 +103,7 @@ namespace LottoSend.com.BackEndObj.CMS
         /// <param name="key"></param>
         public void ClickEditKey(string key)
         {
-            SearchKey(key);
+            SearchKey(key, SearchBy.Key);
             Driver.FindElement(By.LinkText(key)).Click();
             WaitForPageLoading();
             WaitAjax();
@@ -106,7 +115,7 @@ namespace LottoSend.com.BackEndObj.CMS
         /// <param name="key"></param>
         public void ClickEditPlusForKey(string key)
         {
-            SearchKey(key);
+            SearchKey(key, SearchBy.Key);
             Driver.FindElement(By.LinkText("Edit +")).Click();
             WaitForPageLoading();
             WaitAjax();

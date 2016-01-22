@@ -21,4 +21,13 @@
         Text,
         Index
     }
+
+    /// <summary>
+    /// Ways to search information
+    /// </summary>
+    public enum SearchBy
+    {
+        Key,
+        Content
+    }
 }
