@@ -97,6 +97,7 @@
     <Compile Include="BackEndObj\CMS\EditPageObj.cs" />
     <Compile Include="BackEndObj\CMS\EditSnippetObj.cs" />
     <Compile Include="BackEndObj\CMS\EditTranslationObj.cs" />
+    <Compile Include="BackEndObj\CMS\MassEditPageObj.cs" />
     <Compile Include="BackEndObj\CMS\NewPageObj.cs" />
     <Compile Include="BackEndObj\CMS\KeysPageObj.cs" />
     <Compile Include="BackEndObj\DrawPages\DrawObj.cs" />

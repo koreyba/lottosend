@@ -14,6 +14,27 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
         private CommonActions _commonActions;
 
         /// <summary>
+        /// Edits a translation's content and checks if it was updated using "mass edit" function
+        /// </summary>
+        [Test]
+        [Category("Critical")]
+        [Category("Parallel")]
+        public void MassEdit_Translation_Content()
+        {
+            _commonActions.SignIn_in_admin_panel();
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "cms/sites/1/translations/mass_edit?locale=ro");
+
+            MassEditPageObj massEdit = new MassEditPageObj(_driver);
+            massEdit.SearchKey("account.balance.transaction.to");
+
+            string content = RandomGenerator.GenerateRandomString(50);
+            massEdit.UpdateFirstLanguageContent_EditPlus(content);
+            massEdit.SearchKey("account.balance.transaction.to");
+
+            Assert.AreEqual(content, massEdit.TextOfFirstContentInput);
+        }  
+
+        /// <summary>
         /// Edits a translation's content and checks if it was updated using "Edit +" function 
         /// </summary>
         [Test]
