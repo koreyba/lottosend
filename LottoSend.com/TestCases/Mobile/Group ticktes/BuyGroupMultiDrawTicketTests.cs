@@ -194,7 +194,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         /// Checks a time when the last bet (in the first record) was made
         /// </summary>
         [Test]
-        [Category("Critical")]
+       // [Category("Critical")]
         public void Check_Record_Time_In_Draw()
         {
             SetUp();
@@ -232,7 +232,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         /// Checks price of the last bet (the first record). Must be the same as in the front-end
         /// </summary>
         [Test]
-        [Category("Critical")]
+        //[Category("Critical")]
         public void Check_Record_Price_In_Draw()
         {
             SetUp();

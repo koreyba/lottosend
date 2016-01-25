@@ -223,7 +223,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         /// Cheks the email of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
         [Test]
-        [Category("Critical")]
+       // [Category("Critical")]
         public void Check_Transactions_Email_In_Transactions()
         {
             if (_merchant != WayToPay.InternalBalance)
@@ -267,7 +267,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         /// Checks an amount of money in the first record in transactions (back)
         /// </summary>
         [Test]
-        [Category("Critical")]
+       // [Category("Critical")]
         public void Check_Amount_In_Transaction_Back()
         {
             _orderVerifications.CheckAmountInTransactions_Back(_totalPrice, 1);
@@ -313,7 +313,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         /// Checks price of the last bet (the first record). Must be the same as in the front-end
         /// </summary>
         [Test]
-        [Category("Critical")]
+       // [Category("Critical")]
         public void Check_Record_Price_In_Draw()
         {
             _orderVerifications.CheckRecordPriceInDraw(_totalPrice, "El Gordo");

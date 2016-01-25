@@ -137,6 +137,7 @@ namespace LottoSend.com.FrontEndObj.Common
         /// </summary>
         public void PayWithNeteller()
         {
+           // ScrollDown();
             Thread.Sleep(TimeSpan.FromSeconds(1));
             WaitForElement(_neteller, 15);
             Thread.Sleep(TimeSpan.FromSeconds(1));

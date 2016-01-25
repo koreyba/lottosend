@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using LottoSend.com.FrontEndObj.MyAccount;
 using LottoSend.com.Verifications;
 using NUnit.Framework;
@@ -33,7 +34,15 @@ namespace LottoSend.com.TestCases.Mobile
             _depositAmount = 30;
 
             SetUp();
-            Deposit_Money(merchant);
+            try
+            {
+                Deposit_Money(merchant);
+            }
+            catch (Exception e)
+            {
+                CleanUp();
+                throw new Exception("Exception was thrown while executing: " + e.Message + " ");
+            }
             CleanUp();
         }
 
@@ -74,7 +83,7 @@ namespace LottoSend.com.TestCases.Mobile
         /// Cheks the email of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
         [Test]
-        [Category("Critical")]
+       // [Category("Critical")]
         public void Check_Transactions_Email_In_Transactions()
         {
             _orderVerifications.CheckTransactionsEmailInTransactions_Back(_email);
@@ -84,7 +93,7 @@ namespace LottoSend.com.TestCases.Mobile
         /// Cheks the merchant of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
         [Test]
-        [Category("Critical")]
+       // [Category("Critical")]
         public void Check_Transaction_Merchant_In_Transactions()
         {
             _orderVerifications.CheckTransactionMerchantInTransactions_Back(_merchant);
@@ -94,7 +103,7 @@ namespace LottoSend.com.TestCases.Mobile
         /// Cheks the time of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
         [Test]
-        [Category("Critical")]
+       // [Category("Critical")]
         public void a_Check_Transaction_Time_In_Transactions()
         {
             _orderVerifications.CheckTransactionTimeInTransactions_Back();

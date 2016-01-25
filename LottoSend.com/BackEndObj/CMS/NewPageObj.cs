@@ -56,7 +56,7 @@ namespace LottoSend.com.BackEndObj.CMS
             _slugEnInput.SendKeys(label);
             _titleEnInput.SendKeys(label);
             _contentInputFirst.SendKeys(label); 
-            ScrollToElement(_test);
+            ScrollDown();
             _createButton.Click();
             WaitForPageLoading();
             WaitAjax();

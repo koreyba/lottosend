@@ -227,7 +227,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         /// Cheks the email of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
         [Test]
-        [Category("Critical")]
+       // [Category("Critical")]
         public void Check_Transactions_Email_In_Transactions()
         {
             if (_merchant != WayToPay.InternalBalance)
@@ -254,7 +254,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         /// Cheks the time of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
         [Test]
-        [Category("Critical")]
+       // [Category("Critical")]
         public void a_Check_Transaction_Time_In_Transactions()
         {
             _orderVerifications.CheckTransactionTimeInTransactions_Back();
@@ -274,7 +274,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         /// Checks a time when the last bet (in the first record) was made
         /// </summary>
         [Test]
-        [Category("Critical")]
+      //  [Category("Critical")]
         public void Check_Record_Time_In_Draw()
         {
             _orderVerifications.CheckRecordTimeInDraw("Eurojackpot");
@@ -300,7 +300,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         /// Checks type of the ticket in the first record (must be Single)
         /// </summary>
         [Test]
-        [Category("Critical")]
+      //  [Category("Critical")]
         public void Check_Record_Type_In_Draw()
         {
             _orderVerifications.CheckRecordBetTypeInDraw("Bulk buy", "Eurojackpot");
@@ -310,7 +310,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         /// Checks price of the last bet (the first record). Must be the same as in the front-end
         /// </summary>
         [Test]
-        [Category("Critical")]
+      //  [Category("Critical")]
         public void Check_Record_Price_In_Draw()
         {
             _orderVerifications.CheckRecordPriceInDraw(_totalPrice, _numberOfDraws);

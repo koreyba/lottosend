@@ -1,4 +1,5 @@
-﻿using LottoSend.com.FrontEndObj.MyAccount;
+﻿using System;
+using LottoSend.com.FrontEndObj.MyAccount;
 using LottoSend.com.Verifications;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -41,7 +42,15 @@ namespace LottoSend.com.TestCases.Web
             depositAmount = 30;
 
             SetUp();
-            Deposit_Money(merchant);
+            try
+            {
+                Deposit_Money(merchant);
+            }
+            catch (Exception e)
+            {
+                CleanUp();
+                throw new Exception("Exception was thrown while executing: " + e.Message + " ");
+            }
             CleanUp();
         }
 
@@ -83,7 +92,7 @@ namespace LottoSend.com.TestCases.Web
         /// Checks a type of the first record in transactions (front)
         /// </summary>
         [Test]
-        [Category("Critical")]
+       // [Category("Critical")]
         public void Check_Type_Of_Transaction_Front()
         {
             _orderVerifications.CheckTypeOfTransaction_Front("Deposit", _email, _driverCover.Password);
@@ -93,7 +102,7 @@ namespace LottoSend.com.TestCases.Web
         /// Checks date of the first and seconds records in users account - transactions (front-end)
         /// </summary>
         [Test]
-        [Category("Critical")]
+       // [Category("Critical")]
         public void Check_Transaction_Date_Front()
         {
             _orderVerifications.CheckTransactionDate_Front(_email, _driverCover.Password);
@@ -103,7 +112,7 @@ namespace LottoSend.com.TestCases.Web
         /// Checks if the transaction has correct status on "Transactions" page
         /// </summary>
         [Test]
-        [Category("Critical")]
+       // [Category("Critical")]
         public void Check_Transactions_State_In_Transactions()
         {
             _orderVerifications.CheckTransactionsStateInTransactions_Back("succeed");
@@ -122,7 +131,7 @@ namespace LottoSend.com.TestCases.Web
         /// Cheks the merchant of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
         [Test]
-        [Category("Critical")]
+      //  [Category("Critical")]
         public void Check_Transaction_Merchant_In_Transactions()
         {
             _orderVerifications.CheckTransactionMerchantInTransactions_Back(_merchant);
@@ -132,7 +141,7 @@ namespace LottoSend.com.TestCases.Web
         /// Cheks the time of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
         [Test]
-        [Category("Critical")]
+      //  [Category("Critical")]
         public void a_Check_Transaction_Time_In_Transactions()
         {
             _orderVerifications.CheckTransactionTimeInTransactions_Back();

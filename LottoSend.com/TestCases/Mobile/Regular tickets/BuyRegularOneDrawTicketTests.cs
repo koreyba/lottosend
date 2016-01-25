@@ -126,7 +126,7 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
         /// Cheks the time of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
         [Test]
-        [Category("Critical")]
+        //[Category("Critical")]
         public void a_Check_Transaction_Time_In_Transactions()
         {
             SetUp();
@@ -137,7 +137,7 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
         /// Checks an amount of money in the first record in transactions (back)
         /// </summary>
         [Test]
-        [Category("Critical")]
+       // [Category("Critical")]
         public void Check_Amount_In_Transaction_Back()
         {
             SetUp();

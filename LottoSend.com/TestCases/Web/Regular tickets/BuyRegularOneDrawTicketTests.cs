@@ -161,7 +161,7 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         /// Checks lottery name of the first and the second records in user's account - transactions in the front-end
         /// </summary>
         [Test]
-        [Category("Critical")]
+      //  [Category("Critical")]
         public void Check_Transaction_Lottery_Name_Front()
         {
             if (_merchant != WayToPay.InternalBalance)
@@ -238,7 +238,7 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         /// Cheks the merchant of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
         [Test]
-        [Category("Critical")]
+       // [Category("Critical")]
         public void Check_Transaction_Merchant_In_Transactions()
         {
             _orderVerifications.CheckTransactionMerchantInTransactions_Back(_merchant);
@@ -248,7 +248,7 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         /// Checks if the transaction has correct status on "Transactions" page
         /// </summary>
         [Test]
-        [Category("Critical")]
+        //[Category("Critical")]
         public void Check_Transactions_State_In_Transactions()
         {
             _orderVerifications.CheckTransactionsStateInTransactions_Back("succeed");
@@ -258,7 +258,7 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         /// Cheks the time of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
         [Test]
-        [Category("Critical")]
+      //  [Category("Critical")]
         public void a_Check_Transaction_Time_In_Transactions()
         {
             _orderVerifications.CheckTransactionTimeInTransactions_Back();
@@ -277,7 +277,7 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         /// Checks a time when the last bet (in the first record) was made
         /// </summary>
         [Test]
-        [Category("Critical")]
+      //  [Category("Critical")]
         public void Check_Record_Time_In_Draw()
 
         {
@@ -304,7 +304,7 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         /// Checks type of the ticket in the first record (must be Single)
         /// </summary>
         [Test]
-        [Category("Critical")]
+       // [Category("Critical")]
         public void Check_Record_Type_In_Draw()
         {
             _orderVerifications.CheckRecordBetTypeInDraw("Single", "El Gordo");

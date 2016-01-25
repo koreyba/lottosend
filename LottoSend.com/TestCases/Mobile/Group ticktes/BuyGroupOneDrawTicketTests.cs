@@ -126,7 +126,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         /// Cheks the time of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
         [Test]
-        [Category("Critical")]
+       // [Category("Critical")]
         public void a_Check_Transaction_Time_In_Transactions()
         {
             SetUp();
@@ -170,7 +170,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         /// </summary>
         [TestCase(1)]
         [TestCase(2)]
-        [Category("Critical")]
+        //[Category("Critical")]
         public void Check_TransactionType_In_Transactions_Back(int numberOfRecordToCheck)
         {
             SetUp();

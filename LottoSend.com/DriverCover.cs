@@ -323,7 +323,7 @@ namespace LottoSend.com
         /// </summary>
         /// <param name="webElement">Element</param>
         /// <returns>Element</returns>
-        public IWebElement ScrollToElement(IWebElement webElement)
+        public void ScrollDown()
         {
             //Actions action = new Actions(Driver);
             //action.MoveToElement(webElement).Build().Perform();
@@ -331,7 +331,7 @@ namespace LottoSend.com
             ((IJavaScriptExecutor)Driver).ExecuteScript("window.scrollBy(" + 0 + "," + 10000000 + ");");
 
 
-            return webElement;
+           // return webElement;
         }
 
         /// <summary>
