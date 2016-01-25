@@ -1,4 +1,5 @@
-﻿using LottoSend.com.FrontEndObj;
+﻿using System;
+using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.Verifications;
 using OpenQA.Selenium;
@@ -152,12 +153,22 @@ namespace LottoSend.com.TestCases.Web
         [TearDown]
         public void CleanUp()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+            try
             {
-                //Removes all tickets from the cart to make sure all other tests will work well
-                _commonActions.DeleteAllTicketFromCart_Front();
+                if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+                {
+                    //Removes all tickets from the cart to make sure all other tests will work well
+                    _commonActions.DeleteAllTicketFromCart_Front();
+                }
             }
-            _driver.Dispose();
+            catch (Exception e)
+            {
+
+            }
+            finally
+            {
+                _driver.Dispose();
+            }
         }
 
         [SetUp]

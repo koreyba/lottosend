@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.Verifications;
@@ -176,12 +177,22 @@ namespace LottoSend.com.TestCases.Mobile
         [TearDown]
         public void CleanUp()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+            try
             {
-                //Removes all tickets from the cart to make sure all other tests will work well
-                _commonActions.DeleteAllTicketFromCart_Front();
+                if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+                {
+                    //Removes all tickets from the cart to make sure all other tests will work well
+                    _commonActions.DeleteAllTicketFromCart_Front();
+                }
             }
-            _driver.Dispose();
+            catch (Exception e)
+            {
+
+            }
+            finally
+            {
+                _driver.Dispose();
+            }
         }
 
         [SetUp]
