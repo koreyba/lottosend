@@ -26,7 +26,8 @@ namespace LottoSend.com.TestCases.Mobile
         private WayToPay _merchant;
         private double _balanceBeforePayment;
         private double _depositAmount;
-        private string _device; 
+        private string _device;
+        private bool _setUpFailed = false;
 
         public DepositSuccessTests(string device, WayToPay merchant)
         {
@@ -41,6 +42,7 @@ namespace LottoSend.com.TestCases.Mobile
             }
             catch (Exception e)
             {
+                _setUpFailed = true;
                 CleanUp();
                 throw new Exception("Exception was thrown while executing: " + e.Message + " ");
             }
@@ -127,10 +129,10 @@ namespace LottoSend.com.TestCases.Mobile
             return options;
         }
 
-        [TearDown]
+        [TearDown] 
         public void CleanUp()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
             {
                 _driverCover.TakeScreenshot();
             }

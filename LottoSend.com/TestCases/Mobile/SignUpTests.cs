@@ -26,6 +26,7 @@ namespace LottoSend.com.TestCases.Mobile
         private string _email;
         private WebUserVerifications _usersVerifications;
         private string _device;
+        private bool _setUpFailed = false;
 
         public SignUpTests(string device)
         {
@@ -111,7 +112,7 @@ namespace LottoSend.com.TestCases.Mobile
         [TearDown]
         public void CleanUp()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
             {
                 _driverCover.TakeScreenshot();
             }

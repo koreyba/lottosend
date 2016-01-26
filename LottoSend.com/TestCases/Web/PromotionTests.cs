@@ -35,6 +35,7 @@ namespace LottoSend.com.TestCases.Web
         private BalanceVerifications _verifications;
         private double _totalPrice;
         private WayToPay _merchant;
+        private bool _setUpFailed = false;
 
         public PromotionTests(WayToPay merchant)
         {
@@ -249,7 +250,7 @@ namespace LottoSend.com.TestCases.Web
         [TearDown]
         public void CleanUp()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
             {
                 _driverCover.TakeScreenshot();
             }

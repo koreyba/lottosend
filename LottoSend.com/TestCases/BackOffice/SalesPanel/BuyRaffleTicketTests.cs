@@ -21,6 +21,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
          private double _totalPrice;
          private TestsSharedCode _sharedCode;
          private CartVerifications _cartVerifications;
+         private bool _setUpFailed = false;
 
          public BuyRaffleTicketTests(WayToPay merchant, string raffleName)
          {
@@ -35,6 +36,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
              } 
              catch (Exception e)
              {
+                 _setUpFailed = true;
                  CleanUp();
                  if (_merchant == WayToPay.InternalBalance)
                  {
@@ -217,7 +219,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         [TearDown]
         public void CleanUp()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
             {
                 _driverCover.TakeScreenshot();
             }

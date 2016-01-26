@@ -21,6 +21,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         private DriverCover _driverCover;
         private CommonActions _commonActions;
         private TestsSharedCode _sharedCode;
+        private bool _setUpFailed = false;
 
         /// <summary>
         /// Buys a group ticket and removes it from its draw. Checks if the share was returned to the ticket
@@ -72,7 +73,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         [TearDown]
         public void CleanUp()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
             {
                 _driverCover.TakeScreenshot();
             }

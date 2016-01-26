@@ -435,7 +435,8 @@ namespace LottoSend.com
             try
             {
                 Screenshot ss = ((ITakesScreenshot)Driver).GetScreenshot();
-                ss.SaveAsFile(@"C:\Screenshots\" + TestContext.CurrentContext.Test.FullName.Replace("<", "(").Replace(">", ")") + DateTime.Now.DayOfWeek + DateTime.Now.Day + "." + DateTime.Now.Month + "." + DateTime.Now.Year + "_Time-" + DateTime.Now.Hour + "." + DateTime.Now.Minute + "_" + RandomGenerator.GenerateRandomString(10) + ".jpg", ImageFormat.Jpeg);
+                var filePath = @"C:\Screenshots\" + TestContext.CurrentContext.Test.FullName.Replace("<", "(").Replace(">", ")").Replace("\"", "'") + DateTime.Now.DayOfWeek + DateTime.Now.Day + "." + DateTime.Now.Month + "." + DateTime.Now.Year + "_Time-" + DateTime.Now.Hour + "." + DateTime.Now.Minute + "_" + RandomGenerator.GenerateRandomString(10) + ".jpg";
+                ss.SaveAsFile(filePath, ImageFormat.Jpeg);
             }
             catch (Exception e)
             {

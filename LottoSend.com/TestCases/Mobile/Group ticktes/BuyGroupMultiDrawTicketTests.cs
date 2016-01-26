@@ -31,6 +31,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         private string _device;
         private CartVerifications _cartVerifications;
         private TestsSharedCode _sharedCode;
+        private bool _setUpFailed = false;
 
         public BuyGroupMultiDrawTicketTests(string device, WayToPay merchant)
         {
@@ -46,6 +47,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
             }
             catch (Exception e)
             {
+                _setUpFailed = true;
                 CleanUp();
 
                 if (_merchant == WayToPay.InternalBalance)
@@ -298,7 +300,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         [TearDown]
         public void CleanUp()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
             {
                 _driverCover.TakeScreenshot();
             }

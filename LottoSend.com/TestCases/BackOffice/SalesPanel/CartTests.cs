@@ -21,6 +21,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         private CommonActions _commonActions;
         private BackOfficeVerifications _backOfficeVerifications;
         private CartVerifications _cartVerifications;
+        private bool _setUpFailed = false;
 
         /// <summary>
         /// Adds two different lottery group ticket to the cart and delets them. Checks if were added and deleted
@@ -102,7 +103,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         {
             try
             {
-                if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+                if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
                 {
                     _driverCover.TakeScreenshot();
                     //Removes all tickets from the cart to make sure all other tests will work well

@@ -38,6 +38,7 @@ namespace LottoSend.com.TestCases.Web
         private CommonActions _commonActions;
         private WayToPay _merchant;
         private TestsSharedCode _sharedCode;
+        private bool _setUpFailed = false;
 
         public BuyRaffleTicketTests(WayToPay merchant)
         {
@@ -52,6 +53,7 @@ namespace LottoSend.com.TestCases.Web
             }
             catch (Exception e)
             {
+                _setUpFailed = true;
                 CleanUp();
 
                 if (_merchant == WayToPay.InternalBalance)
@@ -237,7 +239,7 @@ namespace LottoSend.com.TestCases.Web
         [TearDown]
         public void CleanUp()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
             {
                 _driverCover.TakeScreenshot();
             }

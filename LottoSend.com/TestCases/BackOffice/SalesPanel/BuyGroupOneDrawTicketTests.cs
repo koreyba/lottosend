@@ -14,6 +14,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
     class BuyGroupOneDrawTicketTests<TWebDriver> where TWebDriver : IWebDriver, new() 
     {
         private IWebDriver _driver;
+        private bool _setUpFailed = false;
         private DriverCover _driverCover;
         private CommonActions _commonActions;
         private OrderVerifications _orderVerifications;
@@ -37,6 +38,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             }
             catch (Exception e)
             {
+                _setUpFailed = true;
                 CleanUp();
                 if (_merchant == WayToPay.InternalBalance)
                 {
@@ -345,7 +347,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         [TearDown]
         public void CleanUp()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
             {
                 _driverCover.TakeScreenshot();
             }

@@ -14,6 +14,7 @@ namespace LottoSend.com.Helpers
     public class TestsSharedCode
     {
         private IWebDriver _driver;
+        private bool _setUpFailed = false;
         public TestsSharedCode(IWebDriver driver)
         {
             _driver = driver;
@@ -22,7 +23,6 @@ namespace LottoSend.com.Helpers
         }
 
         private DriverCover _driverCover;
-
         public CommonActions CommonActions;
         public OrderVerifications OrderVerifications;
         
@@ -32,7 +32,7 @@ namespace LottoSend.com.Helpers
         /// </summary>
         public void CleanCartIfTestWasFailed(string email, string password)
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Inconclusive)
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true || TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Inconclusive)
             {
                 SetUp();
                 CommonActions.Log_In_Front(email, password);

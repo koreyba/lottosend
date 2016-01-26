@@ -15,6 +15,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         private DriverCover _driverCover;
         private CommonActions _commonActions;
         private TestsSharedCode _sharedCode;
+        private bool _setUpFailed = false;
 
         /// <summary>
         /// Pays for tickets using coupon with 100% discount (Completes order)
@@ -91,7 +92,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         [TearDown]
         public void CleanUp()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
             {
                 _driverCover.TakeScreenshot();
             }

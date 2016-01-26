@@ -19,6 +19,7 @@ namespace LottoSend.com.TestCases.BackOffice
         private DriverCover _driverCover;
         private CommonActions _commonActions;
         private BackOfficeVerifications _backOfficeVerifications;
+        private bool _setUpFailed = false;
 
         /// <summary>
         /// Creates a new group ticket in a new group. Then removes the group with the ticket
@@ -80,7 +81,7 @@ namespace LottoSend.com.TestCases.BackOffice
         [TearDown]
         public void CleanUp()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
             {
                 _driverCover.TakeScreenshot();
             }

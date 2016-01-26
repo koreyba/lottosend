@@ -13,6 +13,7 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
         private IWebDriver _driver;
         private DriverCover _driverCover;
         private CommonActions _commonActions;
+        private bool _setUpFailed = false;
 
         /// <summary>
         /// Searches a key on the "pages" page by content and checks how many results are found (should be 1)
@@ -142,7 +143,7 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
         [TearDown]
         public void CleanUp()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
             {
                 _driverCover.TakeScreenshot();
             }

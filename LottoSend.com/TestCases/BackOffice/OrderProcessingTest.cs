@@ -15,6 +15,7 @@ namespace LottoSend.com.TestCases.BackOffice
         private DriverCover _driverCover;
         private CommonActions _commonActions;
         private WayToPay _merchant;
+        private bool _setUpFailed = false;
 
         public OrderProcessingTest(WayToPay merchant)
         {
@@ -25,7 +26,7 @@ namespace LottoSend.com.TestCases.BackOffice
         [TearDown]
         public void CleanUp()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
             {
                 _driverCover.TakeScreenshot();
             }

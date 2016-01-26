@@ -35,6 +35,7 @@ namespace LottoSend.com.TestCases.Web
         private string _email;
         private WayToPay _merchant;
         private double _balanceBeforePayment;
+        private bool _setUpFailed = false;
         private double depositAmount;
 
         public DepositSuccessTests(WayToPay merchant)
@@ -49,6 +50,7 @@ namespace LottoSend.com.TestCases.Web
             }
             catch (Exception e)
             {
+                _setUpFailed = true;
                 CleanUp();
                 throw new Exception("Exception was thrown while executing: " + e.Message + " ");
             }
@@ -151,7 +153,7 @@ namespace LottoSend.com.TestCases.Web
         [TearDown]
         public void CleanUp()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
             {
                 _driverCover.TakeScreenshot();
             }

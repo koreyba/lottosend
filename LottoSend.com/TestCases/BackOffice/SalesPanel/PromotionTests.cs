@@ -14,6 +14,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         private double _totalPrice;
         private BalanceVerifications _balanceVerifications;
         private DriverCover _driverCover;
+        private bool _setUpFailed = false;
 
         /// <summary>
         /// Cheks if a new user gets 1+1 promotion for the second deposit when he had the first one pending and it was failed 
@@ -227,7 +228,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         [TearDown]
         public void CleanUp()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
             {
                 _driverCover.TakeScreenshot();
             }
