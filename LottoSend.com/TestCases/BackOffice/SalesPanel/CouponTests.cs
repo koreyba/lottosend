@@ -1,6 +1,7 @@
 ﻿using System;
 using LottoSend.com.Helpers;
 using NUnit.Framework;
+using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
@@ -90,6 +91,10 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         [TearDown]
         public void CleanUp()
         {
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+            {
+                _driverCover.TakeScreenshot();
+            }
             _sharedCode.CleanUp(ref _driver);
         }
 

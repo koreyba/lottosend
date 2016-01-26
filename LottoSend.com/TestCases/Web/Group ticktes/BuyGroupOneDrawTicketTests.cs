@@ -4,6 +4,7 @@ using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.Helpers;
 using LottoSend.com.Verifications;
 using NUnit.Framework;
+using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
@@ -361,6 +362,10 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         [TearDown]
         public void CleanUp()
         {
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+            {
+                _driverCover.TakeScreenshot();
+            }
             _sharedCode.CleanUp(ref _driver);
         }
 

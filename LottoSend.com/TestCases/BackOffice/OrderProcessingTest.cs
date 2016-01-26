@@ -1,6 +1,7 @@
 ﻿using LottoSend.com.BackEndObj;
 using LottoSend.com.Verifications;
 using NUnit.Framework;
+using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
@@ -24,6 +25,10 @@ namespace LottoSend.com.TestCases.BackOffice
         [TearDown]
         public void CleanUp()
         {
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+            {
+                _driverCover.TakeScreenshot();
+            }
             _driver.Dispose();
         }
 

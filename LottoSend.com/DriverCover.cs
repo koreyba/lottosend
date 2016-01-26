@@ -6,6 +6,9 @@ using OpenQA.Selenium.Interactions;
 using System.Configuration;
 using OpenQA.Selenium.Support.UI;
 using System.Collections.Generic;
+using System.Drawing.Imaging;
+using NUnit.Framework;
+using NUnit.Framework.Internal;
 
 namespace LottoSend.com
 {
@@ -161,7 +164,7 @@ namespace LottoSend.com
             }
             catch (Exception)
             {
-                Driver.Dispose();
+               // Driver.Dispose();
                 throw new TimeoutException("Page loading time out time has passed " + secondsToWait + " seconds");
             }
             finally
@@ -213,7 +216,7 @@ namespace LottoSend.com
             }
             catch (Exception)
             {
-                Driver.Dispose();
+                //Driver.Dispose();
                 throw new TimeoutException("Ajax call time out time has passed " + secondsToWait + " seconds");
             }
             finally
@@ -251,7 +254,7 @@ namespace LottoSend.com
             }
             catch (Exception)
             {
-                Driver.Dispose();
+               // Driver.Dispose();
                 throw new TimeoutException("Ajax call time out time has passed " + secondsToWait + " seconds");
             }
             finally
@@ -284,7 +287,7 @@ namespace LottoSend.com
             }
             catch (Exception e)
             {
-                Driver.Dispose();
+                //Driver.Dispose();
                 throw new Exception("Time to wait " + timeOutInSeconds + " seconds is elapsed ");
             }
         }
@@ -313,7 +316,7 @@ namespace LottoSend.com
             }
             catch (Exception e)
             {
-                Driver.Dispose();
+                //Driver.Dispose();
                 throw new Exception("Time to wait " + timeOutInSeconds + " seconds is elapsed ");
             }
         }
@@ -422,6 +425,23 @@ namespace LottoSend.com
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// Takes a screenshot and puts it in C:\Screenshots\ folder. The folder must be created manually
+        /// </summary>
+        public void TakeScreenshot()
+        {
+            try
+            {
+                Screenshot ss = ((ITakesScreenshot)Driver).GetScreenshot();
+                ss.SaveAsFile(@"C:\Screenshots\" + TestContext.CurrentContext.Test.FullName.Replace("<", "").Replace(">", "") + DateTime.Now.DayOfWeek + DateTime.Now.Day + "." + DateTime.Now.Month + "." + DateTime.Now.Year + "_Time-" + DateTime.Now.Hour + "." + DateTime.Now.Minute + "_" + RandomGenerator.GenerateRandomString(10) + ".jpg", ImageFormat.Jpeg);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                throw;
+            }
         }
     }
 }

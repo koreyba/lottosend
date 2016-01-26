@@ -157,6 +157,7 @@ namespace LottoSend.com.TestCases.Web
             {
                 if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
                 {
+                    _driverCover.TakeScreenshot();
                     //Removes all tickets from the cart to make sure all other tests will work well
                     _commonActions.DeleteAllTicketFromCart_Front();
                 }
