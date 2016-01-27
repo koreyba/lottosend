@@ -66,7 +66,7 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
         {
             IWebElement ticket = _raffleTable.FindElement(By.CssSelector("tr:nth-child(" + ticketNumber + ")"));
             IWebElement select = ticket.FindElement(By.CssSelector("td.group > select"));
-            ChooseElementInSelect(numberOfShares.ToString(), select, SelectBy.Value);
+            ChooseElementInSelect(numberOfShares.ToString(System.Globalization.CultureInfo.InvariantCulture), select, SelectBy.Value);
             WaitjQuery();
         }
 

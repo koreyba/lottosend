@@ -79,7 +79,7 @@ namespace LottoSend.com.BackEndObj.DrawPages
             IList<IWebElement> pagnation = Driver.FindElements(By.CssSelector("nav.pagination > span.page > a"));
             foreach (IWebElement page in pagnation)
             {
-                if (page.Text.Contains(count.ToString()))
+                if (page.Text.Contains(count.ToString(System.Globalization.CultureInfo.InvariantCulture)))
                 {
                     page.Click();
                     WaitForPageLoading();

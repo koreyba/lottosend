@@ -35,7 +35,7 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
         public void DepositOtherAmoun(double amount)
         {
             _otherRadio.Click();
-            _otherInput.SendKeys(amount.ToString());
+            _otherInput.SendKeys(amount.ToString(System.Globalization.CultureInfo.InvariantCulture));
 
             _chargeButton.Click();
             WaitForPageLoading();

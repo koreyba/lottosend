@@ -98,7 +98,7 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
         /// <returns></returns>
         public void SignIn(int id)
         {
-            _userID.SendKeys(id.ToString());
+            _userID.SendKeys(id.ToString(System.Globalization.CultureInfo.InvariantCulture));
             _okLogInButton.Click();
             WaitForPageLoading();
         }

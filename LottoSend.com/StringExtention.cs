@@ -86,8 +86,15 @@ namespace LottoSend.com
                 if (isLastFound == true)
                     break;
             }
-            
-            return Convert.ToDouble(number);
+
+            try
+            {
+                return Convert.ToDouble(number, System.Globalization.CultureInfo.InvariantCulture);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message + "Can't parce double from the next string:" + number + ". String was generated from the next string: " + str + " ");
+            }
         }
     }
 }

@@ -69,6 +69,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         [TestCase("Denis666", 50)]
         [Category("Critical")]
         [Category("Parallel")]
+        [Category("Test")]
         public void Check_Discount_Checkout(string code, double discount)
         {
             _commonActions.SignIn_in_admin_panel();

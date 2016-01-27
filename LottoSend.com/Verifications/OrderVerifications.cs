@@ -184,7 +184,7 @@ namespace LottoSend.com.Verifications
             TransactionObj myTransactions = new TransactionObj(_driver);
 
             //make month to be in right format
-            string digit = DateTime.Now.Month.ToString();
+            string digit = DateTime.Now.Month.ToString(System.Globalization.CultureInfo.InvariantCulture);
             string month;
             if (digit.Length == 1)
                 month = "0" + digit;
@@ -192,7 +192,7 @@ namespace LottoSend.com.Verifications
                 month = digit;
 
             //make day to be in right format
-            digit = DateTime.Now.Day.ToString();
+            digit = DateTime.Now.Day.ToString(System.Globalization.CultureInfo.InvariantCulture);
             string day;
             if (digit.Length == 1)
                 day = "0" + digit;
@@ -295,7 +295,7 @@ namespace LottoSend.com.Verifications
 
             string transactionMerchant = transaction.GetFirstTransactionMerchant();
 
-            Assert.AreEqual(merchant.ToString(), transactionMerchant, "Sorry, the merchant in the first record is wrong, check if a record was added, page: " + _driverCover.Driver.Url + " ");
+            Assert.AreEqual(merchant.ToString(System.Globalization.CultureInfo.InvariantCulture), transactionMerchant, "Sorry, the merchant in the first record is wrong, check if a record was added, page: " + _driverCover.Driver.Url + " ");
         }
 
         /// <summary>

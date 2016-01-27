@@ -68,7 +68,7 @@ namespace LottoSend.com.FrontEndObj.MyAccount
             IList<IWebElement> options = _depositOptions.FindElements(By.CssSelector("div.col-sm-2 > div.radio > label"));
             foreach (var option in options)
             {
-                if (option.Text.Contains(amount.ToString()))
+                if (option.Text.Contains(amount.ToString(System.Globalization.CultureInfo.InvariantCulture)))
                 {
                     isFound = true;
                     option.Click();
@@ -91,7 +91,7 @@ namespace LottoSend.com.FrontEndObj.MyAccount
         public void DepositOtherAmount(double amount, WayToPay merchant, bool ifProcess = true, bool isFailed = false)
         {
             _otherRadioButton.Click();
-            _amountInput.SendKeys(amount.ToString());
+            _amountInput.SendKeys(amount.ToString(System.Globalization.CultureInfo.InvariantCulture));
 
             PayForDeposit(merchant, ifProcess, isFailed);
         }

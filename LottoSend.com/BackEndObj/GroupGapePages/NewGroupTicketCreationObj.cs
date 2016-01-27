@@ -74,15 +74,15 @@ namespace LottoSend.com.BackEndObj.GroupGapePages
         {
             ChooseElementInSelect(lottery, _lottery, SelectBy.Text); //select lottery
             ChooseElementInSelect(group, _group, SelectBy.Text); //select group
-            _numberOfShares.SendKeys(numberOfShares.ToString());
+            _numberOfShares.SendKeys(numberOfShares.ToString(System.Globalization.CultureInfo.InvariantCulture));
             if (!isActive)
             {
                 _activeCheckBox.Click();
             }
             _discount.Clear();
-            _discount.SendKeys(discount.ToString());
+            _discount.SendKeys(discount.ToString(System.Globalization.CultureInfo.InvariantCulture));
             _price.Clear();
-            _price.SendKeys(price.ToString());
+            _price.SendKeys(price.ToString(System.Globalization.CultureInfo.InvariantCulture));
         }
 
         /// <summary>
