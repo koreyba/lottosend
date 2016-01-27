@@ -106,6 +106,7 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
         [Test]
         [Category("Critical")]
         [Category("Parallel")]
+        [Category("CMS")]
         public void Edit_Snippet_Content()
         {
             _commonActions.SignIn_in_admin_panel();
