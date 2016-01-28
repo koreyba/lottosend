@@ -93,7 +93,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         /// <summary>
         /// Checks an amount in the first record in transactions (front)
         /// </summary>
-        [Test]
+        //[Test]
         [Category("Critical")]
         public void Check_Amount_In_Transaction_Front()
         {
@@ -180,8 +180,8 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         /// <summary>
         /// Checks a play type of the first record in transactions (back)
         /// </summary>
-        [TestCase(1)]
-        [TestCase(2)]
+       // [TestCase(1)]
+        //[TestCase(2)]
         [Category("Critical")]
         public void Check_PlayType_In_Transactions_Back(int numberOfRecordToCheck)
         {
@@ -202,8 +202,8 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         /// <summary>
         /// Checks a transaction type of the first record in transactions (back)
         /// </summary>
-        [TestCase(1)]
-        [TestCase(2)]
+        //[TestCase(1)]
+        //[TestCase(2)]
         [Category("Critical")]
         public void Check_TransactionType_In_Transactions_Back(int numberOfRecordToCheck)
         {

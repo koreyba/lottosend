@@ -29,7 +29,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             _commonActions.SignIn_in_admin_panel();
             _commonActions.Sign_Up_SalesPanel(RandomGenerator.GenerateRandomString(10) + "@urk.net");
 
-            _commonActions.AddGroupTicketToCart_SalesPanel("Powerball");
+            _commonActions.AddGroupTicketToCart_SalesPanel("Mega Millions");
             _commonActions.AddRegularOneDrawTicketToCart_SalesPanel("SuperLotto Plus");
             _commonActions.AddRaffleTicketToCart_SalesPanel("Loteria de Navidad");
 

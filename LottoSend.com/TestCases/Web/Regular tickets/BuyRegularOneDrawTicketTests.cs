@@ -92,7 +92,7 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         /// <summary>
         /// Checks an amount in the first record in transactions (front)
         /// </summary>
-        [Test]
+        //[Test]
         [Category("Critical")]
         public void Check_Amount_In_Transaction_Front()
         {

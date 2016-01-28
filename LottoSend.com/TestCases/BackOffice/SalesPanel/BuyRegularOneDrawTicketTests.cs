@@ -77,8 +77,8 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         /// <summary>
         /// Checks a transaction type of the first record in transactions (back)
         /// </summary>
-        [TestCase(1)]
-        [TestCase(2)]
+       // [TestCase(1)]
+       // [TestCase(2)]
         [Category("Critical")]
         public void Check_TransactionType_In_Transactions_Back(int numberOfRecordToCheck)
         {
@@ -127,7 +127,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         /// <summary>
         /// Checks an amount of money in the first record in transactions (back)
         /// </summary>
-        [Test]
+        //[Test]
         [Category("Critical")]
         public void Check_Amount_In_Transaction_Back()
         {
@@ -233,7 +233,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         /// <summary>
         /// Checks an amount in the first record in transactions (front)
         /// </summary>
-        [Test]
+        //[Test]
         [Category("Critical")]
         public void Check_Amount_In_Transaction_Front()
         {

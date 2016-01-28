@@ -141,7 +141,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         /// <summary>
         /// Checks an amount of money in the first record in transactions (back)
         /// </summary>
-        [Test]
+        //[Test]
         [Category("Critical")]
         public void Check_Amount_In_Transaction_Back()
         {

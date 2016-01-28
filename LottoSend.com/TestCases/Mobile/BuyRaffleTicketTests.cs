@@ -151,7 +151,7 @@ namespace LottoSend.com.TestCases.Mobile
         /// <summary>
         /// Checks a play type of the first record in transactions (back)
         /// </summary>
-        [Test]
+       // [Test]
         [Category("Critical")]
         public void Check_PlayType_In_Transactions_Back()
         {
