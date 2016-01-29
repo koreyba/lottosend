@@ -203,8 +203,8 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         /// <summary>
         /// Checks a transaction type of the first record in transactions (back)
         /// </summary>
-        [TestCase(1)]
-        [TestCase(2)]
+       // [TestCase(1)]
+       // [TestCase(2)]
         public void Check_TransactionType_In_Transactions_Back(int numberOfRecordToCheck)
         {
             if (numberOfRecordToCheck == 1)
@@ -384,7 +384,7 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
             //};
 
             //var options = new ChromeOptions();
-            //options.AddAdditionalCapability("mobileEmulation", mobileEmulation);
+            //options.EnableMobileEmulation(device);
 
             _driver = new TWebDriver();
             _driverCover = new DriverCover(_driver);

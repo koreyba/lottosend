@@ -244,13 +244,8 @@ namespace LottoSend.com.TestCases.Mobile
         /// <returns></returns>
         public ChromeOptions CreateOptions(string device)
         {
-            var mobileEmulation = new Dictionary<string, string>
-            {
-                {"deviceName", device}
-            };
-
             ChromeOptions options = new ChromeOptions();
-            options.AddAdditionalCapability("mobileEmulation", mobileEmulation);
+            options.EnableMobileEmulation(device);
             return options;
         }
 

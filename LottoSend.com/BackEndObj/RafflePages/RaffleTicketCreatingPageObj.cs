@@ -3,10 +3,8 @@ using OpenQA.Selenium.Support.PageObjects;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace LottoSend.com.BackEndObj.RafflePages
 {
@@ -48,7 +46,7 @@ namespace LottoSend.com.BackEndObj.RafflePages
         /// </summary>
         /// <param name="raffleName"></param>
         /// <param name="shares"></param>
-        public void CreateTicket(string raffleName, int shares)
+        public RaffleDashboardPageObj CreateTicket(string raffleName, int shares)
         {
             ChooseElementInSelect(raffleName, _raffleSelect, SelectBy.Text);
             _shares.SendKeys(shares.ToString(System.Globalization.CultureInfo.InvariantCulture));
@@ -67,6 +65,8 @@ namespace LottoSend.com.BackEndObj.RafflePages
             _createRaffleTicketButton.Click();
             WaitForPageLoading();
             WaitAjax();
+
+            return new RaffleDashboardPageObj(Driver);
         }
     }
 }

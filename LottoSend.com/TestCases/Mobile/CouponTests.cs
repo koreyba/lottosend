@@ -7,6 +7,7 @@ using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Remote;
 
 namespace LottoSend.com.TestCases.Mobile
 {
@@ -120,13 +121,8 @@ namespace LottoSend.com.TestCases.Mobile
         /// <returns></returns>
         public ChromeOptions CreateOptions(string device)
         {
-            var mobileEmulation = new Dictionary<string, string>
-            {
-                {"deviceName", device}
-            };
-
             ChromeOptions options = new ChromeOptions();
-            options.AddAdditionalCapability("mobileEmulation", mobileEmulation);
+            options.EnableMobileEmulation(device);
             return options;
         }
 

@@ -3,11 +3,6 @@ using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LottoSend.com.TestCases.BackOffice.Raffles
 {
@@ -25,14 +20,21 @@ namespace LottoSend.com.TestCases.BackOffice.Raffles
         /// </summary>
         /// <param name="raffleName"></param>
         [TestCase("Lotería del Niño")]
+        [Category("Parallel")]
         public void Create_Raffle_Ticket(string raffleName)
         {
-            //TODO: add accertation
             _commonActions.SignIn_in_admin_panel();
-            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/raffles_tickets/new");
-            RaffleTicketCreatingPageObj raffleCreationPage = new RaffleTicketCreatingPageObj(_driver);
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "/admin/raffles");
+            RaffleDashboardPageObj dashboard = new RaffleDashboardPageObj(_driver);
+            dashboard.SelectRaffle(raffleName); 
+            int numberOfTickets = dashboard.NumberOfTickets;
 
-            raffleCreationPage.CreateTicket(raffleName, 30);
+            RaffleTicketCreatingPageObj raffleCreationPage = dashboard.ClickAddNewTicketButton();
+            dashboard = raffleCreationPage.CreateTicket(raffleName, 30);
+
+            dashboard.SelectRaffle(raffleName);
+
+            Assert.AreEqual(numberOfTickets + 1, dashboard.NumberOfTickets, "Sorry but the number of tickets is wrong. Ticket must have been not created. ");
         }
 
         [TearDown]

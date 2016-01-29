@@ -174,8 +174,8 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         /// <summary>
         /// Checks a transaction type of the first record in transactions (back)
         /// </summary>
-        [TestCase(1)]
-        [TestCase(2)]
+        //[TestCase(1)]
+        //[TestCase(2)]
         public void Check_TransactionType_In_Transactions_Back(int numberOfRecordToCheck)
         {
             SetUp();
@@ -287,13 +287,8 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         /// <returns></returns>
         public ChromeOptions CreateOptions(string device)
         {
-            var mobileEmulation = new Dictionary<string, string>
-            {
-                {"deviceName", device}
-            };
-
             ChromeOptions options = new ChromeOptions();
-            options.AddAdditionalCapability("mobileEmulation", mobileEmulation);
+            options.EnableMobileEmulation(device);
             return options;
         }
 
