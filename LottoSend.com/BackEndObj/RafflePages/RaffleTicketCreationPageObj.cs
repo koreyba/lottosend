@@ -11,9 +11,9 @@ namespace LottoSend.com.BackEndObj.RafflePages
     /// <summary>
     /// PageObject of a raffle ticket creating page (admin/raffles_tickets/new)
     /// </summary>
-    public class RaffleTicketCreatingPageObj : DriverCover
+    public class RaffleTicketCreationPageObj : DriverCover
     {
-        public RaffleTicketCreatingPageObj(IWebDriver driver) : base(driver)
+        public RaffleTicketCreationPageObj(IWebDriver driver) : base(driver)
         {
             if (!Driver.Url.Contains("admin/raffles_tickets/new"))
             {

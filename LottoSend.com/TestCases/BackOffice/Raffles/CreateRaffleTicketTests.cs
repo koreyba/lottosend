@@ -14,7 +14,25 @@ namespace LottoSend.com.TestCases.BackOffice.Raffles
         private DriverCover _driverCover;
         private CommonActions _commonActions;
         private bool _setUpFailed = false;
-         
+
+        /// <summary>
+        /// Creates a raffle ticket
+        /// </summary>
+        /// <param name="raffleName"></param>
+        [TestCase("Lotería del Niño")]
+        [Category("Parallel")]
+        public void Create_Raffle_Lottery(string raffleName)
+        {
+            _commonActions.SignIn_in_admin_panel();
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/raffles/new");
+            RaffleLotteryCreationPage raffleCreation = new RaffleLotteryCreationPage(_driver);
+            raffleCreation.CreateNewRaffleLottery("new");
+
+
+            //TODO:
+           // Assert.AreEqual(numberOfTickets + 1, dashboard.NumberOfTickets, "Sorry but the number of tickets is wrong. Ticket must have been not created. ");
+        }
+
         /// <summary>
         /// Creates a raffle ticket
         /// </summary>
@@ -29,7 +47,7 @@ namespace LottoSend.com.TestCases.BackOffice.Raffles
             dashboard.SelectRaffle(raffleName); 
             int numberOfTickets = dashboard.NumberOfTickets;
 
-            RaffleTicketCreatingPageObj raffleCreationPage = dashboard.ClickAddNewTicketButton();
+            RaffleTicketCreationPageObj raffleCreationPage = dashboard.ClickAddNewTicketButton();
             dashboard = raffleCreationPage.CreateTicket(raffleName, 30);
 
             dashboard.SelectRaffle(raffleName);

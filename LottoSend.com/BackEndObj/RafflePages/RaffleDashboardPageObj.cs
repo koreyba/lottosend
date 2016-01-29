@@ -40,13 +40,13 @@ namespace LottoSend.com.BackEndObj.RafflePages
         /// Clicks on Add New Raffle Ticket button
         /// </summary>
         /// <returns></returns>
-        public RaffleTicketCreatingPageObj ClickAddNewTicketButton()
+        public RaffleTicketCreationPageObj ClickAddNewTicketButton()
         {
             _addNewRaffleTicketButton.Click();
             WaitForPageLoading();
             WaitAjax();
 
-            return new RaffleTicketCreatingPageObj(Driver);
+            return new RaffleTicketCreationPageObj(Driver);
         }
 
         /// <summary>
