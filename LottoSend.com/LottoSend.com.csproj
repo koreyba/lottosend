@@ -139,6 +139,7 @@
     <Compile Include="BackEndObj\SalesPanelPages\RafflePageObj.cs" />
     <Compile Include="BackEndObj\SalesPanelPages\CartObj.cs" />
     <Compile Include="BackEndObj\SalesPanelPages\RegisterObj.cs" />
+    <Compile Include="BackEndObj\SalesPanelPages\ResetPasswordTabObj.cs" />
     <Compile Include="BackEndObj\SalesPanelPages\SingleGameObj.cs" />
     <Compile Include="BackEndObj\SalesPanelPages\TabsObj.cs" />
     <Compile Include="BackEndObj\ScannedImagesObj.cs" />
