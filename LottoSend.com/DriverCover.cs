@@ -84,6 +84,14 @@ namespace LottoSend.com
         }
 
         /// <summary>
+        /// User name (login) from app.config
+        /// </summary>
+        public string LoginSix
+        {
+            get { return ConfigurationManager.AppSettings["LoginSix"]; }
+        }
+
+        /// <summary>
         /// Password of a user from app.config
         /// </summary>
         public string Password

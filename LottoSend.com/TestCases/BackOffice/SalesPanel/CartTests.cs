@@ -28,12 +28,19 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         /// </summary>
         /// <param name="lotteryOne"></param>
         /// <param name="lotteryTwo"></param>
-        [TestCase("El Gordo", "SuperLotto Plus")]
+        [TestCase("El Gordo", "SuperLotto Plus", true)]
+        [TestCase("El Gordo", "SuperLotto Plus", false)]
         [Category("Critical")]
         [Category("Parallel")]
-        public void Remove_Two_Group_Tickets_From_Cart(string lotteryOne, string lotteryTwo)
+        public void Remove_Two_Group_Tickets_From_Cart(string lotteryOne, string lotteryTwo, bool toLogIn)
         {
             _commonActions.SignIn_in_admin_panel();
+
+            if (toLogIn)
+            {
+                _commonActions.Sign_In_SalesPanel(_driverCover.LoginSix);
+            }
+            
             _commonActions.AddGroupTicketToCart_SalesPanel(lotteryOne);
             _commonActions.AddGroupTicketToCart_SalesPanel(lotteryTwo);
 
@@ -51,12 +58,19 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         /// <summary>
         /// Adds and removes a regular ticket from the cart
         /// </summary>
-        [TestCase("Loteria de Navidad")]
+        [TestCase("Loteria de Navidad", true)]
+        [TestCase("Loteria de Navidad", false)]
         [Category("Critical")]
         [Category("Parallel")]
-        public void Remove_Raffle_Ticket_From_Cart(string raffleName)
+        public void Remove_Raffle_Ticket_From_Cart(string raffleName, bool toLogIn)
         {
             _commonActions.SignIn_in_admin_panel();
+
+            if (toLogIn)
+            {
+                _commonActions.Sign_In_SalesPanel(_driverCover.LoginSix);
+            }
+
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/orders");
             MenuObj menu = new MenuObj(_driver);
             menu.GoToLotteryPage(raffleName);
@@ -76,12 +90,19 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         /// <summary>
         /// Adds and removes a regular ticket from the cart
         /// </summary>
-        [TestCase("Mega Millions")]
+        [TestCase("Mega Millions", true)]
+        [TestCase("Mega Millions", false)]
         [Category("Critical")]
         [Category("Parallel")]
-        public void Remove_Regular_Ticket_From_Cart(string lottery)
+        public void Remove_Regular_Ticket_From_Cart(string lottery, bool toLogIn)
         {
             _commonActions.SignIn_in_admin_panel();
+
+            if (toLogIn)
+            {
+                _commonActions.Sign_In_SalesPanel(_driverCover.LoginSix);
+            }
+
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/orders");
             MenuObj menu = new MenuObj(_driver);
             menu.GoToLotteryPage(lottery);

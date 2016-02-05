@@ -37,12 +37,17 @@ namespace LottoSend.com.TestCases.Mobile
         /// <summary>
         /// Adds and edit a group ticket adding more shares and checking if they were added
         /// </summary>
-        [Test]
+        [TestCase(false)]
+        [TestCase(true)]
         [Category("Critical")]
         [Category("Parallel")]
-        public void Edit_Group_Ticket_And_Add_More()
+        public void Edit_Group_Ticket_And_Add_More(bool toLogIn)
         {
-            _commonActions.Log_In_Front(_driverCover.LoginFour, _driverCover.Password);
+            if (toLogIn)
+            {
+                _commonActions.Log_In_Front(_driverCover.LoginFour, _driverCover.Password);
+            }
+        
             _commonActions.AddGroupTicketToCart_Front("en/play/powerball/");
 
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "carts");
@@ -63,12 +68,17 @@ namespace LottoSend.com.TestCases.Mobile
         /// <summary>
         /// Adds and edit raffle ticket adding more shares and checking if they were added
         /// </summary>
-        [Test]
+        [TestCase(false)]
+        [TestCase(true)]
         [Category("Critical")]
         [Category("Parallel")]
-        public void Edit_Raffle_Ticket_And_Add_More()
+        public void Edit_Raffle_Ticket_And_Add_More(bool toLogIn)
         {
-            _commonActions.Log_In_Front(_driverCover.LoginFour, _driverCover.Password);
+            if (toLogIn)
+            {
+                _commonActions.Log_In_Front(_driverCover.LoginFour, _driverCover.Password);
+            }
+
             _commonActions.AddRaffleTicketToCart_Front(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
 
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/carts");
@@ -90,12 +100,16 @@ namespace LottoSend.com.TestCases.Mobile
         /// <summary>
         /// Adds a raffle ticket to the cart and deletes it. Cheks if a ticket was added and removed
         /// </summary>
-        [Test]
+        [TestCase(false)]
+        [TestCase(true)]
         [Category("Critical")]
         [Category("Parallel")]
-        public void Delete_Raffle_ticket_from_cart()
+        public void Delete_Raffle_ticket_from_cart(bool toLogIn)
         {
-            _commonActions.Log_In_Front(_driverCover.LoginFour, _driverCover.Password);
+            if (toLogIn)
+            {
+                _commonActions.Log_In_Front(_driverCover.LoginFour, _driverCover.Password);
+            }
 
             _commonActions.AddRaffleTicketToCart_Front(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
             _cartVerifications.CheckNumberOfTicketsInCart_Front(1);
@@ -111,12 +125,16 @@ namespace LottoSend.com.TestCases.Mobile
         /// <summary>
         /// Adds two different lottery group ticket to the cart and deletes them. Checks if were added and deleted
         /// </summary>
-        [Test]
+        [TestCase(false)]
+        [TestCase(true)]
         [Category("Critical")]
         [Category("Parallel")]
-        public void Delete_two_group_ticket_from_cart()
+        public void Delete_two_group_ticket_from_cart(bool toLogIn)
         {
-            _commonActions.Log_In_Front(_driverCover.LoginFour, _driverCover.Password);
+            if (toLogIn)
+            {
+                _commonActions.Log_In_Front(_driverCover.LoginFour, _driverCover.Password);
+            }
 
             //Add two tickets from different lotteries
             _commonActions.AddGroupTicketToCart_Front("en/play/euromillions/");
@@ -139,12 +157,16 @@ namespace LottoSend.com.TestCases.Mobile
         /// <summary>
         /// Adds single ticket to cart and removes it. Checks if there is no tickets of a specific lottery game
         /// </summary>
-        [Test]
+        [TestCase(false)]
+        [TestCase(true)]
         [Category("Critical")]
         [Category("Parallel")]
-        public void Delete_Single_Ticket_From_Cart()
+        public void Delete_Single_Ticket_From_Cart(bool toLogIn)
         {
-            _commonActions.Log_In_Front(_driverCover.LoginFour, _driverCover.Password);
+            if (toLogIn)
+            {
+                _commonActions.Log_In_Front(_driverCover.LoginFour, _driverCover.Password);
+            }
 
             _commonActions.AddRegularTicketToCart_Front("en/play/eurojackpot/");
 
