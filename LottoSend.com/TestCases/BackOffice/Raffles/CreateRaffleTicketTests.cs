@@ -18,19 +18,23 @@ namespace LottoSend.com.TestCases.BackOffice.Raffles
         /// <summary>
         /// Creates a raffle ticket
         /// </summary>
-        /// <param name="raffleName"></param>
-        [TestCase("Lotería del Niño")]
+        [Test]
         [Category("Parallel")]
-        public void Create_Raffle_Lottery(string raffleName)
+        public void Create_Raffle_Lottery()
         {
             _commonActions.SignIn_in_admin_panel();
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/raffles");
+            RaffleDashboardPageObj dashboard = new RaffleDashboardPageObj(_driver);
+            int numberOfRaffles = dashboard.GetListOfOptions(dashboard.RaffleSelector).Count;
+
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/raffles/new");
             RaffleLotteryCreationPage raffleCreation = new RaffleLotteryCreationPage(_driver);
-            raffleCreation.CreateNewRaffleLottery("new");
+            
+            string raffleName = "raffle_" + RandomGenerator.GenerateRandomString(6);
+            raffleCreation.CreateNewRaffleLottery(raffleName);
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/raffles");
 
-
-            //TODO:
-           // Assert.AreEqual(numberOfTickets + 1, dashboard.NumberOfTickets, "Sorry but the number of tickets is wrong. Ticket must have been not created. ");
+            Assert.AreEqual(numberOfRaffles + 1, dashboard.GetListOfOptions(dashboard.RaffleSelector).Count, "Sorry but the raffle must have been not created. Check it. Curren page is: " + _driver.Url + " ");
         }
 
         /// <summary>

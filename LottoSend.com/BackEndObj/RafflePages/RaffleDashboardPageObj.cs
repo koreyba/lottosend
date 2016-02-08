@@ -37,6 +37,14 @@ namespace LottoSend.com.BackEndObj.RafflePages
         }
 
         /// <summary>
+        /// Returns the raffle selector (with raffle names)
+        /// </summary>
+        public IWebElement RaffleSelector
+        {
+            get { return _selectRaffleSelector; }
+        }
+
+        /// <summary>
         /// Clicks on Add New Raffle Ticket button
         /// </summary>
         /// <returns></returns>

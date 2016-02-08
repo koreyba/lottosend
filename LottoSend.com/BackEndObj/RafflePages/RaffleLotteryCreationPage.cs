@@ -45,6 +45,9 @@ namespace LottoSend.com.BackEndObj.RafflePages
         [FindsBy(How = How.CssSelector, Using = "#raffle_discount")]
         private IWebElement _discount;
 
+        [FindsBy(How = How.CssSelector, Using = "#raffle_submit_action > input")]
+        private IWebElement _createRaffleButton;
+
         /// <summary>
         /// Creates a new raffle lottery
         /// </summary>
@@ -60,7 +63,13 @@ namespace LottoSend.com.BackEndObj.RafflePages
             _sharePrice.SendKeys("31");
             _shareForDiscount.SendKeys("3");
             _discount.SendKeys("10");
-            _drawDate.Clear();
+            _drawDate.SendKeys("11");
+            _drawDate.SendKeys("12");
+            _drawDate.SendKeys(Keys.Tab);
+            _drawDate.SendKeys("2018");
+
+            _createRaffleButton.Click();
+            
 
             return new RaffleDashboardPageObj(Driver);
         }

@@ -134,6 +134,18 @@ namespace LottoSend.com
         }
 
         /// <summary>
+        /// Returns options of a SELECT item
+        /// </summary>
+        /// <param name="select"></param>
+        /// <returns></returns>
+        public IList<IWebElement> GetListOfOptions(IWebElement select)
+        {
+            SelectElement selector = new SelectElement(select);
+
+            return selector.Options;
+        }
+
+        /// <summary>
         /// Check if a IWebElement exists
         /// </summary>
         /// <param name="element">element</param>
