@@ -1,6 +1,4 @@
 ﻿using System.Configuration;
-using System.Reflection.Emit;
-using LottoSend.com.BackEndObj;
 using LottoSend.com.BackEndObj.CMS;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
