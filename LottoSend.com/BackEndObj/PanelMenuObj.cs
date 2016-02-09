@@ -1,20 +1,15 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LottoSend.com.BackEndObj
 {
     /// <summary>
     /// Page Object of the top panel (menu)
     /// </summary>
-    public class PaneMenuObj : DriverCover
+    public class PanelMenuObj : DriverCover
     {
-        public PaneMenuObj(IWebDriver driver) : base(driver)
+        public PanelMenuObj(IWebDriver driver) : base(driver)
         {
             if(!Driver.Url.Contains("admin"))
             {
@@ -22,6 +17,15 @@ namespace LottoSend.com.BackEndObj
             }
 
             PageFactory.InitElements(Driver, this);
+        }
+
+        [FindsBy(How = How.LinkText, Using = "Logout")]
+        private IWebElement _logOutButton;
+
+        public void LogOut()
+        {
+            _logOutButton.Click();
+            WaitForPageLoading();
         }
     }
 }

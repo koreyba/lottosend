@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using LottoSend.com.BackEndObj;
 using LottoSend.com.BackEndObj.ChargePanelPages;
 using LottoSend.com.BackEndObj.DrawPages;
@@ -500,6 +501,23 @@ namespace LottoSend.com.TestCases
             }
 
             //else already signed in
+        }
+
+        /// <summary>
+        /// Goes to admin panel and authorize
+        /// </summary>
+        public void SignIn_in_admin_panel(string email, string password)
+        {
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl);
+            if (_driverCover.Driver.FindElements(By.CssSelector("#current_user")).Count == 0)
+            {
+                LoginObj login = new LoginObj(_driver);
+                login.LogIn(email, password);
+            }
+            else
+            {
+                throw new Exception("Sorry but a user is already signed in ");
+            }
         }
 
         /// <summary>

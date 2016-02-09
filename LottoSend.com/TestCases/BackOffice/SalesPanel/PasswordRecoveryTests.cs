@@ -21,6 +21,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         /// Signs up a new user via the sales panel and changes its password. Then logs in on the front with this password
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Recover_Password()
         {
             _commonActions.SignIn_in_admin_panel();

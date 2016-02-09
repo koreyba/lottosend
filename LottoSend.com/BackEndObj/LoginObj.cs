@@ -34,8 +34,7 @@ namespace LottoSend.com.BackEndObj
         /// </summary>
         /// <param name="login"></param>
         /// <param name="password"></param>
-        /// <returns>true if loged in successfuly</returns>
-        public bool LogIn(string login, string password)
+        public void LogIn(string login, string password)
         {
             _loginField.SendKeys(login);
             _password.SendKeys(password);
@@ -43,10 +42,6 @@ namespace LottoSend.com.BackEndObj
 
             WaitForPageLoading();
             WaitjQuery();
-
-            Driver.FindElement(By.CssSelector("#page_title"));
-
-            return true;
         }
     }
 }

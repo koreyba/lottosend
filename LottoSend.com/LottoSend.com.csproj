@@ -113,6 +113,7 @@
   <ItemGroup>
     <Compile Include="BackEndObj\ChargePanelPages\ChargeFormObj.cs" />
     <Compile Include="BackEndObj\ChargePanelPages\ChargePanelObj.cs" />
+    <Compile Include="BackEndObj\CMS\CMSPanelObj.cs" />
     <Compile Include="BackEndObj\CMS\EditingPages.cs" />
     <Compile Include="BackEndObj\CMS\EditPageObj.cs" />
     <Compile Include="BackEndObj\CMS\EditSnippetObj.cs" />
@@ -128,7 +129,7 @@
     <Compile Include="BackEndObj\LoginObj.cs" />
     <Compile Include="BackEndObj\NewScannedImageObj.cs" />
     <Compile Include="BackEndObj\OrderProcessingObj.cs" />
-    <Compile Include="BackEndObj\PaneMenuObj.cs" />
+    <Compile Include="BackEndObj\PanelMenuObj.cs" />
     <Compile Include="BackEndObj\RafflePages\RaffleDashboardPageObj.cs" />
     <Compile Include="BackEndObj\RafflePages\RaffleLotteryCreationPage.cs" />
     <Compile Include="BackEndObj\RafflePages\RaffleTicketCreationPageObj.cs" />
@@ -150,6 +151,7 @@
     <Compile Include="FrontEndObj\MyAccount\DepositMobileObj.cs" />
     <Compile Include="FrontEndObj\SignUp\SignUpForm.cs" />
     <Compile Include="Helpers\TestsSharedCode.cs" />
+    <Compile Include="TestCases\BackOffice\CMS\CmsPermissionTests.cs" />
     <Compile Include="TestCases\BackOffice\CMS\PagesTests.cs" />
     <Compile Include="TestCases\BackOffice\CMS\SnippetsTests.cs" />
     <Compile Include="TestCases\BackOffice\CMS\TranslationsTests.cs" />

@@ -13,13 +13,13 @@ namespace LottoSend.com.TestCases.BackOffice.Raffles
         private IWebDriver _driver;
         private DriverCover _driverCover;
         private CommonActions _commonActions;
-        private bool _setUpFailed = false;
 
         /// <summary>
         /// Creates a raffle ticket
         /// </summary>
         [Test]
         [Category("Parallel")]
+        [Category("Critical")]
         public void Create_Raffle_Lottery()
         {
             _commonActions.SignIn_in_admin_panel();
@@ -43,6 +43,7 @@ namespace LottoSend.com.TestCases.BackOffice.Raffles
         /// <param name="raffleName"></param>
         [TestCase("Lotería del Niño")]
         [Category("Parallel")]
+        [Category("Critical")]
         public void Create_Raffle_Ticket(string raffleName)
         {
             _commonActions.SignIn_in_admin_panel();
@@ -62,7 +63,7 @@ namespace LottoSend.com.TestCases.BackOffice.Raffles
         [TearDown]
         public void CleanUp()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
             {
                 _driverCover.TakeScreenshot();
             }
