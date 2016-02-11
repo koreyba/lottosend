@@ -74,8 +74,8 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         /// <summary>
         /// Checks a play type of the first record in transactions (back)
         /// </summary>
-        [TestCase(1)]
-        [TestCase(2)]
+        //[TestCase(1)]
+        //[TestCase(2)]
         public void Check_PlayType_In_Transactions_Back(int numberOfRecordToCheck)
         {
             if (numberOfRecordToCheck == 1)

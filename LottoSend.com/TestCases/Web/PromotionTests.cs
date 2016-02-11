@@ -21,7 +21,7 @@ namespace LottoSend.com.TestCases.Web
     [TestFixture(typeof(ChromeDriver), WayToPay.Offline)]
     ////[TestFixture(typeof(FirefoxDriver), WayToPay.Offline)]
     //[TestFixture(typeof(InternetExplorerDriver), WayToPay.Offline)]
-    [TestFixture(typeof(ChromeDriver), WayToPay.TrustPay)]
+    //[TestFixture(typeof(ChromeDriver), WayToPay.TrustPay)]
     ////[TestFixture(typeof(FirefoxDriver), WayToPay.TrustPay)]
     //[TestFixture(typeof(InternetExplorerDriver), WayToPay.TrustPay)]
     //[TestFixture(typeof(ChromeDriver), WayToPay.Skrill)]

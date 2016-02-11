@@ -1,9 +1,6 @@
-﻿using LottoSend.com.BackEndObj;
-using LottoSend.com.Verifications;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 
 namespace LottoSend.com.TestCases.BackOffice
 {

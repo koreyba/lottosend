@@ -21,7 +21,7 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
     [TestFixture(typeof(ChromeDriver), WayToPay.Offline)]
     ////[TestFixture(typeof(FirefoxDriver), WayToPay.Offline)]
     //[TestFixture(typeof(InternetExplorerDriver), WayToPay.Offline)]
-    [TestFixture(typeof(ChromeDriver), WayToPay.TrustPay)]
+    //[TestFixture(typeof(ChromeDriver), WayToPay.TrustPay)]
     [TestFixture(typeof(ChromeDriver), WayToPay.InternalBalance)]
     ////[TestFixture(typeof(FirefoxDriver), WayToPay.TrustPay)]
     //[TestFixture(typeof(InternetExplorerDriver), WayToPay.TrustPay)]
@@ -182,8 +182,8 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
         /// <summary>
         /// Checks a play type of the first record in transactions (back)
         /// </summary>
-        [TestCase(1)]
-        [TestCase(2)]
+       // [TestCase(1)]
+        //[TestCase(2)]
         public void Check_PlayType_In_Transactions_Back(int numberOfRecordToCheck)
         {
             if (numberOfRecordToCheck == 1)

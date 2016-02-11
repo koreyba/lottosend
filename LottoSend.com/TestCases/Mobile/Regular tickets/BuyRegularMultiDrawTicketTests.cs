@@ -16,7 +16,7 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
     /// </summary>
     [TestFixture("Apple iPhone 4", WayToPay.Neteller)]
     [TestFixture("Apple iPhone 6", WayToPay.Offline)]
-    [TestFixture("Apple iPhone 5", WayToPay.TrustPay)]
+    //[TestFixture("Apple iPhone 5", WayToPay.TrustPay)]
     [TestFixture("Apple iPhone 4", WayToPay.InternalBalance)]
    //[TestFixture("Samsung Galaxy S4", WayToPay.Skrill)]
     public class BuyRegularMultiDrawTicketTests 
@@ -150,8 +150,8 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
         /// <summary>
         /// Checks a play type of the first record in transactions (back)
         /// </summary>
-        [TestCase(1)]
-        [TestCase(2)]
+       // [TestCase(1)]
+       // [TestCase(2)]
         public void Check_PlayType_In_Transactions_Back(int numberOfRecordToCheck)
         {
             SetUp();

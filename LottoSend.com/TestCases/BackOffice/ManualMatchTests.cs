@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Net.Mime;
+﻿using System.IO;
 using System.Reflection;
 using LottoSend.com.BackEndObj;
 using LottoSend.com.Verifications;
@@ -8,8 +6,6 @@ using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.IE;
 
 namespace LottoSend.com.TestCases.BackOffice
 {
