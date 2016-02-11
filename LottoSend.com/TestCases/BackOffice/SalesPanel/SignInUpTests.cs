@@ -18,7 +18,6 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         private DriverCover _driverCover;
         private CommonActions _commonActions;
         private BackOfficeVerifications _backOfficeVerifications;
-        private bool _setUpFailed = false;
 
         [Test]
         [Category("Critical")]
@@ -52,7 +51,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         [TearDown]
         public void CleanUp()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
             {
                 _driverCover.TakeScreenshot();
             }

@@ -3,8 +3,6 @@ using LottoSend.com.BackEndObj.SalesPanelPages;
 using LottoSend.com.Verifications;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.IE;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 
@@ -21,7 +19,6 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         private CommonActions _commonActions;
         private BackOfficeVerifications _backOfficeVerifications;
         private CartVerifications _cartVerifications;
-        private bool _setUpFailed = false;
 
         /// <summary>
         /// Adds two different lottery group ticket to the cart and delets them. Checks if were added and deleted
@@ -124,7 +121,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         {
             try
             {
-                if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
+                if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
                 {
                     _driverCover.TakeScreenshot();
                     //Removes all tickets from the cart to make sure all other tests will work well
@@ -144,24 +141,6 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         [SetUp]
         public void SetUp()
         {
-            
-           // DesiredCapabilities capabilities = new DesiredCapabilities();
-
-           //// 
-           // if (typeof (TWebDriver).Name.Equals("ChromeDriver"))
-           // {
-           //      capabilities = DesiredCapabilities.Chrome();
-           // }
-
-           // if (typeof(TWebDriver).Name.Equals("FirefoxDriver"))
-           // {
-           //      capabilities = DesiredCapabilities.Firefox();
-           // }
-
-           // _driver = new RemoteWebDriver(
-           //   new Uri("http://localhost:4444/wd/hub"), capabilities
-           // );
-
             _driver = new TWebDriver();
             _driverCover = new DriverCover(_driver);
             _commonActions = new CommonActions(_driver);

@@ -18,7 +18,6 @@ namespace LottoSend.com.TestCases.Web
         private CommonActions _commonActions;
         private WayToPay _merchant;
         private TestsSharedCode _sharedCode;
-        private bool _setUpFailed = false;
 
         /// <summary>
         /// Pays for tickets using coupon with 100% discount (Completes order)
@@ -94,7 +93,7 @@ namespace LottoSend.com.TestCases.Web
         [TearDown]
         public void CleanUp()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
             {
                 _driverCover.TakeScreenshot();
             }

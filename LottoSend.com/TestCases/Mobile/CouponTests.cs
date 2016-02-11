@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.Helpers;
@@ -7,7 +6,6 @@ using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Remote;
 
 namespace LottoSend.com.TestCases.Mobile
 {
@@ -20,7 +18,6 @@ namespace LottoSend.com.TestCases.Mobile
         private CommonActions _commonActions;
         private string _device;
         private TestsSharedCode _sharedCode;
-        private bool _setUpFailed = false;
 
         public CouponTests(string device)
         {
@@ -107,7 +104,7 @@ namespace LottoSend.com.TestCases.Mobile
         [TearDown]
         public void CleanUp()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
             {
                 _driverCover.TakeScreenshot();
             }

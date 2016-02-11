@@ -18,8 +18,6 @@ namespace LottoSend.com.TestCases.BackOffice
         private IWebDriver _driver;
         private DriverCover _driverCover;
         private CommonActions _commonActions;
-        private BackOfficeVerifications _backOfficeVerifications;
-        private bool _setUpFailed = false;
 
         /// <summary>
         /// Adds a new scanned image for a group ticket
@@ -96,7 +94,7 @@ namespace LottoSend.com.TestCases.BackOffice
         [TearDown]
         public void CleanUp()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
             {
                 _driverCover.TakeScreenshot();
             }
@@ -109,7 +107,6 @@ namespace LottoSend.com.TestCases.BackOffice
             _driver = new TWebDriver();
             _driverCover = new DriverCover(_driver);
             _commonActions = new CommonActions(_driver);
-            _backOfficeVerifications = new BackOfficeVerifications(_driver);
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using LottoSend.com.FrontEndObj;
-using LottoSend.com.FrontEndObj.Common;
+﻿using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.FrontEndObj.MyAccount;
 using LottoSend.com.Verifications;
@@ -27,7 +25,6 @@ namespace LottoSend.com.TestCases.Mobile
         private double _totalPrice;
         private string _device;
         private WayToPay _merchant;
-        private bool _setUpFailed = false;
 
         public PromotionTests(string device, WayToPay merchant)
         {
@@ -252,7 +249,7 @@ namespace LottoSend.com.TestCases.Mobile
         [TearDown]
         public void CleanUp()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
             {
                 _driverCover.TakeScreenshot();
             }
