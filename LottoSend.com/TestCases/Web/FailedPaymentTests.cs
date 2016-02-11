@@ -1,10 +1,13 @@
-﻿using LottoSend.com.FrontEndObj.Common;
+﻿using LottoSend.com.FrontEndObj;
+using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.Verifications;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.IE;
 
 namespace LottoSend.com.TestCases.Web
 {
@@ -21,6 +24,7 @@ namespace LottoSend.com.TestCases.Web
         private DriverCover _driverCover;
         private CommonActions _commonActions;
         private CartVerifications _cartVerifications;
+        private bool _setUpFailed = false;
 
         /// <summary>
         /// Checks if a raffle ticket stays in the cart after payment was failed
@@ -123,7 +127,7 @@ namespace LottoSend.com.TestCases.Web
         [TearDown]
         public void CleanUp()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
             {
                 _driverCover.TakeScreenshot();
             }

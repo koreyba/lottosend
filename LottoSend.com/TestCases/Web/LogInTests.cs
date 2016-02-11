@@ -7,6 +7,8 @@ using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.IE;
 
 namespace LottoSend.com.TestCases.Web
 {
@@ -19,6 +21,7 @@ namespace LottoSend.com.TestCases.Web
         private IWebDriver _driver;
         private DriverCover _driverCover;
         private WebUserVerifications _usersVerifications;
+        private bool _setUpFailed = false;
 
         /// <summary>
         /// Logs in express checkout on a game page
@@ -104,7 +107,7 @@ namespace LottoSend.com.TestCases.Web
         [TearDown]
         public void CleanUp()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
             {
                 _driverCover.TakeScreenshot();
             }

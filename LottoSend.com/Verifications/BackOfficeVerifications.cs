@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Runtime.InteropServices;
+using System.Text;
 using LottoSend.com.BackEndObj.GroupGapePages;
 using LottoSend.com.BackEndObj.SalesPanelPages;
 using LottoSend.com.TestCases;

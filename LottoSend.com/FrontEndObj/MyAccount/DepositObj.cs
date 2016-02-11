@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using LottoSend.com.FrontEndObj.Common;
+using LottoSend.com.TestCases;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.Verifications;
@@ -26,6 +27,7 @@ namespace LottoSend.com.TestCases.Mobile
         private CommonActions _commonActions;
         private string _device;
         private CartVerifications _cartVerifications;
+        private bool _setUpFailed = false;
 
         public CartTests(string device)
         {
@@ -195,7 +197,7 @@ namespace LottoSend.com.TestCases.Mobile
         {
             try
             {
-                if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+                if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
                 {
                     _driverCover.TakeScreenshot();
                     //Removes all tickets from the cart to make sure all other tests will work well

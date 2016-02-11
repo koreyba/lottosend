@@ -23,6 +23,7 @@ namespace LottoSend.com.TestCases.Web
         private CommonActions _commonActions;
         private string _email;
         private WebUserVerifications _usersVerifications;
+        private bool _setUpFailed = false;
 
         /// <summary>
         /// Signs up in express checkout in the cart
@@ -103,7 +104,7 @@ namespace LottoSend.com.TestCases.Web
         [TearDown]
         public void CleanUp()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
             {
                 _driverCover.TakeScreenshot();
             }

@@ -4,6 +4,8 @@ using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.Verifications;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.IE;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 
@@ -22,6 +24,7 @@ namespace LottoSend.com.TestCases.Web
         private DriverCover _driverCover;
         private CommonActions _commonActions;
         private CartVerifications _cartVerifications;
+        private bool _setUpFailed = false;
 
         /// <summary>
         /// Adds and edit a group ticket adding more shares and checking if they were added
@@ -175,7 +178,7 @@ namespace LottoSend.com.TestCases.Web
         {
             try
             {
-                if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+                if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
                 {
                     _driverCover.TakeScreenshot();
                     //Removes all tickets from the cart to make sure all other tests will work well
