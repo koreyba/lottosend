@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.Helpers;
@@ -7,7 +6,6 @@ using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Remote;
 
 namespace LottoSend.com.TestCases.Mobile
 {

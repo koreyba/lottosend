@@ -1,5 +1,4 @@
 ﻿using System;
-using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.Helpers;

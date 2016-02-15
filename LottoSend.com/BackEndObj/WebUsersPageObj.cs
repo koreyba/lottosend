@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
@@ -35,7 +32,7 @@ namespace LottoSend.com.BackEndObj
         /// <returns></returns>
         public double GetFirstRecordStoreCredit()
         {
-            return _table.FindElement(By.CssSelector("tr > td:nth-child(8)")).Text.ParseDouble();
+            return _table.FindElement(By.CssSelector("tr > td:nth-child(9)")).Text.ParseDouble();
         }
 
         /// <summary>
@@ -44,7 +41,7 @@ namespace LottoSend.com.BackEndObj
         /// <returns></returns>
         public double GetFirstRecordRealMoney()
         {
-            return _table.FindElement(By.CssSelector("tr > td:nth-child(7)")).Text.ParseDouble();
+            return _table.FindElement(By.CssSelector("tr > td:nth-child(8)")).Text.ParseDouble();
         }
 
         /// <summary>

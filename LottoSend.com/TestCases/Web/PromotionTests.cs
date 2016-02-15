@@ -1,5 +1,4 @@
-﻿using LottoSend.com.FrontEndObj;
-using LottoSend.com.FrontEndObj.Common;
+﻿using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.FrontEndObj.MyAccount;
 using LottoSend.com.Verifications;
@@ -7,8 +6,6 @@ using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.IE;
 
 namespace LottoSend.com.TestCases.Web
 {

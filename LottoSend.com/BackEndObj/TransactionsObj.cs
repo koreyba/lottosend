@@ -114,7 +114,7 @@ namespace LottoSend.com.BackEndObj
         /// <returns></returns>
         public TimeSpan GetFirstTransactionDate()
         {
-            IWebElement dateTD = _firstRecord.FindElement(By.CssSelector("td:nth-child(14)"));
+            IWebElement dateTD = _firstRecord.FindElement(By.CssSelector("td:nth-child(15)"));
 
             string date = dateTD.Text;
             TimeSpan timeSpan = date.ParseTimeSpan();
@@ -158,7 +158,7 @@ namespace LottoSend.com.BackEndObj
         /// <returns></returns>
         public TimeSpan GetSecondTransactionDate()
         {
-            IWebElement dateTD = _secondRecord.FindElement(By.CssSelector("td:nth-child(12)"));
+            IWebElement dateTD = _secondRecord.FindElement(By.CssSelector("td:nth-child(15)"));
 
             string date = dateTD.Text;
             TimeSpan timeSpan = date.ParseTimeSpan();

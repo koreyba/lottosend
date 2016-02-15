@@ -4,8 +4,6 @@ using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.Verifications;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.IE;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 

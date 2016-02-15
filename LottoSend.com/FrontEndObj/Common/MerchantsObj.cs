@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 using System.Threading;
 using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.TestCases;

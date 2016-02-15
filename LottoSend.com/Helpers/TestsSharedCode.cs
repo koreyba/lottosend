@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using LottoSend.com.TestCases;
+﻿using LottoSend.com.TestCases;
 using LottoSend.com.Verifications;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;

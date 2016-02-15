@@ -29,7 +29,7 @@ namespace LottoSend.com.BackEndObj.DrawPages
         [FindsBy(How = How.CssSelector, Using = "table.index_table > tbody > tr:nth-child(2)")]
         private IWebElement _firstRecord;
 
-        [FindsBy(How = How.CssSelector, Using = ".index_table tr > td:nth-child(20)  > a.button.bet")]
+        [FindsBy(How = How.CssSelector, Using = ".index_table tr > td:nth-child(21)  > a.button")]
         private IList<IWebElement> _delete; 
 
         /// <summary>
