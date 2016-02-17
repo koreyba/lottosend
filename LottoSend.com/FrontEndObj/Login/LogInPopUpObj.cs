@@ -29,7 +29,7 @@ namespace LottoSend.com.FrontEndObj
         [FindsBy(How = How.CssSelector, Using = "div.control > input#web_user_password")]
         private IWebElement _password;
 
-        [FindsBy(How = How.CssSelector, Using = "div.control > input.btn.btn-lg.btn-success.btn-xl.btn-block")]
+        [FindsBy(How = How.CssSelector, Using = "div.control > input.btn.btn-lg.btn-xl.btn-block")]
         private IWebElement _loginButton;
 
         public IWebElement Email
