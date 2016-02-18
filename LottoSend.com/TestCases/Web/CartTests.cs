@@ -30,6 +30,7 @@ namespace LottoSend.com.TestCases.Web
         /// Checks that items in the cart is not removed when a guest signs up
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Tickets_Are_Left_In_Cart_After_Sign_Up()
         {
              /*
@@ -50,6 +51,7 @@ namespace LottoSend.com.TestCases.Web
         /// Checks that items in the cart is not removed when a guest logs in
         /// </summary>
         [Test]
+        [Category("Critical")]
         public void Tickets_Are_Left_In_Cart_After_Log_In()
         {
             /*
