@@ -74,6 +74,7 @@ namespace LottoSend.com.BackEndObj.CMS
             _contentInputFirst.Clear();
             _contentInputFirst.SendKeys(content);
             ScrollDown();
+            ZoomOut();
             _updateAllKeysButton.Click(); //TODO: check if scrolling is needed
             WaitForPageLoading();
             WaitAjax();

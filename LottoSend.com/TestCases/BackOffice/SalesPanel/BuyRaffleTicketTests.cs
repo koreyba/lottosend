@@ -120,7 +120,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
          /// <summary>
          /// Checks a transaction type of the first record in transactions (back)
          /// </summary>
-         [Test]
+         //[Test]
          public void Check_TransactionType_In_Transactions_Back()
          {
              _orderVerifications.CheckTransactionTypeInTransactions_Back("Play from real money");

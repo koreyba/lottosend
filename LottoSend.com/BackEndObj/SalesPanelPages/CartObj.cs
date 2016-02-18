@@ -139,14 +139,23 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
         /// </summary>
         public void DeleteAllTickets()
         {
-            int n = NumberOfTickets;
-            for (int i = 0; i < n; ++i)
+            while (Driver.FindElements(By.CssSelector("div.actions > form > input.button")).Count != 0)
             {
-                _ticktes[i].FindElement(By.CssSelector("div.actions > form > input.button")).Click();
+                _ticktes[0].FindElement(By.CssSelector("div.actions > form > input.button")).Click();
                 WaitAjax();
                 WaitForPageLoading();
                 WaitAjax();
             }
+
+
+            //for (int i = 0; i <= NumberOfTickets; ++i)
+            //{
+            //    IWebElement el = _ticktes[i].FindElement(By.CssSelector("div.actions > form > input.button"));
+            //    el.Click();
+            //    WaitAjax();
+            //    WaitForPageLoading();
+            //    WaitAjax();
+            //}
         } 
     }
 }

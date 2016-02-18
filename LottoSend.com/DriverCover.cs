@@ -343,7 +343,6 @@ namespace LottoSend.com
         /// <summary>
         /// Scroll to element
         /// </summary>
-        /// <param name="webElement">Element</param>
         /// <returns>Element</returns>
         public void ScrollDown()
         {
@@ -354,6 +353,26 @@ namespace LottoSend.com
 
 
            // return webElement;
+        }
+
+        /// <summary>
+        /// Clicks Ctr + "+" button in order to zoom in
+        /// </summary>
+        public void ZoomIn()
+        {
+             new Actions(Driver)
+                .SendKeys(Keys.Control).SendKeys(Keys.Add)
+                .Perform();
+        }
+
+        /// <summary>
+        /// Clicks Ctr + "-" button in order to zoom out
+        /// </summary>
+        public void ZoomOut()
+        {
+            new Actions(Driver)
+               .SendKeys(Keys.Control).SendKeys(Keys.Subtract)
+               .Perform();
         }
 
         /// <summary>
