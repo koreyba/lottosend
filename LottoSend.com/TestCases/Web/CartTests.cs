@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.Design;
 using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.Verifications;
@@ -6,6 +7,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
+using NUnit.Framework.Internal;
 
 namespace LottoSend.com.TestCases.Web
 {
@@ -23,6 +25,47 @@ namespace LottoSend.com.TestCases.Web
         private CommonActions _commonActions;
         private CartVerifications _cartVerifications;
         private bool _setUpFailed = false;
+
+        /// <summary>
+        /// Checks that items in the cart is not removed when a guest signs up
+        /// </summary>
+        [Test]
+        public void Tickets_Are_Left_In_Cart_After_Sign_Up()
+        {
+             /*
+             * Being a guest add tickets to the cart
+             * Sing up
+             * Check if tickets in the cart are left
+             */
+            _commonActions.AddRegularTicketToCart_Front("en/play/powerball/");
+            _commonActions.AddGroupTicketToCart_Front("en/play/eurojackpot/");
+            _commonActions.AddRaffleTicketToCart_Front(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
+
+            _commonActions.Sign_Up_In_Pop_Up_Front();
+            _cartVerifications.CheckNumberOfTicketsInCart_Front(3);
+        }
+
+        
+        /// <summary>
+        /// Checks that items in the cart is not removed when a guest logs in
+        /// </summary>
+        [Test]
+        public void Tickets_Are_Left_In_Cart_After_Log_In()
+        {
+            /*
+             * Being a guest add tickets to the cart
+             * Sing in
+             * Check if tickets in the cart are left
+             */
+
+            _commonActions.AddRegularTicketToCart_Front("en/play/powerball/");
+            _commonActions.AddGroupTicketToCart_Front("en/play/eurojackpot/");
+            _commonActions.AddRaffleTicketToCart_Front(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
+
+            _commonActions.Log_In_Front(_driverCover.LoginThree, _driverCover.Password);
+            _cartVerifications.CheckNumberOfTicketsInCart_Front(3);  
+            _commonActions.DeleteAllTicketFromCart_Front();
+        }
 
         /// <summary>
         /// Adds and edit a group ticket adding more shares and checking if they were added

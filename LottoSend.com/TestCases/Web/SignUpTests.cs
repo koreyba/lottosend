@@ -90,14 +90,8 @@ namespace LottoSend.com.TestCases.Web
         [Category("Critical")]
         [Category("Parallel")]
         public void Sign_Up_In_Pop_Up()
-        {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "");
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "lotteries/results/");
-
-            TopBarObj topBar = new TopBarObj(_driver);
-            SignUpPopUpObj popUp = topBar.ClickSignUpButton();
-            _email = popUp.FillInFieldsWeb();
-            SignUpSuccessObj success = popUp.ClickSignUp();
+         {
+             _commonActions.Sign_Up_In_Pop_Up_Front();
             _usersVerifications.CheckIfSignedIn_Web();
         }
 

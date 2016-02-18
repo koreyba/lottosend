@@ -5,6 +5,7 @@ using LottoSend.com.BackEndObj.ChargePanelPages;
 using LottoSend.com.BackEndObj.DrawPages;
 using LottoSend.com.BackEndObj.GroupGapePages;
 using LottoSend.com.BackEndObj.SalesPanelPages;
+using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.FrontEndObj.Login;
@@ -569,6 +570,22 @@ namespace LottoSend.com.TestCases
             SignUpPageOneObj signUp = new SignUpPageOneObj(_driver);
             string email = signUp.FillInFieldsWeb();
             signUp.ClickSignUp();
+
+            return email;
+        }
+
+        /// <summary>
+        /// Registrate a new user
+        /// <returns>User's email</returns>
+        /// </summary>
+        public string Sign_Up_In_Pop_Up_Front()
+        {
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl);
+
+            TopBarObj topBar = new TopBarObj(_driver);
+            SignUpPopUpObj popUp = topBar.ClickSignUpButton();
+            string email = popUp.FillInFieldsWeb();
+            popUp.ClickSignUp();
 
             return email;
         }
