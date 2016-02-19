@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.Design;
 using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.Verifications;
@@ -7,7 +6,6 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
-using NUnit.Framework.Internal;
 
 namespace LottoSend.com.TestCases.Web
 {

@@ -1,5 +1,4 @@
 ﻿using LottoSend.com.BackEndObj.ChargePanelPages;
-using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.TestCases;
 using OpenQA.Selenium.Chrome;
 

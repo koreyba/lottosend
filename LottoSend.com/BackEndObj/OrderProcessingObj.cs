@@ -20,6 +20,17 @@ namespace LottoSend.com.BackEndObj
         [FindsBy(How = How.CssSelector, Using = ".index_table > tbody > tr > td:nth-child(2) > table > body > tr > td:nth-child(1) > nth-child(6)")]
         private IWebElement _transID;
 
+        [FindsBy(How = How.CssSelector, Using = "td[id*=payment]  tbody > tr:nth-child(1) > td:nth-child(1)")]
+        private IWebElement _trid;
+
+        /// <summary>
+        /// TRID of the first record
+        /// </summary>
+        public string Trid
+        {
+            get { return _trid.Text; }
+        }
+
         /// <summary>
         /// Click "Authorize" button for the last payment (the one at the top)
         /// </summary>
