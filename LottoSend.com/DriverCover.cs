@@ -207,7 +207,7 @@ namespace LottoSend.com
         /// </summary>
         /// <param name="secondsToWait">Time to wait (default 120 sec)</param>
         /// <returns>If Ajax was executing</returns>
-        public bool WaitAjax(int secondsToWait = 120)
+        public bool WaitAjax(int secondsToWait = 320)
         {
             bool ifExecuted = false;
 

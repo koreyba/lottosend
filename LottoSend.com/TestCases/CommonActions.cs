@@ -32,6 +32,24 @@ namespace LottoSend.com.TestCases
         }
 
         /// <summary>
+        /// Changes a default deposit value for a website. Needs previous log in the admin panel
+        /// </summary>
+        /// <param name="siteID"></param>
+        /// <returns></returns>
+        public string Change_Amount_Of_Default_Deposit(string siteID)
+        {
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/sites/" + siteID + "/edit");
+
+            SiteEditingPageObj siteEditing = new SiteEditingPageObj(_driver);
+
+            int[] amounts = new[] { 15, 30, 60, 90, 120, 150 };
+            int defaultValue = amounts[RandomGenerator.GenerateNumber(0, 6)];
+            siteEditing.SelectDefaultDepositAmount(defaultValue.ToString());
+
+            return defaultValue.ToString();
+        }
+
+        /// <summary>
         /// Removes a specific bet (with sent number) from a specific draw
         /// </summary>
         /// <param name="lotteryName"></param>

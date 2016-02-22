@@ -21,8 +21,8 @@ namespace LottoSend.com.FrontEndObj.MyAccount
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = "#deposit-options > div.row.text-center")]
-        private IWebElement _depositOptions;
+        [FindsBy(How = How.CssSelector, Using = "#deposit-options > div.row.text-center input.fix-amount")]
+        private IList<IWebElement> _depositOptions;
 
         [FindsBy(How = How.CssSelector, Using = "#deposit-options > div.text-center.grey.other > div > label > strong:nth-child(1)")]
         private IWebElement _otherRadioButton;
@@ -39,6 +39,23 @@ namespace LottoSend.com.FrontEndObj.MyAccount
         public double Balance
         {
             get { return _balance.Text.ParseDouble(); }
+        }
+
+        /// <summary>
+        /// Returns currently selected value of standard deposit
+        /// </summary>
+        /// <returns></returns>
+        public string GetSelectedAmount()
+        {
+            foreach (var el in _depositOptions)
+            {
+                if (el.GetAttribute("checked") != null && el.GetAttribute("checked").Equals("true"))
+                {
+                    return el.GetAttribute("value");
+                }
+            }
+
+            return "";
         }
 
         /// <summary>
@@ -63,13 +80,12 @@ namespace LottoSend.com.FrontEndObj.MyAccount
         {
             bool isFound = false;
 
-            IList<IWebElement> options = _depositOptions.FindElements(By.CssSelector("div.col-sm-2 > div.radio > label"));
-            foreach (var option in options)
+            foreach (var option in _depositOptions)
             {
-                if (option.Text.Contains(amount.ToString(System.Globalization.CultureInfo.InvariantCulture)))
+                if (option.GetAttribute("value").Contains(amount.ToString(System.Globalization.CultureInfo.InvariantCulture)))
                 {
                     isFound = true;
-                    option.Click();
+                    option.FindElement(By.XPath("//label")).Click();
                 }
             }
 

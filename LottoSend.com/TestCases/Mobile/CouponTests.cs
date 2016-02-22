@@ -99,7 +99,7 @@ namespace LottoSend.com.TestCases.Mobile
             double price = checkout.TotalPrice;
             double disc = checkout.DiscountMultiDraw;
 
-            Assert.AreEqual(Math.Round(subTotalPrice - disc - (subTotalPrice - disc) / 100 * discount, 2), Math.Round(price, 2));
+            Assert.AreEqual(Math.Round(subTotalPrice - disc - (subTotalPrice - disc) / 100 * discount, 2), Math.Round(price, 2), "Sorry but the total price is not as expected. Maybe coupon gave a wrong discount. ");
         }
 
         [TearDown]
