@@ -5,18 +5,24 @@ using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace LottoSend.com.TestCases.Web
+namespace LottoSend.com.TestCases.Mobile
 {
     /// <summary>
     /// Tests that check front/deposit page
     /// </summary>
-    [TestFixture(typeof(ChromeDriver))]
+    [TestFixture("Apple iPhone 4")]
     [Parallelizable(ParallelScope.Fixtures)]
-    public class DepositPageTests<TWebDriver> where TWebDriver : IWebDriver, new()
+    public class DepositPageTests
     {
         private IWebDriver _driver;
         private DriverCover _driverCover;
         private CommonActions _commonActions;
+        private string _device;
+
+        public DepositPageTests(string device)
+        {
+            _device = device;
+        }
 
         /// <summary>
         /// Changes default deposit amount in the back office and checks if it was changed on the site/deposit
@@ -30,7 +36,7 @@ namespace LottoSend.com.TestCases.Web
             _commonActions.Log_In_Front(_driverCover.LoginThree, _driverCover.Password);
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/deposits/new/");
 
-            DepositObj depositPage = new DepositObj(_driver);
+            DepositMobileObj depositPage = new DepositMobileObj(_driver);
             string defaultValueFront = depositPage.GetSelectedAmount();
 
             Assert.AreEqual(defaultValue, defaultValueFront, "Sorry but default amount is not as expected. Current page is: " + _driverCover.Driver.Url + " ");
@@ -61,9 +67,21 @@ namespace LottoSend.com.TestCases.Web
         [SetUp]
         public void SetUp()
         {
-            _driver = new TWebDriver();
+            _driver = new ChromeDriver(CreateOptions(_device));
             _driverCover = new DriverCover(_driver);
             _commonActions = new CommonActions(_driver);
+        }
+
+        /// <summary>
+        /// Creates and returns ChromeOptions for a mobile device
+        /// </summary>
+        /// <param name="device"></param>
+        /// <returns></returns>
+        public ChromeOptions CreateOptions(string device)
+        {
+            ChromeOptions options = new ChromeOptions();
+            options.EnableMobileEmulation(device);
+            return options;
         }
     }
 }

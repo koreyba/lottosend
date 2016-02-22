@@ -146,6 +146,7 @@
     <Compile Include="TestCases\BackOffice\SalesPanel\SignInUpTests.cs" />
     <Compile Include="TestCases\Mobile\CartTests.cs" />
     <Compile Include="TestCases\Mobile\CouponTests.cs" />
+    <Compile Include="TestCases\Mobile\DepositPageTests.cs" />
     <Compile Include="TestCases\Mobile\DepositSuccessTests.cs" />
     <Compile Include="TestCases\Mobile\Group ticktes\BuyGroupMultiDrawTicketTests.cs" />
     <Compile Include="TestCases\Mobile\Group ticktes\BuyGroupOneDrawTicketTests.cs" />
