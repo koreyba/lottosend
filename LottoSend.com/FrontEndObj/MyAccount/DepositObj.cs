@@ -85,7 +85,7 @@ namespace LottoSend.com.FrontEndObj.MyAccount
                 if (option.GetAttribute("value").Contains(amount.ToString(System.Globalization.CultureInfo.InvariantCulture)))
                 {
                     isFound = true;
-                    option.FindElement(By.XPath("//label")).Click();
+                    option.FindElement(By.XPath("../label")).Click();
                 }
             }
 
