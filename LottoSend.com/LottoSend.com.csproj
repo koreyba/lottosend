@@ -159,7 +159,7 @@
     <Compile Include="TestCases\Web\FailedPaymentTests.cs" />
     <Compile Include="TestCases\Web\Group ticktes\GroupTicketTests.cs" />
     <Compile Include="TestCases\Web\RaffleTicketTests.cs" />
-    <Compile Include="TestCases\Web\WebApiTests.cs" />
+    <Compile Include="TestCases\WebApiTests.cs" />
     <Compile Include="Verifications\BackOfficeVerifications.cs" />
     <Compile Include="Verifications\BalanceVerifications.cs" />
     <Compile Include="Debugger.cs" />

@@ -41,11 +41,11 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/orders");
 
             RegisterObj register = new RegisterObj(_driver);
-            register.SignIn(_driverCover.Login);
+            register.SignIn(_driverCover.LoginSix);
             _backOfficeVerifications.IfUserSignedInSalesPanel();
             register.SignOut();
 
-            register.SignIn(40540);
+            register.SignIn(45587);
             _backOfficeVerifications.IfUserSignedInSalesPanel();
         }
 

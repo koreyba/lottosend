@@ -6,7 +6,7 @@ using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace LottoSend.com.TestCases.Web
+namespace LottoSend.com.TestCases
 {
     /// <summary>
     /// Tests connected with Web API 
@@ -25,6 +25,22 @@ namespace LottoSend.com.TestCases.Web
         public WebApiTests(WayToPay merchant)
         {
             _merchant = merchant;
+        }
+
+        /// <summary>
+        /// Buys a ticket via the sales panel and checks if TRID was added
+        /// </summary>
+        [Test]
+        public void Trid_Is_Added_Buying_Ticket_Via_Sales_Panel()
+        {
+            _commonActions.SignIn_in_admin_panel();
+            _commonActions.Sign_In_SalesPanel(_driverCover.Login);
+            _commonActions.BuyRegularOneDrawTicket_SalesPanel("El Gordo");
+
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/orders_processed");
+            OrderProcessingObj orderProcessing = new OrderProcessingObj(_driver);
+
+            StringAssert.Contains("Qa Denis", orderProcessing.Trid, "Sorry but TRID must have not been added. Please check it. ");
         }
 
         /// <summary>
