@@ -52,19 +52,38 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
             }
             catch (Exception e)
             {
-                _setUpFailed = true;
                 CleanUp();
 
                 if (_merchant == WayToPay.InternalBalance)
                 {
-                    _sharedCode.CleanCartIfTestWasFailed(_driverCover.LoginTwo, _driverCover.Password);
+                    _sharedCode.CleanCart(_driverCover.LoginTwo, _driverCover.Password);
                 }
                 else
                 {
-                    _sharedCode.CleanCartIfTestWasFailed(_driverCover.Login, _driverCover.Password);
+                    _sharedCode.CleanCart(_driverCover.Login, _driverCover.Password);
                 }
-                
-                throw new Exception("Exception was thrown while executing: " + e.Message + " ");
+
+                try
+                {
+                    SetUp();
+                    Buy_Group_Multi_Draw_Ticket(_merchant);
+                }
+                catch (Exception)
+                {
+                    _setUpFailed = true;
+                    CleanUp();
+
+                    if (_merchant == WayToPay.InternalBalance)
+                    {
+                        _sharedCode.CleanCart(_driverCover.LoginTwo, _driverCover.Password);
+                    }
+                    else
+                    {
+                        _sharedCode.CleanCart(_driverCover.Login, _driverCover.Password);
+                    }
+
+                    throw new Exception("Exception was thrown while executing: " + e.Message + " ");
+                }
             }
             
             CleanUp();

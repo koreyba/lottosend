@@ -38,17 +38,36 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             }
             catch (Exception e)
             {
-                _setUpFailed = true;
                 CleanUp();
                 if (_merchant == WayToPay.InternalBalance)
                 {
-                    _sharedCode.CleanCartIfTestWasFailed(_driverCover.LoginTwo, _driverCover.Password);
+                    _sharedCode.CleanCart(_driverCover.LoginTwo, _driverCover.Password);
                 }
                 else
                 {
-                    _sharedCode.CleanCartIfTestWasFailed(_driverCover.Login, _driverCover.Password);
+                    _sharedCode.CleanCart(_driverCover.Login, _driverCover.Password);
                 }
-                throw new Exception("Exception was thrown while executing: " + e.Message + " ");
+
+                try
+                {
+                    SetUp();
+                    Buy_Regular_One_Draw_Ticket(merchant, _lotteryName);
+                }
+                catch (Exception)
+                {
+                    _setUpFailed = true;
+                    CleanUp();
+                    if (_merchant == WayToPay.InternalBalance)
+                    {
+                        _sharedCode.CleanCart(_driverCover.LoginTwo, _driverCover.Password);
+                    }
+                    else
+                    {
+                        _sharedCode.CleanCart(_driverCover.Login, _driverCover.Password);
+                    }
+
+                    throw new Exception("Exception was thrown while executing: " + e.Message + " ");
+                }  
             }
             CleanUp();
         }

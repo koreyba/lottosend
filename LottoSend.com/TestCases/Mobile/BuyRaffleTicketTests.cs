@@ -46,25 +46,41 @@ namespace LottoSend.com.TestCases.Mobile
             }
             catch (Exception e)
             {
-                _setUpFailed = true;
                 CleanUp();
 
                 if (_merchant == WayToPay.InternalBalance)
                 {
-                    _sharedCode.CleanCartIfTestWasFailed(_driverCover.LoginTwo, _driverCover.Password);
+                    _sharedCode.CleanCart(_driverCover.LoginTwo, _driverCover.Password);
                 }
                 else
                 {
-                    _sharedCode.CleanCartIfTestWasFailed(_driverCover.Login, _driverCover.Password);
+                    _sharedCode.CleanCart(_driverCover.Login, _driverCover.Password);
                 }
 
-                throw new Exception("Exception was thrown while executing: " + e.Message + " ");
+                try
+                {
+                    SetUp(CreateOptions(_device));
+                    Buy_Raffle_Ticket(_merchant);
+                }
+                catch (Exception)
+                {
+                    _setUpFailed = true;
+                    CleanUp();
+
+                    if (_merchant == WayToPay.InternalBalance)
+                    {
+                        _sharedCode.CleanCart(_driverCover.LoginTwo, _driverCover.Password);
+                    }
+                    else
+                    {
+                        _sharedCode.CleanCart(_driverCover.Login, _driverCover.Password);
+                    }
+
+                    throw new Exception("Exception was thrown while executing: " + e.Message + " ");
+                }
             }
-            CleanUp();
-            
-            //SetUp();
-            //Confirn_Payment();
-            //CleanUp();
+
+            CleanUp();         
         }
 
         /// <summary>

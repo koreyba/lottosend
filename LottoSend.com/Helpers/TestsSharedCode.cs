@@ -13,7 +13,7 @@ namespace LottoSend.com.Helpers
     public class TestsSharedCode
     {
         private IWebDriver _driver;
-        private bool _setUpFailed = false;
+        public bool _setUpFailed = false;
         public TestsSharedCode(IWebDriver driver)
         {
             _driver = driver;
@@ -29,17 +29,13 @@ namespace LottoSend.com.Helpers
         /// <summary>
         /// If a test was failed or inconclusive then the user's cart will be cleaned up
         /// </summary>
-        public void CleanCartIfTestWasFailed(string email, string password)
+        public void CleanCart(string email, string password)
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true || TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Inconclusive)
-            {
-               // _driverCover.TakeScreenshot();
-                SetUp();
-                CommonActions.Log_In_Front(email, password);
-                //Removes all tickets from the cart to make sure all other tests will work well
-                CommonActions.DeleteAllTicketFromCart_Front();
-                CleanUp(ref _driver);
-            }
+            SetUp();
+            CommonActions.Log_In_Front(email, password);
+            //Removes all tickets from the cart to make sure all other tests will work well
+            CommonActions.DeleteAllTicketFromCart_Front();
+            CleanUp(ref _driver);
         }
 
         /// <summary>

@@ -205,7 +205,7 @@ namespace LottoSend.com
         /// <summary>
         /// Waits for Ajax executing 
         /// </summary>
-        /// <param name="secondsToWait">Time to wait (default 120 sec)</param>
+        /// <param name="secondsToWait">Time to wait (default 320 sec)</param>
         /// <returns>If Ajax was executing</returns>
         public bool WaitAjax(int secondsToWait = 320)
         {
@@ -247,9 +247,9 @@ namespace LottoSend.com
         /// <summary>
         /// Waits for jQuery executing 
         /// </summary>
-        /// <param name="secondsToWait">Time to wait (default 120 sec)</param>
+        /// <param name="secondsToWait">Time to wait (default 300 sec)</param>
         /// <returns>If jQuery was executing</returns>
-        public bool WaitjQuery(int secondsToWait = 120)
+        public bool WaitjQuery(int secondsToWait = 300)
         {
             bool ifExecuted = false;
             Stopwatch sw = new Stopwatch();

@@ -58,6 +58,7 @@ namespace LottoSend.com.TestCases
             merchants.Pay(_merchant, false);
 
             _commonActions.AddRegularTicketToCart_Front("en/play/megamillions/");
+            _commonActions.AddRegularTicketToCart_Front("en/play/megamillions/");
             merchants.Pay(_merchant, false);
 
             _commonActions.SignIn_in_admin_panel();

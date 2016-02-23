@@ -51,6 +51,10 @@
       <HintPath>..\packages\NUnit3TestAdapter.3.0.8-ctp-8\lib\Mono.Cecil.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="nunit.core.engine, Version=3.0.5715.30860, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.Core.Engine.3.0.0-beta-4\lib\nunit.core.engine.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="nunit.engine, Version=3.0.5813.39036, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit3TestAdapter.3.0.8-ctp-8\lib\nunit.engine.dll</HintPath>
       <Private>False</Private>

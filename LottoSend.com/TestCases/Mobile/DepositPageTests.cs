@@ -11,7 +11,6 @@ namespace LottoSend.com.TestCases.Mobile
     /// Tests that check front/deposit page
     /// </summary>
     [TestFixture("Apple iPhone 4")]
-    [Parallelizable(ParallelScope.Fixtures)]
     public class DepositPageTests
     {
         private IWebDriver _driver;
