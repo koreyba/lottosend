@@ -131,6 +131,7 @@
     <Compile Include="FrontEndObj\Common\ExpressCheckoutObj.cs" />
     <Compile Include="FrontEndObj\Common\CheckoutObj.cs" />
     <Compile Include="FrontEndObj\MyAccount\DepositMobileObj.cs" />
+    <Compile Include="FrontEndObj\OnlineMerchantsObj.cs" />
     <Compile Include="FrontEndObj\SignUp\SignUpForm.cs" />
     <Compile Include="Helpers\TestsSharedCode.cs" />
     <Compile Include="TestCases\BackOffice\CMS\CmsPermissionTests.cs" />

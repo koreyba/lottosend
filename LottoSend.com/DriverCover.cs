@@ -488,17 +488,17 @@ namespace LottoSend.com
                 bmpScreenCapture.Save(filePath);
             }
 
-            //try
-            //{
-            //    Screenshot ss = ((ITakesScreenshot)Driver).GetScreenshot();
-            //    var filePath = @"C:\Screenshots\" + TestContext.CurrentContext.Test.FullName.Replace("<", "(").Replace(">", ")").Replace("\"", "'") + DateTime.Now.DayOfWeek + DateTime.Now.Day + "." + DateTime.Now.Month + "." + DateTime.Now.Year + "_Time-" + DateTime.Now.Hour + "." + DateTime.Now.Minute + "_" + RandomGenerator.GenerateRandomString(10) + ".jpg";
-            //    ss.SaveAsFile(filePath, ImageFormat.Jpeg);
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine(e.Message);
-            //    throw;
-            //}
+            try
+            {
+                Screenshot ss = ((ITakesScreenshot)Driver).GetScreenshot();
+                var filePath = @"C:\Screenshots\" + TestContext.CurrentContext.Test.FullName.Replace("<", "(").Replace(">", ")").Replace("\"", "'") + DateTime.Now.DayOfWeek + DateTime.Now.Day + "." + DateTime.Now.Month + "." + DateTime.Now.Year + "_Time-" + DateTime.Now.Hour + "." + DateTime.Now.Minute + "_" + RandomGenerator.GenerateRandomString(10) + ".jpg";
+                ss.SaveAsFile(filePath, ImageFormat.Jpeg);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                throw;
+            }
         }
     }
 }

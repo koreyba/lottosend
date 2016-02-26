@@ -1,4 +1,5 @@
-﻿using LottoSend.com.FrontEndObj.Common;
+﻿using LottoSend.com.FrontEndObj;
+using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.Verifications;
 using NUnit.Framework;
@@ -22,6 +23,29 @@ namespace LottoSend.com.TestCases.Web
         private CommonActions _commonActions;
         private CartVerifications _cartVerifications;
         private bool _setUpFailed = false;
+
+        /// <summary>
+        /// Fails payment and check if URL displayes the word "failure"
+        /// </summary>
+        /// <param name="merchant"></param>
+        [TestCase("ekonto")]
+        [Category("Critical")]
+        public void Fail_Online_Pament_Check_URL(string merchant)
+        {
+            //TODO
+            _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
+
+            RafflesPageObj rafflePage = new RafflesPageObj(_driver);
+
+            rafflePage.ClickBuyNowButton();
+
+            _driverCover.Driver.FindElement(By.CssSelector("input[id$='merchant_23'] + img.merchant")).Click();
+            OnlineMerchantsObj online = new OnlineMerchantsObj(_driver);
+            online.FailPayment();
+            StringAssert.Contains("failure", _driverCover.Driver.Url);
+        }
 
         /// <summary>
         /// Checks if a raffle ticket stays in the cart after payment was failed

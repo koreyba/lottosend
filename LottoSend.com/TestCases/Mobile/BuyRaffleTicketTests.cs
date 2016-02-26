@@ -180,11 +180,6 @@ namespace LottoSend.com.TestCases.Mobile
         [Test]
         public void Check_TransactionType_In_Transactions_Back()
         {
-            //TODO: change it when transactions are fixed
-            if (_merchant == WayToPay.InternalBalance)
-            {
-                Assert.Inconclusive("This test can't be run correctly for Internal balance payment ");
-            }
             SetUp();
             _orderVerifications.CheckTransactionTypeInTransactions_Back("Play from real money");
         }

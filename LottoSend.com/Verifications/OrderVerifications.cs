@@ -360,7 +360,7 @@ namespace LottoSend.com.Verifications
             _commonActions.SignIn_in_admin_panel();
             //navigate to the draw's page
             DrawObj draw = _commonActions.Find_The_Draw_Page("Eurojackpot");
-            Assert.AreEqual(Math.Round(totalPrice / numberOfDraws, 2, MidpointRounding.ToEven), draw.BetAmount, "Sorry, the price for the bet is  " + draw.BetAmount + " but " + totalPrice / numberOfDraws + " was expected, page: " + _driverCover.Driver.Url + " ");
+            Assert.AreEqual(totalPrice, draw.BetAmount, "Sorry, the price for the bet is  " + draw.BetAmount + " but " + totalPrice + " was expected, page: " + _driverCover.Driver.Url + " ");
         }
     }
 }
