@@ -231,7 +231,7 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
             if (_merchant != WayToPay.InternalBalance)
             {
                 _orderVerifications.CheckTransactionLotteryName_Front("EuroJackpot", _driverCover.Login,
-                    _driverCover.Password, 2);
+                    _driverCover.Password, 1);
             }
             else
             {

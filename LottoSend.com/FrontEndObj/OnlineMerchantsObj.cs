@@ -10,21 +10,17 @@ namespace LottoSend.com.FrontEndObj
             PageFactory.InitElements(Driver, this);
         }
 
+        /// <summary>
+        /// Fails online payment
+        /// </summary>
         public void FailPayment()
         {
-          //  Driver.SwitchTo().Window(Driver.CurrentWindowHandle);
             WaitForPageLoading();
-            //bool w = WaitAjax();
             Driver.FindElement(By.CssSelector(".error11bold")).Click();
             WaitForPageLoading();
-            //bool m = WaitAjax();
             Driver.SwitchTo().Window(Driver.WindowHandles[1]);
             Driver.FindElement(By.CssSelector(".btn.btn-danger")).Click();
             Driver.SwitchTo().Window(Driver.WindowHandles[0]);
-          //  bool s = WaitAjax();
-            //WaitForPageLoading();
-           // bool z = WaitAjax();
-           // WaitForPageLoading();
         }
     }
 }

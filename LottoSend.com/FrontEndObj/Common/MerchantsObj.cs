@@ -34,6 +34,27 @@ namespace LottoSend.com.FrontEndObj.Common
         [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_18'] + img.merchant")]
         private IWebElement _skrill;
 
+        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_25'] + img.merchant")]
+        private IWebElement _poli;
+        
+        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_24'] + img.merchant")]
+        private IWebElement _moneta;
+
+        public IWebElement Moneta
+        {
+            get { return _moneta; }
+        }
+
+        public IWebElement Poli
+        {
+            get { return _poli; }
+        }
+
+        public IWebElement eKontoePlatby
+        {
+            get { return _eKontoePlatby; }
+        }
+
         /// <summary>
         /// Pays with Skrill
         /// </summary>

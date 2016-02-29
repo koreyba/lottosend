@@ -1,4 +1,5 @@
-﻿using LottoSend.com.FrontEndObj;
+﻿using LottoSend.com.BackEndObj;
+using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.Verifications;
@@ -13,7 +14,7 @@ namespace LottoSend.com.TestCases.Web
     /// Tests that are connected with failed payments
     /// </summary>
     /// <typeparam name="TWebDriver"></typeparam>
-    [TestFixture(typeof(ChromeDriver))]
+    [TestFixture(typeof (ChromeDriver))]
     //[TestFixture(typeof(FirefoxDriver))]
     //[TestFixture(typeof(InternetExplorerDriver))]
     class FailedPaymentTests<TWebDriver> where TWebDriver : IWebDriver, new()
@@ -22,13 +23,44 @@ namespace LottoSend.com.TestCases.Web
         private DriverCover _driverCover;
         private CommonActions _commonActions;
         private CartVerifications _cartVerifications;
+        private BalanceVerifications _balanceVerifications;
         private bool _setUpFailed = false;
+
+        /// <summary>
+        /// Credit real money and store credit for a new user and makes a payment. Then failed the payment and checks if the balance was returned back.
+        /// </summary>
+        [Test]
+        public void Balance_Returned_To_User_After_Failed_Payment()
+        {
+            string email = _commonActions.Sign_Up_Front();
+            _commonActions.SignIn_in_admin_panel();
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/web_users");
+            WebUsersPageObj users = new WebUsersPageObj(_driver);
+
+            users.FilterByEmail(email);
+            users.CreditToRealMoney("3");
+            users.CreditToStoreCredit("4");
+
+            _commonActions.AddRegularTicketToCart_Front("en/play/superenalotto/");
+            MerchantsObj merchants = new MerchantsObj(_driver);
+
+            merchants.PayWithOfflineCharge();
+
+            _commonActions.SignIn_in_admin_panel();
+            _commonActions.Authorize_the_first_payment();
+            _commonActions.Fail_offline_payment();
+
+            _balanceVerifications.CheckUserSRealMoney_BackOffice(email, 3);
+            _balanceVerifications.CheckUserStoreCredit_BackOffice(email, 4);
+        }
 
         /// <summary>
         /// Fails payment and check if URL displayes the word "failure"
         /// </summary>
         /// <param name="merchant"></param>
         [TestCase("ekonto")]
+        [TestCase("moneta")]
+        [TestCase("poli")]
         [Category("Critical")]
         public void Fail_Online_Pament_Check_URL(string merchant)
         {
@@ -41,7 +73,29 @@ namespace LottoSend.com.TestCases.Web
 
             rafflePage.ClickBuyNowButton();
 
-            _driverCover.Driver.FindElement(By.CssSelector("input[id$='merchant_23'] + img.merchant")).Click();
+            MerchantsObj merchants = new MerchantsObj(_driver);
+
+            switch (merchant)
+            {
+                case "ekonto":
+                {
+                    merchants.eKontoePlatby.Click();
+                }
+                    break;
+
+                case "poli":
+                {
+                    merchants.Poli.Click();
+                }
+                    break;
+
+                case "moneta":
+                    {
+                        merchants.Moneta.Click();
+                    }
+                    break;
+            }
+
             OnlineMerchantsObj online = new OnlineMerchantsObj(_driver);
             online.FailPayment();
             StringAssert.Contains("failure", _driverCover.Driver.Url);
@@ -162,6 +216,7 @@ namespace LottoSend.com.TestCases.Web
             _driverCover = new DriverCover(_driver);
             _commonActions = new CommonActions(_driver);
             _cartVerifications = new CartVerifications(_driver);
+            _balanceVerifications = new BalanceVerifications(_driver);
         }
     }
 }

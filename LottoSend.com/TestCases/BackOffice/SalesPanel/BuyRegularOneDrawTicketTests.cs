@@ -330,7 +330,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             if (_merchant != WayToPay.InternalBalance)
             {
                 _orderVerifications.CheckTransactionLotteryName_Front(_lotteryName, _driverCover.Login,
-                    _driverCover.Password, 2);
+                    _driverCover.Password, 1);
             }
             else
             {

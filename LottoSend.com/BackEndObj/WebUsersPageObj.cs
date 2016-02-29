@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.UI;
 
 namespace LottoSend.com.BackEndObj
 {
@@ -25,6 +27,53 @@ namespace LottoSend.com.BackEndObj
 
         [FindsBy(How = How.CssSelector, Using = "table.index_table.index > tbody")]
         private IWebElement _table;
+
+        [FindsBy(How = How.CssSelector, Using = "")]
+        private IWebElement _newTransactionButton;
+
+        /// <summary>
+        /// Credits an amount of money to the store credit balance of a user
+        /// </summary>
+        /// <param name="amount"></param>
+        public void CreditToStoreCredit(string amount)
+        {
+            _table.FindElement(By.LinkText("New Transaction")).Click();
+            WaitAjax();
+            IWebElement transactionType = GetFirstVisibleElementFromList(By.CssSelector("#transaction_transaction_type"));
+
+            ChooseElementInSelect("credit_to_store_credit", transactionType, SelectBy.Value);
+
+            IWebElement amountField = GetFirstVisibleElementFromList(By.CssSelector("#transaction_amount"));
+            amountField.Clear();
+            amountField.SendKeys(amount);
+
+            IWebElement addTransactionButton = GetFirstVisibleElementFromList(By.CssSelector("#add_transaction_button"));
+            addTransactionButton.Click();
+
+            WaitAjax();
+        }
+
+        /// <summary>
+        /// Credits an amount of money to the real money balance of the a user
+        /// </summary>
+        /// <param name="amount"></param>
+        public void CreditToRealMoney(string amount)
+        {
+            _table.FindElement(By.LinkText("New Transaction")).Click();
+            WaitAjax();
+            IWebElement transactionType = GetFirstVisibleElementFromList(By.CssSelector("#transaction_transaction_type"));
+
+            ChooseElementInSelect("credit_to_real_money", transactionType, SelectBy.Value);
+
+            IWebElement amountField = GetFirstVisibleElementFromList(By.CssSelector("#transaction_amount"));
+            amountField.Clear();
+            amountField.SendKeys(amount);
+
+            IWebElement addTransactionButton = GetFirstVisibleElementFromList(By.CssSelector("#add_transaction_button"));
+            addTransactionButton.Click();
+
+            WaitAjax();
+        }
 
         /// <summary>
         /// Returns store credit money of the first users (at the top)

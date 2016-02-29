@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
 namespace LottoSend.com.BackEndObj.SalesPanelPages
@@ -47,7 +48,7 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
             _number.SendKeys(number);
             ChooseElementInSelect("2017", _expirationDateYear, SelectBy.Text);
             _code.SendKeys("123");
-            _holderName.SendKeys("Selenium");
+            _holderName.SendKeys(TestContext.CurrentContext.Test.FullName);
 
             _okButton.Click();
             WaitForPageLoading();

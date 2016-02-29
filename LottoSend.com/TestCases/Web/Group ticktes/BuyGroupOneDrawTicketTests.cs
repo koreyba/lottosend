@@ -185,7 +185,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
             if (_merchant != WayToPay.InternalBalance)
             {
                 _orderVerifications.CheckTransactionLotteryName_Front("El Gordo", _driverCover.Login,
-                    _driverCover.Password, 2);
+                    _driverCover.Password, 1);
             }
             else
             {
