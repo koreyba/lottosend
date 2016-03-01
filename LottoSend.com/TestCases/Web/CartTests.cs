@@ -1,6 +1,7 @@
 ﻿using System;
 using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.GamePages;
+using LottoSend.com.Helpers;
 using LottoSend.com.Verifications;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -239,6 +240,8 @@ namespace LottoSend.com.TestCases.Web
         [SetUp]
         public void SetUp()
         {
+            MessageConsoleCreator message = new MessageConsoleCreator();
+            message.TestWillRun();
             _driver = new TWebDriver();
             _driverCover = new DriverCover(_driver);
             _commonActions = new CommonActions(_driver);

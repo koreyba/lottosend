@@ -402,7 +402,8 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
 
             //var options = new ChromeOptions();
             //options.EnableMobileEmulation(device);
-
+            MessageConsoleCreator message = new MessageConsoleCreator();
+            message.TestWillRun();
             _driver = new TWebDriver();
             _driverCover = new DriverCover(_driver);
             _orderVerifications = new OrderVerifications(_driver);

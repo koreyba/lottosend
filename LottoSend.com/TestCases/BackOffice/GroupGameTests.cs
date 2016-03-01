@@ -1,4 +1,5 @@
 ﻿using LottoSend.com.BackEndObj.GroupGapePages;
+using LottoSend.com.Helpers;
 using LottoSend.com.Verifications;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
@@ -89,6 +90,8 @@ namespace LottoSend.com.TestCases.BackOffice
         [SetUp]
         public void SetUp() 
         {
+            MessageConsoleCreator message = new MessageConsoleCreator();
+            message.TestWillRun();
             _driver = new TWebDriver();
             _driverCover = new DriverCover(_driver);
             _commonActions = new CommonActions(_driver);

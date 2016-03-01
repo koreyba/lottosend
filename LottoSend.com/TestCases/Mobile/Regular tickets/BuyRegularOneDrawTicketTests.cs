@@ -326,6 +326,8 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
         /// </summary>
         public void SetUp()
         {
+            MessageConsoleCreator message = new MessageConsoleCreator();
+            message.TestWillRun();
             _driver = new ChromeDriver();
             _driverCover = new DriverCover(_driver);
             _orderVerifications = new OrderVerifications(_driver);
@@ -339,6 +341,8 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
         /// <param name="option"></param>
         public void SetUp(ChromeOptions option)
         {
+            MessageConsoleCreator message = new MessageConsoleCreator();
+            message.TestWillRun();
             _driver = new ChromeDriver(option);
             _driverCover = new DriverCover(_driver);
             _orderVerifications = new OrderVerifications(_driver);

@@ -133,6 +133,7 @@
     <Compile Include="FrontEndObj\MyAccount\DepositMobileObj.cs" />
     <Compile Include="FrontEndObj\OnlineMerchantsObj.cs" />
     <Compile Include="FrontEndObj\SignUp\SignUpForm.cs" />
+    <Compile Include="Helpers\MessageCreator.cs" />
     <Compile Include="Helpers\TestsSharedCode.cs" />
     <Compile Include="TestCases\BackOffice\CMS\CmsPermissionTests.cs" />
     <Compile Include="TestCases\BackOffice\CMS\PagesTests.cs" />

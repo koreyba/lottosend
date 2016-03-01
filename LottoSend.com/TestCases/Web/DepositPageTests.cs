@@ -1,5 +1,6 @@
 ﻿using System;
 using LottoSend.com.FrontEndObj.MyAccount;
+using LottoSend.com.Helpers;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
@@ -61,6 +62,8 @@ namespace LottoSend.com.TestCases.Web
         [SetUp]
         public void SetUp()
         {
+            MessageConsoleCreator message = new MessageConsoleCreator();
+            message.TestWillRun();
             _driver = new TWebDriver();
             _driverCover = new DriverCover(_driver);
             _commonActions = new CommonActions(_driver);

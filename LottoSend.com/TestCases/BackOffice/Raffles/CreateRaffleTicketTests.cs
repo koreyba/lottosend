@@ -1,4 +1,5 @@
 ﻿using LottoSend.com.BackEndObj.RafflePages;
+using LottoSend.com.Helpers;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
@@ -73,6 +74,8 @@ namespace LottoSend.com.TestCases.BackOffice.Raffles
         [SetUp]
         public void SetUp()
         {
+            MessageConsoleCreator message = new MessageConsoleCreator();
+            message.TestWillRun();
             _driver = new TWebDriver();
             _driverCover = new DriverCover(_driver);
             _commonActions = new CommonActions(_driver);

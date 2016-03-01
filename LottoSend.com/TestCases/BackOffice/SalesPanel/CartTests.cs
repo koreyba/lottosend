@@ -1,5 +1,6 @@
 ﻿using System;
 using LottoSend.com.BackEndObj.SalesPanelPages;
+using LottoSend.com.Helpers;
 using LottoSend.com.Verifications;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -159,7 +160,8 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
            // _driver = new RemoteWebDriver(
            //   new Uri("http://localhost:4444/wd/hub"), capabilities
            // );
-
+            MessageConsoleCreator message = new MessageConsoleCreator();
+            message.TestWillRun();
             _driver = new TWebDriver();
             _driverCover = new DriverCover(_driver);
             _commonActions = new CommonActions(_driver);

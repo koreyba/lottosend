@@ -2,6 +2,7 @@
 using System.Threading;
 using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.FrontEndObj.GamePages;
+using LottoSend.com.Helpers;
 using LottoSend.com.Verifications;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
@@ -115,6 +116,8 @@ namespace LottoSend.com.TestCases.Mobile
         [SetUp]
         public void SetUp()
         {
+            MessageConsoleCreator message = new MessageConsoleCreator();
+            message.TestWillRun();
             _driver = new ChromeDriver(CreateOptions(_device));
             _driverCover = new DriverCover(_driver);
             _driverCover = new DriverCover(_driver);

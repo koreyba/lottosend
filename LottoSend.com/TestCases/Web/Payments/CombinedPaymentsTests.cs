@@ -69,6 +69,8 @@ namespace LottoSend.com.TestCases.Web.Payments
         [SetUp]
         public void SetUp()
         {
+            MessageConsoleCreator message = new MessageConsoleCreator();
+            message.TestWillRun();
             _driver = new TWebDriver();
             _driverCover = new DriverCover(_driver);
             _sharedCode = new TestsSharedCode(_driver);

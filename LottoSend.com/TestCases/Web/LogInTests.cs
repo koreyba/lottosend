@@ -2,6 +2,7 @@
 using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.FrontEndObj.Login;
+using LottoSend.com.Helpers;
 using LottoSend.com.Verifications;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
@@ -115,6 +116,8 @@ namespace LottoSend.com.TestCases.Web
         [SetUp]
         public void SetUp()
         {
+            MessageConsoleCreator message = new MessageConsoleCreator();
+            message.TestWillRun();
             _driver = new TWebDriver();
             _driverCover = new DriverCover(_driver);
             _usersVerifications = new WebUserVerifications(_driver);

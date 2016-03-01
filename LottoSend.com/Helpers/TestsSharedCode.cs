@@ -43,6 +43,8 @@ namespace LottoSend.com.Helpers
         /// </summary>
         public void CleanUp(ref IWebDriver driver)
         {
+            MessageConsoleCreator message = new MessageConsoleCreator(); 
+            message.DriverDisposed(); 
             driver.Dispose();
             if (OrderVerifications.Errors.Length > 0)
             {
