@@ -9,7 +9,10 @@
         Neteller,
         TrustPay,
         Skrill,
-        InternalBalance
+        InternalBalance,
+        Moneta,
+        eKonto,
+        Poli
     }
 
     /// <summary>

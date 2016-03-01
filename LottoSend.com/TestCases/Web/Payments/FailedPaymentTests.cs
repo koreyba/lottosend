@@ -58,13 +58,18 @@ namespace LottoSend.com.TestCases.Web
         /// Fails payment and check if URL displayes the word "failure"
         /// </summary>
         /// <param name="merchant"></param>
-        [TestCase("ekonto")]
-        [TestCase("moneta")]
-        [TestCase("poli")]
+        [TestCase(WayToPay.eKonto)]
+        [TestCase(WayToPay.Moneta)]
+        [TestCase(WayToPay.Poli)]
         [Category("Critical")]
-        public void Fail_Online_Pament_Check_URL(string merchant)
+        public void Fail_Online_Pament_Check_URL(WayToPay merchant)
         {
-            //TODO
+            /* 
+             * Works with online payments that can be failed (eKonto, Moneta, Poli)
+             * The test just fails payment and checks URL. 
+             * If it includes the word "failure" then test is passed.
+             */
+
             _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
 
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
@@ -77,19 +82,19 @@ namespace LottoSend.com.TestCases.Web
 
             switch (merchant)
             {
-                case "ekonto":
+                case WayToPay.eKonto:
                 {
                     merchants.eKontoePlatby.Click();
                 }
                     break;
 
-                case "poli":
+                case WayToPay.Poli:
                 {
                     merchants.Poli.Click();
                 }
                     break;
 
-                case "moneta":
+                case WayToPay.Moneta:
                     {
                         merchants.Moneta.Click();
                     }

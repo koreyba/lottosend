@@ -1,5 +1,4 @@
 ﻿using LottoSend.com.BackEndObj;
-using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.Helpers;
 using LottoSend.com.Verifications;
 using NUnit.Framework;
@@ -21,8 +20,10 @@ namespace LottoSend.com.TestCases.Web.Payments
         /// <summary>
         /// Pays for a regular, group and raffle tickets using internal balance (both wallets) + offline payment. Checks if after this payment the user have correct balance (30$ as promotion)
         /// </summary>
-        [Test]
-        public void IB_Plus_OfflinePayment_Pay_For_Tickets()
+        [TestCase(WayToPay.Offline)]
+        [TestCase(WayToPay.Neteller)]
+        [TestCase(WayToPay.TrustPay)]
+        public void Combined_IB_Plus_Merchant_Pay_For_Tickets(WayToPay merchant)
         {
             string email = _commonActions.Sign_Up_Front();
             _commonActions.SignIn_in_admin_panel();
@@ -36,13 +37,22 @@ namespace LottoSend.com.TestCases.Web.Payments
 
             _commonActions.AddRegularTicketToCart_Front("en/play/superenalotto");
             _commonActions.AddGroupTicketToCart_Front("en/play/superenalotto");
-            _commonActions.AddRaffleTicketToCart_Front(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
+            //_commonActions.AddRaffleTicketToCart_Front(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
 
-            MerchantsObj merchants = new MerchantsObj(_driver);
-            merchants.PayWithOfflineCharge();
-            _commonActions.SignIn_in_admin_panel();
-            _commonActions.Authorize_the_first_payment();
-            _commonActions.Approve_offline_payment();
+            if (merchant == WayToPay.Offline)
+            {
+                _commonActions.BuyRaffleTicket_Front(WayToPay.Offline);
+            }
+
+            if (merchant == WayToPay.Neteller)
+            {
+                _commonActions.BuyRaffleTicket_Front(WayToPay.Neteller);
+            }
+
+            if (merchant == WayToPay.TrustPay)
+            {
+                _commonActions.BuyRaffleTicket_Front(WayToPay.TrustPay);
+            }
 
             _balanceVerifications.CheckBalanceOnDepositPage_Web(30);
         }
