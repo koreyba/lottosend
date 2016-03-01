@@ -24,6 +24,15 @@ namespace LottoSend.com.BackEndObj
         [FindsBy(How = How.CssSelector, Using = "table.index_table > tbody > tr:nth-child(2)")]
         private IWebElement _secondRecord;
 
+
+        /// <summary>
+        /// Returns details field of the first transaction
+        /// </summary>
+        public string FirstTransactionDetails
+        {
+            get { return _firstRecord.FindElement(By.CssSelector("td:nth-child(9)")).Text; }
+        }
+
         /// <summary>
         /// Returns transaction type of the first record
         /// </summary>

@@ -37,7 +37,6 @@ namespace LottoSend.com.TestCases.Web.Payments
 
             _commonActions.AddRegularTicketToCart_Front("en/play/superenalotto");
             _commonActions.AddGroupTicketToCart_Front("en/play/superenalotto");
-            //_commonActions.AddRaffleTicketToCart_Front(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
 
             if (merchant == WayToPay.Offline)
             {

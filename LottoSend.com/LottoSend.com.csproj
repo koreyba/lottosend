@@ -138,6 +138,7 @@
     <Compile Include="TestCases\BackOffice\CMS\PagesTests.cs" />
     <Compile Include="TestCases\BackOffice\CMS\SnippetsTests.cs" />
     <Compile Include="TestCases\BackOffice\CMS\TranslationsTests.cs" />
+    <Compile Include="TestCases\BackOffice\CombinedPaymentsTests.cs" />
     <Compile Include="TestCases\BackOffice\GroupGameTests.cs" />
     <Compile Include="TestCases\BackOffice\ManualMatchTests.cs" />
     <Compile Include="TestCases\BackOffice\OrderProcessingTest.cs" />

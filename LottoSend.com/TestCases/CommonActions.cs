@@ -236,7 +236,7 @@ namespace LottoSend.com.TestCases
         /// Adds a group lottery ticket to the cart
         /// </summary>
         /// <param name="lottery"></param>
-        public void AddGroupTicketToCart_SalesPanel(string lottery)
+        public void AddGroupBulkBuyTicketToCart_SalesPanel(string lottery)
         {
             //Add ticket to the cart
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/orders");

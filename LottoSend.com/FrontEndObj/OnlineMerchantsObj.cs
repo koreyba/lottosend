@@ -22,5 +22,10 @@ namespace LottoSend.com.FrontEndObj
             Driver.FindElement(By.CssSelector(".btn.btn-danger")).Click();
             Driver.SwitchTo().Window(Driver.WindowHandles[0]);
         }
+
+        public void ApprovePayment()
+        {
+            //TODO
+        }
     }
 }

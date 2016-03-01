@@ -39,8 +39,8 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
                 _commonActions.Sign_In_SalesPanel(_driverCover.LoginSix);
             }
             
-            _commonActions.AddGroupTicketToCart_SalesPanel(lotteryOne);
-            _commonActions.AddGroupTicketToCart_SalesPanel(lotteryTwo);
+            _commonActions.AddGroupBulkBuyTicketToCart_SalesPanel(lotteryOne);
+            _commonActions.AddGroupBulkBuyTicketToCart_SalesPanel(lotteryTwo);
 
             _cartVerifications.CheckNumberOfTicketsInCart_SalesPanel(2);
 
