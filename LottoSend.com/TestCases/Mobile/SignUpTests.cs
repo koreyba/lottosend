@@ -110,6 +110,8 @@ namespace LottoSend.com.TestCases.Mobile
             {
                 _driverCover.TakeScreenshot();
             }
+            MessageConsoleCreator message = new MessageConsoleCreator();
+            message.DriverDisposed();
             _driver.Dispose();
         }
 

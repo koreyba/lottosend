@@ -55,6 +55,8 @@ namespace LottoSend.com.TestCases.Web
             }
             finally
             {
+                MessageConsoleCreator message = new MessageConsoleCreator();
+                message.DriverDisposed();
                 _driver.Dispose();
             }
         }

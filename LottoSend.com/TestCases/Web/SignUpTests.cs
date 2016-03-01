@@ -101,6 +101,8 @@ namespace LottoSend.com.TestCases.Web
             {
                 _driverCover.TakeScreenshot();
             }
+            MessageConsoleCreator message = new MessageConsoleCreator();
+            message.DriverDisposed();
             _driver.Dispose();
         }
 

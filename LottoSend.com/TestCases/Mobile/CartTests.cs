@@ -210,6 +210,8 @@ namespace LottoSend.com.TestCases.Mobile
             }
             finally
             {
+                MessageConsoleCreator message = new MessageConsoleCreator();
+                message.DriverDisposed();
                 _driver.Dispose();
             }
         }

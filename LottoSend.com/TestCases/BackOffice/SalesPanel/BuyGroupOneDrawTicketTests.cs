@@ -372,6 +372,8 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             {
                 _driverCover.TakeScreenshot();
             }
+            MessageConsoleCreator message = new MessageConsoleCreator();
+            message.DriverDisposed();
             _driver.Dispose();
         }
 

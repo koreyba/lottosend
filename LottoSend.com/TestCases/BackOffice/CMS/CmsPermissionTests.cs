@@ -80,6 +80,8 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
             {
                 _driverCover.TakeScreenshot();
             }
+            MessageConsoleCreator message = new MessageConsoleCreator();
+            message.DriverDisposed();
             _driver.Dispose();
         }
 
