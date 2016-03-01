@@ -44,12 +44,12 @@ namespace LottoSend.com
 
         public static void ScriptExecuting(object sender, WebDriverScriptEventArgs e)
         {
-            Console.WriteLine("The next script will be executed: " + e.Script);
+            //Console.WriteLine("The next script will be executed: " + e.Script);
         }
 
         public static void ScriptExecuted(object sender, WebDriverScriptEventArgs e)
         {
-            Console.WriteLine("The next script was executed: " + e.Script);
+            //Console.WriteLine("The next script was executed: " + e.Script);
         }
 
         public static void Navigating(object sender, WebDriverNavigationEventArgs e)
@@ -74,12 +74,12 @@ namespace LottoSend.com
 
         public static void ElementClicking(object sender, WebElementEventArgs e)
         {
-            Console.WriteLine("Will click on " + e.Element + "right now ");
+            //Console.WriteLine("Will click on " + e.Element + "right now ");
         }
 
         public static void ElementClicked(object sender, WebElementEventArgs e)
         {
-            Console.WriteLine(e.Element + " was clicked "); 
+            //Console.WriteLine(e.Element + " was clicked "); 
         }
 
         public static void ExceptionThrown(object sender, WebDriverExceptionEventArgs e)
