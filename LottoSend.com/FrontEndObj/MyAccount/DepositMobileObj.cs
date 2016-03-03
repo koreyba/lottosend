@@ -18,8 +18,8 @@ namespace LottoSend.com.FrontEndObj.MyAccount
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = "#new_deposit div.row > div.bg-primary.amount input")]
-        private IList<IWebElement> _depositOptions;
+        [FindsBy(How = How.CssSelector, Using = "#new_deposit")]
+        private IWebElement _depositOptions;
 
         [FindsBy(How = How.CssSelector, Using = "#new_deposit> div.row > div.other")]
         private IWebElement _otherRadioButton;
@@ -36,23 +36,6 @@ namespace LottoSend.com.FrontEndObj.MyAccount
         public double Balance
         {
             get { return _balance.Text.ParseDouble(); }
-        }
-
-        /// <summary>
-        /// Returns currently selected value of standard deposit
-        /// </summary>
-        /// <returns></returns>
-        public string GetSelectedAmount()
-        {
-            foreach (var el in _depositOptions)
-            {
-                if (el.GetAttribute("checked") != null && el.GetAttribute("checked").Equals("true"))
-                {
-                    return el.GetAttribute("value");
-                }
-            }
-
-            return "";
         }
 
         /// <summary>
@@ -77,12 +60,13 @@ namespace LottoSend.com.FrontEndObj.MyAccount
         {
             bool isFound = false;
 
-            foreach (var option in _depositOptions)
+            IList<IWebElement> options = _depositOptions.FindElements(By.CssSelector("div.row > div.bg-primary.amount > strong"));
+            foreach (var option in options)
             {
-                if (option.GetAttribute("value").Contains(amount.ToString(System.Globalization.CultureInfo.InvariantCulture)))
+                if (option.Text.Contains(amount.ToString(System.Globalization.CultureInfo.InvariantCulture)))
                 {
                     isFound = true;
-                    option.FindElement(By.XPath("../strong")).Click();
+                    option.Click();
                 }
             }
 
