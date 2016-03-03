@@ -64,12 +64,12 @@ namespace LottoSend.com
 
         public static void FindingElement(object sender, FindElementEventArgs e)
         {
-            Console.WriteLine("Start searching for " + e.Element + " using " + e.FindMethod);
+            Console.WriteLine("Start searching for element using " + e.FindMethod);
         }
 
         public static void FindElementCompleted(object sender, FindElementEventArgs e)
         {
-            Console.WriteLine(e.Element + " was found using " + e.FindMethod);
+            Console.WriteLine("Element was found using " + e.FindMethod);
         }
 
         public static void ElementClicking(object sender, WebElementEventArgs e)

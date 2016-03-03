@@ -269,6 +269,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         /// Checks if the transaction has correct status on "Transactions" page
         /// </summary>
         [Test]
+        
         public void Check_Transactions_State_In_Transactions()
         {
             _orderVerifications.CheckTransactionsStateInTransactions_Back("succeed");

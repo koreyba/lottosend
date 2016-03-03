@@ -1,4 +1,5 @@
-﻿using LottoSend.com.TestCases;
+﻿using System;
+using LottoSend.com.TestCases;
 using LottoSend.com.Verifications;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
@@ -32,10 +33,22 @@ namespace LottoSend.com.Helpers
         public void CleanCart(string email, string password)
         {
             SetUp();
-            CommonActions.Log_In_Front(email, password);
-            //Removes all tickets from the cart to make sure all other tests will work well
-            CommonActions.DeleteAllTicketFromCart_Front();
-            CleanUp(ref _driver);
+            try
+            {
+                CommonActions.Log_In_Front(email, password);
+                //Removes all tickets from the cart to make sure all other tests will work well
+                CommonActions.DeleteAllTicketFromCart_Front();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("CleanCart method was failed.");
+            }
+            finally
+            {
+                CleanUp(ref _driver);
+            }
+
+            
         }
 
         /// <summary>
