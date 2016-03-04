@@ -36,37 +36,17 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
              } 
              catch (Exception e)
              {
+                 _setUpFailed = true;
                  CleanUp();
                  if (_merchant == WayToPay.InternalBalance)
                  {
-                     _sharedCode.CleanCart(_driverCover.LoginTwo, _driverCover.Password);
+                     _sharedCode.CleanCartIfTestWasFailed(_driverCover.LoginTwo, _driverCover.Password);
                  }
                  else
                  {
-                     _sharedCode.CleanCart(_driverCover.Login, _driverCover.Password);
+                     _sharedCode.CleanCartIfTestWasFailed(_driverCover.Login, _driverCover.Password);
                  }
-
-                 try
-                 {
-                     SetUp();
-                     BuyRaffleTicket(raffleName);
-                 }
-                 catch (Exception)
-                 {
-                     _setUpFailed = true;
-
-                     CleanUp();
-                     if (_merchant == WayToPay.InternalBalance)
-                     {
-                         _sharedCode.CleanCart(_driverCover.LoginTwo, _driverCover.Password);
-                     }
-                     else
-                     {
-                         _sharedCode.CleanCart(_driverCover.Login, _driverCover.Password);
-                     }
-
-                     throw new Exception("Exception was thrown while executing: " + e.Message + " ");
-                 }
+                 throw new Exception("Exception was thrown while executing: " + e.Message + " ");
              }
              CleanUp();
          }

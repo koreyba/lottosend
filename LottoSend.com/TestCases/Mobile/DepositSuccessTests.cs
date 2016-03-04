@@ -42,19 +42,9 @@ namespace LottoSend.com.TestCases.Mobile
             }
             catch (Exception e)
             {
+                _setUpFailed = true;
                 CleanUp();
-
-                try
-                {
-                    SetUp();
-                    Deposit_Money(merchant);
-                }
-                catch (Exception)
-                {
-                    _setUpFailed = true;
-                    CleanUp();
-                    throw new Exception("Exception was thrown while executing: " + e.Message + " ");
-                }
+                throw new Exception("Exception was thrown while executing: " + e.Message + " ");
             }
             CleanUp();
         }

@@ -52,37 +52,19 @@ namespace LottoSend.com.TestCases.Web
             }
             catch (Exception e)
             {
+                _setUpFailed = true;
                 CleanUp();
+
                 if (_merchant == WayToPay.InternalBalance)
                 {
-                    _sharedCode.CleanCart(_driverCover.LoginTwo, _driverCover.Password);
+                    _sharedCode.CleanCartIfTestWasFailed(_driverCover.LoginTwo, _driverCover.Password);
                 }
                 else
                 {
-                    _sharedCode.CleanCart(_driverCover.Login, _driverCover.Password);
+                    _sharedCode.CleanCartIfTestWasFailed(_driverCover.Login, _driverCover.Password);
                 }
 
-                try
-                {
-                    SetUp();
-                    Buy_Raffle_Ticket(_merchant);
-                }
-                catch (Exception)
-                {
-                    _setUpFailed = true;
-                    CleanUp();
-
-                    if (_merchant == WayToPay.InternalBalance)
-                    {
-                        _sharedCode.CleanCart(_driverCover.LoginTwo, _driverCover.Password);
-                    }
-                    else
-                    {
-                        _sharedCode.CleanCart(_driverCover.Login, _driverCover.Password);
-                    }
-
-                    throw new Exception("Exception was thrown while executing: " + e.Message + " ");
-                }     
+                throw new Exception("Exception was thrown while executing: " + e.Message + " ");
             }
             
             CleanUp();
@@ -110,7 +92,7 @@ namespace LottoSend.com.TestCases.Web
         /// <summary>
         /// Checks an amount in the first record in transactions (front)
         /// </summary>
-        [Test]
+        //[Test]
         [Category("Critical")]
         public void Check_Amount_In_Transaction_Front()
         {
