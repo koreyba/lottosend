@@ -24,9 +24,9 @@ namespace LottoSend.com
                 new BuyGroupMultiDrawTicketTests<ChromeDriver>(WayToPay.Offline);
             test.Check_Amount_In_Transaction_Back();
 
-            //ChromeDriver _driver = new ChromeDriver();
-            //CommonActions _commonActions = new CommonActions(_driver);
-            //DriverCover _driverCover = new DriverCover(_driver);
+            ChromeDriver _driver = new ChromeDriver();
+            CommonActions _commonActions = new CommonActions(_driver);
+            DriverCover _driverCover = new DriverCover(_driver);
 
 
             //    //If pay with internal balance we need to log in with different user
