@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Globalization;
-using LottoSend.com.BackEndObj;
 using LottoSend.com.FrontEndObj.MyAccount;
 using LottoSend.com.Helpers;
 using NUnit.Framework;
