@@ -40,11 +40,11 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
                  CleanUp();
                  if (_merchant == WayToPay.InternalBalance)
                  {
-                     _sharedCode.CleanCartIfTestWasFailed(_driverCover.LoginTwo, _driverCover.Password);
+                     _sharedCode.CleanCart(_driverCover.LoginTwo, _driverCover.Password);
                  }
                  else
                  {
-                     _sharedCode.CleanCartIfTestWasFailed(_driverCover.Login, _driverCover.Password);
+                     _sharedCode.CleanCart(_driverCover.Login, _driverCover.Password);
                  }
                  throw new Exception("Exception was thrown while executing: " + e.Message + " ");
              }
