@@ -27,7 +27,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         public void Pay_With_Free_Coupon(string code)
         {
             _commonActions.SignIn_in_admin_panel();
-            _commonActions.Sign_Up_SalesPanel(RandomGenerator.GenerateRandomString(10) + "@urk.net");
+            _commonActions.Sign_Up_SalesPanel(RandomGenerator.GenerateRandomString(10) + "@grr.la");
 
             _commonActions.AddGroupBulkBuyTicketToCart_SalesPanel("Mega Millions");
             _commonActions.AddRegularOneDrawTicketToCart_SalesPanel("SuperLotto Plus");
@@ -47,7 +47,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         public void Cancel_Coupon(string code)
         {
             _commonActions.SignIn_in_admin_panel();
-            _commonActions.Sign_Up_SalesPanel(RandomGenerator.GenerateRandomString(10) + "@urk.net");
+            _commonActions.Sign_Up_SalesPanel(RandomGenerator.GenerateRandomString(10) + "@grr.la");
 
             _commonActions.AddRaffleTicketToCart_SalesPanel("Loteria de Navidad");
 
@@ -73,7 +73,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         public void Check_Discount_Checkout(string code, double discount)
         {
             _commonActions.SignIn_in_admin_panel();
-            _commonActions.Sign_Up_SalesPanel(RandomGenerator.GenerateRandomString(10) + "@urk.net");
+            _commonActions.Sign_Up_SalesPanel(RandomGenerator.GenerateRandomString(10) + "@grr.la");
 
             _commonActions.AddGroupBulkBuyTicketToCart_SalesPanel("Powerball");
             _commonActions.AddRegularOneDrawTicketToCart_SalesPanel("SuperLotto Plus");
