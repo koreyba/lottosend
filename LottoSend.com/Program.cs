@@ -20,7 +20,7 @@ namespace LottoSend.com
 
         static void Main(string[] args)
         {
-
+            int a = 0;
             ChromeDriver _driver = new ChromeDriver();
             CommonActions _commonActions = new CommonActions(_driver);
             DriverCover _driverCover = new DriverCover(_driver);
