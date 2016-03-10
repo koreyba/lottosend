@@ -20,41 +20,27 @@ namespace LottoSend.com
 
         static void Main(string[] args)
         {
-            BuyGroupMultiDrawTicketTests<ChromeDriver> test = 
-                new BuyGroupMultiDrawTicketTests<ChromeDriver>(WayToPay.Offline);
-            test.Check_Amount_In_Transaction_Back();
 
             ChromeDriver _driver = new ChromeDriver();
             CommonActions _commonActions = new CommonActions(_driver);
             DriverCover _driverCover = new DriverCover(_driver);
 
 
-            //    //If pay with internal balance we need to log in with different user
-            //_commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
-        
-            //_driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
+                //If pay with internal balance we need to log in with different user
+            _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
 
-            //RafflesPageObj rafflePage = new RafflesPageObj(_driver);
+            _commonActions.SignIn_in_admin_panel();
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/charge_panel_manager");
 
-            //rafflePage.ClickBuyNowButton();//
-            //_driverCover.Driver.FindElement(By.CssSelector("input[id$='merchant_23'] + img.merchant")).Click();
-            //OnlineMerchantsObj online = new OnlineMerchantsObj(_driver);
-            //online.FailPayment();
-            //StringAssert.Contains("failure", _driverCover.Driver.Url);
-            //_driverCover.Driver.Dispose();
+            for (int i = 0; i < 52; ++i)
+            {
+                ChargePanelObj panel = new ChargePanelObj(_driver);
+                ChargeFormObj form = panel.ChargeTheLastPayment();
 
-            //common.SignIn_in_admin_panel();
-            //_driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/charge_panel_manager");
+                form.MakeTransactionSucceed();
+                form.UpdateTransaction();
 
-            //for (int i = 0; i < 52; ++i)
-            //{
-            //    ChargePanelObj panel = new ChargePanelObj(d);
-            //    ChargeFormObj form = panel.ChargeTheLastPayment();
-
-            //    form.MakeTransactionSucceed();
-            //    form.UpdateTransaction();
-
-        
+            }
         }
     }
 }

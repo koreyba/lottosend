@@ -53,7 +53,7 @@ namespace LottoSend.com.TestCases.BackOffice
         }
 
         /// <summary>
-        /// Checks if the first transaction in the back office is "Combined Payment" in details 
+        /// Checks if the first transaction in the back office is "Combined Payment" in details. Buys tickets in the sales panel
         /// </summary>
         [Test]
         [Category("Critical")]
