@@ -341,7 +341,22 @@ namespace LottoSend.com
         }
 
         /// <summary>
-        /// Scroll to element
+        /// Scrolls up
+        /// </summary>
+        /// <returns>Element</returns>
+        public void ScrollUp()
+        {
+            //Actions action = new Actions(Driver);
+            //action.MoveToElement(webElement).Build().Perform();
+            //((IJavaScriptExecutor)Driver).ExecuteScript("arguments[0].scrollIntoView();", webElement);
+            ((IJavaScriptExecutor)Driver).ExecuteScript("window.scrollBy(" + 0 + "," + -10000000 + ");");
+
+
+            // return webElement;
+        }
+
+        /// <summary>
+        /// Scrolls to the bottom of the page
         /// </summary>
         /// <returns>Element</returns>
         public void ScrollDown()

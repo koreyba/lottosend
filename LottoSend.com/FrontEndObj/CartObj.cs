@@ -137,6 +137,7 @@ namespace LottoSend.com.FrontEndObj
         public void EditTicket_Mobile(string lottery)
         {
             IWebElement tr = _findTrOfTicket_Mobile(lottery);
+            ScrollUp();
             tr.FindElement(By.CssSelector("td > p > a.btn.btn-info.btn-block")).Click();
             WaitAjax();
             WaitForPageLoading();
@@ -225,7 +226,7 @@ namespace LottoSend.com.FrontEndObj
 
                 foreach (IWebElement name in namesOfLottery)
                 {
-                    if (name.Text.Contains(lottery))
+                    if (name.Text.ToLower().Contains(lottery.ToLower()))
                         return t;
                 }
             }
