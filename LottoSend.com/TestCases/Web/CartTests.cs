@@ -26,6 +26,68 @@ namespace LottoSend.com.TestCases.Web
         private bool _setUpFailed = false;
 
         /// <summary>
+        /// Adds a regular ticket to the cart and changes number of draws to play. Then edits the ticket and checks if correct number of draws to play is selected.
+        /// </summary>
+        /// <param name="toSignIn"></param>
+        [TestCase(true)]
+        [TestCase(false)]
+        public void Change_Number_Of_Draws_In_The_Cart_For_Regular_Ticket(bool toSignIn)
+        {
+            if (toSignIn)
+            {
+                _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            }
+
+            _commonActions.AddRegularTicketToCart_Front("en/play/el-gordo-de-la-primitiva/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/carts");
+
+            CartObj cart = new CartObj(_driver);
+            cart.ChangeNumberOfDraws(1, 10);
+
+            cart.EditTicket_Web("El Gordo");
+
+            GroupGamePageObj groupGame = new GroupGamePageObj(_driver);
+
+            Assert.AreEqual(10, groupGame.NumberOfDraws, "Sorry but number of draw on the play page is not as it was selected in the cart. ");
+
+            if (toSignIn)
+            {
+                _commonActions.DeleteAllTicketFromCart_Front();
+            }
+        }
+
+        /// <summary>
+        /// Adds a group ticket to the cart and changes number of draws to play. Then edits the ticket and checks if correct number of draws to play is selected.
+        /// </summary>
+        /// <param name="toSignIn"></param>
+        [TestCase(true)]
+        [TestCase(false)]
+        public void Change_Number_Of_Draws_In_The_Cart_For_Group_Ticket(bool toSignIn)
+        {
+            if (toSignIn)
+            {
+                _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            }
+
+            _commonActions.AddGroupTicketToCart_Front("en/play/superenalotto/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/carts");
+
+            CartObj cart = new CartObj(_driver);
+            cart.ChangeNumberOfDraws(1, 11);
+
+            cart.EditTicket_Web("superenalotto");
+
+            GroupGamePageObj groupGame = new GroupGamePageObj(_driver);
+
+            Assert.AreEqual(11, groupGame.NumberOfDraws, "Sorry but number of draw on the play page is not as it was selected in the cart. ");
+
+            if (toSignIn)
+            {
+                _commonActions.DeleteAllTicketFromCart_Front();
+            }
+        }
+
+        /// <summary>
         /// Checks that items in the cart is not removed when a guest signs up
         /// </summary>
         [Test]

@@ -105,6 +105,8 @@ namespace LottoSend.com.TestCases.Web
             OnlineMerchantsObj online = new OnlineMerchantsObj(_driver);
             online.FailPayment();
             StringAssert.Contains("failure", _driverCover.Driver.Url);
+
+            _commonActions.DeleteAllTicketFromCart_Front();
         }
 
         /// <summary>

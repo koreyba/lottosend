@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Support.PageObjects;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using LottoSend.com.FrontEndObj.Common;
 
 namespace LottoSend.com.FrontEndObj
@@ -29,6 +30,12 @@ namespace LottoSend.com.FrontEndObj
 
         [FindsBy(How = How.CssSelector, Using = "#game div > div.total >span > strong")]
         private IWebElement _totalPrice_Mobile;
+
+        [FindsBy(How = How.CssSelector, Using = "#order_item_bulk_id")]
+        private IList<IWebElement> _numberOfDrawsSelects;
+
+        [FindsBy(How = How.CssSelector, Using = "table.table-striped > tbody")]
+        private IWebElement _cartTable;
 
         /// <summary>
         /// Gets total price of the order (mobile)
@@ -58,9 +65,6 @@ namespace LottoSend.com.FrontEndObj
             return new MerchantsObj(Driver);
         }
 
-        [FindsBy(How = How.CssSelector, Using = "table.table-striped > tbody")]
-        private IWebElement _cartTable;
-
         /// <summary>
         /// Returns number of tickets in the cart
         /// </summary>
@@ -75,6 +79,18 @@ namespace LottoSend.com.FrontEndObj
         public int NumberOfGroupTickets
         {
             get { return CountNumberOfGroupTickets(); }
+        }
+
+        /// <summary>
+        /// Changes number of draws to play for a ticket in the cart (changes value in select)
+        /// </summary>
+        /// <param name="ticketNumber">Number of the ticket in the cart (from 1)</param>
+        /// <param name="drawsToPlay">Number of draws to play</param>
+        public void ChangeNumberOfDraws(int ticketNumber, int drawsToPlay)
+        {
+            IWebElement selector = _numberOfDrawsSelects[ticketNumber - 1];
+
+            ChooseElementInSelect(drawsToPlay.ToString(CultureInfo.InvariantCulture), selector, SelectBy.Text);
         }
 
         /// <summary>
@@ -191,7 +207,7 @@ namespace LottoSend.com.FrontEndObj
 
                 foreach (IWebElement name in namesOfLottery)
                 {
-                    if (name.GetAttribute("alt").Equals(lottery))
+                    if (name.GetAttribute("alt").ToLower().Equals(lottery.ToLower()))
                         return t;
                 }
             }
