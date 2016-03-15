@@ -6,6 +6,7 @@ using OpenQA.Selenium.Interactions;
 using System.Configuration;
 using OpenQA.Selenium.Support.UI;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Drawing.Imaging;
 using NUnit.Framework;
 
@@ -485,10 +486,29 @@ namespace LottoSend.com
         /// </summary>
         public void TakeScreenshot()
         {
+            string testName = TestContext.CurrentContext.Test.FullName;
+            Console.WriteLine("Current test: " + testName + " was run. Driver will be disposed now. ");
+            Debug.WriteLine("Current test: " + testName + " was run. Driver will be disposed now. ");
+
+            using (Bitmap bmpScreenCapture = new Bitmap(System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width,
+                                            System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height))
+            {
+                using (Graphics g = Graphics.FromImage(bmpScreenCapture))
+                {
+                    g.CopyFromScreen(System.Windows.Forms.Screen.PrimaryScreen.Bounds.X,
+                                     System.Windows.Forms.Screen.PrimaryScreen.Bounds.Y,
+                                     0, 0,
+                                     bmpScreenCapture.Size,
+                                     CopyPixelOperation.SourceCopy);
+                }
+                var filePath = @"C:\Screenshots\" + testName.Replace("<", "(").Replace(">", ")").Replace("\"", "'") + DateTime.Now.DayOfWeek + DateTime.Now.Day + "." + DateTime.Now.Month + "." + DateTime.Now.Year + "_Time-" + DateTime.Now.Hour + "." + DateTime.Now.Minute + "_" + RandomGenerator.GenerateRandomString(10) + ".jpg";
+                bmpScreenCapture.Save(filePath);
+            }
+
             try
             {
                 Screenshot ss = ((ITakesScreenshot)Driver).GetScreenshot();
-                var filePath = @"C:\Screenshots\" + TestContext.CurrentContext.Test.FullName.Replace("<", "(").Replace(">", ")").Replace("\"", "'") + DateTime.Now.DayOfWeek + DateTime.Now.Day + "." + DateTime.Now.Month + "." + DateTime.Now.Year + "_Time-" + DateTime.Now.Hour + "." + DateTime.Now.Minute + "_" + RandomGenerator.GenerateRandomString(10) + ".jpg";
+                var filePath = @"C:\Screenshots\" + testName.Replace("<", "(").Replace(">", ")").Replace("\"", "'") + DateTime.Now.DayOfWeek + DateTime.Now.Day + "." + DateTime.Now.Month + "." + DateTime.Now.Year + "_Time-" + DateTime.Now.Hour + "." + DateTime.Now.Minute + "_" + RandomGenerator.GenerateRandomString(10) + ".jpg";
                 ss.SaveAsFile(filePath, ImageFormat.Jpeg);
             }
             catch (Exception e)
