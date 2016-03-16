@@ -19,25 +19,25 @@ namespace LottoSend.com.FrontEndObj.Common
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_28'] + img.merchant")]
+        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_29'] + img.merchant")]
         private IWebElement _neteller;
 
-        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_23'] + img.merchant")]
+        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_24'] + img.merchant")]
         private IWebElement _eKontoePlatby;
 
         [FindsBy(How = How.CssSelector, Using = "input#credit_card + img.merchant")]
         private IWebElement _offline;
 
-        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_19'] + img.merchant")]
+        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_20'] + img.merchant")]
         private IWebElement _trustPay;
 
         [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_18'] + img.merchant")]
         private IWebElement _skrill;
 
-        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_25'] + img.merchant")]
+        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_26'] + img.merchant")]
         private IWebElement _poli;
         
-        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_24'] + img.merchant")]
+        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_25'] + img.merchant")]
         private IWebElement _moneta;
 
         public IWebElement Moneta

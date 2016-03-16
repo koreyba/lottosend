@@ -42,7 +42,7 @@ namespace LottoSend.com.TestCases.BackOffice.Raffles
         /// Creates a raffle ticket
         /// </summary>
         /// <param name="raffleName"></param>
-        [TestCase("Lotería del Niño")]
+        [TestCase("Loteria de Navidad")]
         [Category("Parallel")]
         [Category("Critical")]
         public void Create_Raffle_Ticket(string raffleName)

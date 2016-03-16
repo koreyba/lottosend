@@ -73,13 +73,13 @@ namespace LottoSend.com.TestCases.Web
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/carts");
 
             CartObj cart = new CartObj(_driver);
-            cart.ChangeNumberOfDraws(1, 11);
+            cart.ChangeNumberOfDraws(1, 5);
 
             cart.EditTicket_Web("superenalotto");
 
             GroupGamePageObj groupGame = new GroupGamePageObj(_driver);
 
-            Assert.AreEqual(11, groupGame.NumberOfDraws, "Sorry but number of draw on the play page is not as it was selected in the cart. ");
+            Assert.AreEqual(5, groupGame.NumberOfDraws, "Sorry but number of draw on the play page is not as it was selected in the cart. ");
 
             if (toSignIn)
             {

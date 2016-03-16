@@ -29,7 +29,7 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
 
             KeysPageObj keysPage = new KeysPageObj(_driver);
 
-            keysPage.ClickEditKey("content-test-key");
+            keysPage.ClickEditKey("agent_assigned_tickets_email");
             EditSnippetObj pageEditing = new EditSnippetObj(_driver);
 
             string content = RandomGenerator.GenerateRandomString(50);
@@ -54,7 +54,7 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "cms/sites/1/snippets");
 
             KeysPageObj keysPage = new KeysPageObj(_driver);
-            int numberOfResults = keysPage.SearchKey("content-test-key", SearchBy.Key);
+            int numberOfResults = keysPage.SearchKey("agent_assigned_tickets_email", SearchBy.Key);
 
             Assert.AreEqual(1, numberOfResults, "Sorry but the key was not found ");
         }  
@@ -71,11 +71,11 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "cms/sites/1/snippets/mass_edit?locale=nl");
 
             MassEditPageObj massEdit = new MassEditPageObj(_driver);
-            massEdit.SearchKey("content-test-key");
+            massEdit.SearchKey("agent_assigned_tickets_email");
 
             string content = RandomGenerator.GenerateRandomString(50);
             massEdit.UpdateFirstLanguageContent_EditPlus(content);
-            massEdit.SearchKey("content-test-key");
+            massEdit.SearchKey("agent_assigned_tickets_email");
 
             Assert.AreEqual(content, massEdit.TextOfFirstContentInput);
         }  
@@ -92,7 +92,7 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "cms/sites/1/snippets");
 
             KeysPageObj pages = new KeysPageObj(_driver);
-            pages.ClickEditPlusForKey("content-test-key");
+            pages.ClickEditPlusForKey("agent_assigned_tickets_email");
             EditSnippetObj snippetEditing = new EditSnippetObj(_driver);
 
             string content = RandomGenerator.GenerateRandomString(50);
@@ -114,7 +114,7 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "cms/sites/1/snippets");
 
             KeysPageObj pages = new KeysPageObj(_driver);
-            pages.ClickEditKey("content-test-key");
+            pages.ClickEditKey("agent_assigned_tickets_email");
             EditSnippetObj snippetEditing = new EditSnippetObj(_driver);
 
             string content = RandomGenerator.GenerateRandomString(50);
