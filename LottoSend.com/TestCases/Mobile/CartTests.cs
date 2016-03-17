@@ -69,9 +69,9 @@ namespace LottoSend.com.TestCases.Mobile
         /// Adds a group ticket to the cart and changes number of draws to play. Then edits the ticket and checks if correct number of draws to play is selected.
         /// </summary>
         /// <param name="toSignIn"></param>
-        [TestCase(true)]
-        [TestCase(false)]
-        public void Change_Number_Of_Draws_In_The_Cart_For_Group_Ticket(bool toSignIn)
+        [TestCase(true, 5)]
+        [TestCase(false, 5)]
+        public void Change_Number_Of_Draws_In_The_Cart_For_Group_Ticket(bool toSignIn, int drawsAmount)
         {
             if (toSignIn)
             {
@@ -82,13 +82,13 @@ namespace LottoSend.com.TestCases.Mobile
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/carts");
 
             CartObj cart = new CartObj(_driver);
-            cart.ChangeNumberOfDraws(1, 11);
+            cart.ChangeNumberOfDraws(1, drawsAmount);
 
             cart.EditTicket_Mobile("superenalotto");
 
             GroupGamePageObj groupGame = new GroupGamePageObj(_driver);
 
-            Assert.AreEqual(11, groupGame.NumberOfDraws, "Sorry but number of draw on the play page is not as it was selected in the cart. ");
+            Assert.AreEqual(drawsAmount, groupGame.NumberOfDraws, "Sorry but number of draw on the play page is not as it was selected in the cart. ");
 
             if (toSignIn)
             {

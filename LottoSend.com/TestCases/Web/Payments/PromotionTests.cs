@@ -161,7 +161,7 @@ namespace LottoSend.com.TestCases.Web
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
 
             RafflesPageObj rafflePage = new RafflesPageObj(_driver);
-            //double totalPrice = rafflePage.TotalPrice;
+            double totalPrice = rafflePage.TotalPrice;
 
             rafflePage.ClickBuyNowButton();//
             MerchantsObj merchants = new MerchantsObj(_driver);
@@ -169,13 +169,13 @@ namespace LottoSend.com.TestCases.Web
 
             double price = _commonActions.BuyRegularOneDrawTicket_Front(_merchant);
 
-            if (price >= 30)
+            if (price + totalPrice >= 30)
             {
                 _verifications.CheckBalanceOnDepositPage_Web(30);
             }
             else
             {
-                _verifications.CheckBalanceOnDepositPage_Web(price);
+                _verifications.CheckBalanceOnDepositPage_Web(price + totalPrice);
             }
         }
 

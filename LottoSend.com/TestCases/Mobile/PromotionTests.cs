@@ -147,13 +147,13 @@ namespace LottoSend.com.TestCases.Mobile
 
             double price = _commonActions.BuyRegularOneDrawTicket_Front(_merchant);
 
-            if (price >= 30)
+            if (price + totalPrice >= 30)
             {
                 _verifications.CheckBalanceOnDepositPage_Web(30);
             }
             else
             {
-                _verifications.CheckBalanceOnDepositPage_Web(price);
+                _verifications.CheckBalanceOnDepositPage_Web(price + totalPrice);
             }
         }
 
