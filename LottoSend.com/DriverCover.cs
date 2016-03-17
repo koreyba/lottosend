@@ -487,8 +487,8 @@ namespace LottoSend.com
         public void TakeScreenshot()
         {
             string testName = TestContext.CurrentContext.Test.FullName;
-            Console.WriteLine("Current test: " + testName + " was run. Driver will be disposed now. ");
-            Debug.WriteLine("Current test: " + testName + " was run. Driver will be disposed now. ");
+            Console.WriteLine("Current test: " + testName + " was run. Driver will be disposed now.  Screenshot will be made. ");
+            Debug.WriteLine("Current test: " + testName + " was run. Driver will be disposed now. Screenshot will be made. ");
 
             using (Bitmap bmpScreenCapture = new Bitmap(System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width,
                                             System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height))

@@ -81,7 +81,7 @@ namespace LottoSend.com.BackEndObj
         /// <returns></returns>
         public double GetFirstRecordStoreCredit()
         {
-            return _table.FindElement(By.CssSelector("tr > td:nth-child(9)")).Text.ParseDouble();
+            return _table.FindElement(By.CssSelector("tr > td:nth-child(10)")).Text.ParseDouble();
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace LottoSend.com.BackEndObj
         /// <returns></returns>
         public double GetFirstRecordRealMoney()
         {
-            return _table.FindElement(By.CssSelector("tr > td:nth-child(8)")).Text.ParseDouble();
+            return _table.FindElement(By.CssSelector("tr > td:nth-child(9)")).Text.ParseDouble();
         }
 
         /// <summary>
