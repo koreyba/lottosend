@@ -12,7 +12,7 @@ namespace LottoSend.com.TestCases.Mobile
     /// <summary>
     /// Includes tests to check depositing process 
     /// </summary>
-    [TestFixture("Apple iPhone 4", WayToPay.Neteller)]
+    //[TestFixture("Apple iPhone 4", WayToPay.Neteller)]
     [TestFixture("Apple iPhone 6", WayToPay.Offline)]
     //[TestFixture("Apple iPhone 5", WayToPay.TrustPay)]
    //[TestFixture("Samsung Galaxy S4", WayToPay.Skrill)]

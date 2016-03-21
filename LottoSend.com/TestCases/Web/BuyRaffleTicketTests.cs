@@ -14,7 +14,7 @@ namespace LottoSend.com.TestCases.Web
     /// Buys a raffle ticket on web
     /// </summary>
     /// <typeparam name="TWebDriver"></typeparam>
-    [TestFixture(typeof(ChromeDriver), WayToPay.Neteller)]
+    //[TestFixture(typeof(ChromeDriver), WayToPay.Neteller)]
    // ////[TestFixture(typeof(FirefoxDriver), WayToPay.Neteller)]
     //[TestFixture(typeof(InternetExplorerDriver), (WayToPay.Neteller))]
     [TestFixture(typeof(ChromeDriver), WayToPay.Offline)]

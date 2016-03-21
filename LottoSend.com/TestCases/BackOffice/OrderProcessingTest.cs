@@ -6,7 +6,7 @@ using OpenQA.Selenium;
 namespace LottoSend.com.TestCases.BackOffice
 {
   //  [TestFixture(typeof(ChromeDriver), WayToPay.Offline)]
-   // [TestFixture(typeof(ChromeDriver), WayToPay.Neteller)]
+   // //[TestFixture(typeof(ChromeDriver), WayToPay.Neteller)]
     public class OrderProcessingTest <TWebDriver> where TWebDriver : IWebDriver, new()
     {
         private IWebDriver _driver;

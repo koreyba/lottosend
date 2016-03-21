@@ -13,7 +13,7 @@ namespace LottoSend.com.TestCases.Web.Regular_tickets
     /// <summary>
     /// Buys a regular one-draw ticket and performs all needed assertations 
     /// </summary>
-    [TestFixture(typeof(ChromeDriver), WayToPay.Neteller)]
+    //[TestFixture(typeof(ChromeDriver), WayToPay.Neteller)]
     ////[TestFixture(typeof(FirefoxDriver), WayToPay.Neteller)]
     //[TestFixture(typeof(InternetExplorerDriver), (WayToPay.Neteller))]
     [TestFixture(typeof(ChromeDriver), WayToPay.Offline)]

@@ -13,7 +13,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
     /// <summary>
     /// Includes tests for buying a group one draw ticket on mobile site
     /// </summary>
-    [TestFixture("Apple iPhone 4", WayToPay.Neteller)]
+    //[TestFixture("Apple iPhone 4", WayToPay.Neteller)]
     [TestFixture("Apple iPhone 6", WayToPay.Offline)]
     //[TestFixture("Apple iPhone 5", WayToPay.TrustPay)]
     [TestFixture("Apple iPhone 5", WayToPay.InternalBalance)]

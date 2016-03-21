@@ -12,7 +12,7 @@ namespace LottoSend.com.TestCases.Web
     /// <summary>
     /// Includes tests to check depositing process 
     /// </summary>
-    [TestFixture(typeof(ChromeDriver), WayToPay.Neteller)]
+    //[TestFixture(typeof(ChromeDriver), WayToPay.Neteller)]
     ////[TestFixture(typeof(FirefoxDriver), WayToPay.Neteller)]
     //[TestFixture(typeof(InternetExplorerDriver), (WayToPay.Neteller))]
     [TestFixture(typeof(ChromeDriver), WayToPay.Offline)]

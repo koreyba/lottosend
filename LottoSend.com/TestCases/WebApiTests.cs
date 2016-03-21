@@ -13,7 +13,7 @@ namespace LottoSend.com.TestCases
     /// </summary>
     /// <typeparam name="TWebDriver"></typeparam>
     [TestFixture(typeof(ChromeDriver), WayToPay.Offline)]
-    [TestFixture(typeof(ChromeDriver), WayToPay.Neteller)]
+    //[TestFixture(typeof(ChromeDriver), WayToPay.Neteller)]
     class WebApiTests<TWebDriver> where TWebDriver : IWebDriver, new()
     {
         private IWebDriver _driver;
