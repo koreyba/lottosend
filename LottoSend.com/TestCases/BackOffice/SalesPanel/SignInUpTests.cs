@@ -34,9 +34,9 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
 
             _backOfficeVerifications.IfUserSignedInSalesPanel();
         }
-        
-        [Test]
-        public void Sign_In_Sales_Panel()
+
+        [TestCase(70677)]
+        public void Sign_In_Sales_Panel(int ID)
         {
             _commonActions.SignIn_in_admin_panel();
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/orders");
@@ -46,7 +46,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             _backOfficeVerifications.IfUserSignedInSalesPanel();
             register.SignOut();
 
-            register.SignIn(45587);
+            register.SignIn(ID);
             _backOfficeVerifications.IfUserSignedInSalesPanel();
         }
 
