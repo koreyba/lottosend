@@ -147,7 +147,7 @@ namespace LottoSend.com.TestCases
         }
 
         /// <summary>
-        /// Adds CC Details and deposits money (approves payment). You need previously sign in in the sales panel
+        /// Adds CC Details and deposits money (other amount) (approves payment). You need previously sign in in the sales panel
         /// </summary>
         /// <param name="amount"></param>
         /// <param name="ifProcess"></param>
