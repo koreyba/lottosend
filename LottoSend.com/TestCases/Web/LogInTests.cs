@@ -1,4 +1,5 @@
-﻿using LottoSend.com.FrontEndObj;
+﻿using System;
+using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.FrontEndObj.Login;
@@ -106,14 +107,23 @@ namespace LottoSend.com.TestCases.Web
         [TearDown]
         public void CleanUp()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
+            try
             {
-                _driverCover.TakeScreenshot();
+                if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
+                {
+                    _driverCover.TakeScreenshot();
+                }
             }
+            catch (Exception e)
+            {
 
-            MessageConsoleCreator message = new MessageConsoleCreator();
-            message.DriverDisposed();
-            _driver.Dispose();
+            }
+            finally
+            {
+                MessageConsoleCreator message = new MessageConsoleCreator();
+                message.DriverDisposed();
+                _driver.Dispose();
+            }
         }
 
         [SetUp]

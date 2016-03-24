@@ -1,4 +1,5 @@
-﻿using LottoSend.com.FrontEndObj.GamePages;
+﻿using System;
+using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.Helpers;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
@@ -49,11 +50,21 @@ namespace LottoSend.com.TestCases.Web
         [TearDown]
         public void CleanUp()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
+            try
             {
-                _driverCover.TakeScreenshot();
+                if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
+                {
+                    _driverCover.TakeScreenshot();
+                }
             }
-            _sharedCode.CleanUp(ref _driver);
+            catch (Exception e)
+            {
+
+            }
+            finally
+            {
+                _sharedCode.CleanUp(ref _driver);  
+            }
         }
 
         [SetUp]

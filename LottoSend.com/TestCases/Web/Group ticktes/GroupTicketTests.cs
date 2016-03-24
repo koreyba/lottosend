@@ -1,4 +1,5 @@
-﻿using LottoSend.com.FrontEndObj.Common;
+﻿using System;
+using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.Helpers;
 using NUnit.Framework;
@@ -72,11 +73,21 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         [TearDown]
         public void CleanUp()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
+            try
             {
-                _driverCover.TakeScreenshot();
+                if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
+                {
+                    _driverCover.TakeScreenshot();
+                }
             }
-            _sharedCode.CleanUp(ref _driver);
+            catch (Exception e)
+            {
+
+            }
+            finally
+            {
+                _sharedCode.CleanUp(ref _driver);
+            }
         }
 
         [SetUp]

@@ -1,4 +1,5 @@
-﻿using LottoSend.com.BackEndObj;
+﻿using System;
+using LottoSend.com.BackEndObj;
 using LottoSend.com.Helpers;
 using LottoSend.com.Verifications;
 using NUnit.Framework;
@@ -59,11 +60,21 @@ namespace LottoSend.com.TestCases.Web.Payments
         [TearDown]
         public void CleanUp()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+            try
             {
-                _driverCover.TakeScreenshot();
+                if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+                {
+                    _driverCover.TakeScreenshot();
+                }
             }
-            _sharedCode.CleanUp(ref _driver);
+            catch (Exception e)
+            {
+
+            }
+            finally
+            {
+                _sharedCode.CleanUp(ref _driver);
+            }
         }
 
         [SetUp]

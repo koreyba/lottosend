@@ -127,13 +127,23 @@ namespace LottoSend.com.TestCases.Mobile
         [TearDown] 
         public void CleanUp()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
+            try
             {
-                _driverCover.TakeScreenshot();
+                if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
+                {
+                    _driverCover.TakeScreenshot();
+                }
             }
-            MessageConsoleCreator message = new MessageConsoleCreator();
-            message.DriverDisposed();
-            _driver.Dispose();
+            catch (Exception e)
+            {
+
+            }
+            finally
+            {
+                MessageConsoleCreator message = new MessageConsoleCreator();
+                message.DriverDisposed();
+                _driver.Dispose();
+            }
         }
 
         [SetUp]
