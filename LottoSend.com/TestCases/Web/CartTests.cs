@@ -25,6 +25,13 @@ namespace LottoSend.com.TestCases.Web
         private CartVerifications _cartVerifications;
         private bool _setUpFailed = false;
 
+        [Category("Git")]
+        [Test]
+        public void test()
+        {
+            
+        }
+
         /// <summary>
         /// Adds a regular ticket to the cart and changes number of draws to play. Then edits the ticket and checks if correct number of draws to play is selected.
         /// </summary>
