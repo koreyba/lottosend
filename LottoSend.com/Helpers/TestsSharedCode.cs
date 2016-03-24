@@ -2,7 +2,6 @@
 using LottoSend.com.TestCases;
 using LottoSend.com.Verifications;
 using NUnit.Framework;
-using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 

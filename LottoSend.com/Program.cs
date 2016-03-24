@@ -1,17 +1,6 @@
-﻿using System;
-using System.IO;
-using LottoSend.com.BackEndObj.ChargePanelPages;
-using LottoSend.com.FrontEndObj;
-using LottoSend.com.FrontEndObj.Common;
-using LottoSend.com.FrontEndObj.GamePages;
+﻿using LottoSend.com.BackEndObj.ChargePanelPages;
 using LottoSend.com.TestCases;
-using LottoSend.com.TestCases.Mobile.Group_ticktes;
-using LottoSend.com.TestCases.Web.Group_ticktes;
-using NUnit.Framework.Internal;
 using OpenQA.Selenium.Chrome;
-using NUnit.Engine;
-using NUnit.Framework;
-using OpenQA.Selenium;
 
 namespace LottoSend.com
 {
