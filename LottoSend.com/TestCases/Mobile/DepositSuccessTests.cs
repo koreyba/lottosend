@@ -28,6 +28,7 @@ namespace LottoSend.com.TestCases.Mobile
         private double _depositAmount;
         private string _device;
         private bool _setUpFailed = false;
+        private TestsSharedCode _sharedCode;
 
         public DepositSuccessTests(string device, WayToPay merchant)
         {
@@ -140,9 +141,7 @@ namespace LottoSend.com.TestCases.Mobile
             }
             finally
             {
-                MessageConsoleCreator message = new MessageConsoleCreator();
-                message.DriverDisposed();
-                _driver.Dispose();
+                _sharedCode.CleanUp(ref _driver);
             }
         }
 
@@ -155,6 +154,7 @@ namespace LottoSend.com.TestCases.Mobile
             _driverCover = new DriverCover(_driver);
             _orderVerifications = new OrderVerifications(_driver);
             _commonActions = new CommonActions(_driver);
+            _sharedCode = new TestsSharedCode(_driver);
         }
     }
 }

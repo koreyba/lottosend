@@ -26,6 +26,7 @@ namespace LottoSend.com.TestCases.Mobile
         private WebUserVerifications _usersVerifications;
         private string _device;
         private bool _setUpFailed = false;
+        private TestsSharedCode _sharedCode;
 
         public SignUpTests(string device)
         {
@@ -119,9 +120,7 @@ namespace LottoSend.com.TestCases.Mobile
             }
             finally
             {
-                MessageConsoleCreator message = new MessageConsoleCreator();
-                message.DriverDisposed();
-                _driver.Dispose();
+                _sharedCode.CleanUp(ref _driver);
             }
         }
 
@@ -135,6 +134,7 @@ namespace LottoSend.com.TestCases.Mobile
             _driverCover = new DriverCover(_driver);
             _commonActions = new CommonActions(_driver);
             _usersVerifications = new WebUserVerifications(_driver);
+            _sharedCode = new TestsSharedCode(_driver);
         }
     }
 }

@@ -12,8 +12,6 @@ namespace LottoSend.com.Helpers
     /// </summary>
     public class TestsSharedCode
     {
-        private IWebDriver _driver;
-        public bool _setUpFailed = false;
         public TestsSharedCode(IWebDriver driver)
         {
             _driver = driver;
@@ -21,10 +19,9 @@ namespace LottoSend.com.Helpers
             CommonActions = new CommonActions(_driver);
         }
 
-        private DriverCover _driverCover;
+        private IWebDriver _driver;
         public CommonActions CommonActions;
         public OrderVerifications OrderVerifications;
-        
 
         /// <summary>
         /// If a test was failed or inconclusive then the user's cart will be cleaned up
@@ -65,7 +62,6 @@ namespace LottoSend.com.Helpers
         private void SetUp()
         {
             _driver = new ChromeDriver();
-            _driverCover = new DriverCover(_driver);
             CommonActions = new CommonActions(_driver);
             OrderVerifications = new OrderVerifications(_driver);
         }

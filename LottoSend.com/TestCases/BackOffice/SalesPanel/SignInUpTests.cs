@@ -21,6 +21,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         private CommonActions _commonActions;
         private BackOfficeVerifications _backOfficeVerifications;
         private bool _setUpFailed = false;
+        private TestsSharedCode _sharedCode;
 
         [Test]
         [Category("Critical")]
@@ -67,9 +68,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             }
             finally
             {
-                MessageConsoleCreator message = new MessageConsoleCreator();
-                message.DriverDisposed();
-                _driver.Dispose();
+                _sharedCode.CleanUp(ref _driver);
             }
         }
 
@@ -82,6 +81,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             _driverCover = new DriverCover(_driver);
             _commonActions = new CommonActions(_driver);
             _backOfficeVerifications = new BackOfficeVerifications(_driver);
+            _sharedCode = new TestsSharedCode(_driver);
         }
     }
 }

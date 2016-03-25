@@ -16,6 +16,7 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
         private IWebDriver _driver;
         private DriverCover _driverCover;
         private CommonActions _commonActions;
+        private TestsSharedCode _sharedCode;
 
         /// <summary>
         /// Checks if a use that has crosslabel permission can't change content of other sites not assigned to him
@@ -90,9 +91,7 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
             }
             finally
             {
-                MessageConsoleCreator message = new MessageConsoleCreator();
-                message.DriverDisposed();
-                _driver.Dispose();
+                _sharedCode.CleanUp(ref _driver);
             }
         }
 
@@ -104,6 +103,7 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
             _driver = new TWebDriver();
             _driverCover = new DriverCover(_driver);
             _commonActions = new CommonActions(_driver);
+            _sharedCode = new TestsSharedCode(_driver);
         }
     }
 }

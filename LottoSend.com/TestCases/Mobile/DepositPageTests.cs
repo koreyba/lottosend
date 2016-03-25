@@ -19,6 +19,7 @@ namespace LottoSend.com.TestCases.Mobile
         private DriverCover _driverCover;
         private CommonActions _commonActions;
         private string _device;
+        private TestsSharedCode _sharedCode;
 
         public DepositPageTests(string device)
         {
@@ -59,9 +60,7 @@ namespace LottoSend.com.TestCases.Mobile
             }
             finally
             {
-                MessageConsoleCreator message = new MessageConsoleCreator();
-                message.DriverDisposed();
-                _driver.Dispose();
+                _sharedCode.CleanUp(ref _driver);
             }
         }
 
@@ -73,6 +72,7 @@ namespace LottoSend.com.TestCases.Mobile
             _driver = new ChromeDriver(CreateOptions(_device));
             _driverCover = new DriverCover(_driver);
             _commonActions = new CommonActions(_driver);
+            _sharedCode = new TestsSharedCode(_driver);
         }
 
         /// <summary>

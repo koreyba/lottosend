@@ -23,6 +23,7 @@ namespace LottoSend.com.TestCases.Web
         private string _email;
         private WebUserVerifications _usersVerifications;
         private bool _setUpFailed = false;
+        private TestsSharedCode _sharedCode;
 
         /// <summary>
         /// Signs up in express checkout in the cart
@@ -110,9 +111,7 @@ namespace LottoSend.com.TestCases.Web
             }
             finally
             {
-                MessageConsoleCreator message = new MessageConsoleCreator();
-                message.DriverDisposed();
-                _driver.Dispose();
+                _sharedCode.CleanUp(ref _driver);
             }
         }
 
@@ -125,6 +124,7 @@ namespace LottoSend.com.TestCases.Web
             _driverCover = new DriverCover(_driver);
             _commonActions = new CommonActions(_driver);
             _usersVerifications = new WebUserVerifications(_driver);
+            _sharedCode = new TestsSharedCode(_driver);
         }
     }
 }

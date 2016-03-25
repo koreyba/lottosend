@@ -377,6 +377,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
             _orderVerifications = new OrderVerifications(_driver);
             _commonActions = new CommonActions(_driver);
             _cartVerifications = new CartVerifications(_driver);
+
         }
     }
 }

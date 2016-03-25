@@ -7,7 +7,7 @@ using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace LottoSend.com.TestCases.Web
+namespace LottoSend.com.TestCases.Web.Payments
 {
     /// <summary>
     /// Includes tests to check depositing process 
@@ -36,6 +36,7 @@ namespace LottoSend.com.TestCases.Web
         private double _balanceBeforePayment;
         private bool _setUpFailed = false;
         private double depositAmount;
+        private TestsSharedCode _sharedCode;
 
         public DepositSuccessTests(WayToPay merchant)
         {
@@ -165,9 +166,7 @@ namespace LottoSend.com.TestCases.Web
             }
             finally
             {
-                MessageConsoleCreator message = new MessageConsoleCreator();
-                message.DriverDisposed();
-                _driver.Dispose();
+                _sharedCode.CleanUp(ref _driver);
             }
         }
 
@@ -180,6 +179,7 @@ namespace LottoSend.com.TestCases.Web
             _driverCover = new DriverCover(_driver);
             _orderVerifications = new OrderVerifications(_driver);
             _commonActions = new CommonActions(_driver);
+            _sharedCode = new TestsSharedCode(_driver);
         }
     }
 }

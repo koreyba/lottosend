@@ -13,10 +13,10 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
     {
         private IWebDriver _driver;
         private CommonActions _commonActions;
-        private double _totalPrice;
         private BalanceVerifications _balanceVerifications;
         private DriverCover _driverCover;
         private bool _setUpFailed = false;
+        private TestsSharedCode _sharedCode;
 
         /// <summary>
         /// Cheks if a new user gets 1+1 promotion for the second deposit when he had the first one pending and it was failed 
@@ -246,9 +246,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
                 //Removes all tickets from the cart to make sure all other tests will work well
                 _commonActions.DeleteAllTicketFromCart_SalesPanel();
 
-                MessageConsoleCreator message = new MessageConsoleCreator();
-                message.DriverDisposed();
-                _driver.Dispose();
+                _sharedCode.CleanUp(ref _driver);
             }
         }
 
@@ -261,6 +259,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             _driverCover = new DriverCover(_driver);
             _commonActions = new CommonActions(_driver);
             _balanceVerifications = new BalanceVerifications(_driver);
+            _sharedCode = new TestsSharedCode(_driver);
         }
     }
 }

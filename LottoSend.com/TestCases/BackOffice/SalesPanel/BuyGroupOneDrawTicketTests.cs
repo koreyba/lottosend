@@ -408,9 +408,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             }
             finally
             {
-                MessageConsoleCreator message = new MessageConsoleCreator();
-                message.DriverDisposed();
-                _driver.Dispose();
+                _sharedCode.CleanUp(ref _driver);
             }
         }
 
@@ -424,6 +422,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             _commonActions = new CommonActions(_driver);
             _orderVerifications = new OrderVerifications(_driver);
             _cartVerifications = new CartVerifications(_driver);
+            _sharedCode = new TestsSharedCode(_driver);
         }
     }
 }

@@ -15,6 +15,7 @@ namespace LottoSend.com.TestCases.BackOffice
         private CommonActions _commonActions;
         private WayToPay _merchant;
         private bool _setUpFailed = false;
+        private TestsSharedCode _sharedCode;
 
         public OrderProcessingTest(WayToPay merchant)
         {
@@ -38,9 +39,7 @@ namespace LottoSend.com.TestCases.BackOffice
             }
             finally
             {
-                MessageConsoleCreator message = new MessageConsoleCreator();
-                message.DriverDisposed();
-                _driver.Dispose();
+                _sharedCode.CleanUp(ref _driver);
             }
         }
 
@@ -52,6 +51,7 @@ namespace LottoSend.com.TestCases.BackOffice
             _driver = new TWebDriver();
             _driverCover = new DriverCover(_driver);
             _commonActions = new CommonActions(_driver);
+            _sharedCode = new TestsSharedCode(_driver);
         }
     }
 }

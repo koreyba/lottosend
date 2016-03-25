@@ -24,6 +24,7 @@ namespace LottoSend.com.TestCases.Web
         private CommonActions _commonActions;
         private CartVerifications _cartVerifications;
         private bool _setUpFailed = false;
+        private TestsSharedCode _sharedCode;
 
         /// <summary>
         /// Adds a regular ticket to the cart and changes number of draws to play. Then edits the ticket and checks if correct number of draws to play is selected.
@@ -296,9 +297,7 @@ namespace LottoSend.com.TestCases.Web
                 //Removes all tickets from the cart to make sure all other tests will work well
                 _commonActions.DeleteAllTicketFromCart_Front();
 
-                MessageConsoleCreator message = new MessageConsoleCreator();
-                message.DriverDisposed();
-                _driver.Dispose();
+                _sharedCode.CleanUp(ref _driver);
             }
         }
 
@@ -311,6 +310,7 @@ namespace LottoSend.com.TestCases.Web
             _driverCover = new DriverCover(_driver);
             _commonActions = new CommonActions(_driver);
             _cartVerifications = new CartVerifications(_driver);
+            _sharedCode = new TestsSharedCode(_driver);
         }
     }
 }

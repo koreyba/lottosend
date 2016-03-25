@@ -9,7 +9,7 @@ using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace LottoSend.com.TestCases.Web
+namespace LottoSend.com.TestCases.Web.Payments
 {
     /// <summary>
     /// Includes tests connected to promotions
@@ -35,6 +35,7 @@ namespace LottoSend.com.TestCases.Web
         private double _totalPrice;
         private WayToPay _merchant;
         private bool _setUpFailed = false;
+        private TestsSharedCode _sharedCode;
 
         public PromotionTests(WayToPay merchant)
         {
@@ -265,9 +266,7 @@ namespace LottoSend.com.TestCases.Web
                 //Removes all tickets from the cart to make sure all other tests will work well
                 _commonActions.DeleteAllTicketFromCart_Front();
 
-                MessageConsoleCreator message = new MessageConsoleCreator();
-                message.DriverDisposed();
-                _driver.Dispose();
+                _sharedCode.CleanUp(ref _driver);
             }
         }
 
@@ -280,6 +279,7 @@ namespace LottoSend.com.TestCases.Web
             _driverCover = new DriverCover(_driver);
             _commonActions = new CommonActions(_driver);
             _verifications = new BalanceVerifications(_driver);
+            _sharedCode = new TestsSharedCode(_driver);
         }
     }
 }

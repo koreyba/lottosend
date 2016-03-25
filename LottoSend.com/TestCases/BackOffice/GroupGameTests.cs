@@ -20,6 +20,7 @@ namespace LottoSend.com.TestCases.BackOffice
         private CommonActions _commonActions;
         private BackOfficeVerifications _backOfficeVerifications;
         private bool _setUpFailed = false;
+        private TestsSharedCode _sharedCode;
 
         /// <summary>
         /// Creates a new group ticket in a new group. Then removes the group with the ticket
@@ -94,9 +95,7 @@ namespace LottoSend.com.TestCases.BackOffice
             }
             finally
             {
-                MessageConsoleCreator message = new MessageConsoleCreator();
-                message.DriverDisposed();
-                _driver.Dispose();
+                _sharedCode.CleanUp(ref _driver);
             }
         }
 
@@ -109,6 +108,7 @@ namespace LottoSend.com.TestCases.BackOffice
             _driverCover = new DriverCover(_driver);
             _commonActions = new CommonActions(_driver);
             _backOfficeVerifications = new BackOfficeVerifications(_driver);
+            _sharedCode = new TestsSharedCode(_driver);
         }
     }
 }

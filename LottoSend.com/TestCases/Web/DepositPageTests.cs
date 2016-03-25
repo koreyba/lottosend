@@ -18,6 +18,7 @@ namespace LottoSend.com.TestCases.Web
         private IWebDriver _driver;
         private DriverCover _driverCover;
         private CommonActions _commonActions;
+        private TestsSharedCode _sharedCode;
 
         /// <summary>
         /// Changes default deposit amount in the back office and checks if it was changed on the site/deposit
@@ -53,9 +54,7 @@ namespace LottoSend.com.TestCases.Web
             }
             finally
             {
-                MessageConsoleCreator message = new MessageConsoleCreator();
-                message.DriverDisposed();
-                _driver.Dispose();
+                _sharedCode.CleanUp(ref _driver);
             }
         }
 
@@ -67,6 +66,7 @@ namespace LottoSend.com.TestCases.Web
             _driver = new TWebDriver();
             _driverCover = new DriverCover(_driver);
             _commonActions = new CommonActions(_driver);
+            _sharedCode = new TestsSharedCode(_driver);
         }
     }
 }

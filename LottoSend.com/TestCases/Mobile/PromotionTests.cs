@@ -28,6 +28,7 @@ namespace LottoSend.com.TestCases.Mobile
         private string _device;
         private WayToPay _merchant;
         private bool _setUpFailed = false;
+        private TestsSharedCode _sharedCode;
 
         public PromotionTests(string device, WayToPay merchant)
         {
@@ -268,9 +269,7 @@ namespace LottoSend.com.TestCases.Mobile
                 //Removes all tickets from the cart to make sure all other tests will work well
                 _commonActions.DeleteAllTicketFromCart_Front();
 
-                MessageConsoleCreator message = new MessageConsoleCreator();
-                message.DriverDisposed();
-                _driver.Dispose();
+                _sharedCode.CleanUp(ref _driver);
             }
         }
 
@@ -283,6 +282,7 @@ namespace LottoSend.com.TestCases.Mobile
             _driverCover = new DriverCover(_driver);
             _commonActions = new CommonActions(_driver);
             _verifications = new BalanceVerifications(_driver);
+            _sharedCode = new TestsSharedCode(_driver);
         }
     }
 }

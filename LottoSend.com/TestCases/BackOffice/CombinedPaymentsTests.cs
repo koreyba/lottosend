@@ -119,9 +119,8 @@ namespace LottoSend.com.TestCases.BackOffice
             {
                 //Removes all tickets from the cart to make sure all other tests will work well
                 _commonActions.DeleteAllTicketFromCart_SalesPanel();
-                MessageConsoleCreator message = new MessageConsoleCreator();
-                message.DriverDisposed();
-                _driver.Dispose();
+                
+                _sharedCode.CleanUp(ref _driver);
             }
         }
 
@@ -134,6 +133,7 @@ namespace LottoSend.com.TestCases.BackOffice
             _driverCover = new DriverCover(_driver);
             _commonActions = new CommonActions(_driver);
             _balanceVerifications = new BalanceVerifications(_driver);
+            _sharedCode = new TestsSharedCode(_driver);
         }
     }
 }

@@ -18,6 +18,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         private DriverCover _driverCover;
         private CommonActions _commonActions;
         private WebUserVerifications _usersVerifications;
+        private TestsSharedCode _sharedCode;
 
         /// <summary>
         /// Signs up a new user via the sales panel and changes its password. Then logs in on the front with this password
@@ -59,9 +60,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             }
             finally
             {
-                MessageConsoleCreator message = new MessageConsoleCreator();
-                message.DriverDisposed();
-                _driver.Dispose();
+                _sharedCode.CleanUp(ref _driver);
             }
         }
 
@@ -74,6 +73,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             _driverCover = new DriverCover(_driver);
             _commonActions = new CommonActions(_driver);
             _usersVerifications = new WebUserVerifications(_driver);
+            _sharedCode = new TestsSharedCode(_driver);
         }
     }
 }

@@ -16,6 +16,7 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
         private DriverCover _driverCover;
         private CommonActions _commonActions;
         private bool _setUpFailed = false;
+        private TestsSharedCode _sharedCode;
 
         /// <summary>
         /// Searches a key on the "translations" page by content and checks how many results are found (should be 1)
@@ -139,9 +140,7 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
             }
             finally
             {
-                MessageConsoleCreator message = new MessageConsoleCreator();
-                message.DriverDisposed();
-                _driver.Dispose();
+                _sharedCode.CleanUp(ref _driver);
             }
         }
 
@@ -153,6 +152,7 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
             _driver = new TWebDriver();
             _driverCover = new DriverCover(_driver);
             _commonActions = new CommonActions(_driver);
+            _sharedCode = new TestsSharedCode(_driver);
         }
     }
 }
