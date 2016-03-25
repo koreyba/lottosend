@@ -147,6 +147,7 @@
     <Compile Include="TestCases\BackOffice\ManualMatchTests.cs" />
     <Compile Include="TestCases\BackOffice\OrderProcessingTest.cs" />
     <Compile Include="TestCases\BackOffice\Raffles\CreateRaffleTicketTests.cs" />
+    <Compile Include="TestCases\BackOffice\SalesPanel\BuyGroupMultiDrawTicketTests.cs" />
     <Compile Include="TestCases\BackOffice\SalesPanel\BuyGroupOneDrawTicketTests.cs" />
     <Compile Include="TestCases\BackOffice\SalesPanel\BuyRaffleTicketTests.cs" />
     <Compile Include="TestCases\BackOffice\SalesPanel\BuyRegularOneDrawTicketTests.cs" />

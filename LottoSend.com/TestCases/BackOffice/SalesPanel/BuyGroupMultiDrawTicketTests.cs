@@ -11,7 +11,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
 {
     [TestFixture(typeof(ChromeDriver), WayToPay.Offline, "SuperLotto Plus")]
     [TestFixture(typeof(ChromeDriver), WayToPay.InternalBalance, "SuperEnalotto")]
-    class BuyGroupOneDrawTicketTests<TWebDriver> where TWebDriver : IWebDriver, new() 
+    public class BuyGroupMultiDrawTicketTests <TWebDriver> where TWebDriver : IWebDriver, new()
     {
         private IWebDriver _driver;
         private bool _setUpFailed = false;
@@ -24,7 +24,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         private string _lotteryName;
         private CartVerifications _cartVerifications;
 
-        public BuyGroupOneDrawTicketTests(WayToPay merchant, string lottery)
+        public BuyGroupMultiDrawTicketTests(WayToPay merchant, string lottery)
         {
             _merchant = merchant;
             _lotteryName = lottery;
@@ -34,7 +34,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
 
             try
             {
-                Buy_Group_One_Draw_Ticket(merchant, lottery);
+                Buy_Group_Multi_Draw_Ticket(merchant, lottery);
             }
             catch (Exception e)
             {
@@ -80,7 +80,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         {
             if (numberOfRecordToCheck == 1)
             {
-                _orderVerifications.CheckPlayTypeInTransactions_Back("Single");
+                _orderVerifications.CheckPlayTypeInTransactions_Back("Bulk buy");
             }
 
             if (_merchant != WayToPay.InternalBalance)
@@ -95,8 +95,8 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         /// <summary>
         /// Checks a transaction type of the first record in transactions (back)
         /// </summary>
-      //  [TestCase(1)]
-       // [TestCase(2)]
+        //  [TestCase(1)]
+        // [TestCase(2)]
         [Category("Critical")]
         public void Check_TransactionType_In_Transactions_Back(int numberOfRecordToCheck)
         {
@@ -184,7 +184,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         [Category("Critical")]
         public void Check_Record_Type_In_Draw()
         {
-            _orderVerifications.CheckRecordBetTypeInDraw("Single", _lotteryName);
+            _orderVerifications.CheckRecordBetTypeInDraw("Bulk buy", _lotteryName);
         }
 
         /// <summary>
@@ -245,12 +245,12 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             {
                 if (_merchant != WayToPay.InternalBalance)
                 {
-                    _orderVerifications.CheckTypeOfTransaction_Front("Play - Single", _driverCover.Login,
+                    _orderVerifications.CheckTypeOfTransaction_Front("Play - Bulk buy", _driverCover.Login,
                         _driverCover.Password);
                 }
                 else
                 {
-                    _orderVerifications.CheckTypeOfTransaction_Front("Play - Single", _driverCover.LoginTwo,
+                    _orderVerifications.CheckTypeOfTransaction_Front("Play - Bulk buy", _driverCover.LoginTwo,
                         _driverCover.Password);
                 }
             }
@@ -303,15 +303,15 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         }
 
         /// <summary>
-        /// Performs once before all other tests. Buys a group single ticket 
+        /// Performs once before all other tests. Buys a group multi-draw ticket 
         /// </summary>
-        public void Buy_Group_One_Draw_Ticket(WayToPay merchant, string lottery)
+        public void Buy_Group_Multi_Draw_Ticket(WayToPay merchant, string lottery)
         {
             _commonActions.SignIn_in_admin_panel();
 
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/orders");
 
-            Add_Ticket_To_Cart(lottery);
+            Add_Ticket_To_Cart(lottery); //2 draws will be added
 
             //Pays for tickets in the cart (offline or internal balance).
             _totalPrice = _commonActions.PayForTicketsInCart_SalesPanel(_merchant);
@@ -319,7 +319,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
 
 
         /// <summary>
-        /// Add a ticket to the cart
+        /// Add a ticket to the cart. Default amount of draws will be added - 2
         /// </summary>
         /// <param name="lotteryName"></param>
         private void Add_Ticket_To_Cart(string lotteryName)
@@ -333,13 +333,12 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
 
             if (_merchant == WayToPay.InternalBalance)
             {
-                 regForm.SignIn(_driverCover.LoginTwo);
+                regForm.SignIn(_driverCover.LoginTwo);
             }
 
             MenuObj menu = new MenuObj(_driver);
             menu.GoToLotteryPage(lotteryName);
             GroupGameObj group = new GroupGameObj(_driver);
-            group.ClickOneDrawRadioButton();
             group.AddShareToTicket(1, 1);
             group.ClickAddToCartButton();
         }

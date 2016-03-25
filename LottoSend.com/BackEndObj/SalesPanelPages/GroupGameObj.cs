@@ -17,7 +17,6 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
         [FindsBy(How = How.CssSelector, Using = "a#send.add-to-cart")]
         private IWebElement _addToCartButton;
 
-
         [FindsBy(How = How.CssSelector, Using = "form#bet-group > table > tbody")] 
         private IWebElement _table;
 
@@ -80,7 +79,5 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
             WaitForPageLoading();
             WaitjQuery();
         }
-
-
     }
 }
