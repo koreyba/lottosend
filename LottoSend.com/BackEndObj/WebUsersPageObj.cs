@@ -30,6 +30,17 @@ namespace LottoSend.com.BackEndObj
         private IWebElement _newTransactionButton;
 
         /// <summary>
+        /// Clicks on a "View Bets" button for the first user on the page
+        /// </summary>
+        public BetsPageObj ViewBets()
+        {
+            _table.FindElement(By.LinkText("View Bets")).Click();
+            WaitForPageLoading();
+
+            return new BetsPageObj(Driver);
+        }
+
+        /// <summary>
         /// Credits an amount of money to the store credit balance of a user
         /// </summary>
         /// <param name="amount"></param>

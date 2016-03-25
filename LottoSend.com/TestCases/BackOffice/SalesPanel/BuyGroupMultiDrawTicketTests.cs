@@ -54,6 +54,54 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         }
 
         /// <summary>
+        /// Checks back/web_users/bets page and compare type of bet with expected one
+        /// </summary>
+        [Test]
+        public void Check_Type_Of_Bet_In_WebUser_Bets_BackOffice()
+        {
+            if (_merchant != WayToPay.InternalBalance)
+            {
+                _orderVerifications.CheckTypeOfBetInBets_BackOffice(_driverCover.Login, "Bulk buy");
+            }
+            else
+            {
+                _orderVerifications.CheckTypeOfBetInBets_BackOffice(_driverCover.LoginTwo, "Bulk buy");
+            }
+        }
+
+        /// <summary>
+        /// Checks back/web_users/bets page and compare price of bet (amount) with expected one
+        /// </summary>
+        [Test]
+        public void Check_Price_In_WebUser_Bets_BackOffice()
+        {
+            if (_merchant != WayToPay.InternalBalance)
+            {
+                _orderVerifications.CheckPriceInBets_BackOffice(_driverCover.Login, _totalPrice);
+            }
+            else
+            {
+                _orderVerifications.CheckPriceInBets_BackOffice(_driverCover.LoginTwo, _totalPrice);
+            }
+        }
+
+        /// <summary>
+        /// Checks back/web_users/bets page and compare lottery name in the first record with expected one
+        /// </summary>
+        [Test]
+        public void Check_Lottery_Name_In_WebUser_Bets_BackOffice()
+        {
+            if (_merchant != WayToPay.InternalBalance)
+            {
+                _orderVerifications.CheckLotteryInBets_BackOffice(_driverCover.Login, _lotteryName);
+            }
+            else
+            {
+                _orderVerifications.CheckLotteryInBets_BackOffice(_driverCover.LoginTwo, _lotteryName);
+            }
+        }
+
+        /// <summary>
         /// Cheks the merchant of the last transaction (the first record) on "Back - Transactions" page
         /// </summary>
         [Category("Critical")]

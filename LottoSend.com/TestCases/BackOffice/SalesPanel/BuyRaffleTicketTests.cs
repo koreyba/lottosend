@@ -22,10 +22,12 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
          private TestsSharedCode _sharedCode;
          private CartVerifications _cartVerifications;
          private bool _setUpFailed = false;
+        private string _raffleName;
 
          public BuyRaffleTicketTests(WayToPay merchant, string raffleName)
          {
              _merchant = merchant;
+             _raffleName = raffleName;
 
              SetUp();
              _sharedCode = new TestsSharedCode(_driver);
@@ -49,6 +51,54 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
                  throw new Exception("Exception was thrown while executing: " + e.Message + " ");
              }
              CleanUp();
+         }
+
+         /// <summary>
+         /// Checks back/web_users/bets page and compare type of bet with expected one
+         /// </summary>
+         [Test]
+         public void Check_Type_Of_Bet_In_WebUser_Bets_BackOffice()
+         {
+             if (_merchant != WayToPay.InternalBalance)
+             {
+                 _orderVerifications.CheckTypeOfBetInBets_BackOffice(_driverCover.Login, "Raffle");
+             }
+             else
+             {
+                 _orderVerifications.CheckTypeOfBetInBets_BackOffice(_driverCover.LoginTwo, "Raffle");
+             }
+         }
+
+         /// <summary>
+         /// Checks back/web_users/bets page and compare price of bet (amount) with expected one
+         /// </summary>
+         [Test]
+         public void Check_Price_In_WebUser_Bets_BackOffice()
+         {
+             if (_merchant != WayToPay.InternalBalance)
+             {
+                 _orderVerifications.CheckPriceInBets_BackOffice(_driverCover.Login, _totalPrice);
+             }
+             else
+             {
+                 _orderVerifications.CheckPriceInBets_BackOffice(_driverCover.LoginTwo, _totalPrice);
+             }
+         }
+
+         /// <summary>
+         /// Checks back/web_users/bets page and compare lottery name in the first record with expected one
+         /// </summary>
+         [Test]
+         public void Check_Lottery_Name_In_WebUser_Bets_BackOffice()
+         {
+             if (_merchant != WayToPay.InternalBalance)
+             {
+                 _orderVerifications.CheckLotteryInBets_BackOffice(_driverCover.Login, _raffleName);
+             }
+             else
+             {
+                 _orderVerifications.CheckLotteryInBets_BackOffice(_driverCover.LoginTwo, _raffleName);
+             }
          }
 
          /// <summary>

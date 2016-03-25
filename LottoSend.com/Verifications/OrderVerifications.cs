@@ -28,6 +28,54 @@ namespace LottoSend.com.Verifications
         }
 
         /// <summary>
+        /// Checks bet type in the last bet of a specific user
+        /// </summary>
+        /// <param name="userEmail"></param>
+        /// <param name="expectedType"></param>
+        public void CheckTypeOfBetInBets_BackOffice(string userEmail, string expectedType)
+        {
+            _commonActions.SignIn_in_admin_panel();
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/web_users");
+            WebUsersPageObj users = new WebUsersPageObj(_driver);
+            users.FilterByEmail(userEmail);
+            BetsPageObj bets = users.ViewBets();
+
+            Assert.AreEqual(expectedType, bets.Type, "Bet type on back/web_user/bets page in the first record is wrong ");
+        }
+
+        /// <summary>
+        /// Checks bet price in the last bet of a specific user
+        /// </summary>
+        /// <param name="userEmail"></param>
+        /// <param name="expectedPrice"></param>
+        public void CheckPriceInBets_BackOffice(string userEmail, double expectedPrice)
+        {
+            _commonActions.SignIn_in_admin_panel();
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/web_users");
+            WebUsersPageObj users = new WebUsersPageObj(_driver);
+            users.FilterByEmail(userEmail);
+            BetsPageObj bets = users.ViewBets();
+
+            Assert.AreEqual(expectedPrice, bets.Amount, "Price on back/web_user/bets page in the first record is wrong ");
+        }
+
+        /// <summary>
+        /// Checks lottery name in the last bet of a specific user
+        /// </summary>
+        /// <param name="userEmail"></param>
+        /// <param name="expectedName"></param>
+        public void CheckLotteryInBets_BackOffice(string userEmail, string expectedName)
+        {
+            _commonActions.SignIn_in_admin_panel();
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/web_users");
+            WebUsersPageObj users = new WebUsersPageObj(_driver);
+            users.FilterByEmail(userEmail);
+            BetsPageObj bets = users.ViewBets();
+
+            StringAssert.Contains(expectedName, bets.LotteryName, "Lottery name on back/web_user/bets page in the first record is wrong ");
+        }
+
+        /// <summary>
         /// Check balance of the user based on his previous balance and amount of new transaction
         /// </summary>
         /// <param name="formerBalance">Balance before transaction</param>

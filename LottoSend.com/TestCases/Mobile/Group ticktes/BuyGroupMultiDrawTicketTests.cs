@@ -60,10 +60,58 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
                 throw new Exception("Exception was thrown while executing: " + e.Message + " ");
             }
             CleanUp();
+        }
 
-            //SetUp();
-            //Confirn_Payment();
-            //CleanUp();
+
+        /// <summary>
+        /// Checks back/web_users/bets page and compare type of bet with expected one
+        /// </summary>
+        [Test]
+        public void Check_Type_Of_Bet_In_WebUser_Bets_BackOffice()
+        {
+            SetUp();
+            if (_merchant != WayToPay.InternalBalance)
+            {
+                _orderVerifications.CheckTypeOfBetInBets_BackOffice(_driverCover.Login, "Bulk buy");
+            }
+            else
+            {
+                _orderVerifications.CheckTypeOfBetInBets_BackOffice(_driverCover.LoginTwo, "Bulk buy");
+            }
+        }
+
+        /// <summary>
+        /// Checks back/web_users/bets page and compare price of bet (amount) with expected one
+        /// </summary>
+        [Test]
+        public void Check_Price_In_WebUser_Bets_BackOffice()
+        {
+            SetUp();
+            if (_merchant != WayToPay.InternalBalance)
+            {
+                _orderVerifications.CheckPriceInBets_BackOffice(_driverCover.Login, _totalPrice);
+            }
+            else
+            {
+                _orderVerifications.CheckPriceInBets_BackOffice(_driverCover.LoginTwo, _totalPrice);
+            }
+        }
+
+        /// <summary>
+        /// Checks back/web_users/bets page and compare lottery name in the first record with expected one
+        /// </summary>
+        [Test]
+        public void Check_Lottery_Name_In_WebUser_Bets_BackOffice()
+        {
+            SetUp();
+            if (_merchant != WayToPay.InternalBalance)
+            {
+                _orderVerifications.CheckLotteryInBets_BackOffice(_driverCover.Login, "EuroJackpot");
+            }
+            else
+            {
+                _orderVerifications.CheckLotteryInBets_BackOffice(_driverCover.LoginTwo, "EuroJackpot");
+            }
         }
 
         /// <summary>

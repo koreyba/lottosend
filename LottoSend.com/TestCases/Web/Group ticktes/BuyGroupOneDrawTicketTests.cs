@@ -37,9 +37,8 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         private CartVerifications _cartVerifications;
         private TestsSharedCode _sharedCode;
         private bool _setUpFailed = false;
-        private string _lotteryName;
 
-        public BuyGroupOneDrawTicketTests(WayToPay merchant, string lottery)
+        public BuyGroupOneDrawTicketTests(WayToPay merchant)
         {
             _merchant = merchant;
 
@@ -68,6 +67,54 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
             }
             
             CleanUp();
+        }
+
+        /// <summary>
+        /// Checks back/web_users/bets page and compare type of bet with expected one
+        /// </summary>
+        [Test]
+        public void Check_Type_Of_Bet_In_WebUser_Bets_BackOffice()
+        {
+            if (_merchant != WayToPay.InternalBalance)
+            {
+                _orderVerifications.CheckTypeOfBetInBets_BackOffice(_driverCover.Login, "Single");
+            }
+            else
+            {
+                _orderVerifications.CheckTypeOfBetInBets_BackOffice(_driverCover.LoginTwo, "Single");
+            }
+        }
+
+        /// <summary>
+        /// Checks back/web_users/bets page and compare price of bet (amount) with expected one
+        /// </summary>
+        [Test]
+        public void Check_Price_In_WebUser_Bets_BackOffice()
+        {
+            if (_merchant != WayToPay.InternalBalance)
+            {
+                _orderVerifications.CheckPriceInBets_BackOffice(_driverCover.Login, _totalPrice);
+            }
+            else
+            {
+                _orderVerifications.CheckPriceInBets_BackOffice(_driverCover.LoginTwo, _totalPrice);
+            }
+        }
+
+        /// <summary>
+        /// Checks back/web_users/bets page and compare lottery name in the first record with expected one
+        /// </summary>
+        [Test]
+        public void Check_Lottery_Name_In_WebUser_Bets_BackOffice()
+        {
+            if (_merchant != WayToPay.InternalBalance)
+            {
+                _orderVerifications.CheckLotteryInBets_BackOffice(_driverCover.Login, "El Gordo");
+            }
+            else
+            {
+                _orderVerifications.CheckLotteryInBets_BackOffice(_driverCover.LoginTwo, "El Gordo");
+            }
         }
 
         /// <summary>
