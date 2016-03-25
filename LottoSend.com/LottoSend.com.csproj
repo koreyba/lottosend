@@ -150,6 +150,7 @@
     <Compile Include="TestCases\BackOffice\SalesPanel\BuyGroupMultiDrawTicketTests.cs" />
     <Compile Include="TestCases\BackOffice\SalesPanel\BuyGroupOneDrawTicketTests.cs" />
     <Compile Include="TestCases\BackOffice\SalesPanel\BuyRaffleTicketTests.cs" />
+    <Compile Include="TestCases\BackOffice\SalesPanel\BuyRegularMultiDrawTicketTests.cs" />
     <Compile Include="TestCases\BackOffice\SalesPanel\BuyRegularOneDrawTicketTests.cs" />
     <Compile Include="TestCases\BackOffice\SalesPanel\CartTests.cs" />
     <Compile Include="TestCases\BackOffice\SalesPanel\CouponTests.cs" />

@@ -466,6 +466,21 @@ namespace LottoSend.com
         }
 
         /// <summary>
+        /// Returns the first visible element from list of elements 
+        /// </summary>
+        /// <returns>Element/null</returns>
+        public IWebElement GetFirstVisibleElementFromList(IList<IWebElement> list)
+        {
+            foreach (IWebElement button in list)
+            {
+                if (button.Displayed)
+                    return button;
+            }
+
+            return null;
+        }
+
+        /// <summary>
         /// Returns the first visible element from list of elements that are found by the same cssSelector.
         /// </summary>
         /// <returns>Element/null</returns>
@@ -486,7 +501,6 @@ namespace LottoSend.com
         /// </summary>
         public void TakeScreenshot()
         {
-            throw new Exception();
             string testName = TestContext.CurrentContext.Test.FullName;
             Console.WriteLine("Current test: " + testName + " was run. Driver will be disposed now.  Screenshot will be made. ");
            // Debug.WriteLine("Current test: " + testName + " was run. Driver will be disposed now. Screenshot will be made. ");

@@ -23,7 +23,6 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         private IWebDriver _driver;
         private DriverCover _driverCover;
         private double _totalPrice;
-        private int _numberOfDraws;
         private OrderVerifications _orderVerifications;
         private CommonActions _commonActions;
         private WayToPay _merchant;
@@ -238,7 +237,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         public void Check_Record_Price_In_Draw()
         {
             SetUp();
-            _orderVerifications.CheckRecordPriceInDraw(_totalPrice, _numberOfDraws);
+            _orderVerifications.CheckRecordPriceInDraw(_totalPrice, "Eurojackpot");
         }
 
         /// <summary>
@@ -264,7 +263,6 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
             GroupGamePageObj groupGame = new GroupGamePageObj(_driver);
 
             _totalPrice = groupGame.TotalPrice;
-            _numberOfDraws = groupGame.NumberOfDraws;
 
             MerchantsObj merchants = groupGame.ClickBuyTicketsButton();
 
@@ -274,7 +272,6 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
             }
             else
             {
-                throw new Exception();
                 CheckoutObj checkout = new CheckoutObj(_driver);
                 checkout.ClickCompleteYourOrderButton();
             }

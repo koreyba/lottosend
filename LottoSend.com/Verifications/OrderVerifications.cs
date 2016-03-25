@@ -351,16 +351,5 @@ namespace LottoSend.com.Verifications
             DrawObj draw = _commonActions.Find_The_Draw_Page(lottery);
             Assert.AreEqual(totalPrice, draw.BetAmount, "Sorry, the price for the bet is  " + draw.BetAmount + " but " + totalPrice + " was expected, page: " + _driverCover.Driver.Url + " ");
         }
-
-        /// <summary>
-        /// Checks price of the last bet (the first record). Must be the same as in the front-end. Works for multi-draw ticket (not single)
-        /// </summary>
-        public void CheckRecordPriceInDraw(double totalPrice, int numberOfDraws)
-        {
-            _commonActions.SignIn_in_admin_panel();
-            //navigate to the draw's page
-            DrawObj draw = _commonActions.Find_The_Draw_Page("Eurojackpot");
-            Assert.AreEqual(totalPrice, draw.BetAmount, "Sorry, the price for the bet is  " + draw.BetAmount + " but " + totalPrice + " was expected, page: " + _driverCover.Driver.Url + " ");
-        }
     }
 }

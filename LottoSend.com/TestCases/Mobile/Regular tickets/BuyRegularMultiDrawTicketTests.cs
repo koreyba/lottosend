@@ -23,7 +23,6 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
         private IWebDriver _driver;
         private DriverCover _driverCover;
         private double _totalPrice;
-        private int _numberOfDraws;
         private OrderVerifications _orderVerifications;
         private CommonActions _commonActions;
         private WayToPay _merchant;
@@ -234,7 +233,7 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
         public void Check_Record_Price_In_Draw()
         {
             SetUp();
-            _orderVerifications.CheckRecordPriceInDraw(_totalPrice, _numberOfDraws);
+            _orderVerifications.CheckRecordPriceInDraw(_totalPrice, "Eurojackpot");
         }
 
         /// <summary>
@@ -263,8 +262,6 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
             regularGame.ClickStandartGameButton();
 
             _totalPrice = regularGame.TotalPrice;
-            _numberOfDraws = regularGame.NumberOfDraws;
-
 
             MerchantsObj merchants = regularGame.ClickBuyTicketsButton();
 

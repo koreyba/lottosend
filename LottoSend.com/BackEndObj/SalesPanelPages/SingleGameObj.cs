@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
@@ -25,6 +26,9 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
         [FindsBy(How = How.CssSelector, Using = "#games >ul > li:nth-child(2) > a")]
         private IWebElement _groupTab;
 
+        [FindsBy(How = How.CssSelector, Using = "input[id*=bet_order_item_attributes_bulk]")]
+        private IList<IWebElement> _bulkOptions;
+
         /// <summary>
         /// Switches from Single to Groups tab
         /// </summary>
@@ -32,6 +36,20 @@ namespace LottoSend.com.BackEndObj.SalesPanelPages
         {
             _groupTab.Click();
             WaitjQuery();
+        }
+
+        /// <summary>
+        /// Selects first available multi-draw options. Returns number of draws that was selected
+        /// </summary>
+        /// <returns>Selected number of draws</returns>
+        public int SelectMultiDraw()
+        {
+            IWebElement bulk = GetFirstVisibleElementFromList(_bulkOptions);
+            bulk.Click();
+
+            int numberOfDraws = (int)bulk.FindElement(By.XPath("../small")).Text.ParseDouble();
+
+            return numberOfDraws;
         }
 
 
