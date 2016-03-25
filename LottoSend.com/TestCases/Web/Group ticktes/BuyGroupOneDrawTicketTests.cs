@@ -37,8 +37,9 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         private CartVerifications _cartVerifications;
         private TestsSharedCode _sharedCode;
         private bool _setUpFailed = false;
+        private string _lotteryName;
 
-        public BuyGroupOneDrawTicketTests(WayToPay merchant)
+        public BuyGroupOneDrawTicketTests(WayToPay merchant, string lottery)
         {
             _merchant = merchant;
 

@@ -16,11 +16,11 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
     //[TestFixture(typeof(ChromeDriver), WayToPay.Neteller)]
     ////[TestFixture(typeof(FirefoxDriver), WayToPay.Neteller)]
     //[TestFixture(typeof(InternetExplorerDriver), (WayToPay.Neteller))]
-    [TestFixture(typeof(ChromeDriver), WayToPay.Offline)]
+    [TestFixture(typeof(ChromeDriver), WayToPay.Offline, "EuroJackpot")]
     ////[TestFixture(typeof(FirefoxDriver), WayToPay.Offline)]
     //[TestFixture(typeof(InternetExplorerDriver), WayToPay.Offline)]
     //[TestFixture(typeof(ChromeDriver), WayToPay.TrustPay)]
-    [TestFixture(typeof(ChromeDriver), WayToPay.InternalBalance)]
+    [TestFixture(typeof(ChromeDriver), WayToPay.InternalBalance, "EuroJackpot")]
     ////[TestFixture(typeof(FirefoxDriver), WayToPay.TrustPay)]
     //[TestFixture(typeof(InternetExplorerDriver), WayToPay.TrustPay)]
     //[TestFixture(typeof(ChromeDriver), WayToPay.Skrill)]
@@ -37,10 +37,12 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         private CartVerifications _cartVerifications;
         private TestsSharedCode _sharedCode;
         private bool _setUpFailed = false;
+        private string _lotteryName;
 
-        public BuyGroupMultiDrawTicketTests(WayToPay merchant)
+        public BuyGroupMultiDrawTicketTests(WayToPay merchant, string lottery)
         {
             _merchant = merchant;
+            _lotteryName = lottery;
 
             SetUp();
             _sharedCode = new TestsSharedCode(_driver);
@@ -215,12 +217,12 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         {
             if (_merchant != WayToPay.InternalBalance)
             {
-                _orderVerifications.CheckTransactionLotteryName_Front("EuroJackpot", _driverCover.Login,
+                _orderVerifications.CheckTransactionLotteryName_Front(_lotteryName, _driverCover.Login,
                     _driverCover.Password, 1);
             }
             else
             {
-                _orderVerifications.CheckTransactionLotteryName_Front("EuroJackpot", _driverCover.LoginTwo,
+                _orderVerifications.CheckTransactionLotteryName_Front(_lotteryName, _driverCover.LoginTwo,
                     _driverCover.Password, 1);
             }
         }
@@ -279,7 +281,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
       //  [Category("Critical")]
         public void Check_Record_Time_In_Draw()
         {
-            _orderVerifications.CheckRecordTimeInDraw("Eurojackpot");
+            _orderVerifications.CheckRecordTimeInDraw(_lotteryName);
         }
 
         /// <summary>
@@ -290,11 +292,11 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         {
             if (_merchant != WayToPay.InternalBalance)
             {
-                _orderVerifications.CheckRecordEmailInDraw("Eurojackpot", _driverCover.Login);
+                _orderVerifications.CheckRecordEmailInDraw(_lotteryName, _driverCover.Login);
             }
             else
             {
-                _orderVerifications.CheckRecordEmailInDraw("Eurojackpot", _driverCover.LoginTwo);
+                _orderVerifications.CheckRecordEmailInDraw(_lotteryName, _driverCover.LoginTwo);
             }
         }
 
@@ -305,7 +307,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
       //  [Category("Critical")]
         public void Check_Record_Type_In_Draw()
         {
-            _orderVerifications.CheckRecordBetTypeInDraw("Bulk buy", "Eurojackpot");
+            _orderVerifications.CheckRecordBetTypeInDraw("Bulk buy", _lotteryName);
         }
 
         /// <summary>
@@ -315,7 +317,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
       //  [Category("Critical")]
         public void Check_Record_Price_In_Draw()
         {
-            _orderVerifications.CheckRecordPriceInDraw(_totalPrice, "Eurojackpot");
+            _orderVerifications.CheckRecordPriceInDraw(_totalPrice, _lotteryName);
         }
 
         /// <summary>
@@ -334,7 +336,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
                 _commonActions.Log_In_Front(_driverCover.LoginTwo, _driverCover.Password);
             }
 
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/play/eurojackpot/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/play/" + _lotteryName +"/");
 
             //Pay for tickets
             GroupGamePageObj groupGame = new GroupGamePageObj(_driver);
