@@ -114,7 +114,6 @@ namespace LottoSend.com.TestCases.Web
                 message.DriverDisposed();
                 _driver.Dispose();
             }
-           
         }
 
         [SetUp]

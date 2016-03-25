@@ -106,6 +106,8 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             }
             finally
             {
+                //Removes all tickets from the cart to make sure all other tests will work well
+                _commonActions.DeleteAllTicketFromCart_SalesPanel();
                 _sharedCode.CleanUp(ref _driver);
             }
         }

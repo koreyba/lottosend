@@ -18,7 +18,6 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         private IWebDriver _driver;
         private DriverCover _driverCover;
         private CommonActions _commonActions;
-        private BackOfficeVerifications _backOfficeVerifications;
         private CartVerifications _cartVerifications;
         private bool _setUpFailed = false;
 
@@ -126,8 +125,6 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
                 if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
                 {
                     _driverCover.TakeScreenshot();
-                    //Removes all tickets from the cart to make sure all other tests will work well
-                    _commonActions.DeleteAllTicketFromCart_SalesPanel();
                 }
             }
             catch (Exception e)
@@ -136,6 +133,8 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             }
             finally
             {
+                //Removes all tickets from the cart to make sure all other tests will work well
+                _commonActions.DeleteAllTicketFromCart_SalesPanel();
                 MessageConsoleCreator message = new MessageConsoleCreator();
                 message.DriverDisposed();
                 _driver.Dispose();
@@ -145,29 +144,11 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         [SetUp]
         public void SetUp()
         {
-            
-           // DesiredCapabilities capabilities = new DesiredCapabilities();
-
-           //// 
-           // if (typeof (TWebDriver).Name.Equals("ChromeDriver"))
-           // {
-           //      capabilities = DesiredCapabilities.Chrome();
-           // }
-
-           // if (typeof(TWebDriver).Name.Equals("FirefoxDriver"))
-           // {
-           //      capabilities = DesiredCapabilities.Firefox();
-           // }
-
-           // _driver = new RemoteWebDriver(
-           //   new Uri("http://localhost:4444/wd/hub"), capabilities
-           // );
             MessageConsoleCreator message = new MessageConsoleCreator();
             message.TestWillRun();
             _driver = new TWebDriver();
             _driverCover = new DriverCover(_driver);
             _commonActions = new CommonActions(_driver);
-            _backOfficeVerifications = new BackOfficeVerifications(_driver);
             _cartVerifications = new CartVerifications(_driver); 
         }
     }

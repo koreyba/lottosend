@@ -1,4 +1,5 @@
-﻿using LottoSend.com.BackEndObj;
+﻿using System;
+using LottoSend.com.BackEndObj;
 using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.Helpers;
 using NUnit.Framework;
@@ -91,11 +92,24 @@ namespace LottoSend.com.TestCases
         [TearDown]
         public void CleanUp()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+            try
             {
-                _driverCover.TakeScreenshot();
+                if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+                {
+                    _driverCover.TakeScreenshot();
+                }
             }
-            _sharedCode.CleanUp(ref _driver);
+            catch (Exception e)
+            {
+
+            }
+            finally
+            {
+                //Removes all tickets from the cart to make sure all other tests will work well
+                _commonActions.DeleteAllTicketFromCart_Front();
+
+                _sharedCode.CleanUp(ref _driver);
+            }
         }
 
         [SetUp]

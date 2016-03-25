@@ -235,8 +235,6 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
                 if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
                 {
                     _driverCover.TakeScreenshot();
-                    //Removes all tickets from the cart to make sure all other tests will work well
-                    _commonActions.DeleteAllTicketFromCart_Front();
                 }
             }
             catch (Exception e)
@@ -245,6 +243,9 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             }
             finally
             {
+                //Removes all tickets from the cart to make sure all other tests will work well
+                _commonActions.DeleteAllTicketFromCart_SalesPanel();
+
                 MessageConsoleCreator message = new MessageConsoleCreator();
                 message.DriverDisposed();
                 _driver.Dispose();

@@ -261,9 +261,7 @@ namespace LottoSend.com.TestCases.Mobile
             {
                 if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed || _setUpFailed == true)
                 {
-                    _driverCover.TakeScreenshot();
-                    //Removes all tickets from the cart to make sure all other tests will work well
-                    _commonActions.DeleteAllTicketFromCart_Front();
+                    _driverCover.TakeScreenshot(); 
                 }
             }
             catch (Exception e)
@@ -272,6 +270,8 @@ namespace LottoSend.com.TestCases.Mobile
             }
             finally
             {
+                //Removes all tickets from the cart to make sure all other tests will work well
+                _commonActions.DeleteAllTicketFromCart_Front();
                 MessageConsoleCreator message = new MessageConsoleCreator();
                 message.DriverDisposed();
                 _driver.Dispose();

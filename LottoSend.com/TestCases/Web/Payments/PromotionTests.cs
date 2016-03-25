@@ -262,6 +262,9 @@ namespace LottoSend.com.TestCases.Web
             }
             finally
             {
+                //Removes all tickets from the cart to make sure all other tests will work well
+                _commonActions.DeleteAllTicketFromCart_Front();
+
                 MessageConsoleCreator message = new MessageConsoleCreator();
                 message.DriverDisposed();
                 _driver.Dispose();

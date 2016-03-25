@@ -45,9 +45,7 @@ namespace LottoSend.com.Helpers
             finally
             {
                 CleanUp(ref _driver);
-            }
-
-            
+            }          
         }
 
         /// <summary>

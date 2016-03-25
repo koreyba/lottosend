@@ -486,6 +486,7 @@ namespace LottoSend.com
         /// </summary>
         public void TakeScreenshot()
         {
+            throw new Exception();
             string testName = TestContext.CurrentContext.Test.FullName;
             Console.WriteLine("Current test: " + testName + " was run. Driver will be disposed now.  Screenshot will be made. ");
            // Debug.WriteLine("Current test: " + testName + " was run. Driver will be disposed now. Screenshot will be made. ");

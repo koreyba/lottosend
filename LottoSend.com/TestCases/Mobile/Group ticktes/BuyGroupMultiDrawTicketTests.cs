@@ -242,7 +242,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         }
 
         /// <summary>
-        /// Performs once before all other tests. Buys a group single ticket 
+        /// Performs once before all other tests. Buys a group multi-draw ticket 
         /// </summary>
        // [TestFixtureSetUp]
         public void Buy_Group_Multi_Draw_Ticket(WayToPay merchant)
@@ -274,6 +274,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
             }
             else
             {
+                throw new Exception();
                 CheckoutObj checkout = new CheckoutObj(_driver);
                 checkout.ClickCompleteYourOrderButton();
             }
