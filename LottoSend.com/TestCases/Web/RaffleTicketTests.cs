@@ -30,19 +30,19 @@ namespace LottoSend.com.TestCases.Web
         [Category("Parallel")]
         public void If_Share_Removed_From_Cart_Returns_To_Ticket()
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/especial-san-valentin");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
 
             RafflesPageObj rafflePage = new RafflesPageObj(_driver);
             int sharesBefore = rafflePage.GetNumberOfLeftShares(1);
             rafflePage.ClickBuyNowButton();
 
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/especial-san-valentin/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
 
             Assert.AreEqual(sharesBefore - 1, rafflePage.GetNumberOfLeftShares(1), "Sorry but a share was not deducted from the ticket. Maybe it was not added to the cart. Current URL: " + _driverCover.Driver.Url + " ");
 
             _commonActions.DeleteAllTicketFromCart_Front();
 
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/especial-san-valentin/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
 
             Assert.AreEqual(sharesBefore, rafflePage.GetNumberOfLeftShares(1), "Sorry but the share was not returned back to the ticket. Current URL: " + _driverCover.Driver.Url + " ");
         }
