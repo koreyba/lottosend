@@ -54,6 +54,50 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         }
 
         /// <summary>
+        /// Checks web user's email of the last not completed bulk-buy in back/bulk-buys 
+        /// </summary>
+        [Test]
+        public void Check_WebUser_In_BulkBuys_BackOffice()
+        {
+            if (_merchant == WayToPay.InternalBalance)
+            {
+                _orderVerifications.CheckWebUserInBulkBuys_BackOffice(_driverCover.LoginTwo);
+            }
+            else
+            {
+                _orderVerifications.CheckWebUserInBulkBuys_BackOffice(_driverCover.Login);
+            }
+        }
+
+        /// <summary>
+        /// Checks lottery name of the last not completed bulk-buy in back/bulk-buys 
+        /// </summary>
+        [Test]
+        public void Check_Lottery_In_BulkBuys_BackOffice()
+        {
+            _orderVerifications.CheckLotteryInBulkBuys_BackOffice(_lotteryName);
+        }
+
+        /// <summary>
+        /// Checks amount of played draws of the last not completed bulk-buy in back/bulk-buys 
+        /// </summary>
+        [Test]
+        public void Check_Draws_Played_In_BulkBuys_BackOffice()
+        {
+            _orderVerifications.CheckDrawsPlayedInBulkBuys_BackOffice(1);
+        }
+
+        /// <summary>
+        /// Checks amount of draws to play of the last not completed bulk-buy in back/bulk-buys 
+        /// </summary>
+        [Test]
+        public void Check_Draw_To_Play_In_BulkBuys_BackOffice()
+        {
+            //TODO: value 2 is hardcoded so if default number of bulk-buy is changed the method won't work
+            _orderVerifications.CheckDrawsToPlayInBulkBuys_BackOffice(2);
+        }
+
+        /// <summary>
         /// Checks back/web_users/bets page and compare type of bet with expected one
         /// </summary>
         [Test]

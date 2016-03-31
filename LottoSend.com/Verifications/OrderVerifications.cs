@@ -28,6 +28,54 @@ namespace LottoSend.com.Verifications
         }
 
         /// <summary>
+        /// Checks amount of draws to play of the last not completed bulk-buy in back/bulk-buys 
+        /// </summary>
+        /// <param name="expectedAmount"></param>
+        public void CheckDrawsToPlayInBulkBuys_BackOffice(int expectedAmount)
+        {
+            _commonActions.SignIn_in_admin_panel();
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/bulk_buys?scope=not_completed_not_deleted");
+            BulkBuysPageObj bulkBuys = new BulkBuysPageObj(_driver);
+            Assert.AreEqual(expectedAmount, bulkBuys.DrawsToPlay, "Amount of draws to play of the last bulk buy is not as expected. ");
+        }
+
+        /// <summary>
+        /// Checks amount of played draws of the last not completed bulk-buy in back/bulk-buys 
+        /// </summary>
+        /// <param name="expectedAmount"></param>
+        public void CheckDrawsPlayedInBulkBuys_BackOffice(int expectedAmount)
+        {
+            _commonActions.SignIn_in_admin_panel();
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/bulk_buys?scope=not_completed_not_deleted");
+            BulkBuysPageObj bulkBuys = new BulkBuysPageObj(_driver);
+            Assert.AreEqual(expectedAmount, bulkBuys.DrawsPlayed, "Amount of draws played of the last bulk buy is not as expected. ");
+        }
+
+        /// <summary>
+        /// Checks lottery name of the last not completed bulk-buy in back/bulk-buys 
+        /// </summary>
+        /// <param name="expectedLottery"></param>
+        public void CheckLotteryInBulkBuys_BackOffice(string expectedLottery)
+        {
+            _commonActions.SignIn_in_admin_panel();
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/bulk_buys?scope=not_completed_not_deleted");
+            BulkBuysPageObj bulkBuys = new BulkBuysPageObj(_driver);
+            Assert.AreEqual(expectedLottery, bulkBuys.Lottery, "Lottery of the last bulk buy is not as expected. ");
+        }
+
+        /// <summary>
+        /// Checks web user's email of the last not completed bulk-buy in back/bulk-buys 
+        /// </summary>
+        /// <param name="expectedEmail"></param>
+        public void CheckWebUserInBulkBuys_BackOffice(string expectedEmail)
+        {
+            _commonActions.SignIn_in_admin_panel();
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/bulk_buys?scope=not_completed_not_deleted");
+            BulkBuysPageObj bulkBuys = new BulkBuysPageObj(_driver);
+            Assert.AreEqual(expectedEmail, bulkBuys.WebUser, "Web User email is not as expected. ");
+        }
+
+        /// <summary>
         /// Checks bet type in the last bet of a specific user
         /// </summary>
         /// <param name="userEmail"></param>

@@ -23,6 +23,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         private string _lotteryName;
         private CartVerifications _cartVerifications;
         private bool _setUpFailed = false;
+        private int _drawsToPlay;
 
         public BuyRegularMultiDrawTicketTests(WayToPay merchant, string lottery)
         {
@@ -51,6 +52,49 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
                 throw new Exception("Exception was thrown while executing: " + e.Message + " ");
             }
             CleanUp();
+        }
+
+        /// <summary>
+        /// Checks web user's email of the last not completed bulk-buy in back/bulk-buys 
+        /// </summary>
+        [Test]
+        public void Check_WebUser_In_BulkBuys_BackOffice()
+        {
+            if (_merchant == WayToPay.InternalBalance)
+            {
+                _orderVerifications.CheckWebUserInBulkBuys_BackOffice(_driverCover.LoginTwo);
+            }
+            else
+            {
+                _orderVerifications.CheckWebUserInBulkBuys_BackOffice(_driverCover.Login);
+            }
+        }
+
+        /// <summary>
+        /// Checks lottery name of the last not completed bulk-buy in back/bulk-buys 
+        /// </summary>
+        [Test]
+        public void Check_Lottery_In_BulkBuys_BackOffice()
+        {
+            _orderVerifications.CheckLotteryInBulkBuys_BackOffice(_lotteryName);
+        }
+
+        /// <summary>
+        /// Checks amount of played draws of the last not completed bulk-buy in back/bulk-buys 
+        /// </summary>
+        [Test]
+        public void Check_Draws_Played_In_BulkBuys_BackOffice()
+        {
+            _orderVerifications.CheckDrawsPlayedInBulkBuys_BackOffice(1);
+        }
+
+        /// <summary>
+        /// Checks amount of draws to play of the last not completed bulk-buy in back/bulk-buys 
+        /// </summary>
+        [Test]
+        public void Check_Draw_To_Play_In_BulkBuys_BackOffice()
+        {
+            _orderVerifications.CheckDrawsToPlayInBulkBuys_BackOffice(_drawsToPlay);
         }
 
         /// <summary>
@@ -391,8 +435,8 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             GroupGameObj group = new GroupGameObj(_driver);
             group.SwitchToSingleTab();
 
-            SingleGameObj game = new SingleGameObj(_driver);
-            game.SelectMultiDraw();
+            RegularGameObj game = new RegularGameObj(_driver);
+            _drawsToPlay = game.SelectMultiDraw();
             game.AddToCart();
         }
 

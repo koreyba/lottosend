@@ -142,7 +142,7 @@ namespace LottoSend.com.TestCases
             GroupGameObj group = new GroupGameObj(_driver);
             group.SwitchToSingleTab();
 
-            SingleGameObj game = new SingleGameObj(_driver);
+            RegularGameObj game = new RegularGameObj(_driver);
             game.AddToCart();
         }
 

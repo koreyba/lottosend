@@ -30,6 +30,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
         private CartVerifications _cartVerifications;
         private TestsSharedCode _sharedCode;
         private bool _setUpFailed = false;
+        private int _drawsToPlay;
 
         public BuyGroupMultiDrawTicketTests(string device, WayToPay merchant)
         {
@@ -62,6 +63,52 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
             CleanUp();
         }
 
+        /// <summary>
+        /// Checks web user's email of the last not completed bulk-buy in back/bulk-buys 
+        /// </summary>
+        [Test]
+        public void Check_WebUser_In_BulkBuys_BackOffice()
+        {
+            SetUp();
+            if (_merchant == WayToPay.InternalBalance)
+            {
+                _orderVerifications.CheckWebUserInBulkBuys_BackOffice(_driverCover.LoginTwo);
+            }
+            else
+            {
+                _orderVerifications.CheckWebUserInBulkBuys_BackOffice(_driverCover.Login);
+            }
+        }
+
+        /// <summary>
+        /// Checks lottery name of the last not completed bulk-buy in back/bulk-buys 
+        /// </summary>
+        [Test]
+        public void Check_Lottery_In_BulkBuys_BackOffice()
+        {
+            SetUp();
+            _orderVerifications.CheckLotteryInBulkBuys_BackOffice("EuroJackpot");
+        }
+
+        /// <summary>
+        /// Checks amount of played draws of the last not completed bulk-buy in back/bulk-buys 
+        /// </summary>
+        [Test]
+        public void Check_Draws_Played_In_BulkBuys_BackOffice()
+        {
+            SetUp();
+            _orderVerifications.CheckDrawsPlayedInBulkBuys_BackOffice(1);
+        }
+
+        /// <summary>
+        /// Checks amount of draws to play of the last not completed bulk-buy in back/bulk-buys 
+        /// </summary>
+        [Test]
+        public void Check_Draw_To_Play_In_BulkBuys_BackOffice()
+        {
+            SetUp();
+            _orderVerifications.CheckDrawsToPlayInBulkBuys_BackOffice(_drawsToPlay);
+        }
 
         /// <summary>
         /// Checks back/web_users/bets page and compare type of bet with expected one
@@ -311,6 +358,7 @@ namespace LottoSend.com.TestCases.Mobile.Group_ticktes
             GroupGamePageObj groupGame = new GroupGamePageObj(_driver);
 
             _totalPrice = groupGame.TotalPrice;
+            _drawsToPlay = groupGame.NumberOfDraws;
 
             MerchantsObj merchants = groupGame.ClickBuyTicketsButton();
 

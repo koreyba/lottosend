@@ -30,6 +30,7 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
         private CartVerifications _cartVerifications;
         private TestsSharedCode _sharedCode;
         private bool _setUpFailed = false;
+        private int _drawsToPlay;
 
         public BuyRegularMultiDrawTicketTests(string device, WayToPay merchant)
         {
@@ -60,6 +61,53 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
                 throw new Exception("Exception was thrown while executing: " + e.Message + " ");
             }
             CleanUp();
+        }
+
+        /// <summary>
+        /// Checks web user's email of the last not completed bulk-buy in back/bulk-buys 
+        /// </summary>
+        [Test]
+        public void Check_WebUser_In_BulkBuys_BackOffice()
+        {
+            SetUp();
+            if (_merchant == WayToPay.InternalBalance)
+            {
+                _orderVerifications.CheckWebUserInBulkBuys_BackOffice(_driverCover.LoginTwo);
+            }
+            else
+            {
+                _orderVerifications.CheckWebUserInBulkBuys_BackOffice(_driverCover.Login);
+            }
+        }
+
+        /// <summary>
+        /// Checks lottery name of the last not completed bulk-buy in back/bulk-buys 
+        /// </summary>
+        [Test]
+        public void Check_Lottery_In_BulkBuys_BackOffice()
+        {
+            SetUp();
+            _orderVerifications.CheckLotteryInBulkBuys_BackOffice("EuroJackpot");
+        }
+
+        /// <summary>
+        /// Checks amount of played draws of the last not completed bulk-buy in back/bulk-buys 
+        /// </summary>
+        [Test]
+        public void Check_Draws_Played_In_BulkBuys_BackOffice()
+        {
+            SetUp();
+            _orderVerifications.CheckDrawsPlayedInBulkBuys_BackOffice(1);
+        }
+
+        /// <summary>
+        /// Checks amount of draws to play of the last not completed bulk-buy in back/bulk-buys 
+        /// </summary>
+        [Test]
+        public void Check_Draw_To_Play_In_BulkBuys_BackOffice()
+        {
+            SetUp();
+            _orderVerifications.CheckDrawsToPlayInBulkBuys_BackOffice(_drawsToPlay);
         }
 
         /// <summary>
@@ -309,6 +357,7 @@ namespace LottoSend.com.TestCases.Mobile.Regular_tickets
             regularGame.ClickStandartGameButton();
 
             _totalPrice = regularGame.TotalPrice;
+            _drawsToPlay = regularGame.NumberOfDraws;
 
             MerchantsObj merchants = regularGame.ClickBuyTicketsButton();
 

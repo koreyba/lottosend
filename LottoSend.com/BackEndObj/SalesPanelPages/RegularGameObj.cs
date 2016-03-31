@@ -5,9 +5,9 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace LottoSend.com.BackEndObj.SalesPanelPages
 {
-    public class SingleGameObj : DriverCover
+    public class RegularGameObj : DriverCover
     {
-        public SingleGameObj(IWebDriver driver) : base(driver)
+        public RegularGameObj(IWebDriver driver) : base(driver)
         {
             if (!Driver.FindElement(By.Id("quick")).Displayed)
             {
