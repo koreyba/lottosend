@@ -26,8 +26,27 @@ namespace LottoSend.com.BackEndObj
         [FindsBy(How = How.CssSelector, Using = "table.index_table.index > tbody")]
         private IWebElement _table;
 
-        [FindsBy(How = How.CssSelector, Using = "")]
-        private IWebElement _newTransactionButton;
+        [FindsBy(How = How.CssSelector, Using = "td.col-authentication_token")]
+        private IWebElement _generateTokenButton;
+
+        /// <summary>
+        /// Gets user token. Generates it if it's not generated
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public string GetUserToken(string email)
+        {
+            FilterByEmail(email);
+            if (_generateTokenButton.FindElements(By.TagName("a")).Count > 0)
+            {
+                _generateTokenButton.Click();
+                return _generateTokenButton.Text;
+            }
+            else
+            {
+                return _generateTokenButton.Text;
+            }
+        }
 
         /// <summary>
         /// Clicks on a "View Bets" button for the first user on the page

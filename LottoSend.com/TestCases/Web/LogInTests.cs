@@ -1,4 +1,5 @@
 ﻿using System;
+using LottoSend.com.BackEndObj;
 using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.FrontEndObj.GamePages;
@@ -23,6 +24,20 @@ namespace LottoSend.com.TestCases.Web
         private WebUserVerifications _usersVerifications;
         private bool _setUpFailed = false;
         private TestsSharedCode _sharedCode;
+        private CommonActions _commonActions;
+
+        [TestCase("selenium2@grr.la")]
+        public void Login_With_Token(string email)
+        {
+            _commonActions.SignIn_in_admin_panel();
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/web_users");
+            WebUsersPageObj webusers = new WebUsersPageObj(_driver);
+            string token = webusers.GetUserToken(email);
+
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "?auth_token=" + token);
+
+            _usersVerifications.CheckIfSignedIn_Web();
+        }
 
         /// <summary>
         /// Logs in express checkout on a game page
@@ -134,6 +149,7 @@ namespace LottoSend.com.TestCases.Web
             _driverCover = new DriverCover(_driver);
             _usersVerifications = new WebUserVerifications(_driver);
             _sharedCode = new TestsSharedCode(_driver);
+            _commonActions = new CommonActions(_driver);
         }
     }
 }
