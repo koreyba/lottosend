@@ -96,7 +96,7 @@ namespace LottoSend.com.TestCases.BackOffice
 
             _commonActions.AddRegularOneDrawTicketToCart_SalesPanel("Powerball");
             _commonActions.AddGroupBulkBuyTicketToCart_SalesPanel("EuroMillions");
-            _commonActions.AddRaffleTicketToCart_SalesPanel("Loteria de Navidad");
+            _commonActions.AddRaffleTicketToCart_SalesPanel("Contra el Cancer");
 
             _commonActions.PayForTicketsInCart_SalesPanel(WayToPay.Offline);
         }

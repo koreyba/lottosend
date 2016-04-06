@@ -20,9 +20,9 @@ namespace LottoSend.com.FrontEndObj.GamePages
         }
 
         [FindsBy(How = How.CssSelector, Using = ".table.raffle tr > td:nth-child(2)")]
-        private IList<IWebElement> _sharesLeft; 
+        private IList<IWebElement> _sharesLeft;
 
-        [FindsBy(How = How.CssSelector, Using = "table.table.resume > tbody > tr.total > td.text-right")]
+        [FindsBy(How = How.CssSelector, Using = "table.table > tbody > tr.total > td.text-right")]
         private IWebElement _totalPrice;
 
         /// <summary>

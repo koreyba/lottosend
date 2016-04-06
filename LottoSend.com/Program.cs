@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
-using DisposableMail;
 using LottoSend.com.BackEndObj.ChargePanelPages;
 using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.SignUp;
