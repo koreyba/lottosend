@@ -26,7 +26,7 @@ namespace LottoSend.com.TestCases.Web
         private TestsSharedCode _sharedCode;
         private CommonActions _commonActions;
 
-        [TestCase("selenium2@grr.la")]
+        [TestCase("selenium3@grr.la")]
         public void Login_With_Token(string email)
         {
             _commonActions.SignIn_in_admin_panel();

@@ -19,10 +19,10 @@ namespace LottoSend.com.FrontEndObj.MyAccount
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = "table.table.balance > tbody > tr.even.text-center:nth-child(2)")]
+        [FindsBy(How = How.CssSelector, Using = "table.table > tbody > tr.even.text-center:nth-child(2)")]
         private IWebElement _secondRecord;
 
-        [FindsBy(How = How.CssSelector, Using = "table.table.balance > tbody > tr.odd.text-center:nth-child(1)")]
+        [FindsBy(How = How.CssSelector, Using = "table.table > tbody > tr.odd.text-center:nth-child(1)")]
         private IWebElement _firstRecord;
 
         /// <summary>
