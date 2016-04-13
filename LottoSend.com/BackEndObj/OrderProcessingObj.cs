@@ -23,6 +23,40 @@ namespace LottoSend.com.BackEndObj
         [FindsBy(How = How.CssSelector, Using = "td[id*=payment]  tbody > tr:nth-child(1) > td:nth-child(1)")]
         private IWebElement _trid;
 
+        [FindsBy(How = How.CssSelector, Using = "#q_web_user_email_eq")]
+        private IWebElement _webUserEmailFilter;
+
+        [FindsBy(How = How.CssSelector, Using = ".filter_date_range + input")]
+        private IWebElement _filterButton;
+
+        [FindsBy(How = How.CssSelector, Using = ".history > img")]
+        private IList<IWebElement> _blButton;
+
+        /// <summary>
+        /// Checks if on the current page the BL button exist
+        /// </summary>
+        /// <returns></returns>
+        public bool isBLImageExist()
+        {
+            if (_blButton.Count >= 1)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Filters orders by user's email
+        /// </summary>
+        /// <param name="email"></param>
+        public void FilterByEmail(string email)
+        {
+            _webUserEmailFilter.SendKeys(email);
+            _filterButton.Click();
+            WaitForPageLoading();
+        }
+
         /// <summary>
         /// TRID of the first record
         /// </summary>

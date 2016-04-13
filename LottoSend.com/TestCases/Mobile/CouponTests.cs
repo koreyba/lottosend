@@ -38,7 +38,7 @@ namespace LottoSend.com.TestCases.Mobile
 
             // sign up    
             _commonActions.Sign_Up_Mobile();
-            _commonActions.AddGroupTicketToCart_Front("en/play/euro-miliony-slovakia/");
+            _commonActions.AddGroupTicketToCart_Front("en/play/euromiliony/");
             _commonActions.AddRegularTicketToCart_Front("en/play/megamillions/");
             _commonActions.AddRaffleTicketToCart_Front(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
 
@@ -61,7 +61,7 @@ namespace LottoSend.com.TestCases.Mobile
             SetUp(CreateOptions(_device));
             // sign up    
             _commonActions.Sign_Up_Mobile();
-            _commonActions.AddGroupTicketToCart_Front("en/play/euro-miliony-slovakia/");
+            _commonActions.AddGroupTicketToCart_Front("en/play/euromiliony/");
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/carts/");
 
             CartObj cart = new CartObj(_driver);
@@ -86,7 +86,7 @@ namespace LottoSend.com.TestCases.Mobile
             SetUp(CreateOptions(_device));
             // sign up    
             _commonActions.Sign_Up_Mobile();
-            _commonActions.AddGroupTicketToCart_Front("en/play/euro-miliony-slovakia/");
+            _commonActions.AddGroupTicketToCart_Front("en/play/euromiliony/");
             _commonActions.AddRegularTicketToCart_Front("en/play/el-gordo-de-la-primitiva/");
             _commonActions.AddRaffleTicketToCart_Front(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
 

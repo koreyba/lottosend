@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using LottoSend.com.TestCases.BackOffice;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
@@ -28,6 +29,21 @@ namespace LottoSend.com.BackEndObj
 
         [FindsBy(How = How.CssSelector, Using = "td.col-authentication_token")]
         private IWebElement _generateTokenButton;
+
+        [FindsBy(How = How.CssSelector, Using = ".col-view > a")]
+        private IWebElement _viewButton;
+
+        /// <summary>
+        /// Click on "View" button for the first record on the page
+        /// </summary>
+        /// <returns></returns>
+        public ViewWebUserPageObj ClickViewButton()
+        {
+            _viewButton.Click();
+            WaitForPageLoading();
+
+            return new ViewWebUserPageObj(Driver);
+        } 
 
         /// <summary>
         /// Gets user token. Generates it if it's not generated

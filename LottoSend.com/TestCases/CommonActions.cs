@@ -374,7 +374,7 @@ namespace LottoSend.com.TestCases
         /// Buys a regular one-draw ticket
         /// </summary>
         /// <returns>Total price to pay</returns>
-        public double BuyRegularOneDrawTicket_Front(WayToPay merchant)
+        public double BuyRegularOneDrawTicket_Front(WayToPay merchant, bool processOrder = true)
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/play/eurojackpot/");
 
@@ -390,8 +390,16 @@ namespace LottoSend.com.TestCases
             double totalPrice = regularGame.TotalPrice;
 
             MerchantsObj merchants = regularGame.ClickBuyTicketsButton();
-            merchants.Pay(merchant);
 
+            if (processOrder)
+            {
+                merchants.Pay(merchant);
+            }
+            else
+            {
+                merchants.Pay(merchant, false);
+            }
+            
             return totalPrice;
         }
 

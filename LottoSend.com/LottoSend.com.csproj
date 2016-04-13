@@ -143,6 +143,7 @@
     <Compile Include="Helpers\MessageCreator.cs" />
     <Compile Include="Helpers\TestsSharedCode.cs" />
     <Compile Include="TestCases\BackOffice\BackOfficeTests.cs" />
+    <Compile Include="TestCases\BackOffice\BlackListTests.cs" />
     <Compile Include="TestCases\BackOffice\CMS\CmsPermissionTests.cs" />
     <Compile Include="TestCases\BackOffice\CMS\PagesTests.cs" />
     <Compile Include="TestCases\BackOffice\CMS\SnippetsTests.cs" />
@@ -162,6 +163,7 @@
     <Compile Include="TestCases\BackOffice\SalesPanel\PasswordRecoveryTests.cs" />
     <Compile Include="TestCases\BackOffice\SalesPanel\PromotionTests.cs" />
     <Compile Include="TestCases\BackOffice\SalesPanel\SignInUpTests.cs" />
+    <Compile Include="TestCases\BackOffice\ViewWebUserPageObj.cs" />
     <Compile Include="TestCases\Mobile\CartTests.cs" />
     <Compile Include="TestCases\Mobile\CouponTests.cs" />
     <Compile Include="TestCases\Mobile\DepositPageTests.cs" />
