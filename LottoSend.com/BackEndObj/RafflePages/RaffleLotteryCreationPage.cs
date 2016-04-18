@@ -33,6 +33,9 @@ namespace LottoSend.com.BackEndObj.RafflePages
         [FindsBy(How = How.CssSelector, Using = "#raffle_draw_date")]
         private IWebElement _drawDate;
 
+        [FindsBy(How = How.CssSelector, Using = "#raffle_close_time")]
+        private IWebElement _closeTime;
+
         [FindsBy(How = How.CssSelector, Using = "#raffle_logo_input")]
         private IWebElement _logo;
 
@@ -62,11 +65,17 @@ namespace LottoSend.com.BackEndObj.RafflePages
             //_logo.SendKeys(imgPath);
             _sharePrice.SendKeys("31");
             _shareForDiscount.SendKeys("3");
+
             _discount.SendKeys("10");
             _drawDate.SendKeys("11");
             _drawDate.SendKeys("12");
             _drawDate.SendKeys(Keys.Tab);
             _drawDate.SendKeys("2018");
+
+            _closeTime.SendKeys("10");
+            _closeTime.SendKeys("12");
+            _closeTime.SendKeys(Keys.Tab);
+            _closeTime.SendKeys("2018");
 
             _createRaffleButton.Click();
             
