@@ -190,7 +190,7 @@ namespace LottoSend.com.TestCases.Web
         [Test]
         public void Check_TransactionType_In_Transactions_Back()
         {
-            _orderVerifications.CheckTransactionTypeInTransactions_Back("Play from real money");
+            _orderVerifications.CheckTransactionTypeInTransactions_Back("Play from real money", 2);
         }
 
         /// <summary>

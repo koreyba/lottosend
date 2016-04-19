@@ -211,7 +211,7 @@ namespace LottoSend.com.TestCases.Mobile
         public void Check_TransactionType_In_Transactions_Back()
         {
             SetUp();
-            _orderVerifications.CheckTransactionTypeInTransactions_Back("Play from real money");
+            _orderVerifications.CheckTransactionTypeInTransactions_Back("Play from real money", 2);
         }
 
         /// <summary>
