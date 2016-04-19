@@ -44,7 +44,7 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
 
             _commonActions.SignIn_in_admin_panel(ConfigurationManager.AppSettings["CMSManagerTwo"], "11111111");
 
-            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "cms/sites/6/snippets/CMS_Crosslabel_Test_Key/edit");
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "cms/sites/2/snippets/CMS_Crosslabel_Test_Key/edit");
 
             Assert.AreNotEqual(newContent, snippetEditing.TextOfFirstContentInput, "Sorry but conten of the key was changed and it was not supposed to. Maybe CMS_Crosslabel permission works wrong. Current URL is: " + _driver.Url + " "); 
         }
