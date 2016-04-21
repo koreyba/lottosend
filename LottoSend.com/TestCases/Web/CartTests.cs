@@ -176,7 +176,7 @@ namespace LottoSend.com.TestCases.Web
                 _commonActions.Log_In_Front(_driverCover.LoginThree, _driverCover.Password);
             }
 
-            _commonActions.AddRaffleTicketToCart_Front(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
+            _commonActions.AddRaffleTicketToCart_Front(_driverCover.BaseUrl + "en/raffles/test/");
 
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/carts");
 
@@ -186,7 +186,7 @@ namespace LottoSend.com.TestCases.Web
             RafflesPageObj raffle = new RafflesPageObj(_driver);
 
             //add 3 shares to the second ticket
-            raffle.AddShares(3, 2);
+            raffle.AddShares(3, 1);
             raffle.ClickBuyNowButton();
 
             _cartVerifications.CheckNumberOfTicketsInCart_Front(4);
