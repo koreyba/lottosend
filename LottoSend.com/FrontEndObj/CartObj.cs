@@ -61,7 +61,7 @@ namespace LottoSend.com.FrontEndObj
         {
             _proceedToCheckoutButton.Click();
             WaitjQuery();
-
+           
             return new MerchantsObj(Driver);
         }
 

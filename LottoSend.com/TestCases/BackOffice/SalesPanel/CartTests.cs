@@ -57,8 +57,8 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         /// <summary>
         /// Adds and removes a regular ticket from the cart
         /// </summary>
-        [TestCase("Loteria de Navidad", true)]
-        [TestCase("Loteria de Navidad", false)]
+        [TestCase("test", true)]
+        [TestCase("test", false)]
         [Category("Critical")]
         [Category("Parallel")]
         public void Remove_Raffle_Ticket_From_Cart(string raffleName, bool toLogIn)

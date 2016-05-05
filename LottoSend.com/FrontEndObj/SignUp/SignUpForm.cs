@@ -78,8 +78,8 @@ namespace LottoSend.com.FrontEndObj.SignUp
             string email = RandomGenerator.GenerateRandomString(12) + "@grr.la";
             Email.SendKeys(email);
             Adress.SendKeys("new orlean))");
-            SelectElement select = new SelectElement(Country);
-            @select.SelectByValue("UA");
+           // SelectElement select = new SelectElement(Country);
+           // select.SelectByValue("UA");
             Password.SendKeys("11111111");
             PasswordConfirm.SendKeys("11111111");
             return email;
