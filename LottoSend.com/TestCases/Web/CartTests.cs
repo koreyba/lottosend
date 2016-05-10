@@ -47,9 +47,9 @@ namespace LottoSend.com.TestCases.Web
 
             cart.EditTicket_Web("El Gordo");
 
-            GroupGamePageObj groupGame = new GroupGamePageObj(_driver);
+            RegularGamePageObj regularGame = new RegularGamePageObj(_driver);
 
-            Assert.AreEqual(10, groupGame.NumberOfDraws, "Sorry but number of draw on the play page is not as it was selected in the cart. ");
+            Assert.AreEqual(10, regularGame.NumberOfDraws, "Sorry but number of draw on the play page is not as it was selected in the cart. ");
 
             if (toSignIn)
             {
