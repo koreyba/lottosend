@@ -14,7 +14,7 @@ namespace LottoSend.com.FrontEndObj.GamePages
     {
         public GroupGamePageObj(IWebDriver driver) : base(driver)
         {
-            if(Driver.FindElements(By.CssSelector("#group > div.bet-pane > div.group-header > img")).Count == 0)
+            if (!Driver.FindElement(By.XPath("//*[@id='group-tab']")).GetAttribute("class").Equals("active"))
             {
                 throw new Exception("Sorry, it must be not group game page ");
             }
