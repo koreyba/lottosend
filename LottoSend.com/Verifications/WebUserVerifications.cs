@@ -38,7 +38,7 @@ namespace LottoSend.com.Verifications
         public void CheckIfSignedIn_Mobile()
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl);
-            Assert.IsTrue(_driverCover.IsElementExists(_driverCover.Driver.FindElement(By.CssSelector(".navbar-toggle.wallet"))), "Sign up was unseccessful ");
+            Assert.IsTrue(_driverCover.Driver.FindElements(By.CssSelector(".navbar-toggle.wallet")).Count > 0, "Sign up was unseccessful ");
         }
 
         /// <summary>
