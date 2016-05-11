@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using LottoSend.com.FrontEndObj.Common;
+using OpenQA.Selenium.Interactions;
 
 namespace LottoSend.com.FrontEndObj.GamePages
 {
@@ -21,6 +22,9 @@ namespace LottoSend.com.FrontEndObj.GamePages
 
             PageFactory.InitElements(Driver, this);
         }
+
+        [FindsBy(How = How.CssSelector, Using = "#add-group")]
+        private IWebElement _addToCartButton; 
 
         [FindsBy(How = How.CssSelector, Using = "#bet-group div.text-primary")]
         private IList<IWebElement> _sharesLeft; 
@@ -100,7 +104,8 @@ namespace LottoSend.com.FrontEndObj.GamePages
         public void ClickAddToCartButton()
         {
             Thread.Sleep(100);
-            _detectAddToCartButton().Click();
+            ScrollToView(_addToCartButton);
+            _addToCartButton.Click(); 
             WaitAjax();
             WaitForPageLoading();
             WaitAjax();
@@ -112,7 +117,7 @@ namespace LottoSend.com.FrontEndObj.GamePages
         /// <returns>Button/null</returns>
         private IWebElement _detectAddToCartButton()
         {
-            return GetFirstVisibleElementFromList(By.CssSelector("#add-group"));
+            return GetFirstVisibleElementFromList(By.Id("add-group"));
         }  
 
         /// <summary>
@@ -122,6 +127,7 @@ namespace LottoSend.com.FrontEndObj.GamePages
         public MerchantsObj ClickBuyTicketsButton()
         {
             Thread.Sleep(100);
+            ScrollToView(_detectBuyTicketsButton());
             _detectBuyTicketsButton().Click();
             bool w = WaitjQuery();
             WaitForPageLoading();

@@ -7,6 +7,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
+using OpenQA.Selenium.Firefox;
 
 namespace LottoSend.com.TestCases.Web
 {
@@ -14,6 +15,7 @@ namespace LottoSend.com.TestCases.Web
     /// Includes tests of the cart (front)
     /// </summary>
     [TestFixture(typeof(ChromeDriver))]
+    [TestFixture(typeof(FirefoxDriver))]
     [Parallelizable(ParallelScope.Fixtures)]
     //[TestFixture(typeof(FirefoxDriver))]
     //[TestFixture(typeof(InternetExplorerDriver))]
@@ -104,7 +106,7 @@ namespace LottoSend.com.TestCases.Web
             _commonActions.AddGroupTicketToCart_Front("en/play/eurojackpot/");
             _commonActions.AddRaffleTicketToCart_Front(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
 
-            _commonActions.Sign_Up_In_Pop_Up_Front();
+            _commonActions.Sign_Up_Front();
             _cartVerifications.CheckNumberOfTicketsInCart_Front(3);
         }
 

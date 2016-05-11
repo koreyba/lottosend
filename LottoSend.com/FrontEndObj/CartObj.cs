@@ -124,7 +124,7 @@ namespace LottoSend.com.FrontEndObj
         public void EditTicket_Web(string lottery)
         {
             IWebElement tr = _findTrOfTicket_Web(lottery);
-            tr.FindElement(By.CssSelector("td.text-center > a.btn.btn-info.btn-block.edit")).Click();
+            ScrollToView(tr.FindElement(By.CssSelector("td.text-center > a.btn.btn-info.btn-block.edit"))).Click();
             WaitAjax();
             WaitForPageLoading();
             WaitAjax();
