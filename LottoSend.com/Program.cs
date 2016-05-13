@@ -8,6 +8,7 @@ using LottoSend.com.BackEndObj.ChargePanelPages;
 using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.SignUp;
 using LottoSend.com.TestCases;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 
@@ -17,23 +18,26 @@ namespace LottoSend.com
     {
 
         static void Main(string[] args)
-        { 
-          
-
-            
+        {
 
 
-            //_driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/charge_panel_manager");
+            IWebDriver _driver = new ChromeDriver();
+            DriverCover _driverCover = new DriverCover(_driver);
+            CommonActions common = new CommonActions(_driver);
+            common.SignIn_in_admin_panel();
 
-            //for (int i = 0; i < 52; ++i)
-            //{
-            //    ChargePanelObj panel = new ChargePanelObj(_driver);
-            //    ChargeFormObj form = panel.ChargeTheLastPayment();
 
-            //    form.MakeTransactionSucceed();
-            //    form.UpdateTransaction();
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/charge_panel_manager");
 
-            // }
+            for (int i = 0; i < 71; ++i)
+            {
+                ChargePanelObj panel = new ChargePanelObj(_driver);
+                ChargeFormObj form = panel.ChargeTheLastPayment();
+
+                form.MakeTransactionFailed();
+                form.UpdateTransaction();
+
+            }
         }
     }
 }

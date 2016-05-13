@@ -15,7 +15,7 @@ namespace LottoSend.com.TestCases.Web
     /// Includes tests of the cart (front)
     /// </summary>
     [TestFixture(typeof(ChromeDriver))]
-    [TestFixture(typeof(FirefoxDriver))]
+    //[TestFixture(typeof(FirefoxDriver))]
     [Parallelizable(ParallelScope.Fixtures)]
     //[TestFixture(typeof(FirefoxDriver))]
     //[TestFixture(typeof(InternetExplorerDriver))]
