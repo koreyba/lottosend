@@ -33,4 +33,14 @@
         Key,
         Content
     }
+
+    /// <summary>
+    /// Statuses of charge back in the order processing
+    /// </summary>
+    public enum ChargeBackStatus
+    {
+        CHB, 
+        CHBR,
+        RR
+    }
 }

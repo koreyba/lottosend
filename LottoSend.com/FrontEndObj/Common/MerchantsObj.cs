@@ -22,7 +22,7 @@ namespace LottoSend.com.FrontEndObj.Common
         [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_29'] + img.merchant")]
         private IWebElement _neteller;
 
-        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_24'] + img.merchant")]
+        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_72'] + img.merchant")]
         private IWebElement _eKontoePlatby;
 
         [FindsBy(How = How.CssSelector, Using = "input#credit_card + img.merchant")]
@@ -34,10 +34,10 @@ namespace LottoSend.com.FrontEndObj.Common
         [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_18'] + img.merchant")]
         private IWebElement _skrill;
 
-        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_26'] + img.merchant")]
+        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_74'] + img.merchant")]
         private IWebElement _poli;
         
-        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_25'] + img.merchant")]
+        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_73'] + img.merchant")]
         private IWebElement _moneta;
 
         public IWebElement Moneta

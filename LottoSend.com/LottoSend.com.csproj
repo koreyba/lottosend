@@ -98,6 +98,7 @@
   <ItemGroup>
     <Compile Include="BackEndObj\BetsPageObj.cs" />
     <Compile Include="BackEndObj\BulkBuysPageObj.cs" />
+    <Compile Include="BackEndObj\ChargeBackFormObj.cs" />
     <Compile Include="BackEndObj\ChargePanelPages\ChargeFormObj.cs" />
     <Compile Include="BackEndObj\ChargePanelPages\ChargePanelObj.cs" />
     <Compile Include="BackEndObj\CMS\CMSPanelObj.cs" />

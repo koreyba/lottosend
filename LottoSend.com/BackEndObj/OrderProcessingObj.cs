@@ -32,6 +32,9 @@ namespace LottoSend.com.BackEndObj
         [FindsBy(How = How.CssSelector, Using = ".history > img")]
         private IList<IWebElement> _blButton;
 
+        [FindsBy(How = How.XPath, Using = "//*[@class='index_table']//tbody//td/a[@class='button']")]
+        private IWebElement _chargeBackButton;
+
         /// <summary>
         /// Checks if on the current page the BL button exist
         /// </summary>
@@ -63,6 +66,17 @@ namespace LottoSend.com.BackEndObj
         public string Trid
         {
             get { return _trid.Text; }
+        }
+
+        /// <summary>
+        /// Click ChargeBack button for the first order
+        /// </summary>
+        public ChargeBackFormObj ClickChargeBackButton()
+        {
+            _chargeBackButton.Click();
+            WaitAjax();
+
+            return new ChargeBackFormObj(Driver);
         }
 
         /// <summary>
