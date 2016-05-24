@@ -8,7 +8,7 @@ namespace LottoSend.com.FrontEndObj.SignUp
     {
         public SignUpPageOneObj(IWebDriver driver) : base(driver)
         {
-            if (!Driver.Url.Contains("sign_up"))
+            if (!Driver.Url.Contains("sign-up"))
             {
                 throw new Exception("It's not sign up page. Please check ");
             }

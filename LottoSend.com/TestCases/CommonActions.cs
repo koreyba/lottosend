@@ -592,7 +592,7 @@ namespace LottoSend.com.TestCases
         /// </summary>
         public string Sign_Up_Front()
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "web_users/sign_up");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "web-users/sign-up");
             SignUpPageOneObj signUp = new SignUpPageOneObj(_driver);
             string email = signUp.FillInFieldsWeb();
             signUp.ClickSignUp();
@@ -622,7 +622,7 @@ namespace LottoSend.com.TestCases
         /// </summary>
         public string Sign_Up_Mobile()
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "web_users/sign_up");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "web-users/sign-up");
             SignUpPageOneObj signUp = new SignUpPageOneObj(_driver);
             string email = signUp.FillInFieldsMobile();
             signUp.ClickSignUp();
