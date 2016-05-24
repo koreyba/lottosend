@@ -18,7 +18,7 @@ namespace LottoSend.com.FrontEndObj.Login
 
         protected override void ValidateObject()
         {
-            if (!Driver.Url.Contains("web_users/sign_in"))
+            if (!Driver.Url.Contains("web-users/sign-in"))
             {
                 throw new Exception("It's not log in 1 page (URL is wrong");
             }

@@ -1,25 +1,37 @@
 ﻿using System;
+using LottoSend.com.BackEndObj;
 using LottoSend.com.Helpers;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 
 namespace LottoSend.com.TestCases.BackOffice
 {
-  //  [TestFixture(typeof(ChromeDriver), WayToPay.Offline)]
-   // //[TestFixture(typeof(ChromeDriver), WayToPay.Neteller)]
+    [TestFixture(typeof(ChromeDriver))]
     public class OrderProcessingTest <TWebDriver> where TWebDriver : IWebDriver, new()
     {
         private IWebDriver _driver;
         private DriverCover _driverCover;
         private CommonActions _commonActions;
-        private WayToPay _merchant;
         private bool _setUpFailed = false;
         private TestsSharedCode _sharedCode;
 
-        public OrderProcessingTest(WayToPay merchant)
+        [TestCase(ChargeBackStatus.CHB)]
+        [TestCase(ChargeBackStatus.CHBR)]
+        [TestCase(ChargeBackStatus.RR)]
+        public void Make_ChargeBack(ChargeBackStatus status)
         {
-            _merchant = merchant;
+            _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            _commonActions.BuyRegularOneDrawTicket_Front(WayToPay.Offline);
+            _commonActions.SignIn_in_admin_panel();
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/orders_processed");
+            OrderProcessingObj orderProcessing = new OrderProcessingObj(_driver);
+            orderProcessing.ClickChargeBackButton();
+            ChargeBackFormObj chargeBackForm = new ChargeBackFormObj(_driver);
+            chargeBackForm.ChargeBack(status);
+
+            StringAssert.Contains(status.ToString().ToLower(), orderProcessing.ChargeBackImageText.ToLower());
         }
 
 

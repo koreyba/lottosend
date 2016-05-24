@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace LottoSend.com.TestCases.BackOffice
+namespace LottoSend.com.BackEndObj
 {
     /// <summary>
     /// Page object of back/web_users/view page

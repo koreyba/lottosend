@@ -465,7 +465,7 @@ namespace LottoSend.com.TestCases
         /// <param name="password"></param>
         public string Log_In_Front(string email, string password)
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "web_users/sign_in");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "web-users/sign-in");
             SignInPageOneObj signInOne = new SignInPageOneObj(_driver);
 
             signInOne.FillInFields(email, password);

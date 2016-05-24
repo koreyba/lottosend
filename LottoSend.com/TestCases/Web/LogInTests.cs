@@ -92,7 +92,7 @@ namespace LottoSend.com.TestCases.Web
         public void Login_On_SignIn_Page_One()
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "");
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "web_users/sign_in");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "web-users/sign-in");
             SignInPageOneObj signInOne = new SignInPageOneObj(_driver);
 
             signInOne.FillInFields(_driverCover.Login, _driverCover.Password);

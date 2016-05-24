@@ -35,6 +35,18 @@ namespace LottoSend.com.BackEndObj
         [FindsBy(How = How.XPath, Using = "//*[@class='index_table']//tbody//td/a[@class='button']")]
         private IWebElement _chargeBackButton;
 
+
+        [FindsBy(How = How.XPath, Using = "//*[@class='index_table']//tbody//tr[1]/td[@class='history']//img")]
+        private IWebElement _chargeBackImage;
+
+        /// <summary>
+        /// Returns "alt" attribute of the first charge back image
+        /// </summary>
+        public string ChargeBackImageText
+        {
+            get { return _chargeBackImage.GetAttribute("alt"); }
+        }
+
         /// <summary>
         /// Checks if on the current page the BL button exist
         /// </summary>
