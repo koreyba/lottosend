@@ -107,6 +107,36 @@ namespace LottoSend.com
             get { return Driver.Title; }
         }
 
+        /// <summary>
+        /// Swithces on/off a specific checkbox by it's name from a list of checkboxes
+        /// </summary>
+        /// <param name="checkboxes">List should contain 'labels', not only inputs</param>
+        /// <param name="name"></param>
+        public void ClickCheckboxInList(IList<IWebElement> checkboxes, string name)
+        {
+            foreach (var el in checkboxes)
+            {
+                if (el.Text.Equals(name))
+                {
+                    el.FindElement(By.XPath(".//input")).Click();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Checks if a checkbox is checked by loking of the value of the "checked" attribute
+        /// </summary>
+        /// <param name="checkbox"></param>
+        /// <returns></returns>
+        public bool IfCheckBoxIsChecked(IWebElement checkbox)
+        {
+            if (checkbox.GetAttribute("checked") != null && checkbox.GetAttribute("checked").Equals("true"))
+            {
+                return true;
+            }
+            return false;
+        }
+
         public void ScrollTo(int xPosition = 0, int yPosition = 0)
         {
             var js = String.Format("window.scrollTo({0}, {1})", xPosition, yPosition);
@@ -120,6 +150,11 @@ namespace LottoSend.com
             return element;
         }
 
+        /// <summary>
+        /// Scrolls to an element on the page
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
         public IWebElement ScrollToView(IWebElement element)
         {
             if (element.Location.Y > 200)
