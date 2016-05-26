@@ -96,9 +96,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BackEndObj\BetsPageObj.cs" />
+    <Compile Include="BackEndObj\WebUsersPages\BetsPageObj.cs" />
     <Compile Include="BackEndObj\BulkBuysPageObj.cs" />
-    <Compile Include="BackEndObj\ChargeBackFormObj.cs" />
+    <Compile Include="BackEndObj\ClientOrderPricessing\ChargeBackFormObj.cs" />
     <Compile Include="BackEndObj\ChargePanelPages\ChargeFormObj.cs" />
     <Compile Include="BackEndObj\ChargePanelPages\ChargePanelObj.cs" />
     <Compile Include="BackEndObj\CMS\CMSPanelObj.cs" />
@@ -115,9 +115,10 @@
     <Compile Include="BackEndObj\GroupGapePages\NewGroupCreationObj.cs" />
     <Compile Include="BackEndObj\GroupGapePages\NewGroupTicketCreationObj.cs" />
     <Compile Include="BackEndObj\LoginObj.cs" />
-    <Compile Include="BackEndObj\NewScannedImageObj.cs" />
-    <Compile Include="BackEndObj\NewWebUserPageObj.cs" />
-    <Compile Include="BackEndObj\OrderProcessingObj.cs" />
+    <Compile Include="BackEndObj\RegularTicketsPages\NewPackagePageObj.cs" />
+    <Compile Include="BackEndObj\ManualMatchPages\NewScannedImageObj.cs" />
+    <Compile Include="BackEndObj\WebUsersPages\NewWebUserPageObj.cs" />
+    <Compile Include="BackEndObj\ClientOrderPricessing\OrderProcessingObj.cs" />
     <Compile Include="BackEndObj\PanelMenuObj.cs" />
     <Compile Include="BackEndObj\RafflePages\RaffleDashboardPageObj.cs" />
     <Compile Include="BackEndObj\RafflePages\RaffleLotteryCreationPage.cs" />
@@ -132,10 +133,10 @@
     <Compile Include="BackEndObj\SalesPanelPages\ResetPasswordTabObj.cs" />
     <Compile Include="BackEndObj\SalesPanelPages\RegularGameObj.cs" />
     <Compile Include="BackEndObj\SalesPanelPages\TabsObj.cs" />
-    <Compile Include="BackEndObj\ScannedImagesObj.cs" />
+    <Compile Include="BackEndObj\ManualMatchPages\ScannedImagesObj.cs" />
     <Compile Include="BackEndObj\SiteEditingPageObj.cs" />
     <Compile Include="BackEndObj\TransactionsObj.cs" />
-    <Compile Include="BackEndObj\WebUsersPageObj.cs" />
+    <Compile Include="BackEndObj\WebUsersPages\WebUsersPageObj.cs" />
     <Compile Include="FrontEndObj\Common\ExpressCheckoutObj.cs" />
     <Compile Include="FrontEndObj\Common\CheckoutObj.cs" />
     <Compile Include="FrontEndObj\MyAccount\DepositMobileObj.cs" />
@@ -164,7 +165,7 @@
     <Compile Include="TestCases\BackOffice\SalesPanel\PasswordRecoveryTests.cs" />
     <Compile Include="TestCases\BackOffice\SalesPanel\PromotionTests.cs" />
     <Compile Include="TestCases\BackOffice\SalesPanel\SignInUpTests.cs" />
-    <Compile Include="BackEndObj\ViewWebUserPageObj.cs" />
+    <Compile Include="BackEndObj\WebUsersPages\ViewWebUserPageObj.cs" />
     <Compile Include="TestCases\Mobile\CartTests.cs" />
     <Compile Include="TestCases\Mobile\CouponTests.cs" />
     <Compile Include="TestCases\Mobile\DepositPageTests.cs" />
@@ -258,6 +259,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

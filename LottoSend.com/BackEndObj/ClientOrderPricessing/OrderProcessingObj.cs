@@ -1,8 +1,8 @@
-﻿using OpenQA.Selenium;
+﻿using System.Collections.Generic;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using System.Collections.Generic;
 
-namespace LottoSend.com.BackEndObj
+namespace LottoSend.com.BackEndObj.ClientOrderPricessing
 {
     /// <summary>
     /// Client order processing page

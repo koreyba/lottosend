@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace LottoSend.com.BackEndObj
+namespace LottoSend.com.BackEndObj.ManualMatchPages
 {
+    /// <summary>
+    /// Page Object of admin/scanned_images page
+    /// </summary>
     public class ScannedImagesObj : DriverCover
     {
         public ScannedImagesObj(IWebDriver driver) : base(driver)

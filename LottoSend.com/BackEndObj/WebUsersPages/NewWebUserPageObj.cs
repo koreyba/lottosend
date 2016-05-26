@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace LottoSend.com.BackEndObj
+namespace LottoSend.com.BackEndObj.WebUsersPages
 {
     /// <summary>
     /// Page Object of a creating a new web user page in back office admin/web_users/new

@@ -2,9 +2,11 @@
 using System.Configuration;
 using LottoSend.com.BackEndObj;
 using LottoSend.com.BackEndObj.ChargePanelPages;
+using LottoSend.com.BackEndObj.ClientOrderPricessing;
 using LottoSend.com.BackEndObj.DrawPages;
 using LottoSend.com.BackEndObj.GroupGapePages;
 using LottoSend.com.BackEndObj.SalesPanelPages;
+using LottoSend.com.BackEndObj.WebUsersPages;
 using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.FrontEndObj.GamePages;

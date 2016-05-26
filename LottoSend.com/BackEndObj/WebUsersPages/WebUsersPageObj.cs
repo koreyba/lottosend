@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using LottoSend.com.TestCases.BackOffice;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace LottoSend.com.BackEndObj
+namespace LottoSend.com.BackEndObj.WebUsersPages
 {
     public class WebUsersPageObj : DriverCover
     {

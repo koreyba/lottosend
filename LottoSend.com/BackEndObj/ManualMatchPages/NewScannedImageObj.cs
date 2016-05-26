@@ -3,7 +3,7 @@ using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace LottoSend.com.BackEndObj
+namespace LottoSend.com.BackEndObj.ManualMatchPages
 {
     /// <summary>
     /// Page Object of New Scanned Image (add) page

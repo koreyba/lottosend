@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace LottoSend.com.BackEndObj
+namespace LottoSend.com.BackEndObj.ClientOrderPricessing
 {
     /// <summary>
     /// Page object of ChargeBack form on the client order processing page

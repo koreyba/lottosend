@@ -1,5 +1,6 @@
 ﻿using System;
 using LottoSend.com.BackEndObj;
+using LottoSend.com.BackEndObj.WebUsersPages;
 using LottoSend.com.Helpers;
 using LottoSend.com.Verifications;
 using NUnit.Framework;
