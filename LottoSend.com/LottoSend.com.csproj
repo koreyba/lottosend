@@ -96,6 +96,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BackEndObj\RegularTicketsPages\PackagesPageObj.cs" />
     <Compile Include="BackEndObj\WebUsersPages\BetsPageObj.cs" />
     <Compile Include="BackEndObj\BulkBuysPageObj.cs" />
     <Compile Include="BackEndObj\ClientOrderPricessing\ChargeBackFormObj.cs" />

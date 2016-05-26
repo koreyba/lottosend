@@ -28,9 +28,9 @@ namespace LottoSend.com
             common.SignIn_in_admin_panel();
 
 
-            _driverCover.NavigateToUrl("http://stgadmin.lottobaba.com/admin/packages/new");
-            NewPackagePageObj package = new NewPackagePageObj(_driver);
-            package.CreatePackage("SuperEnalotto (1-90)", 8, true, true, true, true, "stg1");
+            _driverCover.NavigateToUrl("http://stgadmin.lottobaba.com/admin/packages");
+            PackagesPageObj package = new PackagesPageObj(_driver);
+            package.EditPackage("SuperEnalotto (1-90)", 8);
 
             for (int i = 0; i < 71; ++i)
             {
