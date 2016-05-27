@@ -23,7 +23,7 @@ namespace LottoSend.com.TestCases.BackOffice
         [TestCase(ChargeBackStatus.RR)]
         public void Make_ChargeBack(ChargeBackStatus status)
         {
-            _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            _commonActions.Log_In_Front_PageOne(_driverCover.Login, _driverCover.Password);
             _commonActions.BuyRegularOneDrawTicket_Front(WayToPay.Offline);
             _commonActions.SignIn_in_admin_panel();
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/orders_processed");

@@ -29,7 +29,7 @@ namespace LottoSend.com.TestCases.Web
             _commonActions.SignIn_in_admin_panel();
             string defaultValue =_commonActions.Change_Amount_Of_Default_Deposit("1");
 
-            _commonActions.Log_In_Front(_driverCover.LoginThree, _driverCover.Password);
+            _commonActions.Log_In_Front_PageOne(_driverCover.LoginThree, _driverCover.Password);
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/deposits/new/");
 
             DepositObj depositPage = new DepositObj(_driver);

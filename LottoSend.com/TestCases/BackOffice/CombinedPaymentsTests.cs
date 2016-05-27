@@ -83,7 +83,7 @@ namespace LottoSend.com.TestCases.BackOffice
 
         private void Make_Combined_Payment()
         {
-            _email = _commonActions.Sign_Up_Front();
+            _email = _commonActions.Sign_Up_Front_PageOne();
             _commonActions.SignIn_in_admin_panel();
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/web_users");
 

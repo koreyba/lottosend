@@ -465,10 +465,26 @@ namespace LottoSend.com.TestCases
         /// </summary>
         /// <param name="email"></param>
         /// <param name="password"></param>
-        public string Log_In_Front(string email, string password)
+        public string Log_In_Front_PageOne(string email, string password)
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "web-users/sign-in");
             SignInPageOneObj signInOne = new SignInPageOneObj(_driver);
+
+            signInOne.FillInFields(email, password);
+            signInOne.ClickLogInButton();
+
+            return email;
+        }
+
+        /// <summary>
+        /// Goes to the front-end and signs in
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        public string Log_In_Front_PageTwo(string email, string password)
+        {
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "web-users/sign-in2");
+            SignInPageTwoObjcs signInOne = new SignInPageTwoObjcs(_driver);
 
             signInOne.FillInFields(email, password);
             signInOne.ClickLogInButton();
@@ -592,7 +608,20 @@ namespace LottoSend.com.TestCases
         /// Registrate a new user
         /// <returns>User's email</returns>
         /// </summary>
-        public string Sign_Up_Front()
+        public string Sign_Up_Front_PageTwo()
+        {
+            //TODO
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "web-users/sign-up2");
+            
+
+            return "";
+        }
+
+        /// <summary>
+        /// Registrate a new user
+        /// <returns>User's email</returns>
+        /// </summary>
+        public string Sign_Up_Front_PageOne()
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "web-users/sign-up");
             SignUpPageOneObj signUp = new SignUpPageOneObj(_driver);

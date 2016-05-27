@@ -26,7 +26,7 @@ namespace LottoSend.com.TestCases.BackOffice
              * Add the user to BL
              * Check if BL image appeared for this transaction in order processing
              */
-            string email = _commonActions.Sign_Up_Front();
+            string email = _commonActions.Sign_Up_Front_PageOne();
             _commonActions.BuyRegularOneDrawTicket_Front(WayToPay.Offline, false);
             _commonActions.SignIn_in_admin_panel();
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/web_users");

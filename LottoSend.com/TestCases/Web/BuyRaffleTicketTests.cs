@@ -127,12 +127,12 @@ namespace LottoSend.com.TestCases.Web
             // Log in     
             if (_merchant != WayToPay.InternalBalance)
             {
-                _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+                _commonActions.Log_In_Front_PageOne(_driverCover.Login, _driverCover.Password);
             }
             else
             {
                 //If pay with internal balance we need to log in with different user
-                _commonActions.Log_In_Front(_driverCover.LoginTwo, _driverCover.Password);
+                _commonActions.Log_In_Front_PageOne(_driverCover.LoginTwo, _driverCover.Password);
             }
             _cartVerifications.CheckNumberOfTicketsInCart_Front(0);
         }
@@ -256,12 +256,12 @@ namespace LottoSend.com.TestCases.Web
             // Log in     
             if (merchant != WayToPay.InternalBalance)
             {
-                _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+                _commonActions.Log_In_Front_PageOne(_driverCover.Login, _driverCover.Password);
             }
             else
             {
                 //If pay with internal balance we need to log in with different user
-                _commonActions.Log_In_Front(_driverCover.LoginTwo, _driverCover.Password);
+                _commonActions.Log_In_Front_PageOne(_driverCover.LoginTwo, _driverCover.Password);
             }
 
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");

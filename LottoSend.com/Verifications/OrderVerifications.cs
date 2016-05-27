@@ -133,7 +133,7 @@ namespace LottoSend.com.Verifications
         /// <param name="password"></param>
         public void CheckUserBalance_Front(double formerBalance, double transactionAmount, string email, string password)
         {
-            _commonActions.Log_In_Front(email, password);
+            _commonActions.Log_In_Front_PageOne(email, password);
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/deposits/new/");
             DepositObj depoist = new DepositObj(_driver);
 
@@ -175,7 +175,7 @@ namespace LottoSend.com.Verifications
         /// <param name="numberOfRecord">Which record to check, the first one or the second one</param>
         public void CheckAmountInTransaction_Front(double expectedAmount, string email, string password, int numberOfRecord = 1)
         {
-            _commonActions.Log_In_Front(email, password);
+            _commonActions.Log_In_Front_PageOne(email, password);
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/balance/");
             TransactionObj transaction = new TransactionObj(_driver);
 
@@ -203,7 +203,7 @@ namespace LottoSend.com.Verifications
         /// <param name="numberOfRecord">Which record to check, the first one or the second one</param>
         public void CheckTypeOfTransaction_Front(string expectedType, string email, string password, int numberOfRecord = 1)
         {
-            _commonActions.Log_In_Front(email, password);
+            _commonActions.Log_In_Front_PageOne(email, password);
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/balance/");
             TransactionObj transaction = new TransactionObj(_driver);
 
@@ -276,7 +276,7 @@ namespace LottoSend.com.Verifications
         /// <param name="numberOfRecord">Which record to check, the first one or the second one</param>
         public void CheckTransactionDate_Front(string email, string password, int numberOfRecord = 1)
         {
-            _commonActions.Log_In_Front(email, password);
+            _commonActions.Log_In_Front_PageOne(email, password);
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/balance/");
             TransactionObj myTransactions = new TransactionObj(_driver);
 
@@ -320,7 +320,7 @@ namespace LottoSend.com.Verifications
         /// <param name="numberOfRecord">Which record to check, the first one or the second one</param>
         public void CheckTransactionLotteryName_Front(string name, string email, string password, int numberOfRecord = 1)
         {
-            _commonActions.Log_In_Front(email, password);
+            _commonActions.Log_In_Front_PageOne(email, password);
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/balance/");
             TransactionObj myTransactions = new TransactionObj(_driver);
 

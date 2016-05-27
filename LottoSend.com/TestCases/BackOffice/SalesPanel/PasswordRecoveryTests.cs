@@ -40,7 +40,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             ResetPasswordTabObj recoveryPage = new ResetPasswordTabObj(_driver);
             recoveryPage.ChangePassword(password);
 
-            _commonActions.Log_In_Front(email, password);
+            _commonActions.Log_In_Front_PageOne(email, password);
             _usersVerifications.CheckIfSignedIn_Web();
         }
 

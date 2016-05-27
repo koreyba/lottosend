@@ -31,7 +31,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
         [Category("Parallel")]
         public void If_Share_Removed_From_Draw_Returns_To_Ticket()
         {
-            _commonActions.Log_In_Front(_driverCover.LoginFive, _driverCover.Password);
+            _commonActions.Log_In_Front_PageOne(_driverCover.LoginFive, _driverCover.Password);
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/play/powerball/");
             GroupGamePageObj groupGame = new GroupGamePageObj(_driver);
             groupGame.SelectOneTimeEntryGame();

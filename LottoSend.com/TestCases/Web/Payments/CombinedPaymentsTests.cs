@@ -27,7 +27,7 @@ namespace LottoSend.com.TestCases.Web.Payments
         [TestCase(WayToPay.TrustPay)]
         public void Combined_IB_Plus_Merchant_Pay_For_Tickets(WayToPay merchant)
         {
-            string email = _commonActions.Sign_Up_Front();
+            string email = _commonActions.Sign_Up_Front_PageOne();
             _commonActions.SignIn_in_admin_panel();
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/web_users");
 

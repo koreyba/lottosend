@@ -63,7 +63,7 @@ namespace LottoSend.com.TestCases.Web.Payments
         /// <param name="merchant"></param>
         private void Deposit_Money(WayToPay merchant)
         {
-            _email = _commonActions.Log_In_Front(_driverCover.LoginTwo, _driverCover.Password);
+            _email = _commonActions.Log_In_Front_PageOne(_driverCover.LoginTwo, _driverCover.Password);
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/deposits/new/");
 
             DepositObj deposit = new DepositObj(_driver);

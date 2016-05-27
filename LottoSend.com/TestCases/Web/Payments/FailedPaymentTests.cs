@@ -36,7 +36,7 @@ namespace LottoSend.com.TestCases.Web.Payments
         [Test]
         public void Balance_Returned_To_User_After_Failed_Payment()
         {
-            string email = _commonActions.Sign_Up_Front();
+            string email = _commonActions.Sign_Up_Front_PageOne();
             _commonActions.SignIn_in_admin_panel();
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/web_users");
             WebUsersPageObj users = new WebUsersPageObj(_driver);
@@ -74,7 +74,7 @@ namespace LottoSend.com.TestCases.Web.Payments
              * If it includes the word "failure" then test is passed.
              */
 
-            _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            _commonActions.Log_In_Front_PageOne(_driverCover.Login, _driverCover.Password);
 
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
 
@@ -120,7 +120,7 @@ namespace LottoSend.com.TestCases.Web.Payments
         public void If_Raffle_Ticket_Stays_In_Cart_When_Payment_Was_Failed()
         {
             // Log in     
-            _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            _commonActions.Log_In_Front_PageOne(_driverCover.Login, _driverCover.Password);
 
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
 
@@ -152,7 +152,7 @@ namespace LottoSend.com.TestCases.Web.Payments
         public void If_Regular_Ticket_Stays_In_Cart_When_Payment_Was_Failed()
         {
             // Log in     
-            _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            _commonActions.Log_In_Front_PageOne(_driverCover.Login, _driverCover.Password);
 
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/play/eurojackpot/");
 
@@ -186,7 +186,7 @@ namespace LottoSend.com.TestCases.Web.Payments
         public void If_Group_Ticket_Stays_In_Cart_When_Payment_Was_Failed()
         {
             // Log in     
-            _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+            _commonActions.Log_In_Front_PageOne(_driverCover.Login, _driverCover.Password);
 
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/play/powerball/");
 

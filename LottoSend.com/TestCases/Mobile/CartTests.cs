@@ -45,7 +45,7 @@ namespace LottoSend.com.TestCases.Mobile
         {
             if (toSignIn)
             {
-                _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+                _commonActions.Log_In_Front_PageOne(_driverCover.Login, _driverCover.Password);
             }
 
             _commonActions.AddRegularTicketToCart_Front("en/play/el-gordo-de-la-primitiva/");
@@ -76,7 +76,7 @@ namespace LottoSend.com.TestCases.Mobile
         {
             if (toSignIn)
             {
-                _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+                _commonActions.Log_In_Front_PageOne(_driverCover.Login, _driverCover.Password);
             }
 
             _commonActions.AddGroupTicketToCart_Front("en/play/superenalotto/");
@@ -108,7 +108,7 @@ namespace LottoSend.com.TestCases.Mobile
         {
             if (toLogIn)
             {
-                _commonActions.Log_In_Front(_driverCover.LoginFour, _driverCover.Password);
+                _commonActions.Log_In_Front_PageOne(_driverCover.LoginFour, _driverCover.Password);
             }
         
             _commonActions.AddGroupTicketToCart_Front("en/play/powerball/");
@@ -139,7 +139,7 @@ namespace LottoSend.com.TestCases.Mobile
         {
             if (toLogIn)
             {
-                _commonActions.Log_In_Front(_driverCover.LoginFour, _driverCover.Password);
+                _commonActions.Log_In_Front_PageOne(_driverCover.LoginFour, _driverCover.Password);
             }
 
             _commonActions.AddRaffleTicketToCart_Front(_driverCover.BaseUrl + "en/raffles/test/");
@@ -171,7 +171,7 @@ namespace LottoSend.com.TestCases.Mobile
         {
             if (toLogIn)
             {
-                _commonActions.Log_In_Front(_driverCover.LoginFour, _driverCover.Password);
+                _commonActions.Log_In_Front_PageOne(_driverCover.LoginFour, _driverCover.Password);
             }
 
             _commonActions.AddRaffleTicketToCart_Front(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
@@ -196,7 +196,7 @@ namespace LottoSend.com.TestCases.Mobile
         {
             if (toLogIn)
             {
-                _commonActions.Log_In_Front(_driverCover.LoginFour, _driverCover.Password);
+                _commonActions.Log_In_Front_PageOne(_driverCover.LoginFour, _driverCover.Password);
             }
 
             //Add two tickets from different lotteries
@@ -228,7 +228,7 @@ namespace LottoSend.com.TestCases.Mobile
         {
             if (toLogIn)
             {
-                _commonActions.Log_In_Front(_driverCover.LoginFour, _driverCover.Password);
+                _commonActions.Log_In_Front_PageOne(_driverCover.LoginFour, _driverCover.Password);
             }
 
             _commonActions.AddRegularTicketToCart_Front("en/play/eurojackpot/");

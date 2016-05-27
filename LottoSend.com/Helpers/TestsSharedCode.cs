@@ -31,7 +31,7 @@ namespace LottoSend.com.Helpers
             SetUp();
             try
             {
-                CommonActions.Log_In_Front(email, password);
+                CommonActions.Log_In_Front_PageOne(email, password);
                 //Removes all tickets from the cart to make sure all other tests will work well
                 CommonActions.DeleteAllTicketFromCart_Front();
             }

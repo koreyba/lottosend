@@ -79,7 +79,7 @@ namespace LottoSend.com.TestCases.Web
         [Category("Parallel")]
         public void Check_Back_Office_User()
         {
-            _email = _commonActions.Sign_Up_Front();
+            _email = _commonActions.Sign_Up_Front_PageOne();
             _usersVerifications.CheckBackOfficeUser(_email);
         }
 

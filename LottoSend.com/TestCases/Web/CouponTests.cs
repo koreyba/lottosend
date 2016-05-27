@@ -30,7 +30,7 @@ namespace LottoSend.com.TestCases.Web
         public void Pay_With_Free_Coupon(string code)
         {
             // sign up    
-            _commonActions.Sign_Up_Front();
+            _commonActions.Sign_Up_Front_PageOne();
             _commonActions.AddGroupTicketToCart_Front("en/play/euromiliony/");
             _commonActions.AddRegularTicketToCart_Front("en/play/megamillions/");
             _commonActions.AddRaffleTicketToCart_Front(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
@@ -52,7 +52,7 @@ namespace LottoSend.com.TestCases.Web
         public void Cancel_Coupon(string code)
         {
             // sign up    
-            _commonActions.Sign_Up_Front();
+            _commonActions.Sign_Up_Front_PageOne();
             _commonActions.AddGroupTicketToCart_Front("en/play/euromiliony/");
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/carts/");
 
@@ -76,7 +76,7 @@ namespace LottoSend.com.TestCases.Web
         public void Check_Discount_Checkout(string code, double discount)
         {
             // sign up    
-            _commonActions.Sign_Up_Front();
+            _commonActions.Sign_Up_Front_PageOne();
             _commonActions.AddGroupTicketToCart_Front("en/play/euromiliony/");
             _commonActions.AddRegularTicketToCart_Front("en/play/el-gordo-de-la-primitiva/");
             _commonActions.AddRaffleTicketToCart_Front(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");

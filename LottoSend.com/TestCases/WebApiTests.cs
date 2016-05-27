@@ -51,7 +51,7 @@ namespace LottoSend.com.TestCases
         [Test]
         public void Trid_Is_Not_Added_To_Second_Transaction()
         {
-            _commonActions.Sign_Up_Front();
+            _commonActions.Sign_Up_Front_PageOne();
             _commonActions.AddRegularTicketToCart_Front("en/play/megamillions/");
 
             string trid = RandomGenerator.GenerateRandomString(5);
@@ -75,7 +75,7 @@ namespace LottoSend.com.TestCases
         [Test]
         public void Add_Trid_Buying_Ticket()
         {
-            _commonActions.Sign_Up_Front();
+            _commonActions.Sign_Up_Front_PageOne();
             _commonActions.AddRegularTicketToCart_Front("en/play/megamillions/");
 
             string trid = RandomGenerator.GenerateRandomString(5);

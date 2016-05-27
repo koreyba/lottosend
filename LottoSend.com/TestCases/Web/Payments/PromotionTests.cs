@@ -50,7 +50,7 @@ namespace LottoSend.com.TestCases.Web.Payments
         public void One_Plus_One_For_Second_Deposit_When_First_Failed()
         {
             //Sign up
-            _commonActions.Sign_Up_Front();
+            _commonActions.Sign_Up_Front_PageOne();
             _commonActions.DepositMoney_Front(13, WayToPay.Offline, false); //will be pending deposit
 
             _commonActions.DepositMoney_Front(11, _merchant); //will be successful deposit
@@ -70,7 +70,7 @@ namespace LottoSend.com.TestCases.Web.Payments
         public void One_Plus_One_For_Second_Deposit_When_First_Pending()
         {
             //Sign up
-            _commonActions.Sign_Up_Front();
+            _commonActions.Sign_Up_Front_PageOne();
             _commonActions.DepositMoney_Front(13, WayToPay.Offline, false); //will be pending deposit
 
             _commonActions.DepositMoney_Front(11, _merchant); //will be successful deposit
@@ -86,7 +86,7 @@ namespace LottoSend.com.TestCases.Web.Payments
         public void One_Plus_One_For_Second_Order_When_First_Failed()
         {
             //Sign up
-            _commonActions.Sign_Up_Front();
+            _commonActions.Sign_Up_Front_PageOne();
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
 
             RafflesPageObj rafflePage = new RafflesPageObj(_driver);
@@ -120,7 +120,7 @@ namespace LottoSend.com.TestCases.Web.Payments
         public void One_Plus_One_For_Second_Order_When_First_Pending()
         {
             //Sign up
-            _commonActions.Sign_Up_Front();
+            _commonActions.Sign_Up_Front_PageOne();
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
 
             RafflesPageObj rafflePage = new RafflesPageObj(_driver);
@@ -143,7 +143,7 @@ namespace LottoSend.com.TestCases.Web.Payments
         public void One_Plus_One_After_Failed_Deposit()
         {
             //Sign up
-            _commonActions.Sign_Up_Front();
+            _commonActions.Sign_Up_Front_PageOne();
             _commonActions.DepositMoney_Front(13, WayToPay.Offline, true, true);
 
             _commonActions.DepositMoney_Front(11, _merchant);
@@ -159,7 +159,7 @@ namespace LottoSend.com.TestCases.Web.Payments
         public void One_Plus_One_After_Failed_Order()
         {
             //Sign up
-            _commonActions.Sign_Up_Front();
+            _commonActions.Sign_Up_Front_PageOne();
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
 
             RafflesPageObj rafflePage = new RafflesPageObj(_driver);
@@ -188,7 +188,7 @@ namespace LottoSend.com.TestCases.Web.Payments
        // [Category("Critical")]
         public void One_Plus_One_Second_Payment()
         {
-            _commonActions.Sign_Up_Front();
+            _commonActions.Sign_Up_Front_PageOne();
             _commonActions.BuyRegularOneDrawTicket_Front(_merchant); //will get 1+1 promotion
             _commonActions.BuyRaffleTicket_Front(_merchant); //this ticket must cost more then the previously bought one
             
@@ -202,7 +202,7 @@ namespace LottoSend.com.TestCases.Web.Payments
         public void One_Plus_One_Second_Deposit()
         {
             //Sign up
-            _commonActions.Sign_Up_Front();
+            _commonActions.Sign_Up_Front_PageOne();
             _commonActions.DepositMoney_Front(13, _merchant); //is expected to get 1+1 promotion
             _commonActions.DepositMoney_Front(15, _merchant);
 
@@ -217,7 +217,7 @@ namespace LottoSend.com.TestCases.Web.Payments
         public void One_Plus_One_Promotion_Buying()
         {
             //Sign up
-           _commonActions.Sign_Up_Front();
+           _commonActions.Sign_Up_Front_PageOne();
            _totalPrice = _commonActions.BuyRaffleTicket_Front(_merchant);
 
             if (_totalPrice <= 30)
@@ -238,7 +238,7 @@ namespace LottoSend.com.TestCases.Web.Payments
         public void One_Plus_One_Promotion_Deposit()
         {
             //Sign up
-            _commonActions.Sign_Up_Front();
+            _commonActions.Sign_Up_Front_PageOne();
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/account/deposits/new/");
             
             DepositObj deposit = new DepositObj(_driver);

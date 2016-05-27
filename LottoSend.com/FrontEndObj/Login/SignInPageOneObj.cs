@@ -4,13 +4,11 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace LottoSend.com.FrontEndObj.Login
 {
+    /// <summary>
+    /// Page Object for sign in 1 page. It enharits all elements from LogInPopUpObj
+    /// </summary>
     public class SignInPageOneObj : LogInPopUpObj
     {
-
-        /// <summary>
-        /// Page Object for sign in 1 page. It enharits all elements from LogInPopUpObj
-        /// </summary>
-        /// <param name="driver"></param>
         public SignInPageOneObj(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(Driver, this);

@@ -38,7 +38,7 @@ namespace LottoSend.com.TestCases.Web
         {
             if (toSignIn)
             {
-                _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+                _commonActions.Log_In_Front_PageOne(_driverCover.Login, _driverCover.Password);
             }
 
             _commonActions.AddRegularTicketToCart_Front("en/play/el-gordo-de-la-primitiva/");
@@ -69,7 +69,7 @@ namespace LottoSend.com.TestCases.Web
         {
             if (toSignIn)
             {
-                _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+                _commonActions.Log_In_Front_PageOne(_driverCover.Login, _driverCover.Password);
             }
 
             _commonActions.AddGroupTicketToCart_Front("en/play/superenalotto/");
@@ -91,11 +91,11 @@ namespace LottoSend.com.TestCases.Web
         }
 
         /// <summary>
-        /// Checks that items in the cart is not removed when a guest signs up
+        /// Checks that items in the cart is not removed when a guest signs up on sign up 1 page
         /// </summary>
         [Test]
         [Category("Critical")]
-        public void Tickets_Are_Left_In_Cart_After_Sign_Up()
+        public void Tickets_Are_Left_In_Cart_After_Sign_Up_PageOne()
         {
              /*
              * Being a guest add tickets to the cart
@@ -106,17 +106,16 @@ namespace LottoSend.com.TestCases.Web
             _commonActions.AddGroupTicketToCart_Front("en/play/eurojackpot/");
             _commonActions.AddRaffleTicketToCart_Front(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
 
-            _commonActions.Sign_Up_Front();
+            _commonActions.Sign_Up_Front_PageOne();
             _cartVerifications.CheckNumberOfTicketsInCart_Front(3);
         }
-
         
         /// <summary>
-        /// Checks that items in the cart is not removed when a guest logs in
+        /// Checks that items in the cart is not removed when a guest logs in on login 1 page
         /// </summary>
         [Test]
         [Category("Critical")]
-        public void Tickets_Are_Left_In_Cart_After_Log_In()
+        public void Tickets_Are_Left_In_Cart_After_Log_In_PageOne()
         {
             /*
              * Being a guest add tickets to the cart
@@ -128,8 +127,30 @@ namespace LottoSend.com.TestCases.Web
             _commonActions.AddGroupTicketToCart_Front("en/play/eurojackpot/");
             _commonActions.AddRaffleTicketToCart_Front(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
 
-            _commonActions.Log_In_Front(_driverCover.LoginThree, _driverCover.Password);
+            _commonActions.Log_In_Front_PageOne(_driverCover.LoginThree, _driverCover.Password);
             _cartVerifications.CheckNumberOfTicketsInCart_Front(3);  
+            _commonActions.DeleteAllTicketFromCart_Front();
+        }
+
+        /// <summary>
+        /// Checks that items in the cart is not removed when a guest logs in on login 2 page
+        /// </summary>
+        [Test]
+        [Category("Critical")]
+        public void Tickets_Are_Left_In_Cart_After_Log_In_PageTwo()
+        {
+            /*
+             * Being a guest add tickets to the cart
+             * Sing in
+             * Check if tickets in the cart are left
+             */
+
+            _commonActions.AddRegularTicketToCart_Front("en/play/powerball/");
+            _commonActions.AddGroupTicketToCart_Front("en/play/eurojackpot/");
+            _commonActions.AddRaffleTicketToCart_Front(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
+
+            _commonActions.Log_In_Front_PageTwo(_driverCover.LoginThree, _driverCover.Password);
+            _cartVerifications.CheckNumberOfTicketsInCart_Front(3);
             _commonActions.DeleteAllTicketFromCart_Front();
         }
 
@@ -144,7 +165,7 @@ namespace LottoSend.com.TestCases.Web
         {
             if (toLogIn)
             {
-                _commonActions.Log_In_Front(_driverCover.LoginThree, _driverCover.Password);
+                _commonActions.Log_In_Front_PageOne(_driverCover.LoginThree, _driverCover.Password);
             }
             
             _commonActions.AddGroupTicketToCart_Front("en/play/powerball/");
@@ -175,7 +196,7 @@ namespace LottoSend.com.TestCases.Web
         {
             if (toLogIn)
             {
-                _commonActions.Log_In_Front(_driverCover.LoginThree, _driverCover.Password);
+                _commonActions.Log_In_Front_PageOne(_driverCover.LoginThree, _driverCover.Password);
             }
 
             _commonActions.AddRaffleTicketToCart_Front(_driverCover.BaseUrl + "en/raffles/test/");
@@ -207,7 +228,7 @@ namespace LottoSend.com.TestCases.Web
         {
             if (toLogIn)
             {
-                _commonActions.Log_In_Front(_driverCover.LoginThree, _driverCover.Password);
+                _commonActions.Log_In_Front_PageOne(_driverCover.LoginThree, _driverCover.Password);
             }
 
             _commonActions.AddRaffleTicketToCart_Front(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
@@ -232,7 +253,7 @@ namespace LottoSend.com.TestCases.Web
         {
             if (toLogIn)
             {
-                _commonActions.Log_In_Front(_driverCover.LoginThree, _driverCover.Password);
+                _commonActions.Log_In_Front_PageOne(_driverCover.LoginThree, _driverCover.Password);
             }
 
             //Add two tickets from different lotteries
@@ -264,7 +285,7 @@ namespace LottoSend.com.TestCases.Web
         {
             if (toLogIn)
             {
-                _commonActions.Log_In_Front(_driverCover.LoginThree, _driverCover.Password);
+                _commonActions.Log_In_Front_PageOne(_driverCover.LoginThree, _driverCover.Password);
             }
 
             _commonActions.AddRegularTicketToCart_Front("en/play/eurojackpot/");

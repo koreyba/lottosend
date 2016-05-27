@@ -268,12 +268,12 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         {
             if (_merchant != WayToPay.InternalBalance)
             {
-                _commonActions.Log_In_Front(_driverCover.Login, _driverCover.Password);
+                _commonActions.Log_In_Front_PageOne(_driverCover.Login, _driverCover.Password);
             }
             else
             {
                 //If pay with internal balance we need to log in with different user
-                _commonActions.Log_In_Front(_driverCover.LoginTwo, _driverCover.Password);
+                _commonActions.Log_In_Front_PageOne(_driverCover.LoginTwo, _driverCover.Password);
             }
             _cartVerifications.CheckNumberOfTicketsInCart_Front(0);
         }
