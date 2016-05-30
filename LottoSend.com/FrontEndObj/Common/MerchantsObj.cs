@@ -28,7 +28,7 @@ namespace LottoSend.com.FrontEndObj.Common
         [FindsBy(How = How.CssSelector, Using = "input#credit_card + img.merchant")]
         private IWebElement _offline;
 
-        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_20'] + img.merchant")]
+        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_68'] + img.merchant")]
         private IWebElement _trustPay;
 
         [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_18'] + img.merchant")]
