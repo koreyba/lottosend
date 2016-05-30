@@ -29,11 +29,11 @@ namespace LottoSend.com.TestCases.BackOffice
         /// </summary>
         /// <param name="lottery"></param>
         /// <param name="group"></param>
-        [TestCase("El Gordo", "Winning Guarantee")]
-        [TestCase("Mega Millions", "Winning Guarantee")]
-        [TestCase("SuperLotto Plus", "Winning Guarantee")]
-        [TestCase("Powerball", "Winning Guarantee")]
-        [TestCase("EuroMillions", "Winning Guarantee")]
+        [TestCase("El Gordo", "Winning Guarantee - Backup")]
+        [TestCase("Mega Millions", "Winning Guarantee - Backup")]
+        [TestCase("SuperLotto Plus", "Winning Guarantee - Backup")]
+        [TestCase("Powerball", "Winning Guarantee - Backup")]
+        [TestCase("EuroMillions", "Winning Guarantee - Backup")]
         [TestCase("Euromiliony", "Random Selection")]
         [TestCase("EuroJackpot", "Random Selection")]
         [TestCase("EuroMillions", "Random Selection")]
@@ -45,8 +45,8 @@ namespace LottoSend.com.TestCases.BackOffice
         [TestCase("SuperEnalotto", "Random Selection")]
         [TestCase("Euromiliony", "Systematic")]
         [TestCase("Powerball", "Systematic")]
-        [TestCase("EuroMillions", "Additionals Guarantee")]
-        [TestCase("EuroJackpot", "Additionals Guarantee")]
+        [TestCase("EuroMillions", "Additionals Guarantee ")]
+        [TestCase("EuroJackpot", "Additionals Guarantee ")]
         [TestCase("Powerball", "New Winning")]
         [TestCase("Powerball", "New Random")]
         [Category("Parallel")]
