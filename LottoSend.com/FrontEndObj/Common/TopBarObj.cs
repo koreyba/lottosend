@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using LottoSend.com.FrontEndObj.Login;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using LottoSend.com.FrontEndObj.SignUp;
 

@@ -19,7 +19,7 @@ namespace LottoSend.com.FrontEndObj.Common
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_29'] + img.merchant")]
+        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_135'] + img.merchant")]
         private IWebElement _neteller;
 
         [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_72'] + img.merchant")]
