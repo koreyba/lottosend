@@ -264,7 +264,14 @@ namespace LottoSend.com.TestCases.Web.Payments
             finally
             {
                 //Removes all tickets from the cart to make sure all other tests will work well
-                _commonActions.DeleteAllTicketFromCart_Front();
+                try
+                {
+                    _commonActions.DeleteAllTicketFromCart_Front();
+                }
+                catch (Exception)
+                {
+                    _sharedCode.CleanUp(ref _driver);
+                }
 
                 _sharedCode.CleanUp(ref _driver);
             }
