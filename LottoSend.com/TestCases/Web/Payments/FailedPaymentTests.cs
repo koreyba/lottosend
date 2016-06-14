@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 using LottoSend.com.BackEndObj;
 using LottoSend.com.BackEndObj.WebUsersPages;
 using LottoSend.com.FrontEndObj;
@@ -65,8 +66,9 @@ namespace LottoSend.com.TestCases.Web.Payments
         [TestCase(WayToPay.eKonto)]
         [TestCase(WayToPay.Moneta)]
         [TestCase(WayToPay.Poli)]
+        [TestCase(WayToPay.Offline)]
         [Category("Critical")]
-        public void Fail_Online_Pament_Check_URL(WayToPay merchant)
+        public void Fail_Pament_Check_URL(WayToPay merchant)
         {
             /* 
              * Works with online payments that can be failed (eKonto, Moneta, Poli)
@@ -103,11 +105,31 @@ namespace LottoSend.com.TestCases.Web.Payments
                         merchants.Moneta.Click();
                     }
                     break;
+
+                case WayToPay.Offline:
+                    {
+                        merchants.PayWithOfflineCharge();
+                        _driverCover.OpenNewTab();
+                        _commonActions.SignIn_in_admin_panel();
+                        _commonActions.Authorize_the_first_payment();
+                        _commonActions.Fail_offline_payment();
+                        _driverCover.SwitchToTab(1);
+                        _driverCover.RefreshPage();
+                    }
+                    break;
             }
 
-            OnlineMerchantsObj online = new OnlineMerchantsObj(_driver);
-            online.FailPayment();
-            StringAssert.Contains("failed", _driverCover.Driver.Url);
+            if (merchant == WayToPay.Offline)
+            {   
+                StringAssert.Contains("failure", _driverCover.Driver.Url);
+            }
+            else
+            {
+                OnlineMerchantsObj online = new OnlineMerchantsObj(_driver);
+                online.FailPayment();
+                StringAssert.Contains("failed", _driverCover.Driver.Url);
+            }
+            
 
             _commonActions.DeleteAllTicketFromCart_Front();
         }

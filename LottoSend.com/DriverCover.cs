@@ -303,6 +303,31 @@ namespace LottoSend.com
         }
 
         /// <summary>
+        /// Opens a new tab in the browser and switches to it
+        /// </summary>
+        public void OpenNewTab()
+        {
+            //IWebElement body = Driver.FindElement(By.XPath(".//body"));
+            //body.SendKeys(Keys.Control + "t");
+            Driver.ExecuteScript("window.open(' ','_blank');");
+            SwitchToTab(2);
+        }
+
+        /// <summary>
+        /// Swithes to a tab with specific number (starts from 1)
+        /// </summary>
+        /// <param name="number"></param>
+        public void SwitchToTab(int number)
+        {
+            if (number == 0)
+            {
+                throw new Exception("The number of the tab must start from 1 ");
+            }
+
+            Driver.SwitchTo().Window(Driver.WindowHandles[number - 1]);
+        }
+
+        /// <summary>
         /// Waits for jQuery executing 
         /// </summary>
         /// <param name="secondsToWait">Time to wait (default 300 sec)</param>
