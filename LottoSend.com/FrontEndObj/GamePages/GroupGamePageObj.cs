@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using LottoSend.com.FrontEndObj.Common;
-using OpenQA.Selenium.Interactions;
 
 namespace LottoSend.com.FrontEndObj.GamePages
 {

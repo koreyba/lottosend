@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Security.Cryptography;
-using System.Text;
-using LottoSend.com.BackEndObj.ChargePanelPages;
+﻿using LottoSend.com.BackEndObj.ChargePanelPages;
 using LottoSend.com.BackEndObj.RegularTicketsPages;
-using LottoSend.com.FrontEndObj;
-using LottoSend.com.FrontEndObj.SignUp;
 using LottoSend.com.TestCases;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
 
 namespace LottoSend.com
 {

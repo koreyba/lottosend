@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Windows.Forms;
-using LottoSend.com.BackEndObj;
 using LottoSend.com.BackEndObj.WebUsersPages;
 using LottoSend.com.FrontEndObj;
 using LottoSend.com.FrontEndObj.Common;
@@ -71,7 +69,7 @@ namespace LottoSend.com.TestCases.Web.Payments
         public void Fail_Pament_Check_URL(WayToPay merchant)
         {
             /* 
-             * Works with online payments that can be failed (eKonto, Moneta, Poli)
+             * Works with payments that can be failed (eKonto, Moneta, Poli, Offline)
              * The test just fails payment and checks URL. 
              * If it includes the word "failure" then test is passed.
              */

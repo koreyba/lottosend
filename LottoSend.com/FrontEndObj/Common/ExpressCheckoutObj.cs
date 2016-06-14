@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading;
-using LottoSend.com.FrontEndObj.Login;
 using LottoSend.com.FrontEndObj.SignUp;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;

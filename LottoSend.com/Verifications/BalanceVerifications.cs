@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using LottoSend.com.BackEndObj;
 using LottoSend.com.BackEndObj.WebUsersPages;
 using LottoSend.com.FrontEndObj.MyAccount;
 using LottoSend.com.TestCases;

@@ -1,10 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
-using LottoSend.com.BackEndObj;
 using LottoSend.com.BackEndObj.ManualMatchPages;
 using LottoSend.com.Helpers;
-using LottoSend.com.Verifications;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;

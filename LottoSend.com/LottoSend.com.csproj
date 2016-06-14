@@ -186,6 +186,7 @@
     <Compile Include="TestCases\Mobile\Regular tickets\BuyRegularOneDrawTicketTests.cs" />
     <Compile Include="TestCases\Web\Payments\FailedPaymentTests.cs" />
     <Compile Include="TestCases\Web\Group ticktes\GroupTicketTests.cs" />
+    <Compile Include="TestCases\Web\Payments\GeneralPayments.cs" />
     <Compile Include="TestCases\Web\RaffleTicketTests.cs" />
     <Compile Include="TestCases\WebApiTests.cs" />
     <Compile Include="Verifications\BackOfficeVerifications.cs" />

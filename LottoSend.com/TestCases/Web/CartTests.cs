@@ -7,7 +7,6 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
-using OpenQA.Selenium.Firefox;
 
 namespace LottoSend.com.TestCases.Web
 {
