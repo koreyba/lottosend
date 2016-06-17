@@ -66,7 +66,7 @@ namespace LottoSend.com.TestCases.Web.Payments
         [TestCase(WayToPay.Poli)]
         [TestCase(WayToPay.Offline)]
         [Category("Critical")]
-        public void Fail_Pament_Check_URL(WayToPay merchant)
+        public void Fail_Payment_Check_URL(WayToPay merchant)
         {
             /* 
              * Works with payments that can be failed (eKonto, Moneta, Poli, Offline)

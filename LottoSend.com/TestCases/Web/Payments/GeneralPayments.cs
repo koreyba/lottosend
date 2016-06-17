@@ -96,8 +96,6 @@ namespace LottoSend.com.TestCases.Web.Payments
             }
 
             StringAssert.Contains("pending", _driverCover.Driver.Url);
-
-            _commonActions.DeleteAllTicketFromCart_Front();
         }
 
 
