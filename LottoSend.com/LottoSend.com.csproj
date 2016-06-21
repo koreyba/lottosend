@@ -96,6 +96,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BackEndObj\RegularTicketsPages\NewBulkRegularTicketForm.cs" />
     <Compile Include="BackEndObj\RegularTicketsPages\PackagesPageObj.cs" />
     <Compile Include="BackEndObj\WebUsersPages\BetsPageObj.cs" />
     <Compile Include="BackEndObj\BulkBuysPageObj.cs" />
@@ -156,6 +157,7 @@
     <Compile Include="TestCases\BackOffice\GroupGameTests.cs" />
     <Compile Include="TestCases\BackOffice\ManualMatchTests.cs" />
     <Compile Include="TestCases\BackOffice\OrderProcessingTest.cs" />
+    <Compile Include="TestCases\BackOffice\Packages\DeactivtePackage.cs" />
     <Compile Include="TestCases\BackOffice\Raffles\CreateRaffleTicketTests.cs" />
     <Compile Include="TestCases\BackOffice\SalesPanel\BuyGroupMultiDrawTicketTests.cs" />
     <Compile Include="TestCases\BackOffice\SalesPanel\BuyGroupOneDrawTicketTests.cs" />

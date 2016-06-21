@@ -47,6 +47,71 @@ namespace LottoSend.com.BackEndObj.RegularTicketsPages
         [FindsBy(How = How.XPath, Using = "//*[@id='package_submit_action']/input")]
         private IWebElement _createPackageButton;
 
+        [FindsBy(How = How.XPath, Using = " //a[@class='button']")]
+        private IWebElement _newBulkBuyButotn;
+
+        /// <summary>
+        /// Activates a specific site and updates the package
+        /// </summary>
+        /// <param name="siteName"></param>
+        public void ActivateSite(string siteName)
+        {
+            foreach (var name in _sites)
+            {
+                if (name.Text.Equals(siteName))
+                {
+                    if (!IfCheckBoxIsChecked(name.FindElement(By.XPath("..//input"))))
+                    {
+                        name.Click();
+                    }
+                }
+            }
+
+            _createPackageButton.Click();
+            WaitForPageLoading();
+        }
+
+        /// <summary>
+        /// Deactivates a specific site and updates the package
+        /// </summary>
+        /// <param name="siteName"></param>
+        public void DeactivateSite(string siteName)
+        {
+            foreach (var name in _sites)
+            {
+                if (name.Text.Equals(siteName))
+                {
+                    if (IfCheckBoxIsChecked(name.FindElement(By.XPath("..//input"))))
+                    {
+                        name.Click();
+                    }
+                }
+            }
+
+            _createPackageButton.Click();
+            WaitForPageLoading();
+        }
+
+        /// <summary>
+        /// Adds a new bulk-buy for the package and updates it
+        /// </summary>
+        /// <param name="numberOfDraws"></param>
+        /// <param name="discount"></param>
+        /// <param name="active"></param>
+        /// <param name="siteNames"></param>
+        public void AddBulkBuyToThePackage(int numberOfDraws, double discount, bool active, IList<string> siteNames)
+        {
+            _newBulkBuyButotn.Click();
+            WaitAjax();
+
+            NewBulkRegularTicketForm bulkForm = new NewBulkRegularTicketForm(Driver);
+            bulkForm.AddNewBulkBuy(numberOfDraws, discount, active, siteNames);
+
+            _createPackageButton.Click();
+            WaitAjax();
+            WaitForPageLoading();
+        }
+
         /// <summary>
         /// Creates a new package with set parameters
         /// </summary>

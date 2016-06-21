@@ -10,9 +10,10 @@ namespace LottoSend.com.BackEndObj.RegularTicketsPages
     /// </summary>
     public class PackagesPageObj : DriverCover
     {
-        public PackagesPageObj(IWebDriver driver) : base(driver)
+        public PackagesPageObj(IWebDriver driver)
+            : base(driver)
         {
-            if (!Driver.Url.Contains("packages"))
+            if (!Driver.Url.EndsWith("admin/packages"))
             {
                 throw new Exception("Sorry it must be not back/packages page. Current URL is: " + Driver.Url + " ");
             }
@@ -42,7 +43,7 @@ namespace LottoSend.com.BackEndObj.RegularTicketsPages
         /// <param name="lines">Number of lines in the package</param>
         public NewPackagePageObj EditPackage(string template, int lines)
         {
-            ChooseElementInSelect(template,_templateName, SelectBy.Text);
+            ChooseElementInSelect(template, _templateName, SelectBy.Text);
             _filterButton.Click();
             WaitAjax();
             WaitForPageLoading();

@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Collections.Generic;
+using System.Threading;
 using LottoSend.com.FrontEndObj.Common;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -15,6 +16,26 @@ namespace LottoSend.com.FrontEndObj.GamePages
             //TODO make validation
 
             PageFactory.InitElements(Driver, this);
+        }
+
+        [FindsBy(How = How.XPath, Using = "//select[@id='lines']/option")]
+        private IList<IWebElement> _lines;
+
+        /// <summary>
+        /// List of available lines to select 
+        /// </summary>
+        public List<string> Lines
+        {
+            get
+            {
+                List<string> numbers = new List<string>();
+                foreach (IWebElement number in _lines)
+                {
+                    numbers.Add(number.Text);
+                }
+
+                return numbers;
+            }
         }
 
         /// <summary>
