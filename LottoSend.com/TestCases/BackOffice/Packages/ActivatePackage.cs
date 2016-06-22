@@ -11,7 +11,7 @@ using OpenQA.Selenium.Chrome;
 namespace LottoSend.com.TestCases.BackOffice.Packages
 {
     [TestFixture(typeof(ChromeDriver))]
-    public class DeactivtePackage <TWebDriver> where TWebDriver : IWebDriver, new()
+    public class ActivatePackage <TWebDriver> where TWebDriver : IWebDriver, new()
     {
         private IWebDriver _driver;
         private DriverCover _driverCover;
@@ -19,14 +19,14 @@ namespace LottoSend.com.TestCases.BackOffice.Packages
         private TestsSharedCode _sharedCode;
 
         [Test]
-        public void Deactivate_Site_For_Package_And_Check_Visibility()
+        public void Activate_Site_For_Package_And_Check_Visibility()
         {
             _commonActions.SignIn_in_admin_panel();
 
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/packages");
 
             PackagesPageObj packagesPage= new PackagesPageObj(_driver);
-            packagesPage.EditPackage("Oz Lotto (1-45)", 7);
+            packagesPage.EditPackage("EuroJackpot (1-50)", 6);
 
             NewPackagePageObj packageEdit = new NewPackagePageObj(_driver);
             packageEdit.DeactivateSite("stg.lottobaba");
@@ -34,16 +34,23 @@ namespace LottoSend.com.TestCases.BackOffice.Packages
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/sites/1/edit");
             SiteEditingPageObj siteEdit = new SiteEditingPageObj(_driver);
             siteEdit.ClearCache();
-            
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/play/oz-lotto?tab=single");
+
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/play/eurojackpot?tab=single");
             RegularGamePageObj regularGame = new RegularGamePageObj(_driver);
+
+            bool found = false;
 
             foreach (var line in regularGame.Lines)
             {
-                if (line.Equals("7"))
+                if (line.Equals("6"))
                 {
-                    Assert.Fail("The package was not deactivated, it's still visible on the play page. Current URL is: " + _driver.Url + " ");
+                    found = true;
                 }
+            }
+
+            if (!found)
+            {
+                Assert.Fail("The package was not activated, it's still invisible on the play page. Current URL is: " + _driver.Url + " ");
             }
         }
 
@@ -69,10 +76,10 @@ namespace LottoSend.com.TestCases.BackOffice.Packages
                     _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/packages");
 
                     PackagesPageObj packagesPage = new PackagesPageObj(_driver);
-                    packagesPage.EditPackage("Oz Lotto (1-45)", 7);
+                    packagesPage.EditPackage("EuroJackpot (1-50)", 3);
 
                     NewPackagePageObj packageEdit = new NewPackagePageObj(_driver);
-                    packageEdit.ActivateSite("stg.lottobaba");
+                    packageEdit.DeactivateSite("stg.lottobaba");
 
                     _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/sites/1/edit");
                     SiteEditingPageObj siteEdit = new SiteEditingPageObj(_driver);
