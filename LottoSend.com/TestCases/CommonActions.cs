@@ -34,6 +34,17 @@ namespace LottoSend.com.TestCases
         }
 
         /// <summary>
+        /// Goes to admin/sites page and clears cache of a selected site. Doesn't provide with admin login
+        /// </summary>
+        /// <param name="sitesName"></param>
+        public void ClearCache(string sitesName)
+        {
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/sites/");
+            SitesObj siteEdit = new SitesObj(_driver);
+            siteEdit.ClearCache(sitesName);
+        }
+
+        /// <summary>
         /// Changes a default deposit value for a website. Needs previous log in the admin panel
         /// </summary>
         /// <param name="siteID"></param>

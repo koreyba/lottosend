@@ -11,6 +11,7 @@ using OpenQA.Selenium.Chrome;
 namespace LottoSend.com.TestCases.BackOffice.Packages
 {
     [TestFixture(typeof(ChromeDriver))]
+    [Parallelizable(ParallelScope.Fixtures)]
     public class ActivatePackage <TWebDriver> where TWebDriver : IWebDriver, new()
     {
         private IWebDriver _driver;
@@ -31,9 +32,7 @@ namespace LottoSend.com.TestCases.BackOffice.Packages
             NewPackagePageObj packageEdit = new NewPackagePageObj(_driver);
             packageEdit.DeactivateSite("stg.lottobaba");
 
-            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/sites/1/edit");
-            SiteEditingPageObj siteEdit = new SiteEditingPageObj(_driver);
-            siteEdit.ClearCache();
+            _commonActions.ClearCache("stg.lottobaba");
 
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/play/eurojackpot?tab=single");
             RegularGamePageObj regularGame = new RegularGamePageObj(_driver);
@@ -81,9 +80,7 @@ namespace LottoSend.com.TestCases.BackOffice.Packages
                     NewPackagePageObj packageEdit = new NewPackagePageObj(_driver);
                     packageEdit.DeactivateSite("stg.lottobaba");
 
-                    _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/sites/1/edit");
-                    SiteEditingPageObj siteEdit = new SiteEditingPageObj(_driver);
-                    siteEdit.ClearCache();
+                    _commonActions.ClearCache("stg.lottobaba");
                 }
                 catch (Exception)
                 {
