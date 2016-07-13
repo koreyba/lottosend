@@ -1,5 +1,4 @@
 ﻿using System;
-using LottoSend.com.BackEndObj;
 using LottoSend.com.BackEndObj.RegularTicketsPages;
 using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.Helpers;
@@ -19,6 +18,9 @@ namespace LottoSend.com.TestCases.BackOffice.Packages
         private CommonActions _commonActions;
         private TestsSharedCode _sharedCode;
 
+        /// <summary>
+        /// Deactivates a package of regular game and checks if it's visible on the site.
+        /// </summary>
         [Test]
         public void Deactivate_Site_For_Package_And_Check_Visibility()
         {

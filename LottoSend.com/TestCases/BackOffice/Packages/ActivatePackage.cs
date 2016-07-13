@@ -19,6 +19,9 @@ namespace LottoSend.com.TestCases.BackOffice.Packages
         private CommonActions _commonActions;
         private TestsSharedCode _sharedCode;
 
+        /// <summary>
+        /// Activates a package of regular game and checks if it's visible on the site.
+        /// </summary>
         [Test]
         public void Activate_Site_For_Package_And_Check_Visibility()
         {

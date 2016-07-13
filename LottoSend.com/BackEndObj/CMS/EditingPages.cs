@@ -22,7 +22,7 @@ namespace LottoSend.com.BackEndObj.CMS
         /// <summary>
         /// The first input field for content (doesn'a matter a language but the first one on the page)
         /// </summary>
-        [FindsBy(How = How.CssSelector, Using = "#redactor-toolbar-0 + .redactor-editor:nth-child(2)")]
+        [FindsBy(How = How.CssSelector, Using = "#snippet_content")]
         protected IWebElement _contentInputFirst;
 
         /// <summary>
