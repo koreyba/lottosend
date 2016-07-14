@@ -128,7 +128,7 @@ namespace LottoSend.com.FrontEndObj.Common
             Thread.Sleep(TimeSpan.FromSeconds(2));
 
             IWebElement payNow = Driver.FindElement(By.CssSelector("#ctl00_cphContent_iPayOnline"));
-            payNow.Click();
+            ScrollToView(payNow).Click();
            // bool v = WaitjQuery();
             WaitForPageLoading();
 

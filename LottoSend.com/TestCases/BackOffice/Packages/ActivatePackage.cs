@@ -33,9 +33,9 @@ namespace LottoSend.com.TestCases.BackOffice.Packages
             packagesPage.EditPackage("EuroJackpot (1-50)", 6);
 
             NewPackagePageObj packageEdit = new NewPackagePageObj(_driver);
-            packageEdit.DeactivateSite("stg.lottobaba");
+            packageEdit.ActivateSite("stg.lottobaba.com");
 
-            _commonActions.ClearCache("stg.lottobaba");
+            _commonActions.ClearCache("stg.lottobaba.com");
 
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/play/eurojackpot?tab=single");
             RegularGamePageObj regularGame = new RegularGamePageObj(_driver);

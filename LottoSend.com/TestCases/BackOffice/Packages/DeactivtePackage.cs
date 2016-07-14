@@ -32,9 +32,9 @@ namespace LottoSend.com.TestCases.BackOffice.Packages
             packagesPage.EditPackage("Oz Lotto (1-45)", 7);
 
             NewPackagePageObj packageEdit = new NewPackagePageObj(_driver);
-            packageEdit.DeactivateSite("stg.lottobaba");
+            packageEdit.DeactivateSite("stg.lottobaba.com");
 
-            _commonActions.ClearCache("stg.lottobaba");
+            _commonActions.ClearCache("stg.lottobaba.com");
             
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/play/oz-lotto?tab=single");
             RegularGamePageObj regularGame = new RegularGamePageObj(_driver);
