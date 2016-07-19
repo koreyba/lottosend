@@ -115,20 +115,20 @@ namespace LottoSend.com.FrontEndObj.Common
             WaitForPageLoading();
             bool w = WaitjQuery();
 
-            Driver.FindElement(By.CssSelector("#ctl00_cphContent_pStep4Header > div > div > div.jquery-selectbox-moreButton")).Click();
+            ScrollToView(WaitForElement(By.CssSelector("#ctl00_cphContent_pStep4Header > div > div > div.jquery-selectbox-moreButton"), 10)).Click();
             Thread.Sleep(TimeSpan.FromSeconds(1));
 
             IWebElement countrySelect = Driver.FindElement(By.CssSelector("span.jquery-selectbox-item.value-SK.item-12"));
-            countrySelect.Click();
+            ScrollToView(WaitForElement(countrySelect, 10)).Click();
            // ChooseElementInSelect("SK", countrySelect, SelectBy.Value);
             Thread.Sleep(TimeSpan.FromSeconds(2));
 
             IWebElement trustPayAuthorization = Driver.FindElement(By.CssSelector("div.step2Banks > a > img[id^='ct']"));
-            trustPayAuthorization.Click();
+             ScrollToView(WaitForElement(trustPayAuthorization, 10)).Click();
             Thread.Sleep(TimeSpan.FromSeconds(2));
 
             IWebElement payNow = Driver.FindElement(By.CssSelector("#ctl00_cphContent_iPayOnline"));
-            ScrollToView(payNow).Click();
+            WaitForElement(ScrollToView(payNow), 10).Click();
            // bool v = WaitjQuery();
             WaitForPageLoading();
 
