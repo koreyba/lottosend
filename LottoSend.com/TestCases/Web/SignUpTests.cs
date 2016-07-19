@@ -26,48 +26,14 @@ namespace LottoSend.com.TestCases.Web
         private TestsSharedCode _sharedCode;
 
         /// <summary>
-        /// Signs up in express checkout in the cart
+        /// Signs up a new user on sign_up2 page and checks if the user is logged in
         /// </summary>
-        //[Test]
-        public void SignUp_Express_Checkout_In_Cart()
-        {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "");
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
-
-            RafflesPageObj rafflePage = new RafflesPageObj(_driver);
-
-            //CartObj cart = rafflePage.ClickBuyNowButton();
-            //cart.ClickProceedToCheckoutButton();
-
-            ExpressCheckoutObj checkout = new ExpressCheckoutObj(_driver);
-            Thread.Sleep(TimeSpan.FromSeconds(1));
-            checkout.SignUp_Web();
-
-            _usersVerifications.CheckIfSignedIn_Web();
-        }
-
-        /// <summary>
-        /// Signs up in express checkout on a game page
-        /// </summary>
-       // [Test]
+        [Test]
         [Category("Critical")]
         [Category("Parallel")]
-        public void SignUp_Express_Checkout_Game_Page()
+        public void Sign_Up_Page_Two()
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "");
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/play/eurojackpot/");
-
-            //Pay for tickets
-            RegularGamePageObj regularGame = new RegularGamePageObj(_driver);
-
-            //Go to single tab
-            regularGame.ClickStandartGameButton();
-            regularGame.ClickBuyTicketsButton();
-
-            ExpressCheckoutObj checkout = new ExpressCheckoutObj(_driver);
-            Thread.Sleep(TimeSpan.FromSeconds(1));
-            checkout.SignUp_Web();
-
+            _email = _commonActions.Sign_Up_Front_PageTwo();
             _usersVerifications.CheckIfSignedIn_Web();
         }
 

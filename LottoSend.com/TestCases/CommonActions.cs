@@ -619,23 +619,24 @@ namespace LottoSend.com.TestCases
         /// Registrate a new user
         /// <returns>User's email</returns>
         /// </summary>
-        public string Sign_Up_Front_PageTwo()
-        {
-            //TODO
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "web-users/sign-up2");
-            
-
-            return "";
-        }
-
-        /// <summary>
-        /// Registrate a new user
-        /// <returns>User's email</returns>
-        /// </summary>
         public string Sign_Up_Front_PageOne()
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "web-users/sign-up");
             SignUpPageOneObj signUp = new SignUpPageOneObj(_driver);
+            string email = signUp.FillInFieldsWeb();
+            signUp.ClickSignUp();
+
+            return email;
+        }
+
+        /// <summary>
+        /// Registrate a new user on new signup page - sign_up 2
+        /// <returns>User's email</returns>
+        /// </summary>
+        public string Sign_Up_Front_PageTwo()
+        {
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "web-users/sign-up2");
+            SignUpPageTwo signUp = new SignUpPageTwo(_driver);
             string email = signUp.FillInFieldsWeb();
             signUp.ClickSignUp();
 

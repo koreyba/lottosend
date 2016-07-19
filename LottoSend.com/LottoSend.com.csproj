@@ -158,6 +158,8 @@
     <Compile Include="FrontEndObj\MyAccount\DepositMobileObj.cs" />
     <Compile Include="FrontEndObj\OnlineMerchantsObj.cs" />
     <Compile Include="FrontEndObj\SignUp\SignUpForm.cs" />
+    <Compile Include="FrontEndObj\SignUp\SignUpNewForm.cs" />
+    <Compile Include="FrontEndObj\SignUp\SignUpPageTwo.cs" />
     <Compile Include="Helpers\MessageCreator.cs" />
     <Compile Include="Helpers\TestsSharedCode.cs" />
     <Compile Include="TestCases\BackOffice\BackOfficeTests.cs" />
