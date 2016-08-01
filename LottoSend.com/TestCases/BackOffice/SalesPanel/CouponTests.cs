@@ -72,8 +72,6 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
         [Category("Test")]
         public void Check_Discount_Checkout(string code, double discount)
         {
-            Gjef = new Gjef();
-            Console.WriteLine("This is a broken test");
             _commonActions.SignIn_in_admin_panel();
             _commonActions.Sign_Up_SalesPanel(RandomGenerator.GenerateRandomString(10) + "@grr.la");
 
