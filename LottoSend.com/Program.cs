@@ -1,4 +1,8 @@
-﻿using LottoSend.com.BackEndObj.ChargePanelPages;
+﻿using System;
+using System.Dynamic;
+using System.Security.Cryptography.X509Certificates;
+using LottoSend.com;
+using LottoSend.com.BackEndObj.ChargePanelPages;
 using LottoSend.com.BackEndObj.RegularTicketsPages;
 using LottoSend.com.TestCases;
 using OpenQA.Selenium;
@@ -11,7 +15,6 @@ namespace LottoSend.com
 
         static void Main(string[] args)
         {
-
 
             IWebDriver _driver = new ChromeDriver();
             DriverCover _driverCover = new DriverCover(_driver);
