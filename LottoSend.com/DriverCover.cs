@@ -424,7 +424,7 @@ namespace LottoSend.com
             {
                 //Driver.Dispose();
                 throw new TimeoutException("Ajax call time out time has passed " + timeOutInSeconds + " seconds" + "\n"
-                    + "Current URL is: " + Driver.Url);
+                    + "Current URL is: " + Driver.Url); 
             }
         }
 
