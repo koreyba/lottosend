@@ -242,7 +242,8 @@ namespace LottoSend.com
             catch (Exception)
             {
                // Driver.Dispose();
-                throw new TimeoutException("Page loading time out time has passed " + secondsToWait + " seconds");
+                throw new TimeoutException("Ajax call time out time has passed " + secondsToWait + " seconds" + "\n"
+                    + "Current URL is: " + Driver.Url);
             }
             finally
             {
@@ -294,7 +295,8 @@ namespace LottoSend.com
             catch (Exception)
             {
                 //Driver.Dispose();
-                throw new TimeoutException("Ajax call time out time has passed " + secondsToWait + " seconds");
+                throw new TimeoutException("Ajax call time out time has passed " + secondsToWait + " seconds" + "\n" 
+                    + "Current URL is: " + Driver.Url);
             }
             finally
             {
@@ -357,7 +359,8 @@ namespace LottoSend.com
             catch (Exception)
             {
                // Driver.Dispose();
-                throw new TimeoutException("Ajax call time out time has passed " + secondsToWait + " seconds");
+                throw new TimeoutException("Ajax call time out time has passed " + secondsToWait + " seconds" + "\n"
+                    + "Current URL is: " + Driver.Url);
             }
             finally
             {
@@ -390,7 +393,8 @@ namespace LottoSend.com
             catch (Exception e)
             {
                 //Driver.Dispose();
-                throw new Exception("Time to wait " + timeOutInSeconds + " seconds is elapsed ");
+                throw new TimeoutException("Ajax call time out time has passed " + timeOutInSeconds + " seconds" + "\n"
+                    + "Current URL is: " + Driver.Url);
             }
         }
 
@@ -419,7 +423,8 @@ namespace LottoSend.com
             catch (Exception e)
             {
                 //Driver.Dispose();
-                throw new Exception("Time to wait " + timeOutInSeconds + " seconds is elapsed ");
+                throw new TimeoutException("Ajax call time out time has passed " + timeOutInSeconds + " seconds" + "\n"
+                    + "Current URL is: " + Driver.Url);
             }
         }
 
