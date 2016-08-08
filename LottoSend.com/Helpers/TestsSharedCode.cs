@@ -52,6 +52,7 @@ namespace LottoSend.com.Helpers
         {
             MessageConsoleCreator message = new MessageConsoleCreator(); 
             message.DriverDisposed(); 
+            driver.Quit();
             driver.Dispose();
             if (OrderVerifications.Errors.Length > 0)
             {
