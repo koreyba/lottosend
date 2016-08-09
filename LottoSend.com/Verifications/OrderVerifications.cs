@@ -364,7 +364,8 @@ namespace LottoSend.com.Verifications
             TimeSpan currentUtcDate = DateTime.UtcNow.TimeOfDay;
 
             //Cheks if the transaction date placed in correct interval (no longer then 5 min from now)
-            Assert.IsTrue(transactionDate > currentUtcDate - TimeSpan.FromMinutes(5), "Sorry, the time of the first record is not in set interval. Check if record was added, page: " + _driverCover.Driver.Url + " ");
+            Assert.IsTrue(transactionDate > currentUtcDate - TimeSpan.FromMinutes(10), "Sorry, the time of the first record is not in set interval. Check if record was added, page: " + _driverCover.Driver.Url + "\n" +
+                "Expected time +/- 5 min: " + (currentUtcDate - TimeSpan.FromMinutes(10)) + " But real time is: " + transactionDate);
         }
 
         /// <summary>
