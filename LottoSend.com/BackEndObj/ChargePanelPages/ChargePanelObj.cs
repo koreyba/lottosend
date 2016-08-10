@@ -5,15 +5,15 @@ using OpenQA.Selenium.Support.PageObjects;
 namespace LottoSend.com.BackEndObj.ChargePanelPages
 {
     /// <summary>
-    /// Charge panel elemets
+    /// Charge panel and charge panel invoice page obj
     /// </summary>
     public class ChargePanelObj : DriverCover
     {
         public ChargePanelObj(IWebDriver driver) : base(driver)
         {
-            if(!Driver.Url.Contains("charge_panel_manager"))
+            if(!Driver.Url.Contains("charge_panel_"))
             {
-                throw new Exception("It's not charge panel page");
+                throw new Exception("It's not charge panel/invoice page");
             }
 
             PageFactory.InitElements(Driver, this);

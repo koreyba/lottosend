@@ -17,9 +17,6 @@ namespace LottoSend.com.BackEndObj.ChargePanelPages
         [FindsBy(How = How.CssSelector, Using = "select#transaction_state")]
         private IWebElement _transactionStatus;
 
-        [FindsBy(How = How.CssSelector, Using = "transaction_comment_user_id_input + input")]
-        private IWebElement _updateTransactionButton;
-
         /// <summary>
         /// Select "Fail" in payment status
         /// </summary>

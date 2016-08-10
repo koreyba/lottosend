@@ -16,22 +16,22 @@ namespace LottoSend.com.FrontEndObj.GamePages
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = "input#transaction_holder_name")]
+        [FindsBy(How = How.XPath, Using = "//input[contains(@id, 'transaction_holder_name')]")]
         private IWebElement _name;
 
-        [FindsBy(How = How.CssSelector, Using = "input#transaction_number")]
+        [FindsBy(How = How.XPath, Using = "//input[contains(@id, 'transaction_number')]")]
         private IWebElement _cardNumber;
 
-        [FindsBy(How = How.Id, Using = "transaction_expiration_month")]
+        [FindsBy(How = How.XPath, Using = "//select[contains(@id, 'transaction_expiration_month')]")]
         private IWebElement _expirationDateM;
 
-        [FindsBy(How = How.Id, Using = "transaction_expiration_year")]
+        [FindsBy(How = How.XPath, Using = "//select[contains(@id, 'transaction_expiration_year')]")]
         private IWebElement _expirationDateY;
 
-        [FindsBy(How = How.CssSelector, Using = "input#transaction_code")]
+        [FindsBy(How = How.XPath, Using = "//input[contains(@id, 'transaction_code')]")]
         private IWebElement _cvvCode;
 
-        [FindsBy(How = How.CssSelector, Using = "a.btn.btn-success.btn-xl.btn-block")]
+        [FindsBy(How = How.CssSelector, Using = ".btn.btn-success.btn-block")]
         private IWebElement _nextButton;
 
         /// <summary>

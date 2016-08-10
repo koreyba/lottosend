@@ -12,7 +12,9 @@
         InternalBalance,
         Moneta,
         eKonto,
-        Poli
+        Poli,
+        Invoice,
+        Fibonatix
     }
 
     /// <summary>

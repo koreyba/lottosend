@@ -196,14 +196,23 @@ namespace LottoSend.com.FrontEndObj.Common
         /// <summary>
         /// Provides payment with offline charge
         /// </summary>
-        public void PayWithOfflineCharge()
+        public void PayWithOfflineCharge(bool newCombinedPage = false)
         {
             Thread.Sleep(TimeSpan.FromSeconds(1));
-            WaitForElement(_offline, 10);
-            Thread.Sleep(TimeSpan.FromSeconds(1));
-            _offline.Click();
-            WaitjQuery();
 
+            if (newCombinedPage)
+            {
+                MerchantsCombinedSectionObj newSection = new MerchantsCombinedSectionObj(Driver);
+                newSection.ClickOnMerchant(WayToPay.Offline);
+            }
+            else
+            {
+                WaitForElement(_offline, 10);
+                Thread.Sleep(TimeSpan.FromSeconds(1));
+                _offline.Click();
+            }
+
+            WaitjQuery();
             _fillInFields();
         }
 
@@ -225,6 +234,33 @@ namespace LottoSend.com.FrontEndObj.Common
            
         }
 
+        public void PayWithInvoice()
+        {
+            IWebElement SecurityNumber = Driver.FindElement(By.CssSelector("#payment_transaction_nsn"));
+            SecurityNumber.SendKeys(RandomGenerator.GenerateNumber(10, 1000000000).ToString());
+        }
+
+
+        /// <summary>
+        /// Approves of fails an offline/invoice order
+        /// </summary>
+        /// <param name="isFailed"></param>
+        private void ProcessOrder(bool isFailed)
+        {
+            CommonActions commonActions = new CommonActions(Driver);
+
+            commonActions.SignIn_in_admin_panel();
+            commonActions.Authorize_the_first_payment();
+            if (!isFailed)
+            {
+                commonActions.Approve_offline_payment();
+            }
+            else
+            {
+                commonActions.Fail_offline_payment();
+            }
+        }
+
         /// <summary>
         /// Pays for whatever using selected merchant (also able to fail payment)
         /// </summary>
@@ -233,41 +269,38 @@ namespace LottoSend.com.FrontEndObj.Common
         /// <param name="isFailed">To fail or not</param>
         public void Pay(WayToPay merchant, bool ifProcess = true, bool isFailed = false)
         {
-            MerchantsObj merchantsObj = new MerchantsObj(Driver);
+            if (merchant == WayToPay.Invoice)
+            {
+                PayWithInvoice();
+
+                if (ifProcess)
+                {
+                    ProcessOrder(isFailed);
+                }
+            }
 
             if (merchant == WayToPay.Skrill)
             {
-                merchantsObj.PayWithSkrill();
+                PayWithSkrill();
             }
 
             if (merchant == WayToPay.TrustPay)
             {
-                merchantsObj.PayWithTrustPay(!isFailed);
+                PayWithTrustPay(!isFailed);
             }
 
             if (merchant == WayToPay.Neteller)
             {
-                merchantsObj.PayWithNeteller();
+                PayWithNeteller();
             }
 
             if (merchant == WayToPay.Offline)
             {
-                merchantsObj.PayWithOfflineCharge();
+                PayWithOfflineCharge();
 
                 if (ifProcess)
                 {
-                    CommonActions commonActions = new CommonActions(Driver);
-
-                    commonActions.SignIn_in_admin_panel();
-                    commonActions.Authorize_the_first_payment();
-                    if (!isFailed)
-                    {
-                        commonActions.Approve_offline_payment();
-                    }
-                    else
-                    {
-                        commonActions.Fail_offline_payment();
-                    }
+                    ProcessOrder(isFailed);
                 }
             }
         }
