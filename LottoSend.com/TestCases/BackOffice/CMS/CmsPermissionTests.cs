@@ -21,7 +21,7 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
         /// <summary>
         /// Checks if a use that has crosslabel permission can't change content of other sites not assigned to him
         /// </summary>
-        [Test]
+       // [Test]
         [Category("Critical")]
         public void CMS_Crosslabel_Permission_Not_Assigned_Sites()
         {
@@ -52,7 +52,7 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
         /// <summary>
         /// Checks if a use that has crosslabel permission can change conten of assigned to him sites changing only 1 key
         /// </summary>
-        [Test]
+        //[Test]
         [Category("Critical")]
         public void CMS_Crosslabel_Permission_Assigned_Sites()
         {

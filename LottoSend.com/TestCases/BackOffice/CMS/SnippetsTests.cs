@@ -21,7 +21,7 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
         /// <summary>
         /// Searches a key on the "snippets" page by content and checks how many results are found (should be 1)
         /// </summary>
-        [Test]
+       // [Test]
         [Category("Critical")]
         [Category("Parallel")]
         public void Search_Snippet_By_Content()
@@ -47,7 +47,7 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
         /// <summary>
         /// Searches a key on the snippets page and checks how many results are found (should be 1)
         /// </summary>
-        [Test]
+       // [Test]
         [Category("Critical")]
         [Category("Parallel")]
         public void Search_Snippet_By_Key()
@@ -64,7 +64,7 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
         /// <summary>
         /// Edits a snippet's content and checks if it was updated using "mass edit" function
         /// </summary>
-        [Test]
+        //[Test]
         [Category("Critical")]
         [Category("Parallel")]
         public void MassEdit_Snippet_Content()
@@ -85,7 +85,7 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
         /// <summary>
         /// Edits a snippet's content and checks if it was updated using "Edit +" function 
         /// </summary>
-        [Test]
+        //[Test]
         [Category("Critical")]
         [Category("Parallel")]
         public void EditPlus_Snippet_Content()
@@ -106,7 +106,7 @@ namespace LottoSend.com.TestCases.BackOffice.CMS
         /// <summary>
         /// Edits a snippet's content and checks if it was updated
         /// </summary>
-        [Test]
+        //[Test]
         [Category("Critical")]
         [Category("Parallel")]
         [Category("CMS")]
