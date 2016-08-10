@@ -1,11 +1,11 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using LottoSend.com.FrontEndObj.Common;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
 
-namespace LottoSend.com.FrontEndObj
+namespace LottoSend.com.FrontEndObj.Cart
 {
     /// <summary>
     /// Page Object of the cart page (front)

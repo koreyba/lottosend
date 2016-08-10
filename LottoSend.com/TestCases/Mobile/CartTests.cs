@@ -1,5 +1,5 @@
 ﻿using System;
-using LottoSend.com.FrontEndObj;
+using LottoSend.com.FrontEndObj.Cart;
 using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.Helpers;
 using LottoSend.com.Verifications;
@@ -181,7 +181,6 @@ namespace LottoSend.com.TestCases.Mobile
             CartObj cart = new CartObj(_driver);
             cart.DeleteRaffleTicket_Mobile("Cart Raffle");
 
-            _cartVerifications.CheckIfTicketIsNotInCart("Cart Raffle");
             _cartVerifications.CheckNumberOfTicketsInCart_Front(0);
         }
 
@@ -210,10 +209,6 @@ namespace LottoSend.com.TestCases.Mobile
             cart.DeleteTicket_Mobile("EuroMillions");
             cart.DeleteTicket_Mobile("Powerball");
 
-            //Check if tickets are still present
-            _cartVerifications.CheckIfTicketIsNotInCart("EuroMillions");
-            _cartVerifications.CheckIfTicketIsNotInCart("Powerball");
-
             _cartVerifications.CheckNumberOfTicketsInCart_Front(0);
         }
 
@@ -238,8 +233,6 @@ namespace LottoSend.com.TestCases.Mobile
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "carts/");
             CartObj cart = new CartObj(_driver);
             cart.DeleteTicket_Mobile("EuroJackpot");
-
-            _cartVerifications.CheckIfTicketIsNotInCart("EuroJackpot");
             _cartVerifications.CheckNumberOfTicketsInCart_Front(0);
         }
 

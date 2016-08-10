@@ -1,5 +1,5 @@
 ﻿using System.Text;
-using LottoSend.com.FrontEndObj;
+using LottoSend.com.FrontEndObj.Cart;
 using LottoSend.com.TestCases;
 using NUnit.Framework;
 using OpenQA.Selenium;

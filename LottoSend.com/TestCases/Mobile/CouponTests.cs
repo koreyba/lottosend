@@ -1,5 +1,5 @@
 ﻿using System;
-using LottoSend.com.FrontEndObj;
+using LottoSend.com.FrontEndObj.Cart;
 using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.Helpers;
 using NUnit.Framework;

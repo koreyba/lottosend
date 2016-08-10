@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Threading;
-using LottoSend.com.FrontEndObj.Common;
-using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.Helpers;
 using LottoSend.com.Verifications;
 using NUnit.Framework;

@@ -1,5 +1,5 @@
 ﻿using System;
-using LottoSend.com.FrontEndObj;
+using LottoSend.com.FrontEndObj.Cart;
 using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.Helpers;
 using LottoSend.com.Verifications;
@@ -231,13 +231,10 @@ namespace LottoSend.com.TestCases.Web
             }
 
             _commonActions.AddRaffleTicketToCart_Front(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
-            _cartVerifications.CheckNumberOfTicketsInCart_Front(1);
 
             //Remove tickets
             CartObj cart = new CartObj(_driver);
             cart.DeleteTicket_Web("Cart Raffle");
-
-            _cartVerifications.CheckIfTicketIsNotInCart("Cart Raffle");
             _cartVerifications.CheckNumberOfTicketsInCart_Front(0);
         }
 
@@ -266,10 +263,6 @@ namespace LottoSend.com.TestCases.Web
             cart.DeleteTicket_Web("EuroMillions");
             cart.DeleteTicket_Web("Powerball");
 
-            //Check if tickets are still present
-            _cartVerifications.CheckIfTicketIsNotInCart("EuroMillions");
-            _cartVerifications.CheckIfTicketIsNotInCart("Powerball");
-
             _cartVerifications.CheckNumberOfTicketsInCart_Front(0);
         }
 
@@ -294,8 +287,6 @@ namespace LottoSend.com.TestCases.Web
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "carts/");
             CartObj cart = new CartObj(_driver);
             cart.DeleteTicket_Web("EuroJackpot");
-
-            _cartVerifications.CheckIfTicketIsNotInCart("EuroJackpot");
             _cartVerifications.CheckNumberOfTicketsInCart_Front(0);
         }
 

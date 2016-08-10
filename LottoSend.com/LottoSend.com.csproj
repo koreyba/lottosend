@@ -154,6 +154,7 @@
     <Compile Include="BackEndObj\SiteEditingPageObj.cs" />
     <Compile Include="BackEndObj\TransactionsObj.cs" />
     <Compile Include="BackEndObj\WebUsersPages\WebUsersPageObj.cs" />
+    <Compile Include="FrontEndObj\Cart\CartCombinedWebObj.cs" />
     <Compile Include="FrontEndObj\Common\ExpressCheckoutObj.cs" />
     <Compile Include="FrontEndObj\Common\CheckoutObj.cs" />
     <Compile Include="FrontEndObj\Common\MerchantsCombinedSectionObj.cs" />
@@ -215,7 +216,7 @@
     <Compile Include="Debugger.cs" />
     <Compile Include="DriverCover.cs" />
     <Compile Include="FrontEndObj\Common\BottomMenuObj.cs" />
-    <Compile Include="FrontEndObj\CartObj.cs" />
+    <Compile Include="FrontEndObj\Cart\CartObj.cs" />
     <Compile Include="FrontEndObj\GamePages\GroupGamePageObj.cs" />
     <Compile Include="FrontEndObj\GamePages\RafflesPageObj.cs" />
     <Compile Include="FrontEndObj\GamePages\RegularGamePageObj.cs" />

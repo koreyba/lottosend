@@ -14,7 +14,7 @@ using LottoSend.com.FrontEndObj.Login;
 using LottoSend.com.FrontEndObj.MyAccount;
 using LottoSend.com.FrontEndObj.SignUp;
 using OpenQA.Selenium;
-using CartObj = LottoSend.com.FrontEndObj.CartObj;
+using CartObj = LottoSend.com.FrontEndObj.Cart.CartObj;
 
 
 namespace LottoSend.com.TestCases

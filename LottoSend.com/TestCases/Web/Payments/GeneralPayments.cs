@@ -2,7 +2,6 @@
 using LottoSend.com.FrontEndObj.Common;
 using LottoSend.com.FrontEndObj.GamePages;
 using LottoSend.com.Helpers;
-using LottoSend.com.Verifications;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;

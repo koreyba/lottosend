@@ -1,8 +1,4 @@
-﻿using System;
-using System.Dynamic;
-using System.Security.Cryptography.X509Certificates;
-using LottoSend.com;
-using LottoSend.com.BackEndObj.ChargePanelPages;
+﻿using LottoSend.com.BackEndObj.ChargePanelPages;
 using LottoSend.com.BackEndObj.RegularTicketsPages;
 using LottoSend.com.TestCases;
 using OpenQA.Selenium;
