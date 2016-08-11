@@ -190,6 +190,7 @@
     <Compile Include="TestCases\BackOffice\SalesPanel\PromotionTests.cs" />
     <Compile Include="TestCases\BackOffice\SalesPanel\SignInUpTests.cs" />
     <Compile Include="BackEndObj\WebUsersPages\ViewWebUserPageObj.cs" />
+    <Compile Include="TestCases\ConfigTests.cs" />
     <Compile Include="TestCases\Mobile\CartTests.cs" />
     <Compile Include="TestCases\Mobile\CouponTests.cs" />
     <Compile Include="TestCases\Mobile\DepositPageTests.cs" />

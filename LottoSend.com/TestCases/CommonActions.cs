@@ -34,6 +34,28 @@ namespace LottoSend.com.TestCases
         }
 
         /// <summary>
+        /// Switches on the combined payment page for a site
+        /// </summary>
+        public void SwitchOnCombinedPaymentPage()
+        {
+            SignIn_in_admin_panel();
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/sites/1/edit");
+            SiteEditingPageObj siteEditing = new SiteEditingPageObj(_driver);
+            siteEditing.SwitchCombinedPageOn();
+        }
+
+        /// <summary>
+        /// Switches on the combined payment page for a site
+        /// </summary>
+        public void SwitchOffCombinedPaymentPage()
+        {
+            SignIn_in_admin_panel();
+            _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/sites/1/edit");
+            SiteEditingPageObj siteEditing = new SiteEditingPageObj(_driver);
+            siteEditing.SwitchCombinedPageOff();
+        }
+
+        /// <summary>
         /// Goes to admin/sites page and clears cache of a selected site. Doesn't provide with admin login
         /// </summary>
         /// <param name="sitesName"></param>
@@ -545,7 +567,7 @@ namespace LottoSend.com.TestCases
 
 
         /// <summary>
-        /// Goes to admin panel and authorize
+        /// Goes to admin panel and authorizes
         /// </summary>
         public void SignIn_in_admin_panel()
         {

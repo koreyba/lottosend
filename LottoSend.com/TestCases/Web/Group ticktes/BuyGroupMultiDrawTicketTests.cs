@@ -50,6 +50,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
 
             try
             {
+                _commonActions.SwitchOffCombinedPaymentPage();
                 Buy_Group_Multi_Draw_Ticket(_merchant);
             }
             catch (Exception e)

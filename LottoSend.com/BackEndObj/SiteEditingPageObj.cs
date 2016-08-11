@@ -21,11 +21,40 @@ namespace LottoSend.com.BackEndObj
             PageFactory.InitElements(Driver, this);
         }
 
+        [FindsBy(How = How.XPath, Using = "//input[@id='site_combined_page']")]
+        private IWebElement _combinedPageCheckBox;
+
         [FindsBy(How = How.CssSelector, Using = "#site_default_deposit_input li input")]
         private IList<IWebElement> _defaultdDepositAmounts;
 
         [FindsBy(How = How.CssSelector, Using = "form[id*=edit_site] > input[type='submit']")]
         private IWebElement _updateSiteButton;
+
+        /// <summary>
+        /// Switches on the "Combined Page" checkbox
+        /// </summary>
+        public void SwitchCombinedPageOn()
+        {
+            if (!IfCheckBoxIsChecked(_combinedPageCheckBox))
+            {
+                _combinedPageCheckBox.Click();
+            }
+            _updateSiteButton.Click();
+            WaitForPageLoading();
+        }
+
+        /// <summary>
+        /// Switches off the "Combined Page" checkbox
+        /// </summary>
+        public void SwitchCombinedPageOff()
+        {
+            if (IfCheckBoxIsChecked(_combinedPageCheckBox))
+            {
+                _combinedPageCheckBox.Click();
+            }
+            _updateSiteButton.Click();
+            WaitForPageLoading();
+        }
 
         /// <summary>
         /// Selects default deposit amound and updates the page

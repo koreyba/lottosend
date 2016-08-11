@@ -30,6 +30,7 @@ namespace LottoSend.com.TestCases.Web
         [Category("Parallel")]
         public void If_Share_Removed_From_Cart_Returns_To_Ticket()
         {
+            _commonActions.SwitchOffCombinedPaymentPage();
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/raffles/test/");
 
             RafflesPageObj rafflePage = new RafflesPageObj(_driver);
