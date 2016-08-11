@@ -54,21 +54,7 @@ namespace LottoSend.com.Helpers
             MessageConsoleCreator message = new MessageConsoleCreator(); 
             message.DriverDisposed(); 
             driver.Dispose();
-            try
-            {
-                Process[] chromeDriverProcesses = Process.GetProcessesByName("chromedriver");
-
-                foreach (var chromeDriverProcess in chromeDriverProcesses)
-                {
-                    chromeDriverProcess.Kill();
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.HResult);
-            }
-            
-
+         
             if (OrderVerifications.Errors.Length > 0)
             {
                 Assert.Fail(OrderVerifications.Errors.ToString());

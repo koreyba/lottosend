@@ -233,6 +233,7 @@ namespace LottoSend.com.TestCases.Web
             _commonActions.AddRaffleTicketToCart_Front(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
 
             //Remove tickets
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/carts/");
             CartObj cart = new CartObj(_driver);
             cart.DeleteTicket_Web("Cart Raffle");
             _cartVerifications.CheckNumberOfTicketsInCart_Front(0);

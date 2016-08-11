@@ -178,6 +178,7 @@ namespace LottoSend.com.TestCases.Mobile
             _cartVerifications.CheckNumberOfTicketsInCart_Front(1);
 
             //Remove tickets
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/carts/");
             CartObj cart = new CartObj(_driver);
             cart.DeleteRaffleTicket_Mobile("Cart Raffle");
 
