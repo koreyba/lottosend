@@ -1,10 +1,11 @@
 ﻿using System;
-using LottoSend.com.FrontEndObj.GamePages;
-using LottoSend.com.Helpers;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using TestFramework;
+using TestFramework.FrontEndObj.GamePages;
+using TestFramework.Helpers;
 
 namespace LottoSend.com.TestCases.Web
 {

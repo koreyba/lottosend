@@ -1,15 +1,15 @@
 ﻿using System;
-using LottoSend.com.BackEndObj.WebUsersPages;
-using LottoSend.com.FrontEndObj;
-using LottoSend.com.FrontEndObj.Common;
-using LottoSend.com.FrontEndObj.GamePages;
-using LottoSend.com.FrontEndObj.Login;
-using LottoSend.com.Helpers;
 using LottoSend.com.Verifications;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using TestFramework;
+using TestFramework.BackEndObj.WebUsersPages;
+using TestFramework.FrontEndObj.Common;
+using TestFramework.FrontEndObj.GamePages;
+using TestFramework.FrontEndObj.Login;
+using TestFramework.Helpers;
 
 namespace LottoSend.com.TestCases.Web
 {

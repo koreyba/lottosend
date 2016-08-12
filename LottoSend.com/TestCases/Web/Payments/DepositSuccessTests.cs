@@ -1,11 +1,12 @@
 ﻿using System;
-using LottoSend.com.FrontEndObj.MyAccount;
-using LottoSend.com.Helpers;
 using LottoSend.com.Verifications;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using TestFramework;
+using TestFramework.FrontEndObj.MyAccount;
+using TestFramework.Helpers;
 
 namespace LottoSend.com.TestCases.Web.Payments
 {

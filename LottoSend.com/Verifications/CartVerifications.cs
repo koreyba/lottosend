@@ -1,8 +1,8 @@
 ﻿using System.Text;
-using LottoSend.com.FrontEndObj.Cart;
-using LottoSend.com.TestCases;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using TestFramework;
+using TestFramework.FrontEndObj.Cart;
 
 namespace LottoSend.com.Verifications
 {
@@ -46,7 +46,7 @@ namespace LottoSend.com.Verifications
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/orders");
 
             //Check number of elemetns in the cart
-            BackEndObj.SalesPanelPages.CartObj cart = new BackEndObj.SalesPanelPages.CartObj(_driver);
+            TestFramework.BackEndObj.SalesPanelPages.CartObj cart = new TestFramework.BackEndObj.SalesPanelPages.CartObj(_driver);
             Assert.AreEqual(expected, cart.NumberOfTickets, "There are " + cart.NumberOfTickets + " group tickets in the cart, but " + expected + " were expected ");
         } 
             

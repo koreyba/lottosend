@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LottoSend.com", "LottoSend.com\LottoSend.com.csproj", "{EA5C697F-0B71-46BD-B6F8-DB31A24C7386}"
 EndProject
@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{69A8AF
 	ProjectSection(SolutionItems) = preProject
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestFramework", "PageObjects\TestFramework.csproj", "{DF648A6F-5CB5-437D-86F1-EB784203BBA0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,6 +22,10 @@ Global
 		{EA5C697F-0B71-46BD-B6F8-DB31A24C7386}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA5C697F-0B71-46BD-B6F8-DB31A24C7386}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA5C697F-0B71-46BD-B6F8-DB31A24C7386}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF648A6F-5CB5-437D-86F1-EB784203BBA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF648A6F-5CB5-437D-86F1-EB784203BBA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF648A6F-5CB5-437D-86F1-EB784203BBA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF648A6F-5CB5-437D-86F1-EB784203BBA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

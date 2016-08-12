@@ -1,9 +1,9 @@
 ﻿using System.Text;
-using LottoSend.com.BackEndObj.GroupGapePages;
-using LottoSend.com.BackEndObj.SalesPanelPages;
-using LottoSend.com.TestCases;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using TestFramework;
+using TestFramework.BackEndObj.GroupGapePages;
+using TestFramework.BackEndObj.SalesPanelPages;
 
 namespace LottoSend.com.Verifications
 {

@@ -1,9 +1,9 @@
 ﻿using System.Text;
-using LottoSend.com.BackEndObj.WebUsersPages;
-using LottoSend.com.FrontEndObj.MyAccount;
-using LottoSend.com.TestCases;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using TestFramework;
+using TestFramework.BackEndObj.WebUsersPages;
+using TestFramework.FrontEndObj.MyAccount;
 
 namespace LottoSend.com.Verifications
 {

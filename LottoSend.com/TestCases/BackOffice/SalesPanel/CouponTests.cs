@@ -1,9 +1,11 @@
 ﻿using System;
-using LottoSend.com.Helpers;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using TestFramework;
+using TestFramework.BackEndObj.SalesPanelPages;
+using TestFramework.Helpers;
 
 namespace LottoSend.com.TestCases.BackOffice.SalesPanel
 {
@@ -33,7 +35,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             _commonActions.AddRegularOneDrawTicketToCart_SalesPanel("SuperLotto Plus");
             _commonActions.AddRaffleTicketToCart_SalesPanel("Loteria de Navidad");
 
-            BackEndObj.SalesPanelPages.CartObj cart = _commonActions.ApplyCouponInCart_SalesPanel(code);
+            CartObj cart = _commonActions.ApplyCouponInCart_SalesPanel(code);
             cart.PayWithInternalBalance();
         }
 
@@ -51,7 +53,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
 
             _commonActions.AddRaffleTicketToCart_SalesPanel("Loteria de Navidad");
 
-            BackEndObj.SalesPanelPages.CartObj cart = new BackEndObj.SalesPanelPages.CartObj(_driver);
+            CartObj cart = new CartObj(_driver);
             double totalPrice = cart.TotalPrice; //take price before applying a coupon
 
             cart = _commonActions.ApplyCouponInCart_SalesPanel(code); //apply a coupon
@@ -79,7 +81,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             _commonActions.AddRegularOneDrawTicketToCart_SalesPanel("SuperLotto Plus");
             _commonActions.AddRaffleTicketToCart_SalesPanel("Loteria de Navidad");
 
-            BackEndObj.SalesPanelPages.CartObj cart = new BackEndObj.SalesPanelPages.CartObj(_driver);
+            CartObj cart = new CartObj(_driver);
             double subTotalPrice = cart.TotalPrice;
 
             cart = _commonActions.ApplyCouponInCart_SalesPanel(code);

@@ -1,11 +1,12 @@
 ﻿using System;
-using LottoSend.com.BackEndObj.ClientOrderPricessing;
-using LottoSend.com.BackEndObj.WebUsersPages;
-using LottoSend.com.Helpers;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using TestFramework;
+using TestFramework.BackEndObj.ClientOrderPricessing;
+using TestFramework.BackEndObj.WebUsersPages;
+using TestFramework.Helpers;
 
 namespace LottoSend.com.TestCases.BackOffice
 {

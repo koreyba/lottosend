@@ -1,6 +1,8 @@
 ﻿using System;
 using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using TestFramework;
 
 namespace LottoSend.com.TestCases
 {
@@ -13,16 +15,16 @@ namespace LottoSend.com.TestCases
         [OneTimeSetUp]
         public void RunBeforeAnyTests()
         {
-            ChromeDriver chrome = new ChromeDriver();
+            IWebDriver driver = new ChromeDriver();
             try
             {
-                CommonActions actions = new CommonActions(chrome);
+                CommonActions actions = new CommonActions(driver);
                 actions.SwitchOffCombinedPaymentPage();
-                chrome.Dispose();
+                driver.Dispose();
             }
             catch (Exception)
             {
-               chrome.Dispose();
+               driver.Dispose();
             }
         }
     }

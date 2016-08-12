@@ -1,11 +1,12 @@
 ﻿using System;
-using LottoSend.com.FrontEndObj.Cart;
-using LottoSend.com.FrontEndObj.Common;
-using LottoSend.com.Helpers;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using TestFramework;
+using TestFramework.FrontEndObj.Cart;
+using TestFramework.FrontEndObj.Common;
+using TestFramework.Helpers;
 
 namespace LottoSend.com.TestCases.Mobile
 {

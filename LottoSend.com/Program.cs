@@ -1,8 +1,8 @@
-﻿using LottoSend.com.BackEndObj.ChargePanelPages;
-using LottoSend.com.BackEndObj.RegularTicketsPages;
-using LottoSend.com.TestCases;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using TestFramework;
+using TestFramework.BackEndObj.ChargePanelPages;
+using TestFramework.BackEndObj.RegularTicketsPages;
 
 namespace LottoSend.com
 {

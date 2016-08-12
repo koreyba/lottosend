@@ -110,62 +110,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BackEndObj\RegularTicketsPages\NewBulkRegularTicketForm.cs" />
-    <Compile Include="BackEndObj\RegularTicketsPages\PackagesPageObj.cs" />
-    <Compile Include="BackEndObj\SitesObj.cs" />
-    <Compile Include="BackEndObj\WebUsersPages\BetsPageObj.cs" />
-    <Compile Include="BackEndObj\BulkBuysPageObj.cs" />
-    <Compile Include="BackEndObj\ClientOrderPricessing\ChargeBackFormObj.cs" />
-    <Compile Include="BackEndObj\ChargePanelPages\ChargeFormObj.cs" />
-    <Compile Include="BackEndObj\ChargePanelPages\ChargePanelObj.cs" />
-    <Compile Include="BackEndObj\CMS\CMSPanelObj.cs" />
-    <Compile Include="BackEndObj\CMS\EditingPages.cs" />
-    <Compile Include="BackEndObj\CMS\EditPageObj.cs" />
-    <Compile Include="BackEndObj\CMS\EditSnippetObj.cs" />
-    <Compile Include="BackEndObj\CMS\EditTranslationObj.cs" />
-    <Compile Include="BackEndObj\CMS\MassEditPageObj.cs" />
-    <Compile Include="BackEndObj\CMS\NewPageObj.cs" />
-    <Compile Include="BackEndObj\CMS\KeysPageObj.cs" />
-    <Compile Include="BackEndObj\DrawPages\DrawObj.cs" />
-    <Compile Include="BackEndObj\DrawPages\DrawsObj.cs" />
-    <Compile Include="BackEndObj\GroupGapePages\GroupsPageObj.cs" />
-    <Compile Include="BackEndObj\GroupGapePages\NewGroupCreationObj.cs" />
-    <Compile Include="BackEndObj\GroupGapePages\NewGroupTicketCreationObj.cs" />
-    <Compile Include="BackEndObj\LoginObj.cs" />
-    <Compile Include="BackEndObj\RegularTicketsPages\NewPackagePageObj.cs" />
-    <Compile Include="BackEndObj\ManualMatchPages\NewScannedImageObj.cs" />
-    <Compile Include="BackEndObj\WebUsersPages\NewWebUserPageObj.cs" />
-    <Compile Include="BackEndObj\ClientOrderPricessing\OrderProcessingObj.cs" />
-    <Compile Include="BackEndObj\PanelMenuObj.cs" />
-    <Compile Include="BackEndObj\RafflePages\RaffleDashboardPageObj.cs" />
-    <Compile Include="BackEndObj\RafflePages\RaffleLotteryCreationPage.cs" />
-    <Compile Include="BackEndObj\RafflePages\RaffleTicketCreationPageObj.cs" />
-    <Compile Include="BackEndObj\SalesPanelPages\CcDetailsObj.cs" />
-    <Compile Include="BackEndObj\SalesPanelPages\DepositBoxObj.cs" />
-    <Compile Include="BackEndObj\SalesPanelPages\GroupGameObj.cs" />
-    <Compile Include="BackEndObj\SalesPanelPages\MenuObj.cs" />
-    <Compile Include="BackEndObj\SalesPanelPages\RafflePageObj.cs" />
-    <Compile Include="BackEndObj\SalesPanelPages\CartObj.cs" />
-    <Compile Include="BackEndObj\SalesPanelPages\RegisterObj.cs" />
-    <Compile Include="BackEndObj\SalesPanelPages\ResetPasswordTabObj.cs" />
-    <Compile Include="BackEndObj\SalesPanelPages\RegularGameObj.cs" />
-    <Compile Include="BackEndObj\SalesPanelPages\TabsObj.cs" />
-    <Compile Include="BackEndObj\ManualMatchPages\ScannedImagesObj.cs" />
-    <Compile Include="BackEndObj\SiteEditingPageObj.cs" />
-    <Compile Include="BackEndObj\TransactionsObj.cs" />
-    <Compile Include="BackEndObj\WebUsersPages\WebUsersPageObj.cs" />
-    <Compile Include="FrontEndObj\Cart\CartCombinedWebObj.cs" />
-    <Compile Include="FrontEndObj\Common\ExpressCheckoutObj.cs" />
-    <Compile Include="FrontEndObj\Common\CheckoutObj.cs" />
-    <Compile Include="FrontEndObj\Common\MerchantsCombinedSectionObj.cs" />
-    <Compile Include="FrontEndObj\Login\SignInPageTwoObjcs.cs" />
-    <Compile Include="FrontEndObj\MyAccount\DepositMobileObj.cs" />
-    <Compile Include="FrontEndObj\OnlineMerchantsObj.cs" />
-    <Compile Include="FrontEndObj\SignUp\SignUpForm.cs" />
-    <Compile Include="FrontEndObj\SignUp\SignUpNewForm.cs" />
-    <Compile Include="FrontEndObj\SignUp\SignUpPageTwo.cs" />
-    <Compile Include="Helpers\MessageCreator.cs" />
-    <Compile Include="Helpers\TestsSharedCode.cs" />
     <Compile Include="TestCases\BackOffice\BackOfficeTests.cs" />
     <Compile Include="TestCases\BackOffice\BlackListTests.cs" />
     <Compile Include="TestCases\BackOffice\CMS\CmsPermissionTests.cs" />
@@ -189,7 +133,6 @@
     <Compile Include="TestCases\BackOffice\SalesPanel\PasswordRecoveryTests.cs" />
     <Compile Include="TestCases\BackOffice\SalesPanel\PromotionTests.cs" />
     <Compile Include="TestCases\BackOffice\SalesPanel\SignInUpTests.cs" />
-    <Compile Include="BackEndObj\WebUsersPages\ViewWebUserPageObj.cs" />
     <Compile Include="TestCases\ConfigTests.cs" />
     <Compile Include="TestCases\Mobile\CartTests.cs" />
     <Compile Include="TestCases\Mobile\CouponTests.cs" />
@@ -214,27 +157,8 @@
     <Compile Include="TestCases\WebApiTests.cs" />
     <Compile Include="Verifications\BackOfficeVerifications.cs" />
     <Compile Include="Verifications\BalanceVerifications.cs" />
-    <Compile Include="Debugger.cs" />
-    <Compile Include="DriverCover.cs" />
-    <Compile Include="FrontEndObj\Common\BottomMenuObj.cs" />
-    <Compile Include="FrontEndObj\Cart\CartObj.cs" />
-    <Compile Include="FrontEndObj\GamePages\GroupGamePageObj.cs" />
-    <Compile Include="FrontEndObj\GamePages\RafflesPageObj.cs" />
-    <Compile Include="FrontEndObj\GamePages\RegularGamePageObj.cs" />
-    <Compile Include="FrontEndObj\Login\LogInPopUpObj.cs" />
-    <Compile Include="FrontEndObj\Login\SignInPageOneObj.cs" />
-    <Compile Include="FrontEndObj\Common\MerchantsObj.cs" />
-    <Compile Include="FrontEndObj\GamePages\OfflineChargeFormObj.cs" />
-    <Compile Include="FrontEndObj\MyAccount\DepositObj.cs" />
-    <Compile Include="FrontEndObj\MyAccount\TransactionObj.cs" />
-    <Compile Include="FrontEndObj\SignUp\SignUpPageOneObj.cs" />
-    <Compile Include="FrontEndObj\SignUp\SignUpPopUpObj.cs" />
-    <Compile Include="FrontEndObj\SignUp\SignUpSuccessObj.cs" />
-    <Compile Include="FrontEndObj\Common\TopBarObj.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RandomGenerator.cs" />
-    <Compile Include="StringExtention.cs" />
     <Compile Include="TestCases\Web\BuyRaffleTicketTests.cs" />
     <Compile Include="TestCases\Web\Group ticktes\BuyGroupMultiDrawTicketTests.cs" />
     <Compile Include="TestCases\Web\Group ticktes\BuyGroupOneDrawTicketTests.cs" />
@@ -242,12 +166,10 @@
     <Compile Include="TestCases\Web\Regular tickets\BuyRegularMultiDrawTicketTests.cs" />
     <Compile Include="TestCases\Web\Regular tickets\BuyRegularOneDrawTicketTests.cs" />
     <Compile Include="TestCases\Web\CartTests.cs" />
-    <Compile Include="TestCases\CommonActions.cs" />
     <Compile Include="TestCases\Web\LogInTests.cs" />
     <Compile Include="Verifications\CartVerifications.cs" />
     <Compile Include="Verifications\OrderVerifications.cs" />
     <Compile Include="TestCases\Web\SignUpTests.cs" />
-    <Compile Include="Emuns.cs" />
     <Compile Include="Verifications\WebUserVerifications.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -263,9 +185,6 @@
     <Content Include="..\packages\Chromium.ChromeDriver.2.21\content\chromedriver.exe">
       <Link>chromedriver.exe</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\scannedimage2.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
@@ -285,7 +204,12 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\PageObjects\TestFramework.csproj">
+      <Project>{df648a6f-5cb5-437d-86f1-eb784203bba0}</Project>
+      <Name>TestFramework</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

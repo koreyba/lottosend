@@ -1,8 +1,8 @@
 ﻿using System.Text;
-using LottoSend.com.FrontEndObj;
-using LottoSend.com.TestCases;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using TestFramework;
+using TestFramework.FrontEndObj.Common;
 
 namespace LottoSend.com.Verifications
 {

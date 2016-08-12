@@ -1,12 +1,13 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
-using LottoSend.com.BackEndObj.ManualMatchPages;
-using LottoSend.com.Helpers;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using TestFramework;
+using TestFramework.BackEndObj.ManualMatchPages;
+using TestFramework.Helpers;
 
 namespace LottoSend.com.TestCases.BackOffice
 {
