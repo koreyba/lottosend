@@ -32,7 +32,7 @@ namespace TestFramework.FrontEndObj.Cart
         /// Removes ticket from the cart found by name of a lottery
         /// </summary>
         /// <param name="lottery"></param>
-        public void DeleteTicket(string lottery)
+        public override void DeleteTicket(string lottery)
         {
             IWebElement tr = _findTrOfTicket(lottery);
             tr.FindElement(By.CssSelector("td.text-center > form > input.btn.btn-info.btn-block")).Click();

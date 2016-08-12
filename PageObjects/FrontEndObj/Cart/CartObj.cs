@@ -14,11 +14,6 @@ namespace TestFramework.FrontEndObj.Cart
     {
         public CartObj(IWebDriver driver) : base(driver)
         {
-            if (Driver.FindElements(By.CssSelector("table.table.table-striped")).Count <= 0)
-            {
-                throw new Exception("It's not the cart page");
-            }
-
             PageFactory.InitElements(Driver, this);
         }
 

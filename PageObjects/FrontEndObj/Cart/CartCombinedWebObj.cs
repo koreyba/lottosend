@@ -48,7 +48,7 @@ namespace TestFramework.FrontEndObj.Cart
             IWebElement tr = _findTrOfTicket(lottery);
             tr.FindElement(By.XPath(xPathFromTrToTrashIcon)).Click();
             bool m = WaitAjax();
-            _yesImSureButton.Click();
+            WaitForElement(_yesImSureButton, 5).Click();
             WaitAjax();
             WaitForPageLoading();
         }

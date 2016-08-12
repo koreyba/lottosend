@@ -6,6 +6,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using TestFramework;
 using TestFramework.BackEndObj.SalesPanelPages;
+using TestFramework.FrontEndObj.Cart;
 using TestFramework.Helpers;
 
 namespace LottoSend.com.TestCases.BackOffice.SalesPanel
