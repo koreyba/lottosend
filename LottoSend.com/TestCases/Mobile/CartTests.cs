@@ -1,5 +1,6 @@
 ﻿using System;
 using LottoSend.com.Verifications;
+using NewCombinedPageConfigTests.CommonActions;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
@@ -30,6 +31,7 @@ namespace LottoSend.com.TestCases.Mobile
         private CartVerifications _cartVerifications;
         private bool _setUpFailed = false;
         private TestsSharedCode _sharedCode;
+        private CartActions _cartActions;
 
         public CartTests(string device)
         {
@@ -63,7 +65,7 @@ namespace LottoSend.com.TestCases.Mobile
 
             if (toSignIn)
             {
-                _commonActions.DeleteAllTicketFromCart_Front();
+                _cartActions.DeleteAllTicketFromCart_Front();
             }
         }
 
@@ -94,7 +96,7 @@ namespace LottoSend.com.TestCases.Mobile
 
             if (toSignIn)
             {
-                _commonActions.DeleteAllTicketFromCart_Front();
+                _cartActions.DeleteAllTicketFromCart_Front();
             }
         }
 
@@ -126,7 +128,7 @@ namespace LottoSend.com.TestCases.Mobile
 
             _cartVerifications.CheckNumberOfTicketsInCart_Front(3);
 
-            _commonActions.DeleteAllTicketFromCart_Front();
+            _cartActions.DeleteAllTicketFromCart_Front();
         }
 
         /// <summary>
@@ -158,7 +160,7 @@ namespace LottoSend.com.TestCases.Mobile
 
             _cartVerifications.CheckNumberOfTicketsInCart_Front(4);
 
-            _commonActions.DeleteAllTicketFromCart_Front();
+            _cartActions.DeleteAllTicketFromCart_Front();
         }
 
         /// <summary>
@@ -269,7 +271,7 @@ namespace LottoSend.com.TestCases.Mobile
                 //Removes all tickets from the cart to make sure all other tests will work well
                 try
                 {
-                    _commonActions.DeleteAllTicketFromCart_Front();
+                    _cartActions.DeleteAllTicketFromCart_Front();
                 }
                 catch (Exception)
                 {
@@ -290,6 +292,7 @@ namespace LottoSend.com.TestCases.Mobile
             _commonActions = new CommonActions(_driver);
             _cartVerifications = new CartVerifications(_driver);
             _sharedCode = new TestsSharedCode(_driver);
+            _cartActions = new CartActions(_driver);
         }
 
     }

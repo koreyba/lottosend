@@ -1,5 +1,6 @@
 ﻿using System;
 using LottoSend.com.Verifications;
+using NewCombinedPageConfigTests.CommonActions;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using NUnit.Framework;
@@ -27,6 +28,7 @@ namespace LottoSend.com.TestCases.Web
         private CartVerifications _cartVerifications;
         private bool _setUpFailed = false;
         private TestsSharedCode _sharedCode;
+        private CartActions _cartActions;
 
         /// <summary>
         /// Adds a regular ticket to the cart and changes number of draws to play. Then edits the ticket and checks if correct number of draws to play is selected.
@@ -55,7 +57,7 @@ namespace LottoSend.com.TestCases.Web
 
             if (toSignIn)
             {
-                _commonActions.DeleteAllTicketFromCart_Front();
+                _cartActions.DeleteAllTicketFromCart_Front();
             }
         }
 
@@ -86,7 +88,7 @@ namespace LottoSend.com.TestCases.Web
 
             if (toSignIn)
             {
-                _commonActions.DeleteAllTicketFromCart_Front();
+                _cartActions.DeleteAllTicketFromCart_Front();
             }
         }
 
@@ -128,8 +130,8 @@ namespace LottoSend.com.TestCases.Web
             _commonActions.AddRaffleTicketToCart_Front(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
 
             _commonActions.Log_In_Front_PageOne(_driverCover.LoginThree, _driverCover.Password);
-            _cartVerifications.CheckNumberOfTicketsInCart_Front(3);  
-            _commonActions.DeleteAllTicketFromCart_Front();
+            _cartVerifications.CheckNumberOfTicketsInCart_Front(3);
+            _cartActions.DeleteAllTicketFromCart_Front();
         }
 
         /// <summary>
@@ -151,7 +153,7 @@ namespace LottoSend.com.TestCases.Web
 
             _commonActions.Log_In_Front_PageTwo(_driverCover.LoginThree, _driverCover.Password);
             _cartVerifications.CheckNumberOfTicketsInCart_Front(3);
-            _commonActions.DeleteAllTicketFromCart_Front();
+            _cartActions.DeleteAllTicketFromCart_Front();
         }
 
         /// <summary>
@@ -182,7 +184,7 @@ namespace LottoSend.com.TestCases.Web
 
             _cartVerifications.CheckNumberOfTicketsInCart_Front(3);
 
-            _commonActions.DeleteAllTicketFromCart_Front();
+            _cartActions.DeleteAllTicketFromCart_Front();
         }
 
         /// <summary>
@@ -214,7 +216,7 @@ namespace LottoSend.com.TestCases.Web
 
             _cartVerifications.CheckNumberOfTicketsInCart_Front(4);
 
-            _commonActions.DeleteAllTicketFromCart_Front();
+            _cartActions.DeleteAllTicketFromCart_Front();
         }
 
         /// <summary>
@@ -312,7 +314,7 @@ namespace LottoSend.com.TestCases.Web
                 //Removes all tickets from the cart to make sure all other tests will work well
                 try
                 {
-                    _commonActions.DeleteAllTicketFromCart_Front();
+                    _cartActions.DeleteAllTicketFromCart_Front();
                 }
                 catch (Exception)
                 {
@@ -333,6 +335,7 @@ namespace LottoSend.com.TestCases.Web
             _commonActions = new CommonActions(_driver);
             _cartVerifications = new CartVerifications(_driver);
             _sharedCode = new TestsSharedCode(_driver);
+            _cartActions = new CartActions(_driver);
         }
     }
 }

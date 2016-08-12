@@ -20,8 +20,8 @@ namespace NewCombinedPageConfigTests.CommonActions
         /// </summary>
         public void DeleteAllTicketFromCart_Front()
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "carts/");
-            CartObj cart = new CartSiteObj(_driver);
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/payments/new/");
+            CartObj cart = new CartCombinedWebObj(_driver);
             cart.DeleteAllTickets();
         }
     }

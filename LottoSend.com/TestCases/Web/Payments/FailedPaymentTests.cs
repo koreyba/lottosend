@@ -1,5 +1,6 @@
 ﻿using System;
 using LottoSend.com.Verifications;
+using NewCombinedPageConfigTests.CommonActions;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
@@ -29,6 +30,7 @@ namespace LottoSend.com.TestCases.Web.Payments
         private BalanceVerifications _balanceVerifications;
         private bool _setUpFailed = false;
         private TestsSharedCode _sharedCode;
+        private CartActions _cartActions;
 
         /// <summary>
         /// Credit real money and store credit for a new user and makes a payment. Then failed the payment and checks if the balance was returned back.
@@ -128,9 +130,9 @@ namespace LottoSend.com.TestCases.Web.Payments
                 online.FailPayment();
                 StringAssert.Contains("failed", _driverCover.Driver.Url);
             }
-            
 
-            _commonActions.DeleteAllTicketFromCart_Front();
+
+            _cartActions.DeleteAllTicketFromCart_Front();
         }
 
         /// <summary>
@@ -163,7 +165,7 @@ namespace LottoSend.com.TestCases.Web.Payments
 
             _cartVerifications.CheckIfTicketIsInCart("Cart Raffle");
 
-            _commonActions.DeleteAllTicketFromCart_Front();
+            _cartActions.DeleteAllTicketFromCart_Front();
         }
 
         /// <summary>
@@ -197,7 +199,7 @@ namespace LottoSend.com.TestCases.Web.Payments
 
             _cartVerifications.CheckIfTicketIsInCart("EuroJackpot");
 
-            _commonActions.DeleteAllTicketFromCart_Front();
+            _cartActions.DeleteAllTicketFromCart_Front();
         }
 
         /// <summary>
@@ -228,7 +230,7 @@ namespace LottoSend.com.TestCases.Web.Payments
 
             _cartVerifications.CheckIfTicketIsInCart("Powerball");
 
-            _commonActions.DeleteAllTicketFromCart_Front();
+            _cartActions.DeleteAllTicketFromCart_Front();
         }
 
         [TearDown]
@@ -250,7 +252,7 @@ namespace LottoSend.com.TestCases.Web.Payments
                 //Removes all tickets from the cart to make sure all other tests will work well
                 try
                 {
-                    _commonActions.DeleteAllTicketFromCart_Front();
+                    _cartActions.DeleteAllTicketFromCart_Front();
                 }
                 catch (Exception)
                 {
@@ -272,6 +274,7 @@ namespace LottoSend.com.TestCases.Web.Payments
             _cartVerifications = new CartVerifications(_driver);
             _balanceVerifications = new BalanceVerifications(_driver);
             _sharedCode = new TestsSharedCode(_driver);
+            _cartActions = new CartActions(_driver);
         }
     }
 }

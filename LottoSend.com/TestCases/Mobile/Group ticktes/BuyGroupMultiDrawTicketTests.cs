@@ -5,7 +5,6 @@ using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using TestFramework;
-using TestFramework.FrontEndObj.Cart;
 using TestFramework.FrontEndObj.Common;
 using TestFramework.FrontEndObj.GamePages;
 using TestFramework.Helpers;

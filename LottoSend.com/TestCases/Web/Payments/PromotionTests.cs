@@ -1,5 +1,6 @@
 ﻿using System;
 using LottoSend.com.Verifications;
+using NewCombinedPageConfigTests.CommonActions;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
@@ -37,6 +38,7 @@ namespace LottoSend.com.TestCases.Web.Payments
         private WayToPay _merchant;
         private bool _setUpFailed = false;
         private TestsSharedCode _sharedCode;
+        private CartActions _cartActions;
 
         public PromotionTests(WayToPay merchant)
         {
@@ -267,7 +269,7 @@ namespace LottoSend.com.TestCases.Web.Payments
                 //Removes all tickets from the cart to make sure all other tests will work well
                 try
                 {
-                    _commonActions.DeleteAllTicketFromCart_Front();
+                    _cartActions.DeleteAllTicketFromCart_Front();
                 }
                 catch (Exception)
                 {
@@ -288,6 +290,7 @@ namespace LottoSend.com.TestCases.Web.Payments
             _commonActions = new CommonActions(_driver);
             _verifications = new BalanceVerifications(_driver);
             _sharedCode = new TestsSharedCode(_driver);
+            _cartActions = new CartActions(_driver);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using NewCombinedPageConfigTests.CommonActions;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
@@ -23,6 +24,7 @@ namespace LottoSend.com.TestCases
         private CommonActions _commonActions;
         private TestsSharedCode _sharedCode;
         private WayToPay _merchant;
+        private CartActions _cartActions;
 
         public WebApiTests(WayToPay merchant)
         {
@@ -109,7 +111,7 @@ namespace LottoSend.com.TestCases
                 //Removes all tickets from the cart to make sure all other tests will work well
                 try
                 {
-                    _commonActions.DeleteAllTicketFromCart_Front();
+                    _cartActions.DeleteAllTicketFromCart_Front();
                 }
                 catch (Exception)
                 {
@@ -129,6 +131,7 @@ namespace LottoSend.com.TestCases
             _driverCover = new DriverCover(_driver);
             _commonActions = new CommonActions(_driver);
             _sharedCode = new TestsSharedCode(_driver);
+            _cartActions = new CartActions(_driver);
         }
     }
 }

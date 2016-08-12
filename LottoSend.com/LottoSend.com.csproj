@@ -110,6 +110,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonActions\CartActions.cs" />
     <Compile Include="TestCases\BackOffice\BackOfficeTests.cs" />
     <Compile Include="TestCases\BackOffice\BlackListTests.cs" />
     <Compile Include="TestCases\BackOffice\CMS\CmsPermissionTests.cs" />
