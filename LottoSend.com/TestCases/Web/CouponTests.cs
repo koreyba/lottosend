@@ -12,7 +12,7 @@ namespace LottoSend.com.TestCases.Web
 {
     [TestFixture(typeof(ChromeDriver))]
     [Parallelizable(ParallelScope.Fixtures)]
-    class CouponTests <TWebDriver> where TWebDriver : IWebDriver, new()
+    public class CouponTests <TWebDriver> where TWebDriver : IWebDriver, new()
     {
         private IWebDriver _driver;
         private DriverCover _driverCover;
@@ -57,8 +57,8 @@ namespace LottoSend.com.TestCases.Web
             _commonActions.AddGroupTicketToCart_Front("en/play/euromiliony/");
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/carts/");
 
-            CartObj cart = new CartObj(_driver);
-            double totalPrice = cart.TotalPrice_Front;
+            CartObj cart = new CartSiteObj(_driver);
+            double totalPrice = cart.TotalPrice;
 
             CheckoutObj checkout = _commonActions.ApplyCouponInCart_Web(code);
             checkout.RemoveCoupon();

@@ -65,8 +65,8 @@ namespace LottoSend.com.TestCases.Mobile
             _commonActions.AddGroupTicketToCart_Front("en/play/euromiliony/");
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/carts/");
 
-            CartObj cart = new CartObj(_driver);
-            double totalPrice = cart.TotalPrice_Mobile;
+            CartObj cart = new CartMobileObj(_driver);
+            double totalPrice = cart.TotalPrice;
 
             CheckoutObj checkout = _commonActions.ApplyCouponInCart_Web(code);
             checkout.RemoveCoupon();
@@ -92,7 +92,7 @@ namespace LottoSend.com.TestCases.Mobile
             _commonActions.AddRaffleTicketToCart_Front(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
 
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/carts");
-            CartObj cart = new CartObj(_driver);  
+            CartObj cart = new CartMobileObj(_driver);  
             cart.ClickProceedToCheckoutButton();
             CheckoutObj checkout = new CheckoutObj(_driver);
             checkout.ApplyCoupon(code);

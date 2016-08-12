@@ -8,7 +8,7 @@ namespace TestFramework.FrontEndObj.Cart
     /// <summary>
     /// PageObject of the cart on the new combined payment page for the site (not mobile!)
     /// </summary>
-    public class CartCombinedWebObj : DriverCover
+    public class CartCombinedWebObj : CartObj
     {
         public CartCombinedWebObj(IWebDriver driver) : base(driver)
         {
@@ -29,12 +29,12 @@ namespace TestFramework.FrontEndObj.Cart
         private IList<IWebElement> _allTickets;
 
         [FindsBy(How = How.CssSelector, Using = ".modal-footer > a.btn")]
-        private IWebElement _yesImSureButotn;
+        private IWebElement _yesImSureButton;
 
         /// <summary>
         /// Number of tickets in the cart
         /// </summary>
-        public int NumberOfTickets
+        public override int NumberOfTickets
         {
             get {return _allTickets.Count; }
         }
@@ -43,12 +43,12 @@ namespace TestFramework.FrontEndObj.Cart
         /// Removes a specific ticket (by lottery name)
         /// </summary>
         /// <param name="lottery"></param>
-        public void DeleteTicket(string lottery)
+        public override void DeleteTicket(string lottery)
         {
             IWebElement tr = _findTrOfTicket(lottery);
             tr.FindElement(By.XPath(xPathFromTrToTrashIcon)).Click();
             bool m = WaitAjax();
-            _yesImSureButotn.Click();
+            _yesImSureButton.Click();
             WaitAjax();
             WaitForPageLoading();
         }

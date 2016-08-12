@@ -8,6 +8,7 @@ using TestFramework.BackEndObj.DrawPages;
 using TestFramework.BackEndObj.GroupGapePages;
 using TestFramework.BackEndObj.SalesPanelPages;
 using TestFramework.BackEndObj.WebUsersPages;
+using TestFramework.FrontEndObj.Cart;
 using TestFramework.FrontEndObj.Common;
 using TestFramework.FrontEndObj.GamePages;
 using TestFramework.FrontEndObj.Login;
@@ -115,7 +116,7 @@ namespace TestFramework
         /// <param name="code"></param>
         public CheckoutObj ApplyCouponInCart_Web(string code)
         {
-            CartObj cart = new CartObj(_driver);
+            CartObj cart = new CartSiteObj(_driver);
             cart.ClickProceedToCheckoutButton();
             CheckoutObj checkout = new CheckoutObj(_driver);
             checkout.ApplyCoupon(code);
@@ -332,7 +333,7 @@ namespace TestFramework
         public void DeleteAllTicketFromCart_Front()
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "carts/");
-            CartObj cart = new CartObj(_driver);
+            CartObj cart = new CartSiteObj(_driver);
             cart.DeleteAllTickets();
         }
 

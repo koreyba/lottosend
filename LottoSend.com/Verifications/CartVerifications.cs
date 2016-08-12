@@ -31,7 +31,7 @@ namespace LottoSend.com.Verifications
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/carts/");
 
             //Check number of elemetns in the cart
-            CartObj cart = new CartObj(_driver);
+            CartObj cart = new CartSiteObj(_driver);
             Assert.AreEqual(expected, cart.NumberOfTickets, "There are " + cart.NumberOfTickets + " group tickets in the cart, but " + expected + " were expected ");
         }
 
@@ -60,7 +60,7 @@ namespace LottoSend.com.Verifications
             //Go to the cart 
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "carts/");
 
-            CartObj cart = new CartObj(_driver);
+            CartObj cart = new CartSiteObj(_driver);
             Assert.IsTrue(!cart.IsTicketInCart(lotteryName), "The ticket " + lotteryName + " was not removed from the cart ");
         }
         ///<summary>
@@ -71,7 +71,7 @@ namespace LottoSend.com.Verifications
         {
             //Go to the cart 
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "carts/");
-            CartObj cart = new CartObj(_driver);
+            CartObj cart = new CartSiteObj(_driver);
             Assert.IsTrue(cart.IsTicketInCart(lotteryName), "The ticket " + lotteryName + " is not in the cart ");
         }
     }

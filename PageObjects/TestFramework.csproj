@@ -134,7 +134,9 @@
     <Compile Include="DriverCover.cs" />
     <Compile Include="Emuns.cs" />
     <Compile Include="FrontEndObj\Cart\CartCombinedWebObj.cs" />
+    <Compile Include="FrontEndObj\Cart\CartMobileObj.cs" />
     <Compile Include="FrontEndObj\Cart\CartObj.cs" />
+    <Compile Include="FrontEndObj\Cart\CartSiteObj.cs" />
     <Compile Include="FrontEndObj\Common\BottomMenuObj.cs" />
     <Compile Include="FrontEndObj\Common\CheckoutObj.cs" />
     <Compile Include="FrontEndObj\Common\ExpressCheckoutObj.cs" />

@@ -25,33 +25,17 @@ namespace TestFramework.FrontEndObj.Cart
         [FindsBy(How = How.CssSelector, Using = "div.control > a.btn.btn-lg.btn-success.btn-xl.btn-block")]
         private IWebElement _proceedToCheckoutButton;
 
-        [FindsBy(How = How.CssSelector, Using = "#game div > table > tbody > tr.blue > td.text-center > strong")] 
-        private IWebElement _totalPrice_Front;
-
-        [FindsBy(How = How.CssSelector, Using = "#game div > div.total >span > strong")]
-        private IWebElement _totalPrice_Mobile;
-
         [FindsBy(How = How.CssSelector, Using = "#order_item_bulk_id")]
         private IList<IWebElement> _numberOfDrawsSelects;
 
         [FindsBy(How = How.CssSelector, Using = "table.table-striped > tbody")]
-        private IWebElement _cartTable;
+        protected IWebElement _cartTable;
 
         /// <summary>
         /// Gets total price of the order (mobile)
         /// </summary>
-        public double TotalPrice_Mobile
-        {
-            get { return StringExtention.ParseDouble(_totalPrice_Mobile.Text); }
-        }
-        
-        /// <summary>
-        /// Gets total price of the order (web-site)
-        /// </summary>
-        public double TotalPrice_Front
-        {
-            get { return StringExtention.ParseDouble(_totalPrice_Front.Text); }
-        }
+        public virtual double TotalPrice { get; }
+
 
         /// <summary>
         /// Clicks on Proceed to Checkout button
@@ -68,7 +52,7 @@ namespace TestFramework.FrontEndObj.Cart
         /// <summary>
         /// Returns number of tickets in the cart
         /// </summary>
-        public int NumberOfTickets
+        public virtual int NumberOfTickets
         {
             get { return CounNumberOfTickets(); }
         }
@@ -121,71 +105,32 @@ namespace TestFramework.FrontEndObj.Cart
         /// Edits selected ticket (clicks "Edit" button)
         /// </summary>
         /// <param name="lottery"></param>
-        public void EditTicket_Web(string lottery)
+        public virtual void EditTicket(string lottery)
         {
-            IWebElement tr = _findTrOfTicket_Web(lottery);
-            ScrollToView((IWebElement) tr.FindElement(By.CssSelector("td.text-center > a.btn.btn-info.btn-block.edit"))).Click();
-            WaitAjax();
-            WaitForPageLoading();
-            WaitAjax();
-        }
 
-        /// <summary>
-        /// Edits selected ticket (clicks "Edit" button)
-        /// </summary>
-        /// <param name="lottery"></param>
-        public void EditTicket_Mobile(string lottery)
-        {
-            IWebElement tr = _findTrOfTicket_Mobile(lottery);
-            ScrollUp();
-            tr.FindElement(By.CssSelector("td > p > a.btn.btn-info.btn-block")).Click();
-            WaitAjax();
-            WaitForPageLoading();
-            WaitAjax();
-        }
-
-        /// <summary>
-        /// Edits selected ticket (clicks "Edit" button)
-        /// </summary>
-        /// <param name="lottery"></param>
-        public void EditRaffleTicketMobile(string lottery)
-        {
-            IWebElement tr = _findTrOfRaffleTicket_Mobile(lottery);
-            tr.FindElement(By.CssSelector("td > p > a.btn.btn-info.btn-block")).Click();
-            WaitAjax();
-            WaitForPageLoading();
-            WaitAjax();
         }
 
         /// <summary>
         /// Removes ticket from the cart found by name of a lottery
         /// </summary>
         /// <param name="lottery"></param>
-        public void DeleteTicket_Web(string lottery)
+        public virtual void DeleteTicket(string lottery)
         {
-            IWebElement tr = _findTrOfTicket_Web(lottery);
-            tr.FindElement(By.CssSelector("td.text-center > form > input.btn.btn-info.btn-block")).Click();
-            WaitAjax();
-            WaitForPageLoading(); 
-            WaitAjax();
+     
         }
 
-        public void DeleteTicket_Mobile(string lottery)
+        public virtual void DeleteRaffleTicket(string lottery)
         {
-            IWebElement tr = _findTrOfTicket_Mobile(lottery);
-            tr.FindElement(By.CssSelector("td > form > input.btn.btn-info.btn-block")).Click();
-            WaitAjax();
-            WaitForPageLoading();
-            WaitAjax();
+            
         }
 
-        public void DeleteRaffleTicket_Mobile(string lottery)
+        /// <summary>
+        /// Edits selected ticket (clicks "Edit" button)
+        /// </summary>
+        /// <param name="lottery"></param>
+        public virtual void EditRaffleTicketMobile(string lottery)
         {
-            IWebElement tr = _findTrOfRaffleTicket_Mobile(lottery);
-            tr.FindElement(By.CssSelector("td > form > input.btn.btn-info.btn-block")).Click();
-            WaitAjax();
-            WaitForPageLoading();
-            WaitAjax();
+            
         }
 
         /// <summary>
@@ -195,61 +140,6 @@ namespace TestFramework.FrontEndObj.Cart
         public int CounNumberOfTickets()
         {
             return _cartTable.FindElements(By.TagName("tr")).Count; 
-        }
-
-
-        private IWebElement _findTrOfTicket_Web(string lottery)
-        {
-            IList<IWebElement> tr = _cartTable.FindElements(By.TagName("tr"));
-
-            foreach(IWebElement t in tr)
-            {
-                IList<IWebElement> namesOfLottery = t.FindElements(By.CssSelector("td.text-center > img"));
-
-                foreach (IWebElement name in namesOfLottery)
-                {
-                    if (name.GetAttribute("alt").ToLower().Equals(lottery.ToLower()))
-                        return t;
-                }
-            }
-
-            return null;
-        }
-
-        private IWebElement _findTrOfTicket_Mobile(string lottery)
-        {
-            IList<IWebElement> tr = _cartTable.FindElements(By.TagName("tr"));
-
-            foreach (IWebElement t in tr)
-            {
-                IList<IWebElement> namesOfLottery = t.FindElements(By.CssSelector("td > strong"));
-
-                foreach (IWebElement name in namesOfLottery)
-                {
-                    if (name.Text.ToLower().Contains(lottery.ToLower()))
-                        return t;
-                }
-            }
-
-            return null;
-        }
-
-        private IWebElement _findTrOfRaffleTicket_Mobile(string lottery)
-        {
-            IList<IWebElement> tr = _cartTable.FindElements(By.TagName("tr"));
-
-            foreach (IWebElement t in tr)
-            {
-                IList<IWebElement> namesOfLottery = t.FindElements(By.CssSelector("td > strong > img"));
-
-                foreach (IWebElement name in namesOfLottery)
-                {
-                    if (name.GetAttribute("alt").Contains(lottery))
-                        return t;
-                }
-            }
-
-            return null;
         }
 
         /// <summary>

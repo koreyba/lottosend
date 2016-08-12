@@ -44,10 +44,10 @@ namespace LottoSend.com.TestCases.Web
             _commonActions.AddRegularTicketToCart_Front("en/play/el-gordo-de-la-primitiva/");
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/carts");
 
-            CartObj cart = new CartObj(_driver);
+            CartObj cart = new CartSiteObj(_driver);
             cart.ChangeNumberOfDraws(1, 10);
 
-            cart.EditTicket_Web("El Gordo");
+            cart.EditTicket("El Gordo");
 
             RegularGamePageObj regularGame = new RegularGamePageObj(_driver);
 
@@ -75,10 +75,10 @@ namespace LottoSend.com.TestCases.Web
             _commonActions.AddGroupTicketToCart_Front("en/play/superenalotto/");
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/carts");
 
-            CartObj cart = new CartObj(_driver);
+            CartObj cart = new CartSiteObj(_driver);
             cart.ChangeNumberOfDraws(1, 5);
 
-            cart.EditTicket_Web("superenalotto");
+            cart.EditTicket("superenalotto");
 
             GroupGamePageObj groupGame = new GroupGamePageObj(_driver);
 
@@ -171,8 +171,8 @@ namespace LottoSend.com.TestCases.Web
             _commonActions.AddGroupTicketToCart_Front("en/play/powerball/");
 
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "carts");
-            CartObj cart = new CartObj(_driver);
-            cart.EditTicket_Web("Powerball");
+            CartObj cart = new CartSiteObj(_driver);
+            cart.EditTicket("Powerball");
 
             GroupGamePageObj groupPage = new GroupGamePageObj(_driver);
 
@@ -203,8 +203,8 @@ namespace LottoSend.com.TestCases.Web
 
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/carts");
 
-            CartObj cart = new CartObj(_driver);
-            cart.EditTicket_Web("Cart Raffle");
+            CartObj cart = new CartSiteObj(_driver);
+            cart.EditTicket("Cart Raffle");
 
             RafflesPageObj raffle = new RafflesPageObj(_driver);
 
@@ -235,8 +235,8 @@ namespace LottoSend.com.TestCases.Web
 
             //Remove tickets
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/carts/");
-            CartObj cart = new CartObj(_driver);
-            cart.DeleteTicket_Web("Cart Raffle");
+            CartObj cart = new CartSiteObj(_driver);
+            cart.DeleteTicket("Cart Raffle");
             _cartVerifications.CheckNumberOfTicketsInCart_Front(0);
         }
 
@@ -261,9 +261,9 @@ namespace LottoSend.com.TestCases.Web
             _cartVerifications.CheckNumberOfTicketsInCart_Front(2);
 
             //Remove tickets
-            CartObj cart = new CartObj(_driver);
-            cart.DeleteTicket_Web("EuroMillions");
-            cart.DeleteTicket_Web("Powerball");
+            CartObj cart = new CartSiteObj(_driver);
+            cart.DeleteTicket("EuroMillions");
+            cart.DeleteTicket("Powerball");
 
             _cartVerifications.CheckNumberOfTicketsInCart_Front(0);
         }
@@ -287,8 +287,8 @@ namespace LottoSend.com.TestCases.Web
             _cartVerifications.CheckNumberOfTicketsInCart_Front(1);
 
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "carts/");
-            CartObj cart = new CartObj(_driver);
-            cart.DeleteTicket_Web("EuroJackpot");
+            CartObj cart = new CartSiteObj(_driver);
+            cart.DeleteTicket("EuroJackpot");
             _cartVerifications.CheckNumberOfTicketsInCart_Front(0);
         }
 
