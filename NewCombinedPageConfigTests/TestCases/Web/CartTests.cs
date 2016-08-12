@@ -27,6 +27,29 @@ namespace NewCombinedPageConfigTests.TestCases.Web
         private CartActions _cartActions;
 
         /// <summary>
+        /// Adds a raffle ticket to the cart and deletes it. Cheks if a ticket was added and removed
+        /// </summary>
+        [TestCase(false)]
+        [TestCase(true)]
+        [Category("Critical")]
+        [Category("Parallel")]
+        public void Delete_Raffle_Ticket_From_Cart(bool toLogIn)
+        {
+            if (toLogIn)
+            {
+                _commonActions.Log_In_Front_PageOne(_driverCover.LoginThree, _driverCover.Password);
+            }
+
+            _commonActions.AddRaffleTicketToCart_Front(_driverCover.BaseUrl + "en/raffles/loteria-de-navidad/");
+
+            //Remove tickets
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/payments/new/");
+            CartObj cart = new CartCombinedWebObj(_driver);
+            cart.DeleteTicket("Raffle");
+            _cartVerifications.CheckNumberOfTicketsInCombinedCart_Front(0);
+        }
+
+        /// <summary>
         /// Adds two different lottery group ticket to the cart and delets them. Checks if were added and deleted
         /// </summary>
         [TestCase(false)]
