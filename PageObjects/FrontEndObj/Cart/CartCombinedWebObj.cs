@@ -46,11 +46,12 @@ namespace TestFramework.FrontEndObj.Cart
         public override void DeleteTicket(string lottery)
         {
             IWebElement tr = _findTrOfTicket(lottery);
-            tr.FindElement(By.XPath(xPathFromTrToTrashIcon)).Click();
+            WaitForElement(tr.FindElement(By.XPath(xPathFromTrToTrashIcon)), 5).Click();
             bool m = WaitAjax();
             WaitForElement(_yesImSureButton, 5).Click();
-            WaitAjax();
+            bool s =  WaitAjax();
             WaitForPageLoading();
+            RefreshPage();
         }
 
         private IWebElement _findTrOfTicket(string lottery)

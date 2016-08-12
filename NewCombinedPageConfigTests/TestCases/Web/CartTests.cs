@@ -27,6 +27,34 @@ namespace NewCombinedPageConfigTests.TestCases.Web
         private CartActions _cartActions;
 
         /// <summary>
+        /// Adds two different lottery group ticket to the cart and delets them. Checks if were added and deleted
+        /// </summary>
+        [TestCase(false)]
+        [TestCase(true)]
+        [Category("Critical")]
+        [Category("Parallel")]
+        public void Delete_Two_Group_Ticket_From_Cart(bool toLogIn)
+        {
+            if (toLogIn)
+            {
+                _commonActions.Log_In_Front_PageOne(_driverCover.LoginThree, _driverCover.Password);
+            }
+
+            //Add two tickets from different lotteries
+            _commonActions.AddGroupTicketToCart_Front("en/play/euromillions/");
+            _commonActions.AddGroupTicketToCart_Front("en/play/powerball/");
+
+            _cartVerifications.CheckNumberOfTicketsInCombinedCart_Front(2);
+
+            //Remove tickets
+            CartObj cart = new CartCombinedWebObj(_driver);
+            cart.DeleteTicket("EuroMillions");
+            cart.DeleteTicket("Powerball");
+
+            _cartVerifications.CheckNumberOfTicketsInCombinedCart_Front(0);
+        }
+
+        /// <summary>
         /// Adds single ticket to cart and removes it. Checks if there is no tickets of a specific lottery game
         /// </summary>
         [TestCase(false)]
