@@ -21,7 +21,7 @@ namespace NewCombinedPageConfigTests.CommonActions
         public void DeleteAllTicketFromCart_Front()
         {
             _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/payments/new/");
-            CartObj cart = new CartObj(_driver);
+            CartObj cart = new CartCombinedWebObj(_driver);
             cart.DeleteAllTickets();
         }
     }

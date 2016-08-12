@@ -7,6 +7,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using TestFramework;
 using TestFramework.FrontEndObj.Cart;
+using TestFramework.FrontEndObj.GamePages;
 using TestFramework.Helpers;
 
 namespace NewCombinedPageConfigTests.TestCases.Web
@@ -25,6 +26,37 @@ namespace NewCombinedPageConfigTests.TestCases.Web
         private bool _setUpFailed = false;
         private TestsSharedCode _sharedCode;
         private CartActions _cartActions;
+
+        /// <summary>
+        /// Adds and edit a group ticket adding more shares and checking if they were added
+        /// </summary>
+        [TestCase(false)]
+        [TestCase(true)]
+        [Category("Critical")]
+        [Category("Parallel")]
+        public void Edit_Group_Ticket_And_Add_More(bool toLogIn)
+        {
+            if (toLogIn)
+            {
+                _commonActions.Log_In_Front_PageOne(_driverCover.LoginThree, _driverCover.Password);
+            }
+
+            _commonActions.AddGroupTicketToCart_Front("en/play/powerball/");
+
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/payments/new/");
+            CartObj cart = new CartCombinedWebObj(_driver);
+            cart.EditTicket("Powerball");
+
+            GroupGamePageObj groupPage = new GroupGamePageObj(_driver);
+
+            //add 3 shares to the second ticket
+            groupPage.AddShares(2);
+            groupPage.ClickAddToCartButton();
+
+            _cartVerifications.CheckNumberOfTicketsInCombinedCart_Front(3);
+
+            _cartActions.DeleteAllTicketFromCart_Front();
+        }
 
         /// <summary>
         /// Adds a raffle ticket to the cart and deletes it. Cheks if a ticket was added and removed

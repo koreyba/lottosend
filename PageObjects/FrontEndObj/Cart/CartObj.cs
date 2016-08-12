@@ -84,7 +84,7 @@ namespace TestFramework.FrontEndObj.Cart
         /// <summary>
         /// Removes all ticket from the cart (clears the cart)
         /// </summary>
-        public void DeleteAllTickets()
+        public virtual void DeleteAllTickets()
         {
             int n = NumberOfTickets;
             for (int i = 0; i < n; ++i)
