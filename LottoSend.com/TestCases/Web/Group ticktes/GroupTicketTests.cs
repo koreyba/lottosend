@@ -20,7 +20,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
     {
         private IWebDriver _driver;
         private DriverCover _driverCover;
-        private CommonActions _commonActions;
+        private TestFramework.CommonActions _commonActions;
         private TestsSharedCode _sharedCode;
         private bool _setUpFailed = false;
 
@@ -99,7 +99,7 @@ namespace LottoSend.com.TestCases.Web.Group_ticktes
             _driver = new TWebDriver();
             _driverCover = new DriverCover(_driver);
             _sharedCode = new TestsSharedCode(_driver);
-            _commonActions = new CommonActions(_driver);
+            _commonActions = new TestFramework.CommonActions(_driver);
         }
     }
 }

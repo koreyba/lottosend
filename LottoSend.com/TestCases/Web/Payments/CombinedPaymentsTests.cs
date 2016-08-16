@@ -15,7 +15,7 @@ namespace LottoSend.com.TestCases.Web.Payments
     {
         private IWebDriver _driver;
         private DriverCover _driverCover;
-        private CommonActions _commonActions;
+        private TestFramework.CommonActions _commonActions;
         private BalanceVerifications _balanceVerifications;
         private TestsSharedCode _sharedCode;
 
@@ -96,7 +96,7 @@ namespace LottoSend.com.TestCases.Web.Payments
             _driver = new TWebDriver();
             _driverCover = new DriverCover(_driver);
             _sharedCode = new TestsSharedCode(_driver);
-            _commonActions = new CommonActions(_driver);
+            _commonActions = new TestFramework.CommonActions(_driver);
             _balanceVerifications = new BalanceVerifications(_driver);
         }
     }

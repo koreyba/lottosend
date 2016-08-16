@@ -18,7 +18,7 @@ namespace LottoSend.com.TestCases
             IWebDriver driver = new ChromeDriver();
             try
             {
-                CommonActions actions = new CommonActions(driver);
+                TestFramework.CommonActions actions = new TestFramework.CommonActions(driver);
                 actions.SwitchOffCombinedPaymentPage();
                 driver.Dispose();
             }

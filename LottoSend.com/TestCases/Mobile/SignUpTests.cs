@@ -22,7 +22,7 @@ namespace LottoSend.com.TestCases.Mobile
     {
         private IWebDriver _driver;
         private DriverCover _driverCover;
-        private CommonActions _commonActions;
+        private TestFramework.CommonActions _commonActions;
         private string _email;
         private WebUserVerifications _usersVerifications;
         private string _device;
@@ -133,7 +133,7 @@ namespace LottoSend.com.TestCases.Mobile
             _driver = new ChromeDriver(CreateOptions(_device));
             _driverCover = new DriverCover(_driver);
             _driverCover = new DriverCover(_driver);
-            _commonActions = new CommonActions(_driver);
+            _commonActions = new TestFramework.CommonActions(_driver);
             _usersVerifications = new WebUserVerifications(_driver);
             _sharedCode = new TestsSharedCode(_driver);
         }

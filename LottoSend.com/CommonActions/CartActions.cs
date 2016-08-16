@@ -2,7 +2,7 @@
 using TestFramework;
 using TestFramework.FrontEndObj.Cart;
 
-namespace NewCombinedPageConfigTests.CommonActions
+namespace LottoSend.com.CommonActions
 {
     public class CartActions
     {
@@ -20,8 +20,8 @@ namespace NewCombinedPageConfigTests.CommonActions
         /// </summary>
         public void DeleteAllTicketFromCart_Front()
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/payments/new/");
-            CartObj cart = new CartCombinedWebObj(_driver);
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/carts/");
+            CartObj cart = new CartSiteObj(_driver);
             cart.DeleteAllTickets();
         }
     }

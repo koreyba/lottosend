@@ -16,7 +16,7 @@ namespace LottoSend.com.TestCases.BackOffice.Packages
     {
         private IWebDriver _driver;
         private DriverCover _driverCover;
-        private CommonActions _commonActions;
+        private TestFramework.CommonActions _commonActions;
         private TestsSharedCode _sharedCode;
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace LottoSend.com.TestCases.BackOffice.Packages
             message.TestWillRun();
             _driver = new TWebDriver();
             _driverCover = new DriverCover(_driver);
-            _commonActions = new CommonActions(_driver);
+            _commonActions = new TestFramework.CommonActions(_driver);
             _sharedCode = new TestsSharedCode(_driver);
         }
     }

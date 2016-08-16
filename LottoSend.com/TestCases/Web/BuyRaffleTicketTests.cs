@@ -35,7 +35,7 @@ namespace LottoSend.com.TestCases.Web
         private double _totalPrice;
         private OrderVerifications _orderVerifications;
         private CartVerifications _cartVerifications;
-        private CommonActions _commonActions;
+        private TestFramework.CommonActions _commonActions;
         private WayToPay _merchant;
         private TestsSharedCode _sharedCode;
         private bool _setUpFailed = false;
@@ -312,7 +312,7 @@ namespace LottoSend.com.TestCases.Web
             _driver = new TWebDriver();
             _driverCover = new DriverCover(_driver);
             _orderVerifications = new OrderVerifications(_driver);
-            _commonActions = new CommonActions(_driver);
+            _commonActions = new TestFramework.CommonActions(_driver);
             _cartVerifications = new CartVerifications(_driver);
         }
     }

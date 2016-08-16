@@ -15,14 +15,14 @@ namespace LottoSend.com.Verifications
         private IWebDriver _driver;
         private DriverCover _driverCover;
         public StringBuilder Errors;
-        private CommonActions _commonActions;
+        private TestFramework.CommonActions _commonActions;
 
         public BalanceVerifications(IWebDriver newDriver)
         {
             _driver = newDriver;
             _driverCover = new DriverCover(_driver);
             Errors = new StringBuilder();
-            _commonActions = new CommonActions(_driver);
+            _commonActions = new TestFramework.CommonActions(_driver);
         }
 
         /// <summary>

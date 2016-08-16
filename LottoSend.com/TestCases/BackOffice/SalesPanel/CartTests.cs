@@ -18,7 +18,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
     {
         private IWebDriver _driver;
         private DriverCover _driverCover;
-        private CommonActions _commonActions;
+        private TestFramework.CommonActions _commonActions;
         private CartVerifications _cartVerifications;
         private bool _setUpFailed = false;
         private TestsSharedCode _sharedCode;
@@ -148,7 +148,7 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             message.TestWillRun();
             _driver = new TWebDriver();
             _driverCover = new DriverCover(_driver);
-            _commonActions = new CommonActions(_driver);
+            _commonActions = new TestFramework.CommonActions(_driver);
             _cartVerifications = new CartVerifications(_driver); 
             _sharedCode = new TestsSharedCode(_driver);
         }

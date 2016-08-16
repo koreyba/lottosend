@@ -24,7 +24,7 @@ namespace LottoSend.com.TestCases.Web
         private WebUserVerifications _usersVerifications;
         private bool _setUpFailed = false;
         private TestsSharedCode _sharedCode;
-        private CommonActions _commonActions;
+        private TestFramework.CommonActions _commonActions;
 
         [TestCase("selenium3@grr.la")]
         public void Login_With_Token(string email)
@@ -149,7 +149,7 @@ namespace LottoSend.com.TestCases.Web
             _driverCover = new DriverCover(_driver);
             _usersVerifications = new WebUserVerifications(_driver);
             _sharedCode = new TestsSharedCode(_driver);
-            _commonActions = new CommonActions(_driver);
+            _commonActions = new TestFramework.CommonActions(_driver);
         }
     }
 }

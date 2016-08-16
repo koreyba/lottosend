@@ -25,7 +25,7 @@ namespace LottoSend.com.TestCases.Mobile
         private DriverCover _driverCover;
         private double _totalPrice;
         private OrderVerifications _orderVerifications;
-        private CommonActions _commonActions;
+        private TestFramework.CommonActions _commonActions;
         private WayToPay _merchant;
         private string _device;
         private CartVerifications _cartVerifications;
@@ -289,7 +289,7 @@ namespace LottoSend.com.TestCases.Mobile
             _driver = new ChromeDriver();
             _driverCover = new DriverCover(_driver);
             _orderVerifications = new OrderVerifications(_driver);
-            _commonActions = new CommonActions(_driver);
+            _commonActions = new TestFramework.CommonActions(_driver);
         }
 
         public void SetUp(ChromeOptions option)
@@ -299,7 +299,7 @@ namespace LottoSend.com.TestCases.Mobile
             _driver = new ChromeDriver(option);
             _driverCover = new DriverCover(_driver);
             _orderVerifications = new OrderVerifications(_driver);
-            _commonActions = new CommonActions(_driver);
+            _commonActions = new TestFramework.CommonActions(_driver);
             _cartVerifications = new CartVerifications(_driver);
         }
     }

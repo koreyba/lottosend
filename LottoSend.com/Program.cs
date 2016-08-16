@@ -14,7 +14,7 @@ namespace LottoSend.com
 
             IWebDriver _driver = new ChromeDriver();
             DriverCover _driverCover = new DriverCover(_driver);
-            CommonActions common = new CommonActions(_driver);
+            TestFramework.CommonActions common = new TestFramework.CommonActions(_driver);
             common.SignIn_in_admin_panel();
 
 

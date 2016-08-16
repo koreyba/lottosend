@@ -1,6 +1,6 @@
 ﻿using System;
+using LottoSend.com.CommonActions;
 using LottoSend.com.Verifications;
-using NewCombinedPageConfigTests.CommonActions;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
@@ -32,7 +32,7 @@ namespace LottoSend.com.TestCases.Web.Payments
     {
         private IWebDriver _driver;
         private DriverCover _driverCover;
-        private CommonActions _commonActions;
+        private TestFramework.CommonActions _commonActions;
         private BalanceVerifications _verifications;
         private double _totalPrice;
         private WayToPay _merchant;
@@ -287,7 +287,7 @@ namespace LottoSend.com.TestCases.Web.Payments
             message.TestWillRun();
             _driver = new TWebDriver();
             _driverCover = new DriverCover(_driver);
-            _commonActions = new CommonActions(_driver);
+            _commonActions = new TestFramework.CommonActions(_driver);
             _verifications = new BalanceVerifications(_driver);
             _sharedCode = new TestsSharedCode(_driver);
             _cartActions = new CartActions(_driver);
