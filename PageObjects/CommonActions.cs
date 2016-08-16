@@ -411,7 +411,7 @@ namespace TestFramework
         /// <returns>Total price to pay</returns>
         public double BuyRegularOneDrawTicket_Front(WayToPay merchant, bool processOrder = true)
         {
-            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/play/eurojackpot/");
+            _driverCover.NavigateToUrl(_driverCover.BaseUrl + "en/play/powerball/");
 
             //Pay for tickets
             RegularGamePageObj regularGame = new RegularGamePageObj(_driver);

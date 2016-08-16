@@ -249,7 +249,7 @@ namespace TestFramework.FrontEndObj.Common
             CommonActions commonActions = new CommonActions(Driver);
 
             commonActions.SignIn_in_admin_panel();
-            commonActions.Authorize_the_first_payment();
+             commonActions.Authorize_the_first_payment();
             if (!isFailed)
             {
                 commonActions.Approve_offline_payment();
