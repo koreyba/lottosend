@@ -2,6 +2,8 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using TestFramework;
+using TestFramework.BackEndObj;
 
 namespace NewCombinedPageConfigTests.TestCases
 {
@@ -18,7 +20,18 @@ namespace NewCombinedPageConfigTests.TestCases
             try
             {
                 TestFramework.CommonActions actions = new TestFramework.CommonActions(driver);
-                actions.SwitchOnCombinedPaymentPage();
+                actions.SignIn_in_admin_panel();
+                DriverCover driverCover = new DriverCover(driver);
+                driverCover.NavigateToUrl(driverCover.BaseAdminUrl + "admin/sites/1/edit");
+
+                SiteEditingPageObj siteEditing = new SiteEditingPageObj(driver);
+                siteEditing.SwitchCombinedPageOn();
+                siteEditing.SwitchOneTimeEntryOn();
+                siteEditing.SwitchGroupGameOn();
+                siteEditing.SwitchSingleGameOn();
+                siteEditing.SwitchAddressOn();
+                siteEditing.SwitchAddToCartOn(true);
+
                 driver.Dispose();
             }
             catch (Exception)

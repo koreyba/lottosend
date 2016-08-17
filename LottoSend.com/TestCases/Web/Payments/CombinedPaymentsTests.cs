@@ -24,7 +24,6 @@ namespace LottoSend.com.TestCases.Web.Payments
         /// </summary>
         [TestCase(WayToPay.Offline)]
         [TestCase(WayToPay.Neteller)]
-        [TestCase(WayToPay.TrustPay)]
         public void Combined_IB_Plus_Merchant_Pay_For_Tickets(WayToPay merchant)
         {
             string email = _commonActions.Sign_Up_Front_PageOne();

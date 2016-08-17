@@ -28,7 +28,7 @@ namespace TestFramework.FrontEndObj.GamePages
         [FindsBy(How = How.XPath, Using = "//select[contains(@id, '_year')]")]
         private IWebElement _expirationDateY;
 
-        [FindsBy(How = How.XPath, Using = "//input[contains(@id, '_code')]")]
+        [FindsBy(How = How.XPath, Using = "//input[contains(@id, '_code') and contains(@id, 'transaction')]")]
         private IWebElement _cvvCode;
 
         [FindsBy(How = How.CssSelector, Using = ".btn.btn-success.btn-block")]

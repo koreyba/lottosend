@@ -18,10 +18,10 @@ namespace TestFramework.FrontEndObj.Common
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_135'] + img.merchant")]
+        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_196'] + img.merchant")]
         private IWebElement _neteller;
 
-        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_72'] + img.merchant")]
+        [FindsBy(How = How.CssSelector, Using = "input[id$='id_204'] + img.merchant")]
         private IWebElement _eKontoePlatby;
 
         [FindsBy(How = How.CssSelector, Using = "input#credit_card + img.merchant")]
@@ -33,10 +33,10 @@ namespace TestFramework.FrontEndObj.Common
         [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_18'] + img.merchant")]
         private IWebElement _skrill;
 
-        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_74'] + img.merchant")]
+        [FindsBy(How = How.CssSelector, Using = "input[id$='id_202'] + img.merchant")]
         private IWebElement _poli;
         
-        [FindsBy(How = How.CssSelector, Using = "input[id$='merchant_73'] + img.merchant")]
+        [FindsBy(How = How.CssSelector, Using = "input[id$='id_206'] + img.merchant")]
         private IWebElement _moneta;
 
         public IWebElement Moneta
