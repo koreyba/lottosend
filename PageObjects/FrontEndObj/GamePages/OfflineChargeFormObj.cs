@@ -16,19 +16,19 @@ namespace TestFramework.FrontEndObj.GamePages
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.XPath, Using = "//input[contains(@id, 'transaction_holder_name')]")]
+        [FindsBy(How = How.XPath, Using = "//input[contains(@id, 'holder_name')]")]
         private IWebElement _name;
 
-        [FindsBy(How = How.XPath, Using = "//input[contains(@id, 'transaction_number')]")]
+        [FindsBy(How = How.XPath, Using = "//input[contains(@id, '_number')]")]
         private IWebElement _cardNumber;
 
-        [FindsBy(How = How.XPath, Using = "//select[contains(@id, 'transaction_expiration_month')]")]
+        [FindsBy(How = How.XPath, Using = "//select[contains(@id, '_month')]")]
         private IWebElement _expirationDateM;
 
-        [FindsBy(How = How.XPath, Using = "//select[contains(@id, 'transaction_expiration_year')]")]
+        [FindsBy(How = How.XPath, Using = "//select[contains(@id, '_year')]")]
         private IWebElement _expirationDateY;
 
-        [FindsBy(How = How.XPath, Using = "//input[contains(@id, 'transaction_code')]")]
+        [FindsBy(How = How.XPath, Using = "//input[contains(@id, '_code')]")]
         private IWebElement _cvvCode;
 
         [FindsBy(How = How.CssSelector, Using = ".btn.btn-success.btn-block")]

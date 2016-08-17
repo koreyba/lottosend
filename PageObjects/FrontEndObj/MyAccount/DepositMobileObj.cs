@@ -21,7 +21,7 @@ namespace TestFramework.FrontEndObj.MyAccount
         [FindsBy(How = How.CssSelector, Using = "#new_deposit div.row > div.bg-primary.amount input")]
         private IList<IWebElement> _depositOptions;
 
-        [FindsBy(How = How.CssSelector, Using = "#new_deposit> div.row > div.other")]
+        [FindsBy(How = How.CssSelector, Using = "div.other")]
         private IWebElement _otherRadioButton;
 
         [FindsBy(How = How.CssSelector, Using = "input#deposit_total")]
