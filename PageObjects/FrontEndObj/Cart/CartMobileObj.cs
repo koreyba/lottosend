@@ -17,7 +17,7 @@ namespace TestFramework.FrontEndObj.Cart
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = "#game div > div.total >span > strong")]
+        [FindsBy(How = How.CssSelector, Using = "div.total >span > strong")]
         private IWebElement _totalPrice;
 
         /// <summary>

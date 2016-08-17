@@ -23,10 +23,10 @@ namespace TestFramework.FrontEndObj.Common
         [FindsBy(How = How.CssSelector, Using = ".btn.btn-info.show-coupon")]
         private IWebElement _doYouHaveCouponButton;
 
-        [FindsBy(How = How.CssSelector, Using = ".form-group > input.btn-info")]
+        [FindsBy(How = How.CssSelector, Using = "input.btn-info")]
         private IWebElement _applyButton;
 
-        [FindsBy(How = How.CssSelector, Using = ".form-group > #code")]
+        [FindsBy(How = How.CssSelector, Using = "#reduction_code")]
         private IWebElement _codeInput;
 
         [FindsBy(How = How.CssSelector, Using = "table.table.order > tbody > tr.coupon > td.text-success.text-center")]
