@@ -89,6 +89,7 @@ namespace TestFramework.BackEndObj.SalesPanelPages
             _email.SendKeys(email);
             _okLogInButton.Click();
             WaitForPageLoading();
+            WaitAjax();
         }
 
         /// <summary>
