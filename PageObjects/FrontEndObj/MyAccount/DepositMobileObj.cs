@@ -18,7 +18,7 @@ namespace TestFramework.FrontEndObj.MyAccount
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = "#new_deposit div.row > div.bg-primary.amount input")]
+        [FindsBy(How = How.CssSelector, Using = "div.bg-primary.amount input")]
         private IList<IWebElement> _depositOptions;
 
         [FindsBy(How = How.CssSelector, Using = "div.other")]
