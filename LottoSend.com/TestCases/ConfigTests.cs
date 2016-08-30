@@ -10,10 +10,10 @@ namespace LottoSend.com.TestCases
     /// <summary>
     /// Runs once before all the test in order to config the environment 
     /// </summary>
-   // [SetUpFixture]
+    [SetUpFixture]
     public class ConfigTests
     {
-       // [OneTimeSetUp]
+        [OneTimeSetUp]
         public void RunBeforeAnyTests()
         {
             IWebDriver driver = new ChromeDriver();
