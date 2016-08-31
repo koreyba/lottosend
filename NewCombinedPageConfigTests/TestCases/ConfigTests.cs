@@ -30,6 +30,7 @@ namespace NewCombinedPageConfigTests.TestCases
                 siteEditing.SwitchGroupGameOn();
                 siteEditing.SwitchSingleGameOn();
                 siteEditing.SwitchAddressOn();
+                siteEditing.SwitchNewPlayPageOff();
                 siteEditing.SwitchAddToCartOn(true);
 
                 driver.Dispose();
