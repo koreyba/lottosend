@@ -21,6 +21,9 @@ namespace TestFramework.BackEndObj
             PageFactory.InitElements(Driver, this);
         }
 
+        [FindsBy(How = How.XPath, Using = "//input[@id='site_play_page']")]
+        private IWebElement _newPlayPageCheckBox;
+
         [FindsBy(How = How.XPath, Using = "//input[@id='site_new_sign_up']")]
         private IWebElement _newSignUpCheckBox;
 
@@ -50,6 +53,38 @@ namespace TestFramework.BackEndObj
 
         [FindsBy(How = How.CssSelector, Using = "form[id*=edit_site] > input[type='submit']")]
         private IWebElement _updateSiteButton;
+
+        /// <summary>
+        /// Switches on the "Play Page" checkbox
+        /// </summary>
+        public void SwitchNewPlayPageOn(bool updatePage = false)
+        {
+            if (!IfCheckBoxIsChecked(_newPlayPageCheckBox))
+            {
+                _newPlayPageCheckBox.Click();
+            }
+            if (updatePage)
+            {
+                _updateSiteButton.Click();
+                WaitForPageLoading();
+            }
+        }
+
+        /// <summary>
+        /// Switches off the "Play Page" checkbox
+        /// </summary>
+        public void SwitchNewPlayPageOff(bool updatePage = false)
+        {
+            if (IfCheckBoxIsChecked(_newPlayPageCheckBox))
+            {
+                _newPlayPageCheckBox.Click();
+            }
+            if (updatePage)
+            {
+                _updateSiteButton.Click();
+                WaitForPageLoading();
+            }
+        }
 
         /// <summary>
         /// Switches on the "Combined Page" checkbox

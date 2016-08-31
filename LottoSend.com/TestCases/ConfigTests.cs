@@ -31,6 +31,7 @@ namespace LottoSend.com.TestCases
                 siteEditing.SwitchSingleGameOn();
                 siteEditing.SwitchAddressOn();
                 siteEditing.SwitchNewSignUpOff();
+                siteEditing.SwitchNewPlayPageOff();
                 siteEditing.SwitchAddToCartOn(true);
 
                 driver.Dispose();
