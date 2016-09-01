@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
@@ -18,6 +19,9 @@ namespace TestFramework.FrontEndObj.Cart
 
             PageFactory.InitElements(Driver, this);
         }
+
+        [FindsBy(How = How.CssSelector, Using = "tr.bet")]
+        private IList<IWebElement> _tickets;
 
         [FindsBy(How = How.CssSelector, Using = ".summary_button")]
         private IWebElement _proceedButton;
@@ -40,6 +44,9 @@ namespace TestFramework.FrontEndObj.Cart
         [FindsBy(How = How.XPath, Using = "//*[@class='coupon']/td[2]")]
         private IWebElement _couponDiscount;
 
+        [FindsBy(How = How.CssSelector, Using = ".modal-footer > a.btn")]
+        private IWebElement _yesImSureButton;
+
         /// <summary>
         /// Returns total price 
         /// </summary>
@@ -54,6 +61,44 @@ namespace TestFramework.FrontEndObj.Cart
         public double CouponDiscount
         {
             get { return StringExtention.ParseDouble(_couponInputField.Text); }
+        }
+
+        /// <summary>
+        /// Total number of ticket is the "Order summary" block
+        /// </summary>
+        public int NumberOfTickets
+        {
+            get { return _tickets.Count; }
+        }
+
+        /// <summary>
+        /// Removes a lottery ticket that includes sent to the method name
+        /// </summary>
+        /// <param name="lotteryName"></param>
+        public void DeleteTicket(string lotteryName)
+        {
+            IWebElement ticket = _findTrOfTicket(lotteryName);
+            ticket.FindElement(By.XPath("./td[2]/div/a[@class='destroy']")).Click();
+            WaitForElement(_yesImSureButton, 10).Click();
+            WaitAjax();
+        }
+
+        /// <summary>
+        /// Searches for <tr> tag that includes lottery that contains specific name
+        /// </summary>
+        /// <param name="lottery"></param>
+        /// <returns></returns>
+        private IWebElement _findTrOfTicket(string lottery)
+        {
+            foreach (var element in _tickets)
+            {
+                if (element.FindElement(By.XPath("./td[1]/div[@class='name']")).Text.Contains(lottery))
+                {
+                    return element;
+                }
+            }
+
+            return null;
         }
 
         /// <summary>
