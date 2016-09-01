@@ -26,14 +26,11 @@ namespace TestFramework.FrontEndObj.Cart
         [FindsBy(How = How.XPath, Using = "//td[@class='text-right']//strong")]
         private IWebElement _totalPrice;
 
-        [FindsBy(How = How.XPath, Using = "//tr[@id='#bet-{bet.id}']")]
+        [FindsBy(How = How.XPath, Using = "//tr[contains(@id, 'bet')]")]
         private IList<IWebElement> _allTickets;
 
         [FindsBy(How = How.CssSelector, Using = ".modal-footer > a.btn")]
         private IWebElement _yesImSureButton;
-
-        [FindsBy(How = How.CssSelector, Using = "table.table-striped > tbody")]
-        protected IWebElement _cartTable;
 
         [FindsBy(How = How.CssSelector, Using = ".glyphicon-trash")]
         private IWebElement _trashButtons;
