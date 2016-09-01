@@ -137,6 +137,7 @@
     <Compile Include="FrontEndObj\Cart\CartMobileObj.cs" />
     <Compile Include="FrontEndObj\Cart\CartObj.cs" />
     <Compile Include="FrontEndObj\Cart\CartSiteObj.cs" />
+    <Compile Include="FrontEndObj\Cart\NewOrderSummaryObj.cs" />
     <Compile Include="FrontEndObj\Common\BottomMenuObj.cs" />
     <Compile Include="FrontEndObj\Common\CheckoutObj.cs" />
     <Compile Include="FrontEndObj\Common\ExpressCheckoutObj.cs" />
@@ -144,6 +145,7 @@
     <Compile Include="FrontEndObj\Common\MerchantsObj.cs" />
     <Compile Include="FrontEndObj\Common\TopBarObj.cs" />
     <Compile Include="FrontEndObj\GamePages\GroupGamePageObj.cs" />
+    <Compile Include="FrontEndObj\GamePages\NewGroupGamePageObj.cs" />
     <Compile Include="FrontEndObj\GamePages\OfflineChargeFormObj.cs" />
     <Compile Include="FrontEndObj\GamePages\RafflesPageObj.cs" />
     <Compile Include="FrontEndObj\GamePages\RegularGamePageObj.cs" />

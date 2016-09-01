@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestFramework", "PageObject
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewCombinedPageConfigTests", "NewCombinedPageConfigTests\NewCombinedPageConfigTests.csproj", "{0B984ACB-F737-46A0-ABDC-056D35BE8073}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewPlayPageConfigTests", "NewPlayPageConfigTests\NewPlayPageConfigTests.csproj", "{8B030B6B-DD7A-4308-A1F2-281021CF5CBB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{0B984ACB-F737-46A0-ABDC-056D35BE8073}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B984ACB-F737-46A0-ABDC-056D35BE8073}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B984ACB-F737-46A0-ABDC-056D35BE8073}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B030B6B-DD7A-4308-A1F2-281021CF5CBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B030B6B-DD7A-4308-A1F2-281021CF5CBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B030B6B-DD7A-4308-A1F2-281021CF5CBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B030B6B-DD7A-4308-A1F2-281021CF5CBB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
