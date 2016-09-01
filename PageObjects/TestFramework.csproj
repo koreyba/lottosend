@@ -146,7 +146,9 @@
     <Compile Include="FrontEndObj\Common\TopBarObj.cs" />
     <Compile Include="FrontEndObj\GamePages\GroupGamePageObj.cs" />
     <Compile Include="FrontEndObj\GamePages\NewGroupGamePageObj.cs" />
+    <Compile Include="FrontEndObj\GamePages\NewRegularGamePageObj.cs" />
     <Compile Include="FrontEndObj\GamePages\OfflineChargeFormObj.cs" />
+    <Compile Include="FrontEndObj\GamePages\NewPlayPageObj.cs" />
     <Compile Include="FrontEndObj\GamePages\RafflesPageObj.cs" />
     <Compile Include="FrontEndObj\GamePages\RegularGamePageObj.cs" />
     <Compile Include="FrontEndObj\Login\LogInPopUpObj.cs" />

@@ -8,26 +8,26 @@ namespace TestFramework.FrontEndObj.GamePages
     /// <summary>
     /// Page object of a new play page on the site (web)
     /// </summary>
-    public class NewGroupGamePageObj : DriverCover
+    public class NewGroupGamePageObj : NewPlayPageObj
     {
         public NewGroupGamePageObj(IWebDriver driver) : base(driver)
         {
-            if (!Driver.FindElement(By.XPath("//*[@id='group']")).GetAttribute("class").Equals("active"))
+            if (!Driver.FindElement(By.XPath("//*[@data-id='group']")).GetAttribute("class").Equals("active"))
             {
-                throw new Exception("Sorry, it must be not new group game page ");
+                throw new Exception("Sorry, it must be not new group game page. Current URL is: " + Driver.Url + " ");
             }
 
             PageFactory.InitElements(Driver, this);
         }
-
-        [FindsBy(How = How.XPath, Using = "//button[contains(@class, 'btn-primary')]")]
-        private IList<IWebElement> _addToCartButtons;
 
         [FindsBy(How = How.XPath, Using = "//a[@class='plus']")]
         private IList<IWebElement> _plusButtons;
 
         [FindsBy(How = How.XPath, Using = "//*[contains(@id, 'slide')]")]
         private IList<IWebElement> _tickets;
+
+        [FindsBy(How = How.CssSelector, Using = ".total-price > span")]
+        private IList<IWebElement> _ticketPrices;
 
         /// <summary>
         /// Adds shares to selected ticket (from 1 to 5)

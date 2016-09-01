@@ -56,6 +56,10 @@ namespace TestFramework.FrontEndObj.Cart
             get { return StringExtention.ParseDouble(_couponInputField.Text); }
         }
 
+        /// <summary>
+        /// Applies a coupon
+        /// </summary>
+        /// <param name="coupon"></param>
         public void ApplyCoupon(string coupon)
         {
             _addCouponButton.Click();

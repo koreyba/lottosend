@@ -21,6 +21,9 @@ namespace TestFramework.BackEndObj
             PageFactory.InitElements(Driver, this);
         }
 
+        [FindsBy(How = How.XPath, Using = "//input[@id='site_mobile_add_to_cart']")]
+        private IWebElement _mobileAddToCart;
+
         [FindsBy(How = How.XPath, Using = "//input[@id='site_play_page']")]
         private IWebElement _newPlayPageCheckBox;
 
@@ -53,6 +56,38 @@ namespace TestFramework.BackEndObj
 
         [FindsBy(How = How.CssSelector, Using = "form[id*=edit_site] > input[type='submit']")]
         private IWebElement _updateSiteButton;
+
+        /// <summary>
+        /// Switches on the "Mobile AddTo Cart" checkbox
+        /// </summary>
+        public void SwitchMobileAddToCartOn(bool updatePage = false)
+        {
+            if (!IfCheckBoxIsChecked(_mobileAddToCart))
+            {
+                _mobileAddToCart.Click();
+            }
+            if (updatePage)
+            {
+                _updateSiteButton.Click();
+                WaitForPageLoading();
+            }
+        }
+
+        /// <summary>
+        /// Switches off the "Mobile AddTo Cart" checkbox
+        /// </summary>
+        public void SwitchMobileAddToCartOff(bool updatePage = false)
+        {
+            if (IfCheckBoxIsChecked(_mobileAddToCart))
+            {
+                _mobileAddToCart.Click();
+            }
+            if (updatePage)
+            {
+                _updateSiteButton.Click();
+                WaitForPageLoading();
+            }
+        }
 
         /// <summary>
         /// Switches on the "Play Page" checkbox
