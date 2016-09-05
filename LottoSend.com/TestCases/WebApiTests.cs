@@ -111,6 +111,7 @@ namespace LottoSend.com.TestCases
                 //Removes all tickets from the cart to make sure all other tests will work well
                 try
                 {
+                    _commonActions.Sign_In_SalesPanel(_driverCover.Login);
                     _cartActions.DeleteAllTicketFromCart_Front();
                 }
                 catch (Exception)
