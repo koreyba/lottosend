@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Globalization;
+using System.Net.Mime;
+using LottoSend.com.Verifications;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
@@ -18,6 +21,13 @@ namespace LottoSend.com.TestCases.BackOffice
         private DriverCover _driverCover;
         private TestFramework.CommonActions _commonActions;
         private TestsSharedCode _sharedCode;
+
+        [Test]
+        public void If_Bulk_Buys_Are_Not_Stuck()
+        { 
+            BackOfficeVerifications back = new BackOfficeVerifications(_driver);
+            back.IfPastDrawDateIsPresent();
+        }
 
         [Test]
         public void Create_Web_User_BackOffice()

@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using System.Globalization;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using TestFramework;
 using TestFramework.BackEndObj.ChargePanelPages;
@@ -11,6 +13,7 @@ namespace LottoSend.com
 
         static void Main(string[] args)
         {
+
 
             IWebDriver _driver = new ChromeDriver();
             DriverCover _driverCover = new DriverCover(_driver);

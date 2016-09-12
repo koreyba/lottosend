@@ -37,7 +37,7 @@ namespace LottoSend.com.Verifications
             _commonActions.SignIn_in_admin_panel();
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/bulk_buys?scope=not_completed_not_deleted");
             BulkBuysPageObj bulkBuys = new BulkBuysPageObj(_driver);
-            Assert.AreEqual(expectedAmount, bulkBuys.DrawsToPlay, "Amount of draws to play of the last bulk buy is not as expected. ");
+            Assert.AreEqual(expectedAmount, bulkBuys.DrawsToPlay(1), "Amount of draws to play of the last bulk buy is not as expected. ");
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace LottoSend.com.Verifications
             _commonActions.SignIn_in_admin_panel();
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/bulk_buys?scope=not_completed_not_deleted");
             BulkBuysPageObj bulkBuys = new BulkBuysPageObj(_driver);
-            Assert.AreEqual(expectedAmount, bulkBuys.DrawsPlayed, "Amount of draws played of the last bulk buy is not as expected. ");
+            Assert.AreEqual(expectedAmount, bulkBuys.DrawsPlayed(1), "Amount of draws played of the last bulk buy is not as expected. ");
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace LottoSend.com.Verifications
             _commonActions.SignIn_in_admin_panel();
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/bulk_buys?scope=not_completed_not_deleted");
             BulkBuysPageObj bulkBuys = new BulkBuysPageObj(_driver);
-            Assert.AreEqual(expectedLottery, bulkBuys.Lottery, "Lottery of the last bulk buy is not as expected. ");
+            Assert.AreEqual(expectedLottery, bulkBuys.Lottery(1), "Lottery of the last bulk buy is not as expected. ");
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace LottoSend.com.Verifications
             _commonActions.SignIn_in_admin_panel();
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/bulk_buys?scope=not_completed_not_deleted");
             BulkBuysPageObj bulkBuys = new BulkBuysPageObj(_driver);
-            Assert.AreEqual(expectedEmail, bulkBuys.WebUser, "Web User email is not as expected. ");
+            Assert.AreEqual(expectedEmail, bulkBuys.WebUser(1), "Web User email is not as expected. ");
         }
 
         /// <summary>
