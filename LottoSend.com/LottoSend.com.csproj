@@ -131,6 +131,7 @@
     <Compile Include="TestCases\BackOffice\SalesPanel\BuyRegularOneDrawTicketTests.cs" />
     <Compile Include="TestCases\BackOffice\SalesPanel\CartTests.cs" />
     <Compile Include="TestCases\BackOffice\SalesPanel\CouponTests.cs" />
+    <Compile Include="TestCases\BackOffice\SalesPanel\InternalBalanceTests.cs" />
     <Compile Include="TestCases\BackOffice\SalesPanel\PasswordRecoveryTests.cs" />
     <Compile Include="TestCases\BackOffice\SalesPanel\PromotionTests.cs" />
     <Compile Include="TestCases\BackOffice\SalesPanel\SignInUpTests.cs" />

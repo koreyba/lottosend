@@ -33,6 +33,22 @@ namespace TestFramework.BackEndObj.WebUsersPages
         private IWebElement _viewButton;
 
         /// <summary>
+        /// Gets store credit of the first record
+        /// </summary>
+        public double StoreCredit
+        {
+            get { return _table.FindElement(By.CssSelector("td:nth-child(10)")).Text.ParseDouble(); }
+        }
+
+        /// <summary>
+        /// Gets store credit of the first record
+        /// </summary>
+        public double RealMoney
+        {
+            get { return _table.FindElement(By.CssSelector("td:nth-child(9)")).Text.ParseDouble(); }
+        }
+
+        /// <summary>
         /// Click on "View" button for the first record on the page
         /// </summary>
         /// <returns></returns>
