@@ -36,7 +36,7 @@ namespace LottoSend.com.Verifications
 
             StringBuilder buildReport = new StringBuilder();
 
-            for (int j = 1; j < bulkBuys.NumberOfPages; ++j)
+            for (int j = 1; j <= bulkBuys.NumberOfPages; ++j)
             {
                 bulkBuys.NavigateToPage(j);
                 for (int i = 1; i < bulkBuys.NumberOfRecordsOnPage; ++i)

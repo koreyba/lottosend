@@ -13,7 +13,7 @@ namespace LottoSend.com.TestCases
     [SetUpFixture]
     public class ConfigTests
     {
-        //[OneTimeSetUp]
+        [OneTimeSetUp]
         public void RunBeforeAnyTests()
         {
             IWebDriver driver = new ChromeDriver();
