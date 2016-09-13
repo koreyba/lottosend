@@ -5,7 +5,6 @@ using OpenQA.Selenium.Chrome;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using TestFramework;
-using TestFramework.BackEndObj.SalesPanelPages;
 using TestFramework.Helpers;
 
 namespace LottoSend.com.TestCases.BackOffice.SalesPanel
@@ -46,11 +45,12 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
 
             _cartVerifications.CheckNumberOfTicketsInCart_SalesPanel(2);
 
-            CartObj cart = new CartObj(_driver);
-            Assert.AreEqual(2, cart.NumberOfTickets, "Number of tickets in the cart is wrong");
+            PageObjectsReporitory.Init(_driver);
 
-            cart.DeleteTicket(lotteryOne);
-            cart.DeleteTicket(lotteryTwo);
+            Assert.AreEqual(2, PageObjectsReporitory.Cart.NumberOfTickets, "Number of tickets in the cart is wrong");
+
+            PageObjectsReporitory.Cart.DeleteTicket(lotteryOne);
+            PageObjectsReporitory.Cart.DeleteTicket(lotteryTwo);
 
             _cartVerifications.CheckNumberOfTicketsInCart_SalesPanel(0);
         }
@@ -72,19 +72,18 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             }
 
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/orders");
-            MenuObj menu = new MenuObj(_driver);
-            menu.GoToLotteryPage(raffleName);
+            PageObjectsReporitory.Init(_driver);
 
-            RafflePageObj raffle = new RafflePageObj(_driver);
-            raffle.AddShareToTicket(1, 2);
-            raffle.ClickAddToCartButton();
+            PageObjectsReporitory.Menu.GoToLotteryPage(raffleName);
 
-            CartObj cart = new CartObj(_driver);
-            Assert.AreEqual(2, cart.NumberOfTickets, "Number of tickets in the cart is wrong");
+            PageObjectsReporitory.RafflePage.AddShareToTicket(1, 2);
+            PageObjectsReporitory.RafflePage.ClickAddToCartButton();
 
-            cart.DeleteTicket(raffleName);
-            cart.DeleteTicket(raffleName);
-            Assert.AreEqual(0, cart.NumberOfTickets, "Number of tickets in the cart is wrong");
+            Assert.AreEqual(2, PageObjectsReporitory.Cart.NumberOfTickets, "Number of tickets in the cart is wrong");
+
+            PageObjectsReporitory.Cart.DeleteTicket(raffleName);
+            PageObjectsReporitory.Cart.DeleteTicket(raffleName);
+            Assert.AreEqual(0, PageObjectsReporitory.Cart.NumberOfTickets, "Number of tickets in the cart is wrong");
         }
 
         /// <summary>
@@ -104,19 +103,17 @@ namespace LottoSend.com.TestCases.BackOffice.SalesPanel
             }
 
             _driverCover.NavigateToUrl(_driverCover.BaseAdminUrl + "admin/orders");
-            MenuObj menu = new MenuObj(_driver);
-            menu.GoToLotteryPage(lottery);
-            GroupGameObj group = new GroupGameObj(_driver);
-            group.SwitchToSingleTab();
+            PageObjectsReporitory.Init(_driver);
 
-            RegularGameObj game = new RegularGameObj(_driver);
-            game.AddToCart();
+            PageObjectsReporitory.Menu.GoToLotteryPage(lottery);
+            PageObjectsReporitory.GroupGame.SwitchToSingleTab();
 
-            CartObj cart = new CartObj(_driver);
-            Assert.AreEqual(1, cart.NumberOfTickets, "Number of tickets in the cart is wrong");
+            PageObjectsReporitory.RegularGame.AddToCart();
 
-            cart.DeleteTicket(lottery);
-            Assert.AreEqual(0, cart.NumberOfTickets, "Number of tickets in the cart is wrong");
+            Assert.AreEqual(1, PageObjectsReporitory.Cart.NumberOfTickets, "Number of tickets in the cart is wrong");
+
+            PageObjectsReporitory.Cart.DeleteTicket(lottery);
+            Assert.AreEqual(0, PageObjectsReporitory.Cart.NumberOfTickets, "Number of tickets in the cart is wrong");
         }
 
         [TearDown]
