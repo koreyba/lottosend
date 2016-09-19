@@ -36,16 +36,31 @@ namespace LottoSend.com.Verifications
 
             StringBuilder buildReport = new StringBuilder();
 
-            for (int j = 1; j <= bulkBuys.NumberOfPages; ++j)
+            int pages = bulkBuys.NumberOfPages;
+
+            for (int j = 1; j <= pages; ++j)
             {
                 bulkBuys.NavigateToPage(j);
                 for (int i = 1; i < bulkBuys.NumberOfRecordsOnPage; ++i)
                 {
-                    DateTime date = bulkBuys.DrawDate(i);
-                    if (date.Date < DateTime.Today)
+                    try
                     {
-                        buildReport.Append("\n Record №" + i + " on page " + j + " has a past draw date. So the bet was not pushed to the next draw. \n");
+                        DateTime date = bulkBuys.DrawDate(i);
+                        if (date.Date < DateTime.Today)
+                        {
+                            buildReport.Append("\n Record №" + i + " on page " + j +
+                                               " has a past draw date. So the bet was not pushed to the next draw. \n");
+                        }
                     }
+                    catch (Exception e)
+                    {
+                        buildReport.Append(
+                            "\n Record " + i + " has incorrect type of data at all (empty string or not a data format). " +
+                            "You should check it on page" +
+                            j + " \n");
+                    }
+                    
+                    
                 }
             }
 

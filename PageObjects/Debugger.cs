@@ -11,10 +11,7 @@ namespace TestFramework
     {
         private EventFiringWebDriver _firingDriver;
 
-        public EventFiringWebDriver Driver
-        {
-            get { return _firingDriver; }
-        }
+        public EventFiringWebDriver Driver => _firingDriver;
 
         public Debugger(IWebDriver driver)
         {
